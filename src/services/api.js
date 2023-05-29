@@ -7,3 +7,10 @@ export const callRegister = (username, password, email) => {
     email,
   });
 };
+
+export const callLogin = (username, password) => {
+  return axios.post("", {
+    username,
+    password,
+  });
+};

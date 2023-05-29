@@ -4,16 +4,17 @@ import { Button, Col, Divider, Form, Input, Row, Space } from "antd";
 import { Link, useNavigate } from "react-router-dom";
 import { notification } from "antd";
 
-const formItemLayout = {
-  labelCol: {
-    xs: { span: 24 },
-    sm: { span: 8 },
-  },
-  wrapperCol: {
-    xs: { span: 24 },
-    sm: { span: 16 },
-  },
-};
+// const formItemLayout = {
+//   labelCol: {
+//     xs: { span: 8 },
+//     sm: { span: 8
+//      },
+//   },
+//   wrapperCol: {
+//     xs: { span: 8 },
+//     sm: { span: 16 },
+//   },
+// };
 
 const RegisterPage = () => {
   const navigate = useNavigate();
@@ -31,7 +32,9 @@ const RegisterPage = () => {
       notification.error({
         message: "Có lỗi xảy",
         description:
-          res.message && res.message.length > 0 ? res.message[0] : res.message,
+          res.message && res.message && Array.isArray(res.message) > 0
+            ? res.message[0]
+            : res.message,
         duration: 5,
       });
     }
@@ -41,7 +44,7 @@ const RegisterPage = () => {
       <div className="register-box">
         <div className="register-form">
           <Form
-            {...formItemLayout}
+            // {...formItemLayout}
             name="register"
             onFinish={onFinish}
             style={{ maxWidth: "50%" }}
@@ -61,7 +64,7 @@ const RegisterPage = () => {
               <Form.Item
                 labelCol={{ span: 24 }}
                 name="username"
-                label="Tên đăng nhập"
+                label="Tên đăng nhập:"
                 // tooltip="What do you want others to call you?"
                 rules={[
                   {
@@ -77,7 +80,7 @@ const RegisterPage = () => {
               <Form.Item
                 labelCol={{ span: 24 }}
                 name="email"
-                label="Email"
+                label="Email:"
                 rules={[
                   {
                     type: "email",
@@ -95,7 +98,7 @@ const RegisterPage = () => {
               <Form.Item
                 labelCol={{ span: 24 }}
                 name="password"
-                label="Mật khẩu"
+                label="Mật khẩu:"
                 rules={[
                   {
                     required: true,
@@ -110,7 +113,7 @@ const RegisterPage = () => {
               <Form.Item
                 labelCol={{ span: 24 }}
                 name="confirm"
-                label="Nhập lại mật khẩu"
+                label="Nhập lại mật khẩu:"
                 dependencies={["password"]}
                 hasFeedback
                 rules={[
