@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./styles/reset.scss";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import LoginPage from "./pages/login";
 import { Outlet } from "react-router-dom";
@@ -8,13 +9,13 @@ import RegisterPage from "./pages/register";
 import Home from "./components/Home";
 import NotFound from "./components/NotFound";
 import AdminPage from "./pages/admin";
+import LayoutAdmin from "./components/Admin";
 
 /* gọi API
 const getAccount = async () =>
 {
   if (window.location.pathname === "/login") return;
     if (window.location.pathname === "/register") return;
-    if (window.location.pathname === "/") return;
     const res;
 }
 useEffect(()=>{},[]);
@@ -27,19 +28,6 @@ const Layout = () => {
         <Header />
         <Outlet />
         <Footer />
-      </div>
-    </>
-  );
-};
-const LayoutAdmin = () => {
-  return (
-    <>
-      <div className="layout-app">
-        {/* {isAdminRoute && userRole === "ADMIN" && <Header />} */}
-        <Header />
-        <Outlet />
-        <Footer />
-        {/* {isAdminRoute && userRole === "ADMIN" && <Footer />} */}
       </div>
     </>
   );

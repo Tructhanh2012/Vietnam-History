@@ -4,16 +4,16 @@ import { Button, Col, Divider, Form, Input, Row } from "antd";
 import { Link, useNavigate } from "react-router-dom";
 import { notification } from "antd";
 
-const formItemLayout = {
-  labelCol: {
-    xs: { span: 24 },
-    sm: { span: 8 },
-  },
-  wrapperCol: {
-    xs: { span: 24 },
-    sm: { span: 16 },
-  },
-};
+// const formItemLayout = {
+//   labelCol: {
+//     xs: { span: 24 },
+//     sm: { span: 8 },
+//   },
+//   wrapperCol: {
+//     xs: { span: 24 },
+//     sm: { span: 16 },
+//   },
+// };
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -46,7 +46,7 @@ const LoginPage = () => {
       <div className="login-box">
         <div className="login-form" style={{ margin: "auto auto" }}>
           <Form
-            {...formItemLayout}
+            //{...formItemLayout}
             name="login"
             onFinish={onFinish}
             style={{ maxWidth: "50%" }}

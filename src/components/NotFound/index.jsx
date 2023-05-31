@@ -1,3 +1,5 @@
+import "./notFound.scss";
+
 const NotFound = () => {
   return (
     <>
