@@ -17,11 +17,10 @@
 }
 
 .login-page{
-    
-    //display: flex;
+    // display: contents;
     justify-content: center;
     align-items: center;
-    // min-height: 100vh;
+    // height: 100vh;
 
     .login-box{
 
@@ -38,7 +37,7 @@
         background-color: white;
         box-shadow: 4px 4px 4px rgba(32, 10, 10, 0.25);
         overflow: hidden;
-        margin: 44px auto;
+        margin: 90px auto;
         border-radius: 25px;
     }
 

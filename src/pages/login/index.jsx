@@ -43,13 +43,14 @@ const LoginPage = () => {
   };
   return (
     <div className="login-page">
+      <Col span={4} style={{ display: "flex", alignItems: "center" }}></Col>
       <div className="login-box">
-        <div className="login-form" style={{ margin: "auto auto" }}>
+        <div className="login-form">
           <Form
             //{...formItemLayout}
             name="login"
             onFinish={onFinish}
-            style={{ maxWidth: "50%" }}
+            style={{ maxWidth: "50%", maxHeight: "auto" }}
             autoComplete="off"
           >
             <div className="content">
