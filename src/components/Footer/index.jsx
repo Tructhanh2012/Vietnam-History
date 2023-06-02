@@ -1,7 +1,9 @@
+import "bootstrap/dist/css/bootstrap.min.css";
 import imageLogo from "../../assets/logo.png";
 import phone from "../../assets/phone.png";
 import gmail from "../../assets/gmail.png";
 import "./footer.scss";
+
 const Footer = () => {
   return (
     <>
@@ -9,7 +11,7 @@ const Footer = () => {
         <div className="col-md-3 d-flex justify-content-center align-items-center">
           <div>
             <img
-              class="logo-icon1"
+              className="logo-icon1"
               alt=""
               src={imageLogo}
             />
@@ -21,7 +23,7 @@ const Footer = () => {
             <p>Liên hệ</p>
             <div className="footer-item d-flex">
               <img
-                class="vector-icon75"
+                className="vector-icon75"
                 alt=""
                 src={phone}
                 style={{ width: "25px", height: "25px", paddingRight: "5px" }}
@@ -30,7 +32,7 @@ const Footer = () => {
             </div>
             <div className="footer-item d-flex">
               <img
-                class="vector-icon76"
+                className="vector-icon76"
                 alt=""
                 src={gmail}
                 style={{ width: "30px", height: "25px", paddingRight: "5px" }}
@@ -47,7 +49,7 @@ const Footer = () => {
               chính xác về lịch sử, văn hóa, địa lý và nhiều chủ đề khác liên
               quan đến Việt Nam. Chúng tôi muốn tạo ra một không gian để mọi
               người có thể trải nghiệm và cảm nhận về quá khứ của đất nước và
-              con người Việt Nam một cách đầy hứng thú.{" "}
+              con người Việt Nam một cách đầy hứng thú.
             </p>
             <p>
               Chúng tôi hi vọng rằng trang web của chúng tôi sẽ giúp người đọc
