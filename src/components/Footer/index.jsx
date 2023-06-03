@@ -8,11 +8,7 @@ const Footer = () => {
       <div className="footer row">
         <div className="col-md-3 d-flex justify-content-center align-items-center">
           <div>
-            <img
-              class="logo-icon1"
-              alt=""
-              src={imageLogo}
-            />
+            <img className="logo-icon1" alt="" src={imageLogo} />
             <p>website_name 2023</p>
           </div>
         </div>
@@ -21,7 +17,7 @@ const Footer = () => {
             <p>Liên hệ</p>
             <div className="footer-item d-flex">
               <img
-                class="vector-icon75"
+                className="vector-icon75"
                 alt=""
                 src={phone}
                 style={{ width: "25px", height: "25px", paddingRight: "5px" }}
@@ -30,7 +26,7 @@ const Footer = () => {
             </div>
             <div className="footer-item d-flex">
               <img
-                class="vector-icon76"
+                className="vector-icon76"
                 alt=""
                 src={gmail}
                 style={{ width: "30px", height: "25px", paddingRight: "5px" }}

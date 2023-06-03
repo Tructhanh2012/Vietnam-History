@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Petrona:wght@700&display=swap');
+;
+.layoutAdmin{
+    &__title{
+        font-family: "Petrona", sans-serif;
+    }
+
+    &__header{
+
+    }
+
+    .ant-menu-item{
+        margin-top: 20px;
+    }
+}

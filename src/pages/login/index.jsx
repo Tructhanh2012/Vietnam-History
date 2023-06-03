@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import { Button, Col, Divider, Form, Input, Row } from "antd";
 import { Link, useNavigate } from "react-router-dom";
 import { notification } from "antd";
+import { useDispatch } from "react-redux";
+import { doLoginAction } from "../../redux/account/accountSlice";
 
 // const formItemLayout = {
 //   labelCol: {
@@ -18,7 +20,7 @@ import { notification } from "antd";
 const LoginPage = () => {
   const navigate = useNavigate();
   const [isSubmit, setIsSubmit] = useState(false);
-
+  const dispatch = useDispatch();
   const onFinish = async (values) => {
     const { username, password } = values;
     setIsSubmit(true);
@@ -27,6 +29,7 @@ const LoginPage = () => {
 
     if (res?.data) {
       //save access_token
+      dispatch(doLoginAction(res.data.user));
 
       message.success("Đăng nhập thành công");
       navigate("/");
