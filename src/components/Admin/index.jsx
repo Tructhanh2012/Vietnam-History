@@ -1,12 +1,9 @@
-import { TeamOutlined } from "@ant-design/icons";
+import { TeamOutlined, UserOutlined } from "@ant-design/icons";
 import React from "react";
 import "./layout.scss";
 import { Link, Outlet } from "react-router-dom";
 import {
-  AppstoreOutlined,
   UserAddOutlined,
-  ExceptionOutlined,
-  DollarCircleOutlined,
   MenuUnfoldOutlined,
   MenuFoldOutlined,
   HeartTwoTone,
@@ -15,6 +12,8 @@ import {
 import { useState } from "react";
 import { Layout, Menu, Dropdown, Space, Divider } from "antd";
 import { useSelector } from "react-redux";
+import { GrDashboard } from "react-icons/gr";
+import { MdPersonAddAlt } from "react-icons/md";
 
 const LayoutAdmin = () => {
   const { Content, Footer, Sider, Header } = Layout;
@@ -23,31 +22,27 @@ const LayoutAdmin = () => {
     {
       label: <Link to="/admin">Dashboard</Link>,
       key: "dashboard",
-      icon: <AppstoreOutlined />,
+      icon: <GrDashboard />,
     },
     {
       label: <span>Người dùng</span>,
       // key: "user",
-      icon: <UserAddOutlined />,
+      icon: <UserOutlined />,
       children: [
         {
           label: <Link to="/admin/user">CRUD</Link>,
           key: "crud",
           icon: <TeamOutlined />,
         },
-        // {
-        //   label: "File1",
-        //   key: "file1",
-        //   icon: <TeamOutlined />,
-        // },
+        {
+          label: <Link to="/admin/create-role">Tạo role</Link>,
+          key: "addrole",
+          icon: <UserAddOutlined />,
+        },
       ],
     },
   ];
   const itemsDropdown = [
-    {
-      label: <label>Quản lý tài khoản</label>,
-      key: "account",
-    },
     {
       label: <label>Đăng xuất</label>,
       key: "logout",
@@ -59,7 +54,10 @@ const LayoutAdmin = () => {
 
   // const user = useSelector((state) => state.account.user);
   return (
-    <Layout style={{ minHeight: "100vh" }} className="layoutAdmin">
+    <Layout
+      style={{ minHeight: "100vh", overflow: "hidden" }}
+      className="layoutAdmin"
+    >
       <Sider
         theme="light"
         collapsible
@@ -76,7 +74,7 @@ const LayoutAdmin = () => {
               marginTop: "30px",
             }}
           >
-            Xin chào Admin
+            Admin
             <Divider />
           </div>
         </div>
@@ -100,7 +98,10 @@ const LayoutAdmin = () => {
             alignItems: "center",
           }}
         >
-          <div className="layoutAdmin__header__welcome">
+          <div
+            className="layoutAdmin__header__welcome"
+            // style={{ position: "absolute", right: "15px" }}
+          >
             <span>
               {React.createElement(
                 collapsed ? MenuUnfoldOutlined : MenuFoldOutlined,
@@ -110,20 +111,23 @@ const LayoutAdmin = () => {
                 }
               )}
             </span>
+
             <Dropdown menu={{ items: itemsDropdown }} trigger={["click"]}>
               <a onClick={(e) => e.preventDefault}>
                 <Space>
                   Welcome
-                  {/* Welcome {user?.fullName} */}
+                  {/* Welcome admin {user?.fullName} */}
                   <DownOutlined />
                 </Space>
               </a>
             </Dropdown>
           </div>
         </Header>
+
         <Content>
           <Outlet />
         </Content>
+
         <Footer style={{ padding: 0 }}>webname&copy; 2023.</Footer>
       </Layout>
     </Layout>

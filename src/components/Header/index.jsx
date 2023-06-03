@@ -1,9 +1,6 @@
-const Header = () => {
-  return (
-    <>
-      <div>header page ne </div>
-    </>
-  );
-};
+//
 
+const Header = () => {
+  return <>header ne</>;
+};
 export default Header;
