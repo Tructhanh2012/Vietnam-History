@@ -1,4 +1,4 @@
-.ant-input{
+.ant-input {
   border-color: transparent;
   border-radius: 0;
   outline: transparent;
@@ -17,10 +17,9 @@
 }
 
 .login-page{
-    // display: contents;
+
     justify-content: center;
     align-items: center;
-    // height: 100vh;
 
     .login-box{
 
@@ -37,46 +36,49 @@
         background-color: white;
         box-shadow: 4px 4px 4px rgba(32, 10, 10, 0.25);
         overflow: hidden;
-        margin: 90px auto;
+        margin: 40px auto;
+        margin-top: 55px;
         border-radius: 25px;
     }
 
-    .ant-form{
-      padding: 15px 40px;
-      background: linear-gradient(0deg, rgba(233, 220, 220, 0.3), rgba(252, 252, 252, 0.2)), rgba(245, 180, 180, 0.5);
-      
-      box-shadow: 0px 20px 20px rgb(236, 184, 184, 0.9);  
-      
-    }
-    .ant-btn{
-      background-color: #BA161C;
-    }
-    
-    .ant-col{
-      max-width: 100%;
-      padding: 0; 
-      margin-top: 10px;  
+  .ant-form {
+    padding: 15px 40px;
+    background: linear-gradient(
+        0deg,
+        rgba(233, 220, 220, 0.3),
+        rgba(252, 252, 252, 0.2)
+      ),
+      rgba(245, 180, 180, 0.5);
 
-    }
+    box-shadow: 0px 20px 20px rgb(236, 184, 184, 0.9);
+  }
+  .ant-btn {
+    background-color: #ba161c;
+  }
 
-    .ant-form-item{
-      margin-bottom: 15px;
-    }
+  .ant-col {
+    max-width: 100%;
+    padding: 0;
+    margin-top: 10px;
+  }
 
-    .ant-row.btn-login{
-          margin-top: 15px;
-    }
+  .ant-form-item {
+    margin-bottom: 15px;
+  }
 
-    .ant-input{
-      padding: 4px 4px;
-      
-    }
+  .ant-row.btn-login {
+    margin-top: 15px;
+  }
 
-    h2{
-      margin-bottom: 10px;
-      margin-top: 25px;
-    }
-    .ant-input-affix-wrapper {
-        margin-bottom: 20px;
-    }
+  .ant-input {
+    padding: 4px 4px;
+  }
+
+  h2 {
+    margin-bottom: 10px;
+    margin-top: 25px;
+  }
+  .ant-input-affix-wrapper {
+    margin-bottom: 20px;
+  }
 }

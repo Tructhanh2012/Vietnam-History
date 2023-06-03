@@ -10,6 +10,9 @@ import Home from "./components/Home";
 import NotFound from "./components/NotFound";
 import AdminPage from "./pages/admin";
 import LayoutAdmin from "./components/Admin";
+import ProfilePage from "./pages/profile";
+import UserTable from "./components/Admin/User/UserTable";
+import RegisterRole from "./components/Admin/User/RegisterRole";
 
 /* gọi API
 const getAccount = async () =>
@@ -53,6 +56,14 @@ export default function App() {
             <AdminPage />
           ),
         },
+        {
+          path: "user",
+          element: <UserTable />,
+        },
+        {
+          path: "create-role",
+          element: <RegisterRole />,
+        },
       ],
     },
     {
@@ -62,6 +73,10 @@ export default function App() {
     {
       path: "/register",
       element: <RegisterPage />,
+    },
+    {
+      path: "/profile",
+      element: <ProfilePage />,
     },
   ]);
   return (
