@@ -1,7 +1,7 @@
 import { TeamOutlined, UserOutlined } from "@ant-design/icons";
 import React from "react";
 import "./layout.scss";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import {
   UserAddOutlined,
   MenuUnfoldOutlined,
@@ -17,6 +17,7 @@ import { MdPersonAddAlt } from "react-icons/md";
 
 const LayoutAdmin = () => {
   const { Content, Footer, Sider, Header } = Layout;
+  const navigate = useNavigate();
 
   const items = [
     {
@@ -44,7 +45,7 @@ const LayoutAdmin = () => {
   ];
   const itemsDropdown = [
     {
-      label: <label>Đăng xuất</label>,
+      label: <label onClick={() => navigate("/")}>Đăng xuất</label>,
       key: "logout",
     },
   ];

@@ -1,5 +1,6 @@
 import { Col, Row, Table } from "antd";
 import InputSearch from "./InputSearch";
+import { DeleteTwoTone, EditTwoTone } from "@ant-design/icons";
 
 const UserTable = () => {
   const data = [
@@ -39,6 +40,24 @@ const UserTable = () => {
       title: "Role",
       dataIndex: "role",
       key: "role",
+    },
+    {
+      title: "Xóa",
+      render: (text, record, index) => {
+        return (
+          <span style={{ cursor: "pointer", margin: "0 20px" }}>
+            <DeleteTwoTone twoToneColor="#ff4d4f" />
+          </span>
+        );
+      },
+    },
+    {
+      title: "Cập nhật",
+      render: (text, record, index) => {
+        return (
+          <EditTwoTone twoToneColor="#f57800" style={{ cursor: "pointer" }} />
+        );
+      },
     },
   ];
 

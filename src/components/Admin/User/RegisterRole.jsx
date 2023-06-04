@@ -1,13 +1,15 @@
-import { Col, Divider, Form, Input, Radio, Row } from "antd";
+import { Col, Divider, Form, Input, Radio, Row, message } from "antd";
 import { Button } from "antd";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { callRegisterRole } from "../../../services/api";
 import styles from "./register_role.module.css";
+import { useForm } from "antd/es/form/Form";
 
-const RegisterRole = () => {
+const RegisterRole = (props) => {
   const navigate = useNavigate();
   const [isSubmit, setIsSubmit] = useState(false);
+  const [form] = Form.useForm();
 
   const onFinish = async (values) => {
     const { username, password, email, role } = values;
@@ -28,6 +30,21 @@ const RegisterRole = () => {
       });
     }
   };
+
+  // const onFinish = async (values) => {
+  //   const { username, email, password, role } = values;
+  //   setIsSubmit(true);
+  //   const res = await callRegisterRole(username, password, email, role);
+  //   if (res && res.data) {
+  //     message.success("Tạo mới thành công");
+  //     form.resetFields();
+  //     await props.fetchUser();
+  //   } else {
+  //     notification.error({
+  //       message: "Có lỗi xảy",
+  //       discription: res.message,
+  //     });
+  //   }
   return (
     <div className={styles["register-role-page"]}>
       <div className={styles["register-role-box"]}>
