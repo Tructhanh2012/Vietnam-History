@@ -41,8 +41,10 @@ function Header() {
           <span className="input-search">
             <Input placeholder="" suffix={<SearchOutlined />} />
           </span>
-          <span className="btn-login">
-            <Button onClick={() => navigate("/login")}>Đăng nhập</Button>
+          <span className="btn">
+            <Button className="btn-login" onClick={() => navigate("/login")}>
+              Đăng nhập
+            </Button>
           </span>
         </div>
       </Navbar>
@@ -94,7 +96,7 @@ function Header() {
                 Blog cá nhân
               </NavDropdown.Item>
 
-              <NavDropdown.Item href="#action/3.3">quizz</NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.3">Quizz</NavDropdown.Item>
             </NavDropdown>
           </Nav>
         </Navbar>
