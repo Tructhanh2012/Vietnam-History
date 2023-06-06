@@ -1,0 +1,24 @@
+.banner-homepage {
+  background-image: url(../../assets/Rectangle.png);
+  background-size: cover; /* kích thước hình ảnh nền dựa trên tỷ lệ khung hình */
+  background-position: center; /* căn chỉnh hình ảnh nền vào giữa khung */
+  background-repeat: no-repeat;
+  display: flex;
+}
+
+.map-button:hover {
+  fill: yellow;
+  cursor: pointer;
+}
+.mapsvg-homepage {
+  margin-left: 10%;
+  margin-top: 5%;
+  //   width: 120%;
+}
+.text-banner-homepage {
+  float: right;
+  height: 75%;
+  //   width: 100%;
+  margin-top: 374px;
+  margin-right: 3%;
+}

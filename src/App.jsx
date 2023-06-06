@@ -13,6 +13,7 @@ import LayoutAdmin from "./components/Admin";
 import ProfilePage from "./pages/profile";
 import UserTable from "./components/Admin/User/UserTable";
 import RegisterRole from "./components/Admin/User/RegisterRole";
+import LearnByMap from "./components/Map";
 
 /* gọi API
 const getAccount = async () =>
@@ -30,6 +31,7 @@ const Layout = () => {
       <div className="layout-app">
         <Header />
         <Outlet />
+        <LearnByMap />
         <Footer />
       </div>
     </>

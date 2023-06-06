@@ -2,7 +2,7 @@
   background-color: #ffffff;
   color: black;
   position: absolute;
-  bottom: 0;
+  // bottom: 0;
   left: 0;
   right: 0;
   // width: 100%;
@@ -13,30 +13,29 @@
   padding: 0 25px;
 }
 
-.d-flex{
-     align-content: flex-start;
-     flex-wrap: wrap;
+.d-flex {
+  align-content: flex-start;
+  flex-wrap: wrap;
 }
-
 
 @media (max-width: 767px) {
   .col-md-6 {
-    h6{
+    h6 {
       display: none;
     }
-    p{
+    p {
       display: none;
     }
   }
 
-  .footer-contact{
-      // display: block;
+  .footer-contact {
+    // display: block;
     position: absolute;
     right: 0px;
   }
 
-  .footer-logo{
-      display: block;
+  .footer-logo {
+    display: block;
 
     // position: absolute;
     left: 2px;
