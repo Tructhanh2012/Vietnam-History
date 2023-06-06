@@ -8,9 +8,9 @@
     color: #ffff;
 }
 
-.btn-login{
+.btn{
   position: absolute;
-   right: 50px;
+  right: 50px;
 }
 
  /* header.scss */
@@ -42,13 +42,13 @@ img{
   .input-search{
     display: none;
   }
-  .ant-btn{
+  .btn-login{
     display: block;
-    right: 5px;
+    right: 4px;
   }
   .logo{
    display: block;
-    left: 0;
+   left: 2px;
   }
  
 }
