@@ -14,6 +14,7 @@ import ProfilePage from "./pages/profile";
 import UserTable from "./components/Admin/User/UserTable";
 import RegisterRole from "./components/Admin/User/RegisterRole";
 import LearnByMap from "./components/Map";
+import TimelinePage from "./pages/timeLine";
 
 /* gọi API
 const getAccount = async () =>
@@ -78,6 +79,10 @@ export default function App() {
     {
       path: "/profile",
       element: <ProfilePage />,
+    },
+    {
+      path: "/timeline",
+      element: <TimelinePage />,
     },
   ]);
   return (

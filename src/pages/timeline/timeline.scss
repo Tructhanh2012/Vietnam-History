@@ -1,0 +1,61 @@
+.Timeline {
+  background-image: url(../../assets/hoatiet4.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  // opacity: 0.5;
+}
+// .Timeline::before {
+//   background-color: rgba(0, 0, 0, 0.5);
+// }
+// .Timeline::after {
+//   filter: opacity(50%);
+// }
+
+.Timeline-card {
+  // background-image: url(../../assets/trongdong2.png);
+  width: 78%;
+  margin: 0 auto;
+  margin-top: 50px;
+  position: relative;
+}
+.card {
+  border: none;
+  border-radius: unset;
+  height: 325px;
+  background-color: #fef7f7;
+}
+.card-top {
+  color: rgb(5, 135, 196);
+  margin: 2% 0 2% 4%;
+}
+.card-bottom {
+  font-size: 14px; // Điều chỉnh kích thước phông chữ
+  font-weight: normal;
+  margin: 0 4%;
+}
+
+.arrow {
+  font-size: 30px;
+  top: 50%;
+  position: absolute;
+  color: rgb(254, 178, 37);
+}
+.arrow-right {
+  // right: 0px;
+  left: 100%;
+}
+
+.arrow-left {
+  right: 100%;
+  // left: 0px;
+}
+.arrow:hover {
+  cursor: pointer;
+}
+
+.slick-dots {
+  top: -5%;
+  color: #ffc107;
+}
