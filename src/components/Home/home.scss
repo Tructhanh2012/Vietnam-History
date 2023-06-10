@@ -23,7 +23,15 @@
                 }
             }
          }   
-   
+
+.homepage-month-article-content .gutter-row .ant-card {
+  transition: transform 0.3s;
+}
+
+.homepage-month-article-content .gutter-row .ant-card:hover {
+  transform: scale(1.05);
+} 
+
    .homepage-article-content{
       display: flex;
       gap: 20px;
@@ -107,6 +115,11 @@
           margin-bottom: 12px;
           font-weight: 600;
           background-color: #E46F73;
+          border-radius: 2px;
+
+          &:hover {
+          background-color: #963B3E;
+         }
    }
 
   
