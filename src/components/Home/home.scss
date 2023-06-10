@@ -6,7 +6,7 @@
          font-family: 'Gentium Book Plus', serif;
       }
    .article{
-                  &:hover {
+            &:hover {
                 box-shadow: 0 0.0625rem 20px 0 rgba(0, 0, 0, .05);
                 -webkit-transform: translateY(-0.0625rem);
                 transform: translateY(-0.0625rem);
@@ -26,6 +26,7 @@
 
 .homepage-month-article-content .gutter-row .ant-card {
   transition: transform 0.3s;
+  cursor: pointer;
 }
 
 .homepage-month-article-content .gutter-row .ant-card:hover {
@@ -109,6 +110,7 @@
    }
 
    .doc{
+          cursor: pointer;
           text-align: center;
           padding-top: 16px;
           padding: 2px;

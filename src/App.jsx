@@ -13,7 +13,9 @@ import LayoutAdmin from "./components/Admin";
 import ProfilePage from "./pages/profile";
 import UserTable from "./components/Admin/User/UserTable";
 import RegisterRole from "./components/Admin/User/RegisterRole";
-import LearnByMap from "./components/Map";
+import EditorPage from "./pages/editor";
+import RankingPage from "./pages/rank";
+import ImageTextArea from "./test";
 
 /* gọi API
 const getAccount = async () =>
@@ -30,6 +32,7 @@ const Layout = () => {
     <>
       <div className="layout-app">
         <Header />
+        {/* <ImageTextArea /> */}
         <Outlet />
         <Footer />
       </div>
@@ -43,7 +46,11 @@ export default function App() {
       path: "/",
       element: <Layout />,
       errorElement: <NotFound />,
-      children: [{ index: true, element: <Home /> }],
+      children: [
+        { index: true, element: <Home /> },
+        { path: "rank", element: <RankingPage /> },
+        // { path: "timeline", element: <RankingPage /> },
+      ],
     },
     {
       path: "/admin",
@@ -66,6 +73,12 @@ export default function App() {
           element: <RegisterRole />,
         },
       ],
+    },
+    {
+      path: "/editor",
+      element: <EditorPage />,
+      errorElement: <NotFound />,
+      children: [],
     },
     {
       path: "/login",

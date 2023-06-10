@@ -22,3 +22,18 @@ export const callLogin = (username, password) => {
     password,
   });
 };
+
+export const getMap = () => {
+  return axios.get(
+    "https://react-history-default-rtdb.firebaseio.com/history.json"
+  );
+};
+// export const getAPI = () => {
+//   return axios.get("https://jsonplaceholder.typicode.com/todos");
+// };
+
+// export const getRanking = () => {
+//  return axios.get(
+//     "https://dashboardcard-733ac-default-rtdb.asia-southeast1.firebasedatabase.app/table"
+//   );
+// };
