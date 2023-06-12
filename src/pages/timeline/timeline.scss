@@ -55,7 +55,29 @@
   cursor: pointer;
 }
 
-.slick-dots {
-  top: -5%;
-  color: #ffc107;
-}
+// .slick-dots {
+//   top: -5%;
+//   color: #ffc107;
+// }
+// .custom-dots {
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   width: 30px;
+//   height: 30px;
+//   margin: 0 5px;
+//   background-color: #eaeaea;
+//   border-radius: 50%;
+//   cursor: pointer;
+//   transition: background-color 0.3s ease;
+
+//   &.visible {
+//     background-color: #ccc;
+//   }
+
+//   span {
+//     color: #000;
+//     font-size: 14px;
+//     font-weight: bold;
+//   }
+// }

@@ -113,7 +113,10 @@ const LayoutAdmin = () => {
               )}
             </span>
 
-            <Dropdown menu={{ items: itemsDropdown }} trigger={["click"]}>
+            <Dropdown
+              menu={{ items: itemsDropdown }}
+              trigger={["click"]}
+            >
               <a onClick={(e) => e.preventDefault}>
                 <Space>
                   Welcome

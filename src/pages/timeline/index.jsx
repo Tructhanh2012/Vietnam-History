@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -33,6 +33,11 @@ function SamplePrevArrow({ onClick }) {
 }
 
 const TimelinePage = () => {
+  // const [currentPage, setCurrentPage] = useState(0); // Trang hiện tại
+  // const dotsPerPage = 4; // Số lượng dots hiển thị trên mỗi trang
+
+  // const totalDots = 24; // Tổng số dots
+
   const settings = {
     dots: true,
     infinite: true,
@@ -41,6 +46,11 @@ const TimelinePage = () => {
     slidesToScroll: 1,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
+    // customPaging: (index) => (
+    //   <div className={`custom-dots ${shouldShowDot(index) ? "visible" : ""}`}>
+    //     <span onClick={() => handleDotClick(index)}>{index + 1}</span>
+    //   </div>
+    // ),
     // appendDots: (dots) => (
     //   <div
     //     className="custom-dots"
@@ -65,6 +75,17 @@ const TimelinePage = () => {
     //   </div>
     // ),
   };
+  // const shouldShowDot = (index) => {
+  //   const startDotIndex = currentPage * dotsPerPage;
+  //   const endDotIndex = startDotIndex + dotsPerPage - 1;
+  //   return index >= startDotIndex && index <= endDotIndex && index < totalDots;
+  // };
+
+  // const handleDotClick = (index) => {
+  //   const clickedPageIndex = Math.floor(index / dotsPerPage);
+  //   setCurrentPage(clickedPageIndex);
+  // };
+
   return (
     <div className="Timeline">
       <div className="Timeline-card">
