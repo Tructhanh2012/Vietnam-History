@@ -15,7 +15,7 @@
                 cursor: pointer;
                 box-shadow: 0 0.0625rem 0.125rem 0 rgba(0, 0, 0, .1);
                 border-radius: 0.125rem;
-                padding: .3rem;
+                padding: 10px;
                 display: flex;
 
                 .text{
@@ -78,6 +78,9 @@
       .article{
          width: calc(90%);
          
+      }
+      .wrapper{
+        padding: 18px;
       }
 
       .image{

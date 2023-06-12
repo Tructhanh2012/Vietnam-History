@@ -10,6 +10,7 @@
   fill: yellow;
   cursor: pointer;
 }
+
 .mapsvg-homepage {
   margin-left: 10%;
   margin-top: 5%;
@@ -21,4 +22,16 @@
   //   width: 100%;
   margin-top: 374px;
   margin-right: 3%;
+}
+
+.hover-text {
+  fill: rgba(0, 0, 0, 0.8);
+  font-size: 16px;
+  font-weight: bold;
+  text-anchor: end;
+  dominant-baseline: hanging;
+  pointer-events: none;
+}
+.hover-text--h13 {
+  transform: translate(10px, 10px);
 }

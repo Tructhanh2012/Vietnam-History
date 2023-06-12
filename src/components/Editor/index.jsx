@@ -6,22 +6,17 @@ const EditorLayout = () => {
     {
       label: <Link to="/editor">Quản lí bài viết</Link>,
       key: "editor_management",
-      icon: <GrDashboard />,
+      // icon: <GrDashboard />,
     },
     {
       label: <span>Người dùng</span>,
       // key: "user",
-      icon: <UserOutlined />,
+      // icon: <UserOutlined />,
       children: [
         {
-          label: <Link to="/admin/user">CRUD</Link>,
-          key: "crud",
+          label: <Link to="/editor/write-article">CRUD</Link>,
+          key: "write-article",
           icon: <TeamOutlined />,
-        },
-        {
-          label: <Link to="/admin/create-role">Tạo role</Link>,
-          key: "addrole",
-          icon: <UserAddOutlined />,
         },
       ],
     },

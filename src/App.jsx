@@ -15,7 +15,8 @@ import UserTable from "./components/Admin/User/UserTable";
 import RegisterRole from "./components/Admin/User/RegisterRole";
 import EditorPage from "./pages/editor";
 import RankingPage from "./pages/rank";
-import ImageTextArea from "./test";
+import TimelinePage from "./pages/timeline";
+import TextEditor from "./pages/editor/TextEditor";
 
 /* gọi API
 const getAccount = async () =>
@@ -32,7 +33,6 @@ const Layout = () => {
     <>
       <div className="layout-app">
         <Header />
-        {/* <ImageTextArea /> */}
         <Outlet />
         <Footer />
       </div>
@@ -49,7 +49,7 @@ export default function App() {
       children: [
         { index: true, element: <Home /> },
         { path: "rank", element: <RankingPage /> },
-        // { path: "timeline", element: <RankingPage /> },
+        { path: "timeline", element: <TimelinePage /> },
       ],
     },
     {
@@ -74,9 +74,15 @@ export default function App() {
         },
       ],
     },
+    // {
+    //   path: "/editor",
+    //   element: <EditorPage />,
+    //   errorElement: <NotFound />,
+    //   children: [],
+    // },
     {
       path: "/editor",
-      element: <EditorPage />,
+      element: <TextEditor />,
       errorElement: <NotFound />,
       children: [],
     },
