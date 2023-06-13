@@ -3,7 +3,7 @@ import { Button } from "antd";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { callRegisterRole } from "../../../services/api";
-import styles from "./register_role.module.css";
+import "./register-role.scss";
 import { useForm } from "antd/es/form/Form";
 
 const RegisterRole = (props) => {
@@ -46,12 +46,11 @@ const RegisterRole = (props) => {
   //     });
   //   }
   return (
-    <div className={styles["register-role-page"]}>
-      <div className={styles["register-role-box"]}>
-        <div className={styles["register-role-form"]}>
-          <Row gutter={[20, 20]}>
-            <Col span={4}></Col>
-            <Col span={13} align="middle">
+    <div className="register-role-page">
+      <div className="register-role-box">
+        <div className="register-role-form">
+          <Row gutter={[0, 50]} style={{ marginTop: 100 }}>
+            <Col span={15} offset={5}>
               <Form
                 // {...formItemLayout}
                 name="registerRole"
@@ -61,21 +60,11 @@ const RegisterRole = (props) => {
                 }}
                 autoComplete="off"
               >
-                <div className={styles["content"]}>
-                  <div className="heading">
-                    <Row>
-                      {/* <Col span={6}></Col>
-                      <Col span={12}>
-                        <h4 align="middle">ĐĂNG KÝ</h4>
-                      </Col>
-                      <Col span={6}></Col> */}
-                    </Row>
-                  </div>
+                <div className="content">
                   <Form.Item
-                    labelCol={{ span: 7 }}
+                    labelCol={{ span: 5 }}
                     name="username"
                     label="Tên đăng nhập:"
-                    className={styles["label-style"]}
                     rules={[
                       {
                         required: true,
@@ -87,10 +76,10 @@ const RegisterRole = (props) => {
                     <Input />
                   </Form.Item>
                   <Form.Item
-                    labelCol={{ span: 7 }}
+                    labelCol={{ span: 5 }}
                     name="email"
                     label="Email:"
-                    className={styles["label-style"]}
+                    // className={styles["label-style"]}
                     rules={[
                       {
                         type: "email",
@@ -105,10 +94,9 @@ const RegisterRole = (props) => {
                     <Input />
                   </Form.Item>
                   <Form.Item
-                    labelCol={{ span: 7 }}
+                    labelCol={{ span: 5 }}
                     name="password"
                     label="Mật khẩu:"
-                    // className={styles["label-style"]}
                     rules={[
                       {
                         required: true,
@@ -120,10 +108,10 @@ const RegisterRole = (props) => {
                     <Input.Password />
                   </Form.Item>
                   <Form.Item
-                    labelCol={{ span: 7 }}
+                    labelCol={{ span: 5 }}
                     name="confirm"
                     label="Nhập lại mật khẩu:"
-                    className={styles["label-style"]}
+                    // className={styles["label-style"]}
                     dependencies={["password"]}
                     hasFeedback
                     rules={[
@@ -149,7 +137,7 @@ const RegisterRole = (props) => {
                   <Form.Item
                     name="role"
                     label="Role"
-                    labelCol={{ span: 7 }}
+                    labelCol={{ span: 5 }}
                     rules={[{ required: true, message: "Hãy chọn role!" }]}
                   >
                     <Radio.Group>
@@ -163,7 +151,7 @@ const RegisterRole = (props) => {
                       <Col span={8}></Col>
                       <Col span={8} align="middle">
                         <Button
-                          className={styles["btn-create"]}
+                          // className={styles["btn-create"]}
                           type="primary"
                           htmlType="submit"
                           loading={isSubmit}
