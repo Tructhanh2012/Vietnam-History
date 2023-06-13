@@ -6,7 +6,7 @@
          font-family: 'Gentium Book Plus', serif;
       }
    .article{
-                  &:hover {
+            &:hover {
                 box-shadow: 0 0.0625rem 20px 0 rgba(0, 0, 0, .05);
                 -webkit-transform: translateY(-0.0625rem);
                 transform: translateY(-0.0625rem);
@@ -15,7 +15,7 @@
                 cursor: pointer;
                 box-shadow: 0 0.0625rem 0.125rem 0 rgba(0, 0, 0, .1);
                 border-radius: 0.125rem;
-                padding: .3rem;
+                padding: 10px;
                 display: flex;
 
                 .text{
@@ -23,7 +23,16 @@
                 }
             }
          }   
-   
+
+.homepage-month-article-content .gutter-row .ant-card {
+  transition: transform 0.3s;
+  cursor: pointer;
+}
+
+.homepage-month-article-content .gutter-row .ant-card:hover {
+  transform: scale(1.05);
+} 
+
    .homepage-article-content{
       display: flex;
       gap: 20px;
@@ -70,6 +79,9 @@
          width: calc(90%);
          
       }
+      .wrapper{
+        padding: 18px;
+      }
 
       .image{
             min-height: auto;
@@ -101,12 +113,18 @@
    }
 
    .doc{
+          cursor: pointer;
           text-align: center;
           padding-top: 16px;
           padding: 2px;
           margin-bottom: 12px;
           font-weight: 600;
           background-color: #E46F73;
+          border-radius: 2px;
+
+          &:hover {
+          background-color: #963B3E;
+         }
    }
 
   

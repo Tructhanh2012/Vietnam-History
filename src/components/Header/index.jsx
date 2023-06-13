@@ -49,10 +49,7 @@ function Header() {
         </div>
         <div className="navbar-rightside">
           <span className="input-search">
-            <Input
-              placeholder=""
-              suffix={<SearchOutlined />}
-            />
+            <Input placeholder=""  suffix={<SearchOutlined style={{ cursor: "pointer" }} />}/>
           </span>
           <span className="btn">
             <Button
@@ -81,8 +78,8 @@ function Header() {
         <Navbar
           variant="dark"
           expand={expand}
-          className="mb-3 sub-navbar"
-          style={{ backgroundColor: "black" }}
+          className=" sub-navbar"
+          style={{ backgroundColor: "black", margin: 0 }}
         >
           <Nav
             fill
@@ -105,7 +102,9 @@ function Header() {
               </Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link eventKey="3">Bảng xếp hạng</Nav.Link>
+              <Nav.Link href="/rank" eventKey="3">
+                Bảng xếp hạng
+              </Nav.Link>
             </Nav.Item>
             {/* <Nav.Item
               className="d-flex justify-content-center cgmenu"
@@ -155,7 +154,9 @@ function Header() {
               <Nav.Link eventKey="2">Dòng thời gian</Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link eventKey="3">Bảng xếp hạng</Nav.Link>
+              <Nav.Link href="/" eventKey="3">
+                Bảng xếp hạng
+              </Nav.Link>
             </Nav.Item>
           </Nav>
         </Offcanvas.Body>

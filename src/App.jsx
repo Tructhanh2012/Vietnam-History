@@ -13,8 +13,10 @@ import LayoutAdmin from "./components/Admin";
 import ProfilePage from "./pages/profile";
 import UserTable from "./components/Admin/User/UserTable";
 import RegisterRole from "./components/Admin/User/RegisterRole";
-import LearnByMap from "./components/Map";
-import TimelinePage from "./pages/timeLine";
+import EditorPage from "./pages/editor";
+import RankingPage from "./pages/rank";
+import TimelinePage from "./pages/timeline";
+import TextEditor from "./pages/editor/TextEditor";
 
 /* gọi API
 const getAccount = async () =>
@@ -44,7 +46,11 @@ export default function App() {
       path: "/",
       element: <Layout />,
       errorElement: <NotFound />,
-      children: [{ index: true, element: <Home /> }],
+      children: [
+        { index: true, element: <Home /> },
+        { path: "rank", element: <RankingPage /> },
+        { path: "timeline", element: <TimelinePage /> },
+      ],
     },
     {
       path: "/admin",
@@ -68,6 +74,18 @@ export default function App() {
         },
       ],
     },
+    // {
+    //   path: "/editor",
+    //   element: <EditorPage />,
+    //   errorElement: <NotFound />,
+    //   children: [],
+    // },
+    {
+      path: "/editor",
+      element: <TextEditor />,
+      errorElement: <NotFound />,
+      children: [],
+    },
     {
       path: "/login",
       element: <LoginPage />,
@@ -79,10 +97,6 @@ export default function App() {
     {
       path: "/profile",
       element: <ProfilePage />,
-    },
-    {
-      path: "/timeline",
-      element: <TimelinePage />,
     },
   ]);
   return (
