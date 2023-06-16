@@ -14,7 +14,10 @@ import { BsFillBookmarkFill } from "react-icons/bs";
 
 function SampleNextArrow({ onClick }) {
   return (
-    <div className="arrow arrow-right " onClick={onClick}>
+    <div
+      className="arrow arrow-right "
+      onClick={onClick}
+    >
       <MdOutlineArrowForwardIos />
     </div>
   );
@@ -137,11 +140,22 @@ const TimelinePage = () => {
 
       <></>
       <div className="article">
-        <Divider orientation="left" style={{ margin: 30 }}>
+        <Divider
+          orientation="left"
+          style={{ margin: 30 }}
+        >
           <h6>Bài viết nổi bật</h6>
         </Divider>
-        <Row className="text" gutter={{ xs: 8, sm: 16, md: 20, lg: 32 }}>
-          <Col md={20} offset={1} xs={22} sm={22}>
+        <Row
+          className="text"
+          gutter={{ xs: 8, sm: 16, md: 20, lg: 32 }}
+        >
+          <Col
+            md={20}
+            offset={1}
+            xs={22}
+            sm={22}
+          >
             <div className="article">
               <div className="wrapper">
                 <div className="image">

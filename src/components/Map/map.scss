@@ -23,10 +23,18 @@
   margin-top: 374px;
   margin-right: 3%;
 }
-
+.border-hover {
+  color: #000;
+  text-anchor: end;
+  dominant-baseline: hanging;
+  pointer-events: none;
+  z-index: 100;
+}
 .hover-text {
   fill: rgba(0, 0, 0, 0.8);
   font-size: 16px;
+  border: 1px solid black;
+  border-radius: 12px;
   font-weight: bold;
   text-anchor: end;
   dominant-baseline: hanging;

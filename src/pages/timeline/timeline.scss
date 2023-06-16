@@ -1,6 +1,4 @@
- @import url('https://fonts.googleapis.com/css2?family=Gentium+Book+Plus:wght@700&display=swap');
-
-
+@import url("https://fonts.googleapis.com/css2?family=Gentium+Book+Plus:wght@700&display=swap");
 
 .Timeline {
   background-image: url(../../assets/hoatiet4.jpg);
@@ -59,7 +57,6 @@
   cursor: pointer;
 }
 
-<<<<<<< HEAD
 // .slick-dots {
 //   top: -5%;
 //   color: #ffc107;
@@ -86,79 +83,76 @@
 //     font-weight: bold;
 //   }
 // }
-=======
 .slick-dots {
-  top: -5%;
+  // top: -5%;
   color: #ffc107;
 }
 
 //==================
-   h6{
-         font-family: 'Gentium Book Plus', serif;
-      }
-   .article{
-            &:hover {
-                box-shadow: 0 0.0625rem 20px 0 rgba(0, 0, 0, .05);
-                -webkit-transform: translateY(-0.0625rem);
-                transform: translateY(-0.0625rem);
-            }
-            .wrapper{
-                cursor: pointer;
-                box-shadow: 0 0.0625rem 0.125rem 0 rgba(0, 0, 0, .1);
-                border-radius: 0.125rem;
-                padding: .3rem;
-                display: flex;
+h6 {
+  font-family: "Gentium Book Plus", serif;
+}
+.article {
+  &:hover {
+    box-shadow: 0 0.0625rem 20px 0 rgba(0, 0, 0, 0.05);
+    -webkit-transform: translateY(-0.0625rem);
+    transform: translateY(-0.0625rem);
+  }
+  .wrapper {
+    cursor: pointer;
+    box-shadow: 0 0.0625rem 0.125rem 0 rgba(0, 0, 0, 0.1);
+    border-radius: 0.125rem;
+    padding: 0.3rem;
+    display: flex;
 
-                .text{
-                  margin-top: auto;
-                }
-            }
-         }   
+    .text {
+      margin-top: auto;
+    }
+  }
+}
 
-   .text{
-      .ant-col{
-        .ant-col-offset-1{
-           gap: 25px;
-           display: flex;
-           flex-direction: column;}
-      }
-      
-      .wrapper{
-        padding: 18px;
-      }
-         
+.text {
+  .ant-col {
+    .ant-col-offset-1 {
+      gap: 25px;
+      display: flex;
+      flex-direction: column;
+    }
+  }
 
-      .article{
-         width: calc(90%);
-         margin-bottom: 20px;
-      }
+  .wrapper {
+    padding: 18px;
+  }
 
-      .image{
-            min-height: auto;
-            min-width: 32%;
-            margin: 0 auto;
-            .img {
-                min-width: 90%;
-                max-height: 100%;
-                background-color: white;
-                object-fit: contain;
-            }
-      }
-       @media screen and (max-width: 600px) {
-            .article {
-                flex: auto;
-                width: calc(100% - 8px);
-                flex-wrap: wrap;
-            }
-            
-        }
+  .article {
+    width: calc(90%);
+    margin-bottom: 20px;
+  }
 
-   @media screen and (max-width: 800px) and (min-width: 601px) {
-            .article {
-                flex: auto;
-                width: calc(25% - 8px);
-                flex-wrap: wrap;
-            }
-        }
-   }
->>>>>>> refs/remotes/origin/dev
+  .image {
+    min-height: auto;
+    min-width: 32%;
+    margin: 0 auto;
+    .img {
+      min-width: 90%;
+      max-height: 100%;
+      background-color: white;
+      object-fit: contain;
+    }
+  }
+  @media screen and (max-width: 600px) {
+    .article {
+      flex: auto;
+      width: calc(100% - 8px);
+      flex-wrap: wrap;
+    }
+  }
+
+  @media screen and (max-width: 800px) and (min-width: 601px) {
+    .article {
+      flex: auto;
+      width: calc(25% - 8px);
+      flex-wrap: wrap;
+    }
+  }
+}
