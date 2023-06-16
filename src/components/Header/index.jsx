@@ -31,31 +31,21 @@ function Header() {
 
   return (
     <>
-      <Navbar
-        key={expand}
-        expand={expand}
-        className="d-flex navbar-custom"
-      >
+      <Navbar key={expand} expand={expand} className="d-flex navbar-custom">
         <div>
-          <Navbar.Brand
-            className="logo"
-            href="/"
-          >
-            <img
-              alt=""
-              src={imageLogo}
-            />
+          <Navbar.Brand className="logo" href="/">
+            <img alt="" src={imageLogo} />
           </Navbar.Brand>
         </div>
         <div className="navbar-rightside">
           <span className="input-search">
-            <Input placeholder=""  suffix={<SearchOutlined style={{ cursor: "pointer" }} />}/>
+            <Input
+              placeholder=""
+              suffix={<SearchOutlined style={{ cursor: "pointer" }} />}
+            />
           </span>
           <span className="btn">
-            <Button
-              className="btn-login"
-              onClick={() => navigate("/login")}
-            >
+            <Button className="btn-login" onClick={() => navigate("/login")}>
               Đăng nhập
             </Button>
           </span>
@@ -81,23 +71,14 @@ function Header() {
           className=" sub-navbar"
           style={{ backgroundColor: "black", margin: 0 }}
         >
-          <Nav
-            fill
-            className="w-100"
-          >
+          <Nav fill className="w-100">
             <Nav.Item>
-              <Nav.Link
-                href="/"
-                eventKey="1"
-              >
+              <Nav.Link href="/" eventKey="1">
                 Trang chủ
               </Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link
-                href="/timeline"
-                eventKey="2"
-              >
+              <Nav.Link href="/timeline" eventKey="2">
                 Dòng thời gian
               </Nav.Link>
             </Nav.Item>
@@ -122,7 +103,7 @@ function Header() {
                 Blog cá nhân
               </NavDropdown.Item>
 
-              <NavDropdown.Item href="#action/3.3">Quizz</NavDropdown.Item>
+              <NavDropdown.Item href="/quizz">Quizz</NavDropdown.Item>
             </NavDropdown>
           </Nav>
         </Navbar>
@@ -138,15 +119,9 @@ function Header() {
           <Offcanvas.Title id="offcanvasNavbarLabel">Menu</Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
-          <Nav
-            fill
-            className="flex-column"
-          >
+          <Nav fill className="flex-column">
             <Nav.Item>
-              <Nav.Link
-                href="/"
-                eventKey="1"
-              >
+              <Nav.Link href="/" eventKey="1">
                 Trang chủ
               </Nav.Link>
             </Nav.Item>
