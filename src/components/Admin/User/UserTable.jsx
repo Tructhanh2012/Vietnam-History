@@ -102,7 +102,7 @@ const UserTable = () => {
     <>
       <Row gutter={[20, 20]}>
         <Col span={24}>{/* <InputSearch /> */}</Col>
-        <Col span={24}>
+        <Col span={22} offset={1}>
           <Table
             className="def"
             columns={columns}
