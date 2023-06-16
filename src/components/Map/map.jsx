@@ -135,6 +135,9 @@ const CustomMap = () => {
               className="hover-text"
               x="35%"
               y="80%"
+              style={{
+                border: "1px solid black",
+              }}
             >
               Bến Tre
             </text>
