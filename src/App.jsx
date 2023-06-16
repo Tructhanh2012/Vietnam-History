@@ -17,6 +17,7 @@ import EditorPage from "./pages/editor";
 import RankingPage from "./pages/rank";
 import TimelinePage from "./pages/timeline";
 import TextEditor from "./pages/editor/TextEditor";
+import ArticlePage from "./pages/article";
 
 /* gọi API
 const getAccount = async () =>
@@ -50,6 +51,8 @@ export default function App() {
         { index: true, element: <Home /> },
         { path: "rank", element: <RankingPage /> },
         { path: "timeline", element: <TimelinePage /> },
+        { path: "article", element: <ArticlePage /> },
+        { path: "profile", element: <ProfilePage /> },
       ],
     },
     {
@@ -94,10 +97,10 @@ export default function App() {
       path: "/register",
       element: <RegisterPage />,
     },
-    {
-      path: "/profile",
-      element: <ProfilePage />,
-    },
+    // {
+    //   path: "/profile",
+    //   element: <ProfilePage />,
+    // },
   ]);
   return (
     <>

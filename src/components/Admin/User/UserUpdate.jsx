@@ -53,7 +53,7 @@ const UserUpdate = (props) => {
         <Form.Item
           labelCol={{ span: 24 }}
           label="Tên đăng nhập"
-          name="username"
+          name="userName"
           rules={[{ required: true, message: "Vui lòng nhập tên đăng nhập" }]}
         >
           <Input />
