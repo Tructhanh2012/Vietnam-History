@@ -18,8 +18,8 @@ import RankingPage from "./pages/rank";
 import TimelinePage from "./pages/timeline";
 import TextEditor from "./pages/editor/TextEditor";
 import ArticlePage from "./pages/article";
-import QuizzPage from "./pages/quizz";
-
+import QuizzPage from "./pages/quizList";
+import QuizzApp from "./components/Quiz";
 /* gọi API
 const getAccount = async () =>
 {
@@ -54,7 +54,11 @@ export default function App() {
         { path: "timeline", element: <TimelinePage /> },
         { path: "article", element: <ArticlePage /> },
         { path: "profile", element: <ProfilePage /> },
-        { path: "quizz", element: <QuizzPage /> },
+        { path: "quizdbp", element: <QuizzApp /> },
+        {
+          path: "quizz",
+          element: <QuizzPage />,
+        },
       ],
     },
     {
