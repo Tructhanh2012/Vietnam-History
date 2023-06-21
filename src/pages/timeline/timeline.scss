@@ -5,7 +5,7 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-
+  justify-content: center;
   // opacity: 0.5;
 }
 // .Timeline::before {
@@ -25,7 +25,8 @@
 .card {
   border: none;
   border-radius: unset;
-  height: 325px;
+  height: auto;
+  min-height: 325px;
   background-color: #fef7f7;
 }
 .card-top {
@@ -86,6 +87,9 @@
 .slick-dots {
   // top: -5%;
   color: #ffc107;
+  display: flex;
+  text-align: center;
+  justify-content: center;
 }
 
 //==================
@@ -140,19 +144,22 @@ h6 {
       object-fit: contain;
     }
   }
-  @media screen and (max-width: 600px) {
-    .article {
-      flex: auto;
-      width: calc(100% - 8px);
-      flex-wrap: wrap;
-    }
+}
+@media screen and (max-width: 600px) {
+  .slick-dots {
+    display: none;
   }
+  .article {
+    flex: auto;
+    width: calc(100% - 8px);
+    flex-wrap: wrap;
+  }
+}
 
-  @media screen and (max-width: 800px) and (min-width: 601px) {
-    .article {
-      flex: auto;
-      width: calc(25% - 8px);
-      flex-wrap: wrap;
-    }
+@media screen and (max-width: 800px) and (min-width: 601px) {
+  .article {
+    flex: auto;
+    width: calc(25% - 8px);
+    flex-wrap: wrap;
   }
 }

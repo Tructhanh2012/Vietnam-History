@@ -1,4 +1,5 @@
 .banner-homepage {
+  position: relative;
   background-image: url(../../assets/Rectangle.png);
   background-size: cover; /* kích thước hình ảnh nền dựa trên tỷ lệ khung hình */
   background-position: center; /* căn chỉnh hình ảnh nền vào giữa khung */
@@ -39,7 +40,18 @@
   text-anchor: end;
   dominant-baseline: hanging;
   pointer-events: none;
+  // color: blue;
 }
 .hover-text--h13 {
   transform: translate(10px, 10px);
+}
+.banner-text1 {
+  position: absolute;
+  top: 40%;
+  right: 20%;
+}
+.banner-text2 {
+  position: absolute;
+  top: 48%;
+  right: 15%;
 }

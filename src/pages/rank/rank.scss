@@ -1,59 +1,51 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300&family=Noto+Serif:wght@500&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300&family=Noto+Serif:wght@500&display=swap");
 
-@import url('https://fonts.googleapis.com/css2?family=Petrona:wght@500&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Petrona:wght@500&display=swap");
 
-@import url('https://fonts.googleapis.com/css2?family=Gentium+Book+Plus:wght@700&display=swap');
-.form{
-    
-    .form_container{
-        background-color: #F6F6F6;
-        padding: 20px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        box-shadow: 5px 0.2rem 9px 1px  rgba(0, 0, 0, .25);
-        margin: 10px;
-       
-       
-       
-       
+@import url("https://fonts.googleapis.com/css2?family=Gentium+Book+Plus:wght@700&display=swap");
+.form {
+  .form_container {
+    background-color: #f6f6f6;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 5px 0.2rem 9px 1px rgba(0, 0, 0, 0.25);
+    margin: 10px;
+  }
+  .text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    h6 {
+      font-family: "Noto Serif", serif;
+      font-size: small;
     }
-    .text{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        h6{
-            font-family: 'Noto Serif', serif;
-            font-size: small;
-        }
-        p{  
-            font-family: 'Noto Sans', sans-serif;
-            margin-left: 7px;
-            font-size: smaller;
-        }
+    p {
+      font-family: "Noto Sans", sans-serif;
+      margin-left: 7px;
+      font-size: smaller;
     }
+  }
 
-    .button{
-        span{
-        font-family: 'Petrona', serif;
-        }
+  .button {
+    span {
+      font-family: "Petrona", serif;
     }
-
-   
+  }
 }
 
- .ranking_table {
-             text-align: center; // Căn giữa nội dung trong thẻ div
-             h2 {
-                font-family: 'Gentium Book Plus', serif;
-                // font-weight: bold; // Độ đậm của font chữ
-            }
-            .ant-table{
-                margin-bottom: 18px;}
-    .ant-pagination {
-        display: unset;
-        margin: 10px;
-    }
-
-  
+.ranking_table {
+  text-align: center; // Căn giữa nội dung trong thẻ div
+  h2 {
+    font-family: "Gentium Book Plus", serif;
+    // font-weight: bold; // Độ đậm của font chữ
+  }
+  .ant-table {
+    margin-bottom: 18px;
+  }
+  .ant-pagination {
+    display: unset;
+    margin: 10px;
+  }
 }

@@ -69,6 +69,12 @@ const TimelinePage = () => {
     slidesToScroll: 1,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
+    appendDots: (dots) => (
+      <div className="timeline-append-dots">
+        <ul style={{ margin: "0px" }}> {dots} </ul>
+      </div>
+    ),
+
     // customPaging: (index) => (
     //   <div className={`custom-dots ${shouldShowDot(index) ? "visible" : ""}`}>
     //     <span onClick={() => handleDotClick(index)}>{index + 1}</span>

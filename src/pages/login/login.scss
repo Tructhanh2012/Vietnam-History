@@ -16,30 +16,27 @@
   background-color: transparent;
 }
 
-.login-page{
+.login-page {
+  justify-content: center;
+  align-items: center;
 
-    justify-content: center;
-    align-items: center;
+  .login-box {
+    max-height: 50%;
+    background-image: url(../../assets/trongdong.png);
+    background-repeat: no-repeat;
+    background-position: center center;
 
-    .login-box{
-
-        max-height: 50%;
-        background-image: url(../../assets/trongdong.png);
-        background-repeat: no-repeat;
-        background-position: center center;
-        
- 
-        justify-content: space-between;
-        align-items: self-start;
-        flex-direction: row-reverse;
-        max-width: 70vw;
-        background-color: white;
-        box-shadow: 4px 4px 4px rgba(32, 10, 10, 0.25);
-        overflow: hidden;
-        margin: 40px auto;
-        margin-top: 55px;
-        border-radius: 25px;
-    }
+    justify-content: space-between;
+    align-items: self-start;
+    flex-direction: row-reverse;
+    max-width: 70vw;
+    background-color: white;
+    box-shadow: 4px 4px 4px rgba(32, 10, 10, 0.25);
+    overflow: hidden;
+    margin: 40px auto;
+    margin-top: 55px;
+    border-radius: 25px;
+  }
 
   .ant-form {
     padding: 15px 40px;
@@ -80,5 +77,13 @@
   }
   .ant-input-affix-wrapper {
     margin-bottom: 20px;
+  }
+}
+.login-content {
+  max-width: 50%;
+}
+@media screen and (max-width: 600px) {
+  .login-content {
+    max-width: 100%;
   }
 }
