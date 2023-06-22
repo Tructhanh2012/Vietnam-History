@@ -3,7 +3,7 @@ import { FaRegBookmark, FaBookmark } from "react-icons/fa";
 import "./profile.scss";
 import { FaPencilAlt } from "react-icons/fa";
 
-function ProfilePage() {
+const ProfilePage = () => {
     const [activeTab, setActiveTab] = useState("saved");
     const [username, setUsername] = useState("John Doe");
     const [isEditing, setIsEditing] = useState(false);
@@ -78,7 +78,7 @@ function ProfilePage() {
                     ) : null}
                 </div>
                 {!isEditing ? (
-                    <h2 className="name">{username}</h2>
+                    <h3 className="name">{username}</h3>
                 ) : (
                     <input
                         type="text"
@@ -124,7 +124,7 @@ function ProfilePage() {
                                 <a href="https://example.com">
                                     <img src="/src/pages/profile/pic/phuoclong.png" alt="Article 1" />
                                 </a>
-                                <h4> <a href="https://example.com"> Chiến dịch Đường 14 - Phước Long năm 1974 - 1975</a></h4>
+                                <h5> <a href="https://example.com"> Chiến dịch Đường 14 - Phước Long năm 1974 - 1975</a></h5>
 
                                 {/* <span>
                     <Link to="/src/Baiviet.jsx"> Đăng ký</Link>
@@ -144,7 +144,7 @@ function ProfilePage() {
                                 <a href="https://example.com">
                                     <img src="/src/pages/profile/pic/bandong.jpg" alt="Article 1" />
                                 </a>
-                                <h4> <a href="https://example.com"> Trận Bản Đông năm 1971</a></h4>
+                                <h5> <a href="https://example.com"> Trận Bản Đông năm 1971</a></h5>
 
                                 <p>Trận Bản Đông. Một phần của Chiến tranh Việt Nam. Thời gian: 8 tháng 2 – 20 tháng 3 năm 1971</p>
                                 <button onClick={() => saveArticle("Tiêu đề bài viết 2")}>
@@ -161,7 +161,7 @@ function ProfilePage() {
                                 <a href="https://example.com">
                                     <img src="/src/pages/profile/pic/viettrung.png" alt="Article 1" />
                                 </a>
-                                <h4> <a href="https://example.com"> Vấn đề biên giới Việt-Trung thời Mạc</a></h4>
+                                <h5> <a href="https://example.com"> Vấn đề biên giới Việt-Trung thời Mạc</a></h5>
 
                                 <p>Vấn đề biên giới Việt-Trung thời Mạc phản ánh những hoạt động quân sự - ngoại giao giữa nhà Mạc ở Việt Nam với nhà Minh</p>
                                 <button onClick={() => saveArticle("Tiêu đề bài viết 3")}>
@@ -178,7 +178,7 @@ function ProfilePage() {
                                 <a href="https://example.com">
                                     <img src="/src/pages/profile/pic/phancap.png" alt="Article 1" />
                                 </a>
-                                <h4> <a href="https://example.com"> Phân cấp hành chính Việt Nam thời quân chủ</a></h4>
+                                <h5> <a href="https://example.com"> Phân cấp hành chính Việt Nam thời quân chủ</a></h5>
 
                                 <p>Phân cấp hành chính thời quân chủ Việt Nam được tính từ khi Việt Nam giành được độc lập sau thời kỳ bắc thuộc đến khi người Pháp xâm lược và chiếm đóng hoàn toàn Việt Nam (938 - 1886)</p>
                                 <button onClick={() => saveArticle("Tiêu đề bài viết 4")}>
@@ -201,7 +201,7 @@ function ProfilePage() {
                             <a href="https://example.com">
                                 <img src="/src/pages/profile/pic/lanhtho.png" alt="Article 1" />
                             </a>
-                            <h4> <a href="https://example.com">Lãnh thổ Việt Nam qua từng thời kỳ</a></h4>
+                            <h5> <a href="https://example.com">Lãnh thổ Việt Nam qua từng thời kỳ</a></h5>
 
                             <p>Lãnh thổ Việt Nam qua từng thời kỳ là sự biến đổi không gian sinh tồn của người Việt, thể hiện bởi các triều đại chính thống được công nhận. Nó mang tính chất phức tạp</p>
 
@@ -210,7 +210,7 @@ function ProfilePage() {
                             <a href="https://example.com">
                                 <img src="/src/pages/profile/pic/chuviet.png" alt="Article 1" />
                             </a>
-                            <h4> <a href="https://example.com">Lịch sử chữ viết Tiếng Việt</a></h4>
+                            <h5> <a href="https://example.com">Lịch sử chữ viết Tiếng Việt</a></h5>
                             <p>Tiếng Việt là ngôn ngữ của người Việt và là ngôn ngữ chính thức của Việt Nam. Trong lịch sử Việt Nam đã có ba loại văn tự được dùng để ghi chép tiếng Việt là chữ Hán, chữ Nôm và chữ quốc ngữ. </p>
 
                         </div>
@@ -218,7 +218,7 @@ function ProfilePage() {
                             <a href="https://example.com">
                                 <img src="/src/pages/profile/pic/viettrung.png" alt="Article 1" />
                             </a>
-                            <h4> <a href="https://example.com">Vấn đề biên giới Việt-Trung thời Mạc</a></h4>
+                            <h5> <a href="https://example.com">Vấn đề biên giới Việt-Trung thời Mạc</a></h5>
                             <p>Vấn đề biên giới Việt-Trung thời Mạc phản ánh những hoạt động quân sự - ngoại giao giữa nhà Mạc ở Việt Nam với nhà Minh</p>
 
                         </div>
@@ -232,7 +232,7 @@ function ProfilePage() {
                             <a href="https://example.com">
                                 <img src="/src/pages/profile/pic/dienbienphu.png" alt="Article 1" />
                             </a>
-                            <h4> <a href="https://example.com">Chiến dịch lịch sử Điện Biên Phủ</a></h4>
+                            <h5> <a href="https://example.com">Chiến dịch lịch sử Điện Biên Phủ</a></h5>
                             {/* <span>
                     <Link to="/src/Baiviet.jsx"> Đăng ký</Link>
                   </span> */}
@@ -243,7 +243,7 @@ function ProfilePage() {
                             <a href="https://example.com">
                                 <img src="/src/pages/profile/pic/chuviet.png" alt="Article 1" />
                             </a>
-                            <h4> <a href="https://example.com">Lịch sử chữ viết Tiếng Việt</a></h4>
+                            <h5> <a href="https://example.com">Lịch sử chữ viết Tiếng Việt</a></h5>
                             <p>Điểm:</p>
                             <p>Thời gian làm bài:</p>
                         </div>
@@ -251,13 +251,14 @@ function ProfilePage() {
                             <a href="https://example.com">
                                 <img src="/src/pages/profile/pic/bachdang.png" alt="Article 1" />
                             </a>
-                            <h4> <a href="https://example.com">Chiến thắng sông Bạch Đằng 1288</a></h4>
+                            <h5> <a href="https://example.com">Chiến thắng sông Bạch Đằng 1288</a></h5>
                             <p>Điểm:</p>
                             <p>Thời gian làm bài:</p>
                         </div>
 
                     </div>
-                </div></div>}
+                </div>
+                </div>}
             </div>
         </div>
     );

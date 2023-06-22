@@ -1,198 +1,225 @@
-@import url('https://fonts.googleapis.com/css2?family=Gentium+Book+Plus:wght@700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Gentium+Book+Plus:wght@700&display=swap");
 .profile-header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 20px;
-    position: absolute;
-    left: 61px;
-    top: 162px;
-  
-    .avatar-container {
-      position: relative;
-      display: inline-block;
-  
-      .avatar {
-        width: 100px;
-        height: 100px;
-        border-radius: 50%;
-      }
-  
-      .avatar-icon {
-        position: absolute;
-        bottom: 0;
-        right: 0;
-        background-color: white;
-        padding: 5px;
-        border-radius: 60%;
-        cursor: pointer;
-  
-        svg {
-          width: 20px;
-          height: 20px;
-        }
-  
-        input.hidden {
-          display: none;
-        }
-      }
-    }
-  
-    .name {
-      margin: 20px 0;
-      font-family: 'Inter';
-      font-style: normal;
-      font-weight: 400;
-      font-size: 30px;
-      margin-top: 10px;
-    }
-  
-    input {
-      width: 130px;
-      padding: 10px;
-      border: 2px solid lightgray;
-      border-radius: 4px;
-      margin-bottom: 10px;
-    }
-  
-    input.invalid {
-      border-color: red;
-    }
-  
-    .error {
-      color: red;
-      margin-bottom: 10px;
-    }
-  
-    button {
-      padding: 15px 20px;
-      background-color: rgb(209, 131, 135);
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      margin-top: 10px;
-    }
-  }
-  
-  .tabs-container {
-    position: absolute;
-    left: 55%;
-    transform: translateX(-60%);
-    top: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+  margin-left: 80px;
+  margin-top: 50px;
+  width: 180px;
+ 
+
+  .avatar-container {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #000000;
+    .avatar {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+    }
+
+    .avatar-icon {
+      // position: absolute;
+      background-color: rgb(255, 255, 255);
+      border-radius: 80%;
+
+      svg {
+        width: 20px;
+        height: 20px;
+      }
+
+      input.hidden {
+        display: none;
+      }
+    }
+  }
+  .name {
+    font-family: "Inter";
+    margin-top: 10px;
+    
+  }
+
+  input {
+    padding: 10px 15px;
+    border: 2px solid rgb(65, 22, 22);
+    border-radius: 4px;
     margin-bottom: 10px;
-  
-    .tab {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 220px;
-      height: 60px;
-      background-color: none;
-      cursor: pointer;
-      margin: 0 70px;
-      font-size: 27px;
-      position: relative;
-      top: -20px;
-      font-family: 'Inter';
-      
-  
-      &.active {
-        background-color: gray;
-        border-radius: 15px;
-        color: white;
-      }
-    }
   }
-  .tabnd {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 20px;
-    text-decoration: none;
-  
-    .article-list {
-      position: absolute;
-      width: 993.34px;
-      height: 225.06px;
-      left: 362.4px;
-      top: 239px;
-      display: grid;
-      grid-template-columns: 1fr; /* Thay đổi grid-template-columns thành 1fr */
-      grid-auto-rows: minmax(auto, auto);
-      grid-auto-flow: row; /* Thay đổi grid-auto-flow thành column */
-      grid-gap: 20px;
-  
-      .article-item {
-        position: relative;
-        padding: 20px;
-        background-color: #f5f5f5;
-        border-radius: 4px;
-        
-      }
-      
-      img {
-        width: 320.43px;
-        height: 200px;
-        border-radius: 4px;
-        margin-bottom: 10px;
-        float: left;
-        margin-right: 10px;
-      }
-      
-      .article-text {
-        font-family: 'Gentium Book Basic';
-        font-style: normal;
-        font-weight: 700;
-        font-size: 35px;
-        line-height: 41px;
-        color: #000000;
-        margin-bottom: 40px;
-        clear: both; /* Thêm clear: both để đảm bảo nội dung không bị lệch */
-      }
-      
-      p {
-        margin-bottom: 10px;
-        max-height: 100px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
-  
-      
-      h4 {
-        font-size: 20px;
-        margin-bottom: 5px;
-        word-wrap: break-word;
-        align-self: flex-start;
-        // text-decoration: none;
-      }
-      h4 a {
-        text-decoration: none;
-      }
-      
-      
-      .button-container {
-        display: flex;
-        justify-content: flex-end;
-      }
-      
-      button {
-        padding: 6px;
-        background-color: transparent;
-        border: none;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-      }
-      
-      button.saved-icon {
-        color: green;
-      }
-    }
+ 
+  input.invalid {
+    border-color: red;
   }
+
+  .error {
+    color: red;
+    margin-bottom: 10px;
+  }
+
+  button {
+    padding: 15px 20px;
+    background-color: rgb(209, 131, 135);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+}
+.tabs-container {
+  // position: absolute;
+  left: 65%;
+  transform: translateX(-60%);
+  // top: 150px;
+  display: flex;
+  color: #000000;
+  margin-bottom: 20px;
+  position: fixed;
+ 
+}
+
+.tab {
+  margin-right: 40px;
+  width: 220px;
+  font-size: 25px;
   
+}
+.tabnd {
+  margin-top: -170px;
+  // display: flex;
+  // align-items: center;
+  // justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 250px;
+}
+.tab.active {
+  text-decoration: underline;
+  border-radius: 15px;
+  color: rgb(10, 10, 10);
+  margin-bottom: 10px;
+}
+
+
+.article-list {
+  margin-bottom: 10px;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-auto-rows: minmax(auto, auto);
+  grid-auto-flow: row;
+  grid-gap: 20px;
+  align-items: center;
+    justify-content: center;
+    // display: flex;
+    // position: absolute;
+  // left: 65%;
+  // transform: translateX(-60%);
+  // top: 150px;
   
+  // color: #000000;
+  // margin-bottom: 20px;
+  // flex-direction: column;
   
+}
+.article-item{
+  
+  border-radius: 15px;
+  margin-top: 30px;
+  background: rgba(229, 151, 151, 0.7);
+  height: 200px;
+  width: 993.34px;
+  // height: 225.06px;
+  // left: 362.4px;
+  // top: 239px;
+}
+
+.article-item:hover {
+  box-shadow: 0 0.0625rem 20px 0 rgba(0, 0, 0, 0.05);
+  transform: translateY(-0.0625rem);
+}
+
+.article-item .wrapper {
+  cursor: pointer;
+  box-shadow: 0 0.0625rem 0.125rem 0 rgba(0, 0, 0, 0.1);
+  border-radius: 0.125rem;
+  padding: 0.3rem;
+  // display: flex;
+}
+
+.article-item img {
+  width: 320px;
+  height: 200px;
+ 
+  margin-bottom: 10px;
+  float: left;
+  margin-right: 10px;
+}
+
+.article-text {
+  align-items: center;
+  justify-content: center;
+
+  font-family: "Gentium Book Basic";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 35px;
+  line-height: 41px;
+  color: #000000;
+  margin-bottom: 40px;
+  clear: both;
+ 
+}
+
+.article-list p {
+  margin-bottom: 10px;
+  max-height: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  
+}
+
+.article-list h5 {
+  font-size: 20px;
+  margin-bottom: 5px;
+  word-wrap: break-word;
+  align-self: flex-start;
+}
+
+.article-list h5 a {
+  text-decoration: none;
+  color: #000000;
+}
+
+.article-list .button-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.article-list button {
+  padding: 6px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+// .article-list button.saved-icon {
+//   color: green;
+// }
+// @media (max-width: 768px) {
+//   .profile-header {
+//     margin-left: auto;
+//     margin-right: auto;
+//     width: 100%;
+//   }
+
+//   .avatar-container {
+//     margin-bottom: 20px;
+//   }
+
+//   .tabs-container {
+//     flex-direction: column;
+//   }
+// }

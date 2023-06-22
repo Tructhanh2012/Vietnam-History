@@ -79,6 +79,7 @@ export default function App() {
       path: "/profile",
       element: <ProfilePage />,
     },
+    
   ]);
   return (
     <>
