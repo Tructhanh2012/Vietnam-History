@@ -70,7 +70,7 @@ const DashboardChart = () => {
   return (
     <Card
       style={{
-        width: 680,
+        width: 790,
         height: 400,
         justifyContent: "center",
         boxShadow: "2px 0.8rem 20px 5px rgba(0, 0, 0, .08)",

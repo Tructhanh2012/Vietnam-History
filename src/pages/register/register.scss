@@ -1,15 +1,12 @@
- 
 ::-webkit-scrollbar-track {
- 
 }
- 
+
 ::-webkit-scrollbar-thumb {
   background-color: #335ddc;
   border-radius: 8px;
 }
 
-
-.ant-input{
+.ant-input {
   border-color: transparent;
   border-radius: 0;
   outline: transparent;
@@ -27,12 +24,11 @@
   background-color: transparent;
 }
 
-.register-page{
-    
-    //display: flex;
-    justify-content: center;
-    align-items: center;
-    // min-height: 100vh;
+.register-page {
+  //display: flex;
+  justify-content: center;
+  align-items: center;
+  // min-height: 100vh;
 
     .register-box{
         background-image: url(../../assets/trongdong.png);
@@ -55,43 +51,52 @@
           .ant-form-item-required{
              font-family: 'Gentium Book Plus', serif;
           }
-        }
-             
+        }     
     }
 
-    .ant-form{
-      padding: 15px 40px;
-      background: linear-gradient(0deg, rgba(233, 220, 220, 0.3), rgba(252, 252, 252, 0.2)), rgba(245, 180, 180, 0.5);
-      
-      
-      box-shadow: 0px 20px 20px rgb(236, 184, 184, 0.9);  
-      
-    }
-    .ant-btn{
-      background-color: #BA161C;
-    }
-    
-    .ant-col{
-      max-width: 100%;
-      padding: 0;   
+  .ant-form {
+    padding: 15px 40px;
+    background: linear-gradient(
+        0deg,
+        rgba(233, 220, 220, 0.3),
+        rgba(252, 252, 252, 0.2)
+      ),
+      rgba(245, 180, 180, 0.5);
 
-    }
+    box-shadow: 0px 20px 20px rgb(236, 184, 184, 0.9);
+  }
+  .ant-btn {
+    background-color: #ba161c;
+  }
 
-    .ant-form-item{
-      margin-bottom: 15px;
-    }
+  .ant-col {
+    max-width: 100%;
+    padding: 0;
+  }
 
-    .ant-row.btn-login{
-          margin-top: 7px;
-    }
+  .ant-form-item {
+    margin-bottom: 15px;
+  }
 
-    .ant-input{
-      padding: 0px 4px;
-    }
+  .ant-row.btn-login {
+    margin-top: 7px;
+  }
 
-    h2{
-      margin-bottom: 5px;
-      margin-top: 25px;
-    }
-    
+  .ant-input {
+    padding: 0px 4px;
+  }
+
+  h2 {
+    margin-bottom: 5px;
+    margin-top: 25px;
+  }
+}
+
+.register-form-content {
+  max-width: 50%;
+}
+@media screen and (max-width: 600px) {
+  .register-form-content {
+    max-width: 100%;
+  }
 }

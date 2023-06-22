@@ -63,7 +63,7 @@ const Navbar = () => {
         </NavLink>
 
         <span className="input_search">
-          <label class="search" for="inpt_search">
+          <label className="search" htmlFor="inpt_search">
             <input id="inpt_search" type="text" />
           </label>
           {/* <Input
@@ -80,13 +80,22 @@ const Navbar = () => {
 
       <nav className="navbar navbar-expand-lg navbar-mainbg">
         {isNavOpen && (
-          <nav className="nav_mobile">
-            <div className="close-btn" onClick={handleNavToggle}>
+          <nav className="nav_mobile" id="navbarSupportedContent">
+            <div
+              className="close-btn"
+              onClick={handleNavToggle}
+              // onClick={animation}
+            >
               <TiTimesOutline size="2em" fill="#fff" />
             </div>
+
             <ul className="nav_mobilelist">
-              <li className="nav-item active mobile">
-                <NavLink className="nav-link" to="/" exact="true">
+              <div className="hori-selector">
+                <div className="left"></div>
+                <div className="right"></div>
+              </div>
+              <li className="nav-item mobile">
+                <NavLink className="nav-link " to="/" exact="true">
                   TRANG CHỦ
                 </NavLink>
               </li>

@@ -45,8 +45,10 @@ const LoginPage = () => {
           <Form
             //{...formItemLayout}
             name="login"
+            className="login-content"
             onFinish={onFinish}
-            style={{ maxWidth: "50%", maxHeight: "auto" }}
+            style={{ maxHeight: "auto" }}
+            // style={{ maxWidth: "50%", maxHeight: "auto" }}
             autoComplete="off"
           >
             <div className="content">
@@ -56,7 +58,7 @@ const LoginPage = () => {
                   <Col span={24}>
                     <h2 align="middle">ĐĂNG NHẬP</h2>
                   </Col>
-                  <Col span={6}></Col>
+                  {/* <Col span={6}></Col> */}
                 </Row>
               </div>
               <Form.Item
@@ -90,10 +92,13 @@ const LoginPage = () => {
               </Form.Item>
               <Form.Item>
                 <Row>
-                  <Col span={8}></Col>
+                  <Col span={4}></Col>
 
-                  <Col span={8} align="middle">
-                    <div className="button" display>
+                  <Col span={16} align="middle">
+                    <div
+                      className="button"
+                      // display
+                    >
                       <Button
                         type="primary"
                         htmlType="submit"
@@ -104,7 +109,7 @@ const LoginPage = () => {
                     </div>
                   </Col>
 
-                  <Col span={8}></Col>
+                  <Col span={4}></Col>
                 </Row>
                 <Divider>Hoặc</Divider>
                 <p className="text" align="middle">

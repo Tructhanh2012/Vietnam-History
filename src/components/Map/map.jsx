@@ -674,6 +674,12 @@ const CustomMap = () => {
             strokeWidth="0.1"
           />
         </svg>
+        <div className="banner-text1" style={{ fontSize: "49.5px" }}>
+          Khám phá quá khứ
+        </div>
+        <div className="banner-text2" style={{ fontSize: "49.5px" }}>
+          để hiểu về tương lai
+        </div>
 
         <img className="text-banner-homepage " src={TextPicture} alt="" />
         {/* {provinceShow.length > 0 && ( // Only render Drawer when provinceShow has values
