@@ -51,6 +51,11 @@
         margin: 44px auto;
         margin-top: 65px;
         border-radius: 25px;
+        .register-form{
+          .ant-form-item-required{
+             font-family: 'Gentium Book Plus', serif;
+          }
+        }
              
     }
 

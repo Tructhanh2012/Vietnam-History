@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Serif:wght@300&display=swap');
+
 .banner-homepage {
   background-image: url(../../assets/Rectangle.png);
   background-size: cover; /* kích thước hình ảnh nền dựa trên tỷ lệ khung hình */
@@ -9,6 +11,9 @@
 .map-button:hover {
   fill: yellow;
   cursor: pointer;
+}
+text{
+  font-family: 'Roboto Serif', serif;
 }
 
 .mapsvg-homepage {

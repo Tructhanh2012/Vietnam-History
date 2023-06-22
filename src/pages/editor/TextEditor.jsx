@@ -8,36 +8,36 @@ const editorConfiguration = {
 
 function TextEditor() {
   const [editor, setEditor] = useState(null);
-  const [data, setData] = useState("<p>Hello from CKEditor 5!</p>");
-
+  //  const [data, setData] = useState("<p>Hello from CKEditor 5!</p>");
+  const [editorData, setEditorData] = useState("");
+  const handleEditorChange = (event, editor) => {
+    const data = editor.getData();
+    setEditorData(data);
+  };
   useEffect(() => {
     if (editor) {
       console.log("Editor is ready to use!", editor);
     }
   }, [editor]);
 
-  const handleEditorChange = (event, editor) => {
-    const newData = editor.getData();
-    console.log({ event, editor, data: newData });
-    setData(newData);
-  };
-
-  const handleEditorBlur = (event, editor) => {
-    console.log("Blur.", editor);
-  };
-
-  const handleEditorFocus = (event, editor) => {
-    console.log("Focus.", editor);
+  const handleEditorPost = () => {
+    let article = {
+      userId: userId,
+      content: editorData,
+      dateBlogCreated: new Date().toLocaleDateString(),
+    };
+    // Call api
   };
 
   return (
     <div className="App">
-      <h2>Using CKEditor 5 from online builder in React</h2>
+      <h2>Tạo bài viết mới</h2>
       <CKEditor
         editor={ClassicEditor}
-        data="<p>Hello from CKEditor 5!</p>"
-        onBlur={handleEditorBlur}
+        data={editorData}
+        onChange={handleEditorChange}
       />
+      <button onClick={handleEditorPost}>Send data</button>
     </div>
   );
 }

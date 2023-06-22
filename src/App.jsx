@@ -19,6 +19,7 @@ import TimelinePage from "./pages/timeline";
 import TextEditor from "./pages/editor/TextEditor";
 import ArticlePage from "./pages/article";
 import QuizzPage from "./pages/quizz";
+import Navbar from "./components/Header/Navbar";
 
 /* gọi API
 const getAccount = async () =>
@@ -34,7 +35,8 @@ const Layout = () => {
   return (
     <>
       <div className="layout-app">
-        <Header />
+        {/* <Header /> */}
+        <Navbar />
         <Outlet />
         <Footer />
       </div>

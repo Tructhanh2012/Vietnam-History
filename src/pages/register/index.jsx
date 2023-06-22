@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import "./register.scss";
-import { Button, Col, Divider, Form, Input, Row, Space } from "antd";
+import { Button, Col, Divider, Form, Input, Row, Space, message } from "antd";
 import { Link, useNavigate } from "react-router-dom";
 import { notification } from "antd";
+import { callRegister } from "../../services/api";
 
 // const formItemLayout = {
 //   labelCol: {
@@ -25,20 +26,21 @@ const RegisterPage = () => {
     setIsSubmit(true);
     const res = await callRegister(username, password, email);
     setIsSubmit(false);
-    if (res?.data?._id) {
+
+    console.log("check res ne: ", res);
+
+    if (res && res.responeMessage === "Register successfully") {
       message.success("Đăng ký tài khoản thành công");
       navigate("/login");
     } else {
       notification.error({
-        message: "Có lỗi xảy",
-        description:
-          res.message && res.message && Array.isArray(res.message) > 0
-            ? res.message[0]
-            : res.message,
+        message: "Có lỗi xảy ra",
+        description: res.responeMessage,
         duration: 5,
       });
     }
   };
+
   return (
     <div className="register-page">
       <div className="register-box">
