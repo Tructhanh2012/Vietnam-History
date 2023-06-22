@@ -1,0 +1,25 @@
+ @import url('https://fonts.googleapis.com/css2?family=Gentium+Book+Plus:wght@700&display=swap');
+
+
+.article-container{
+   h2{
+                font-family: 'Gentium Book Plus', serif;
+
+   }
+
+   .doc{
+          cursor: pointer;
+          text-align: center;
+          padding-top: 16px;
+          padding: 2px 7px;
+          margin-bottom: 12px;
+          font-weight: 600;
+          background-color: #E46F73;
+          background-size: auto;
+          border-radius: 2px;
+
+          &:hover {
+          background-color: #963B3E;
+         }
+   }
+}

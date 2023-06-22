@@ -13,8 +13,14 @@ import LayoutAdmin from "./components/Admin";
 import ProfilePage from "./pages/profile";
 import UserTable from "./components/Admin/User/UserTable";
 import RegisterRole from "./components/Admin/User/RegisterRole";
-import LearnByMap from "./components/Map";
-
+import EditorPage from "./pages/editor";
+import RankingPage from "./pages/rank";
+import TimelinePage from "./pages/timeline";
+import TextEditor from "./pages/editor/TextEditor";
+import ArticlePage from "./pages/article";
+import QuizzPage from "./pages/quizList";
+import QuizzApp from "./components/Quiz";
+import BlogPage from "./pages/blog";
 /* gọi API
 const getAccount = async () =>
 {
@@ -43,7 +49,22 @@ export default function App() {
       path: "/",
       element: <Layout />,
       errorElement: <NotFound />,
-      children: [{ index: true, element: <Home /> }],
+      children: [
+        { index: true, element: <Home /> },
+        { path: "rank", element: <RankingPage /> },
+        { path: "timeline", element: <TimelinePage /> },
+        { path: "article", element: <ArticlePage /> },
+        { path: "profile", element: <ProfilePage /> },
+        { path: "quizdbp", element: <QuizzApp /> },
+        {
+          path: "quizz",
+          element: <QuizzPage />,
+        },
+        {
+          path: "blog",
+          element: <BlogPage />,
+        },
+      ],
     },
     {
       path: "/admin",
@@ -67,6 +88,18 @@ export default function App() {
         },
       ],
     },
+    // {
+    //   path: "/editor",
+    //   element: <EditorPage />,
+    //   errorElement: <NotFound />,
+    //   children: [],
+    // },
+    {
+      path: "/editor",
+      element: <TextEditor />,
+      errorElement: <NotFound />,
+      children: [],
+    },
     {
       path: "/login",
       element: <LoginPage />,
@@ -75,11 +108,17 @@ export default function App() {
       path: "/register",
       element: <RegisterPage />,
     },
+    // <<<<<<< HEAD
     {
       path: "/profile",
       element: <ProfilePage />,
     },
-    
+
+    // {
+    //   path: "/profile",
+    //   element: <ProfilePage />,
+    // },
+    // >>>>>>> 8178ba87a77730897f25de56ef86b2387e0ef06c
   ]);
   return (
     <>

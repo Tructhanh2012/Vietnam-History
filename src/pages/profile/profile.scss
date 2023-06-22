@@ -1,3 +1,4 @@
+// <<<<<<< HEAD
 @import url("https://fonts.googleapis.com/css2?family=Gentium+Book+Plus:wght@700&display=swap");
 .profile-header {
   display: flex;
@@ -8,7 +9,6 @@
   margin-left: 80px;
   margin-top: 50px;
   width: 180px;
- 
 
   .avatar-container {
     display: flex;
@@ -38,7 +38,6 @@
   .name {
     font-family: "Inter";
     margin-top: 10px;
-    
   }
 
   input {
@@ -47,7 +46,7 @@
     border-radius: 4px;
     margin-bottom: 10px;
   }
- 
+
   input.invalid {
     border-color: red;
   }
@@ -74,15 +73,12 @@
   display: flex;
   color: #000000;
   margin-bottom: 20px;
-  
- 
 }
 
 .tab {
   margin-right: 40px;
   width: 220px;
   font-size: 25px;
-  
 }
 .tabnd {
   margin-top: -170px;
@@ -101,7 +97,6 @@
   margin-bottom: 10px;
 }
 
-
 .article-list {
   margin-bottom: 10px;
   display: grid;
@@ -110,20 +105,18 @@
   grid-auto-flow: row;
   grid-gap: 20px;
   align-items: center;
-    justify-content: center;
-    // display: flex;
-    // position: absolute;
+  justify-content: center;
+  // display: flex;
+  // position: absolute;
   // left: 65%;
   // transform: translateX(-60%);
   // top: 150px;
-  
+
   // color: #000000;
   // margin-bottom: 20px;
   // flex-direction: column;
-  
 }
-.article-item{
-  
+.article-item {
   border-radius: 15px;
   margin-top: 30px;
   background: rgba(229, 151, 151, 0.7);
@@ -150,7 +143,7 @@
 .article-item img {
   width: 320px;
   height: 200px;
- 
+
   margin-bottom: 10px;
   float: left;
   margin-right: 10px;
@@ -168,7 +161,6 @@
   color: #000000;
   margin-bottom: 40px;
   clear: both;
- 
 }
 
 .article-list p {
@@ -176,7 +168,6 @@
   max-height: 100px;
   overflow: hidden;
   text-overflow: ellipsis;
-  
 }
 
 .article-list h5 {
@@ -223,3 +214,13 @@
 //     flex-direction: column;
 //   }
 // }
+// =======
+// .tabs{
+//     .ant-tabs {
+//        .ant-tabs-tab{
+//         font-size: 18px;
+//        }
+//     }
+
+// }
+// >>>>>>> 8178ba87a77730897f25de56ef86b2387e0ef06c

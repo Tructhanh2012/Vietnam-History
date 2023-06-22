@@ -97,6 +97,7 @@ const LayoutAdmin = () => {
             width: "100%",
             display: "flex",
             alignItems: "center",
+            // height: "20%",
           }}
         >
           <div
@@ -113,7 +114,10 @@ const LayoutAdmin = () => {
               )}
             </span>
 
-            <Dropdown menu={{ items: itemsDropdown }} trigger={["click"]}>
+            <Dropdown
+              menu={{ items: itemsDropdown }}
+              trigger={["click"]}
+            >
               <a onClick={(e) => e.preventDefault}>
                 <Space>
                   Welcome

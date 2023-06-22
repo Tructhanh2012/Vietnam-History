@@ -1,5 +1,15 @@
+import Dashboard from "./Dashboard";
+import StatisticDashboard from "./Statistic";
+
 const AdminPage = () => {
-  return <>admin dashboard ne</>;
+  return (
+    <>
+      <div className="dashboard">
+        {/* <StatisticDashboard /> */}
+        <Dashboard />
+      </div>
+    </>
+  );
 };
 
 export default AdminPage;

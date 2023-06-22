@@ -45,19 +45,20 @@ const RegisterPage = () => {
         <div className="register-form">
           <Form
             // {...formItemLayout}
+            className="register-form-content"
             name="register"
             onFinish={onFinish}
-            style={{ maxWidth: "50%" }}
+            // style={{ maxWidth: "50%" }}
             autoComplete="off"
           >
             <div className="content">
               <div className="heading">
                 <Row>
-                  <Col span={6}></Col>
-                  <Col span={12}>
+                  {/* <Col span={6}></Col> */}
+                  <Col span={24}>
                     <h2 align="middle">ĐĂNG KÝ</h2>
                   </Col>
-                  <Col span={6}></Col>
+                  {/* <Col span={6}></Col> */}
                 </Row>
               </div>
 
@@ -138,16 +139,26 @@ const RegisterPage = () => {
 
               <Form.Item>
                 <Row className="btn-login">
-                  <Col span={8}></Col>
-                  <Col span={8} align="middle">
-                    <Button type="primary" htmlType="submit" loading={isSubmit}>
+                  {/* <Col span={8}></Col> */}
+                  <Col
+                    span={24}
+                    align="middle"
+                  >
+                    <Button
+                      type="primary"
+                      htmlType="submit"
+                      loading={isSubmit}
+                    >
                       Đăng ký
                     </Button>
                   </Col>
-                  <Col span={8}></Col>
+                  {/* <Col span={8}></Col> */}
                 </Row>
                 <Divider>Hoặc</Divider>
-                <p className="text" align="middle">
+                <p
+                  className="text"
+                  align="middle"
+                >
                   Đã có tài khoản?
                   <span>
                     <Link to="/login"> Đăng nhập</Link>

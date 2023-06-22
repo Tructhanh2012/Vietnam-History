@@ -16,7 +16,11 @@ const Footer = () => {
           <div className="d-flex ">
             <div className="col-md-3 d-flex justify-content-center align-items-center">
               <div className="footer-logo">
-                <img className="logo" alt="" src={imageLogo} />
+                <img
+                  className="logo"
+                  alt=""
+                  src={imageLogo}
+                />
                 <p>website_name&copy; 2023</p>
               </div>
             </div>
