@@ -1,0 +1,146 @@
+form {
+    border: 1px solid #ccc;
+    padding: 30px;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    margin-left: 203px;
+    margin-right: 200px;
+    background-color: #e59797;
+}
+form input,
+form textarea,
+form button {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+    margin: 20;
+}
+
+input[type="text"],
+textarea {
+    width: 100%;
+    font-size: 18px;
+    overflow: auto;
+    resize: vertical;
+    height: auto;
+}
+
+button[type="submit"] {
+    width: 100px;
+    height: 30px;
+    font-size: 18px;
+    margin: 0 auto;
+}
+
+.preview {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+    img {
+        width: 60%;
+        height: auto;
+        max-height: 400px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+}
+button[type="submit"] {
+    background-color: #714c4c;
+    border-radius: 20px;
+    width: 100px;
+    height: 30px;
+    font-size: 18px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+button[type="submit"]:hover {
+    transform: translateY(-2px);
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.danh-sach-bai-viet {
+    list-style: none;
+}
+
+.baiviet {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    padding: 30px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    margin-right: 200px;
+    margin-left: 170px;
+    word-wrap: break-word;
+    min-width: 320px;
+    background-color: #e59797;
+    ul,
+    ol {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        padding-left: 20px;
+    }
+    p {
+      
+        margin-bottom: 10px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        word-wrap: break-word;
+        word-break: break-all;
+      }
+      button {
+        width: fit-content;
+        padding: 8px 15px;
+        font-size: 12px;
+        border-radius: 10px;
+        cursor: pointer;
+        margin-right: 50px;
+        margin-top: 10px;
+      }
+    &:hover {
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        transform: translateY(-5px);
+    }
+    .media-container {
+        position: relative;
+        overflow: hidden;
+        width: 100%;
+        height: auto;
+
+        img,
+        video {
+            display: block;
+            width: 60%;
+            height: auto;
+            max-height: 400px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            transition: transform 0.3s ease;
+        }
+    }
+    .viewlike {
+        display: inline-block;
+      }
+      
+      .viewcmt {
+        display: inline-block;
+        vertical-align: top; 
+        margin-left: 10px; 
+        float: right;
+    
+      }
+
+}
