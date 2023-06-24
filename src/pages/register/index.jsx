@@ -68,12 +68,15 @@ const RegisterPage = () => {
                 labelCol={{ span: 24 }}
                 name="username"
                 label="Tên đăng nhập:"
-                // tooltip="What do you want others to call you?"
                 rules={[
                   {
                     required: true,
                     message: "Hãy nhập Tên đăng nhập!",
                     whitespace: false,
+                  },
+                  {
+                    max: 3,
+                    message: "Tên đăng nhập không được quá 5 kí tự",
                   },
                 ]}
               >
@@ -142,25 +145,15 @@ const RegisterPage = () => {
               <Form.Item>
                 <Row className="btn-login">
                   {/* <Col span={8}></Col> */}
-                  <Col
-                    span={24}
-                    align="middle"
-                  >
-                    <Button
-                      type="primary"
-                      htmlType="submit"
-                      loading={isSubmit}
-                    >
+                  <Col span={24} align="middle">
+                    <Button type="primary" htmlType="submit" loading={isSubmit}>
                       Đăng ký
                     </Button>
                   </Col>
                   {/* <Col span={8}></Col> */}
                 </Row>
                 <Divider>Hoặc</Divider>
-                <p
-                  className="text"
-                  align="middle"
-                >
+                <p className="text" align="middle">
                   Đã có tài khoản?
                   <span>
                     <Link to="/login"> Đăng nhập</Link>

@@ -13,7 +13,7 @@ const BreadcrumbRank = () => {
       separator=">"
       items={[
         {
-          title: "Home",
+          title: "Trang chủ",
           href: "/",
         },
         {

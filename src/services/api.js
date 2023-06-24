@@ -1,5 +1,5 @@
 import axios from "../utils/axios-customize";
-// import axios from "axios";
+
 export const callRegister = (username, password, email) => {
   return axios.post("/signup", {
     username,
@@ -7,12 +7,12 @@ export const callRegister = (username, password, email) => {
     email,
   });
 };
-export const callRegisterRole = (username, password, email, role) => {
-  return axios.post("", {
+export const callRegisterRole = (username, password, email, roles) => {
+  return axios.post("/admin/accountList/account", {
     username,
     password,
     email,
-    role,
+    roles,
   });
 };
 
@@ -23,13 +23,23 @@ export const callLogin = (username, password) => {
   });
 };
 
-// axios.post("http://localhost:8080/signin", data, {
-//   headers: {
-//     "Access-Control-Allow-Origin": "*",
-//     "Content-Type": "application/json",
-//   },
-//   mode: "cors",
-// });
+// export const callGetListUser = (keyword) => {
+//   return axios.get(`/admin/accountList?keyword=${keyword}`);
+// };
+
+export const callGetListUser = (keyword) => {
+  return axios.post("/admin/accountList", {
+    data: {
+      keyword: "",
+    },
+  });
+
+  // return axios.get("/admin/accountList", {
+  //   params: {
+  //     keyword: keyword,
+  //   },
+  // });
+};
 
 export const getMap = () => {
   return axios.get(

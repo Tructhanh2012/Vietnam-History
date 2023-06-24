@@ -6,10 +6,13 @@ const instance = axios.create(
   {
     baseURL: "http://localhost:8080",
     //set Cookies
+    // withCredentials: true,
   }
   // console.log("check baseURL: ", baseURL)
 );
-
+instance.defaults.headers.common = {
+  Authorization: `Bearer ${localStorage.getItem("token")}`,
+};
 // Add a request interceptor
 instance.interceptors.request.use(
   function (config) {

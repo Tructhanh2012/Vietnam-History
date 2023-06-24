@@ -16,16 +16,13 @@ const LoginPage = () => {
     const { username, password } = values;
     setIsSubmit(true);
     const res = await callLogin(username, password);
-    // const res = await callLogin2(username, password);
     setIsSubmit(false);
-    console.log("check res: ", res);
-    // console.log("check res data: ", res.data);
+    // console.log("check res 1: ", res);
 
     if (res.token) {
-      // localStorage.setItem("access_token", res.data.access_token); //save access_token into localStorage
-      // dispatch(doLoginAction(res.data.user));
-      //console.log("check res data: ", res.data);
-      console.log("login success");
+      localStorage.setItem("token", res.token); //save access_token to localStorage
+      //dispatch(doLoginAction(res.));
+      // console.log("check res 2", res);
       message.success("Đăng nhập tài khoản thành công");
       navigate("/");
     } else {

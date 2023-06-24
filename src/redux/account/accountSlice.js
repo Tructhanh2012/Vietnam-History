@@ -1,14 +1,13 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  isAuthenticated: false,
+  isAuthenticated: false, //user đã đn chưa
   user: {
     userID: "",
     username: "",
-    password: "",
     email: "",
     role: "",
-    dateCreated: "",
+    avatar: "",
   },
   status: "idle",
 };

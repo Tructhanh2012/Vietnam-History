@@ -1,4 +1,13 @@
-import { Col, Divider, Form, Input, Radio, Row, message } from "antd";
+import {
+  Col,
+  Divider,
+  Form,
+  Input,
+  Radio,
+  Row,
+  message,
+  notification,
+} from "antd";
 import { Button } from "antd";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
@@ -12,20 +21,20 @@ const RegisterRole = (props) => {
   const [form] = Form.useForm();
 
   const onFinish = async (values) => {
-    const { username, password, email, role } = values;
+    const { username, password, email, roles } = values;
     setIsSubmit(true);
-    const res = await callRegisterRole(username, password, email, role);
+    const res = await callRegisterRole(username, password, email, roles);
+    console.log("log res registerrole: ", res);
     setIsSubmit(false);
-    if (res?.data?._id) {
+    if (res && res.responeMessage === "CREATE ACCOUNT SUCCESSFULLY") {
+      console.log("here");
+
       message.success("Đăng ký role thành công");
       navigate("/admin");
     } else {
       notification.error({
         message: "Có lỗi xảy",
-        description:
-          res.message && res.message && Array.isArray(res.message) > 0
-            ? res.message[0]
-            : res.message,
+        // description: res.message,
         duration: 5,
       });
     }
@@ -70,6 +79,10 @@ const RegisterRole = (props) => {
                         required: true,
                         message: "Hãy nhập Tên đăng nhập!",
                         whitespace: false,
+                      },
+                      {
+                        max: 7,
+                        message: "Tên đăng nhập không được quá 7 kí tự",
                       },
                     ]}
                   >
@@ -135,14 +148,14 @@ const RegisterRole = (props) => {
                   </Form.Item>
 
                   <Form.Item
-                    name="role"
+                    name="roles"
                     label="Role"
                     labelCol={{ span: 5 }}
                     rules={[{ required: true, message: "Hãy chọn role!" }]}
                   >
                     <Radio.Group>
-                      <Radio value="admin"> Admin </Radio>
-                      <Radio value="editor"> Editor </Radio>
+                      <Radio value="ADMIN"> Admin </Radio>
+                      <Radio value="EDITOR"> Editor </Radio>
                     </Radio.Group>
                   </Form.Item>
 

@@ -1,12 +1,39 @@
-import { Col, Popconfirm, Row, Table } from "antd";
+import { Col, Popconfirm, Row, Table, Pagination } from "antd";
 import InputSearch from "./InputSearch";
 import { DeleteTwoTone, EditTwoTone } from "@ant-design/icons";
 import { useState } from "react";
 import UserUpdate from "./UserUpdate";
+import { callGetListUser } from "../../../services/api";
+import { useEffect } from "react";
 
 const UserTable = () => {
+  const [listUser, setListUser] = useState([]);
+  const [current, setCurrent] = useState(1);
+  const [pageSize, setPageSize] = useState(2);
+  const [total, setTotal] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
+
   const [openModalUpdate, setOpenModalUpdate] = useState(false);
   const [dataUpdate, setDataUpdate] = useState(null);
+
+  const fetchUser = async (keyword) => {
+    setIsLoading(true);
+    const res = await callGetListUser(keyword);
+    const userList = res.map((user) => {
+      const roleNames = user.roles.map((role) => role.name); // Lấy danh sách tên các vai trò của người dùng
+      return {
+        ...user,
+        roleNames: roleNames.join(", "), // Gộp các tên vai trò thành một chuỗi, phân tách bằng dấu phẩy
+      };
+    });
+    setListUser(userList);
+    setIsLoading(false);
+    // console.log("check role:", res);
+  };
+
+  useEffect(() => {
+    fetchUser();
+  }, []);
 
   const handleDeleUser = async (userId) => {
     // const res = await callDeleteUser(userId);
@@ -21,27 +48,10 @@ const UserTable = () => {
     }
   };
 
-  const data = [
-    {
-      key: "1",
-      No: "1",
-      email: "admin@gmail.com",
-      userName: "admin",
-      role: "ad",
-    },
-    {
-      key: "2",
-      No: "2",
-      email: "user@gmail.com",
-      userName: "user",
-      role: "us",
-    },
-  ];
-
   const columns = [
     {
-      title: "No",
-      dataIndex: "No",
+      title: "ID",
+      dataIndex: "userId",
       key: "userID",
     },
     {
@@ -51,12 +61,17 @@ const UserTable = () => {
     },
     {
       title: "Tên đăng nhập",
-      dataIndex: "userName",
-      key: "userName",
+      dataIndex: "username",
+      key: "username",
+    },
+    {
+      title: "Ngày đăng kí",
+      dataIndex: "date",
+      key: "date",
     },
     {
       title: "Role",
-      dataIndex: "role",
+      dataIndex: "roleNames",
       key: "role",
     },
     {
@@ -96,8 +111,16 @@ const UserTable = () => {
   ];
 
   const onChange = (pagination, filters, sorter, extra) => {
-    console.log("params", pagination, filters, sorter, extra);
+    console.log("check2 : ", pagination);
+    if (pagination && pagination.current !== current) {
+      setCurrent(pagination.current);
+    }
+    if (pagination && pagination.pageSize !== pageSize) {
+      setPageSize(pagination.pageSize);
+      setCurrent(1);
+    }
   };
+
   return (
     <>
       <Row gutter={[20, 20]}>
@@ -106,8 +129,14 @@ const UserTable = () => {
           <Table
             className="def"
             columns={columns}
-            dataSource={data}
+            dataSource={listUser}
             onChange={onChange}
+            pagination={{
+              current: current,
+              pageSize: 5,
+              total: total,
+              position: ["bottomCenter"],
+            }}
           ></Table>
         </Col>
       </Row>

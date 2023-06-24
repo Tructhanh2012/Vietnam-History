@@ -11,7 +11,7 @@ const ArticleDetails = () => {
         items={[
           {
             // key: "home",
-            title: "Home",
+            title: "Trang chủ",
             href: "/",
           },
           {

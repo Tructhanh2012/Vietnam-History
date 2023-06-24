@@ -80,7 +80,7 @@ const Navbar = () => {
 
       <nav className="navbar navbar-expand-lg navbar-mainbg">
         {isNavOpen && (
-          <nav className="nav_mobile" id="navbarSupportedContent">
+          <nav className="nav_mobile">
             <div
               className="close-btn"
               onClick={handleNavToggle}

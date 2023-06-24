@@ -681,7 +681,7 @@ const CustomMap = () => {
           để hiểu về tương lai
         </div>
 
-        <img className="text-banner-homepage " src={TextPicture} alt="" />
+        {/* <img className="text-banner-homepage " src={TextPicture} alt="" /> */}
         {/* {provinceShow.length > 0 && ( // Only render Drawer when provinceShow has values
         <Drawer
           title="Basic Drawer"
