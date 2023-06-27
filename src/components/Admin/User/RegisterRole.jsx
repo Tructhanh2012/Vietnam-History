@@ -23,18 +23,19 @@ const RegisterRole = (props) => {
   const onFinish = async (values) => {
     const { username, password, email, roles } = values;
     setIsSubmit(true);
-    const res = await callRegisterRole(username, password, email, roles);
+    const res = await callRegisterRole(username, password, email, [roles]);
     console.log("log res registerrole: ", res);
+    console.log("check register role: ", res);
     setIsSubmit(false);
     if (res && res.responeMessage === "CREATE ACCOUNT SUCCESSFULLY") {
       console.log("here");
 
       message.success("Đăng ký role thành công");
-      navigate("/admin");
+      // navigate("/admin");
     } else {
       notification.error({
         message: "Có lỗi xảy",
-        // description: res.message,
+        description: res.responeMessage,
         duration: 5,
       });
     }
@@ -154,8 +155,8 @@ const RegisterRole = (props) => {
                     rules={[{ required: true, message: "Hãy chọn role!" }]}
                   >
                     <Radio.Group>
-                      <Radio value="ADMIN"> Admin </Radio>
-                      <Radio value="EDITOR"> Editor </Radio>
+                      <Radio value={"ADMIN"}> Admin </Radio>
+                      <Radio value={"EDITOR"}> Editor </Radio>
                     </Radio.Group>
                   </Form.Item>
 

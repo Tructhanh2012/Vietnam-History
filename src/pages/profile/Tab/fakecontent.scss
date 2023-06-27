@@ -5,8 +5,10 @@
       align-items: center;
 
       .article{
-         width: calc(90%);
-         
+         width: calc(85%);
+         .wrapper{
+          padding: 20px;
+         }
       }
       .wrapper{
         padding: 18px;

@@ -58,7 +58,10 @@ const Navbar = () => {
   return (
     <>
       <div className="d-flex navbar-custom">
-        <NavLink className="logo" href="/">
+        <NavLink
+          className="logo"
+          // to="/"
+        >
           <img alt="" src={imageLogo} />
         </NavLink>
 
@@ -66,10 +69,6 @@ const Navbar = () => {
           <label className="search" htmlFor="inpt_search">
             <input id="inpt_search" type="text" />
           </label>
-          {/* <Input
-            placeholder=""
-            suffix={<SearchOutlined style={{ cursor: "pointer" }} />}
-          /> */}
         </span>
         <span className="btn">
           <Button className="btn-login" onClick={() => navigate("/login")}>

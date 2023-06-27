@@ -23,12 +23,12 @@ const LayoutAdmin = () => {
     {
       label: <Link to="/admin">Dashboard</Link>,
       key: "dashboard",
-      icon: <GrDashboard />,
+      icon: <GrDashboard size="1.5em" />,
     },
     {
       label: <span>Người dùng</span>,
       // key: "user",
-      icon: <UserOutlined />,
+      icon: <UserOutlined style={{ fontSize: "1.5em" }} />,
       children: [
         {
           label: <Link to="/admin/user">CRUD</Link>,
@@ -114,10 +114,7 @@ const LayoutAdmin = () => {
               )}
             </span>
 
-            <Dropdown
-              menu={{ items: itemsDropdown }}
-              trigger={["click"]}
-            >
+            <Dropdown menu={{ items: itemsDropdown }} trigger={["click"]}>
               <a onClick={(e) => e.preventDefault}>
                 <Space>
                   Welcome

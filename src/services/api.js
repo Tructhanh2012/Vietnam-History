@@ -7,12 +7,13 @@ export const callRegister = (username, password, email) => {
     email,
   });
 };
+
 export const callRegisterRole = (username, password, email, roles) => {
   return axios.post("/admin/accountList/account", {
     username,
     password,
     email,
-    roles,
+    roles: roles,
   });
 };
 
@@ -23,24 +24,48 @@ export const callLogin = (username, password) => {
   });
 };
 
-// export const callGetListUser = (keyword) => {
-//   return axios.get(`/admin/accountList?keyword=${keyword}`);
-// };
-
 export const callGetListUser = (keyword) => {
   return axios.post("/admin/accountList", {
     data: {
       keyword: "",
     },
   });
-
-  // return axios.get("/admin/accountList", {
-  //   params: {
-  //     keyword: keyword,
-  //   },
-  // });
 };
 
+export const callUpdateUser = (userId, userName, email) => {
+  return axios.put("/admin/accountList/account", {
+    userId,
+    userName,
+    email,
+  });
+};
+
+export const callDeleteUser = (userID) => {
+  return axios.delete(`/admin/accountList/account/${userID}`);
+};
+//=====Profile
+export const callUpdateAvatar = (fileImg) => {
+  const bodyFormData = new FormData();
+  bodyFormData.append("fileImg", fileImg);
+  return axios({
+    method: "post",
+    url: "",
+    data: bodyFormData,
+    headers: {
+      "Content-Type": "multipart/form-data",
+      "upload-type": "avatar",
+    },
+  });
+};
+
+export const callUpdateUserInfor = (userID, username, avatar, email) => {
+  return axios.put(``, { userID, username, avatar, email });
+};
+
+export const callUpdatePassword = (email, oldpass, newpass) => {
+  return axios.put(``, { email, oldpass, newpass });
+};
+//=======
 export const getMap = () => {
   return axios.get(
     "https://react-history-default-rtdb.firebaseio.com/history.json"

@@ -4,5 +4,17 @@
         font-size: 18px;
        }
     }
+    .ant-tabs-tab-btn{
+         font-family: 'Gentium Book Plus', serif;
+    }
+}
 
+.header{
+    .wrapper{
+        .user-dropdown{
+            a{
+                cursor: pointer;
+            }
+        }
+    }
 }

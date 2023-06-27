@@ -56,13 +56,16 @@ export default function App() {
         { path: "rank", element: <RankingPage /> },
         { path: "timeline", element: <TimelinePage /> },
         { path: "article", element: <ArticlePage /> },
-        { path: "profile", element: <ProfilePage /> },
         { path: "quizdbp", element: <QuizzApp /> },
         {
           path: "quizz",
           element: <QuizzPage />,
         },
       ],
+    },
+    {
+      path: "/profile",
+      element: <ProfilePage />,
     },
     {
       path: "/admin",

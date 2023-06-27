@@ -4,7 +4,8 @@ const baseURL = import.meta.env.VITE_BACKEND_URL;
 
 const instance = axios.create(
   {
-    baseURL: "http://localhost:8080",
+    // baseURL: "http://localhost:8080",
+    baseURL: baseURL,
     //set Cookies
     // withCredentials: true,
   }

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Button, Drawer } from "antd";
 import "./map.scss";
-import TextPicture from "../../assets/banner.png";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const CustomMap = () => {

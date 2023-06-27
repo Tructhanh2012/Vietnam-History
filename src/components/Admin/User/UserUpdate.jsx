@@ -1,11 +1,30 @@
 import { Divider, Form, Input, Modal } from "antd";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { callUpdateUser } from "../../../services/api";
 
 const UserUpdate = (props) => {
   const { openModalUpdate, setOpenModalUpdate, dataUpdate, setDataUpdate } =
     props;
+  const [isSubmit, setIsSubmit] = useState(false);
   const [form] = Form.useForm();
-  const onFinish = (values) => {};
+  // console.log("check props: ", props);
+  const onFinish = async (values) => {
+    const { userId, userName, email } = values;
+    setIsSubmit(true);
+    const res = await callUpdateUser(userId, userName, email);
+    console.log("check updateUser: ", res);
+    if (res && res.data) {
+      message.success("Cập nhật user thành công");
+      setOpenModalUpdate(false);
+      //await props.fetchUser;
+    } else {
+      notification.error({
+        message: "Đã có lỗi xảy ra",
+        description: res.message,
+      });
+    }
+    setIsSubmit(false);
+  };
 
   useEffect(() => {
     form.setFieldsValue(dataUpdate);
@@ -25,7 +44,7 @@ const UserUpdate = (props) => {
       }}
       onText={"Cập nhật"}
       cancelTe={"Hủy"}
-      //   confirmLoading={isSubmit}
+      confirmLoading={isSubmit}
     >
       <Divider />
       <Form
@@ -39,7 +58,7 @@ const UserUpdate = (props) => {
           hidden
           labelCol={{ span: 24 }}
           label="Id"
-          name="_id"
+          name="userID"
           rules={[
             {
               required: true,
@@ -65,7 +84,7 @@ const UserUpdate = (props) => {
           name="roleNames"
           rules={[{ required: true, message: "Vui lòng nhập tên email!" }]}
         >
-          <Input />
+          <Input disabled />
         </Form.Item>
 
         <Form.Item
@@ -74,7 +93,7 @@ const UserUpdate = (props) => {
           name="email"
           rules={[{ required: true, message: "Vui lòng nhập tên email!" }]}
         >
-          <Input disabled />
+          <Input />
         </Form.Item>
       </Form>
     </Modal>

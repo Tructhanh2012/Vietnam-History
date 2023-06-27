@@ -1,9 +1,9 @@
-import { Col, Popconfirm, Row, Table, Pagination } from "antd";
+import { Col, Popconfirm, Row, Table, Pagination, Tag } from "antd";
 import InputSearch from "./InputSearch";
 import { DeleteTwoTone, EditTwoTone } from "@ant-design/icons";
 import { useState } from "react";
 import UserUpdate from "./UserUpdate";
-import { callGetListUser } from "../../../services/api";
+import { callDeleteUser, callGetListUser } from "../../../services/api";
 import { useEffect } from "react";
 
 const UserTable = () => {
@@ -36,14 +36,14 @@ const UserTable = () => {
   }, []);
 
   const handleDeleUser = async (userId) => {
-    // const res = await callDeleteUser(userId);
-    if (res && res.data) {
+    const res = await callDeleteUser(userId);
+    if (res && res.responeMessage) {
       message.success("Xoá user thành công");
       fetchUser();
     } else {
       notification.error({
         message: "Có lỗi xảy ra",
-        description: res.message,
+        description: res.responeMessage,
       });
     }
   };
@@ -73,6 +73,19 @@ const UserTable = () => {
       title: "Role",
       dataIndex: "roleNames",
       key: "role",
+      render: (roleNames) => {
+        let color =
+          roleNames === "ADMIN"
+            ? "gold"
+            : roleNames === "MEMBER"
+            ? "geekblue"
+            : "green";
+        return (
+          <Tag color={color} key={roleNames}>
+            {roleNames.toUpperCase()}
+          </Tag>
+        );
+      },
     },
     {
       title: "Xóa",
@@ -82,11 +95,16 @@ const UserTable = () => {
             placement="leftTop"
             title={"Xác nhận xóa user"}
             description={"Bạn có chắc chắn muốn xóa user này?"}
-            onConfirm={() => handleDeleUser(record._id)}
+            onConfirm={() => handleDeleUser(record.userId)}
             okText="Xác nhận"
             cancelText="Hủy"
           >
-            <span style={{ cursor: "pointer", margin: "0 20px" }}>
+            <span
+              style={{
+                cursor: "pointer",
+                // , margin: "0 20px"
+              }}
+            >
               <DeleteTwoTone twoToneColor="#ff4d4f" />
             </span>
           </Popconfirm>
@@ -111,7 +129,7 @@ const UserTable = () => {
   ];
 
   const onChange = (pagination, filters, sorter, extra) => {
-    console.log("check2 : ", pagination);
+    // console.log("check2 : ", pagination);
     if (pagination && pagination.current !== current) {
       setCurrent(pagination.current);
     }
@@ -128,12 +146,13 @@ const UserTable = () => {
         <Col span={22} offset={1}>
           <Table
             className="def"
+            loading={isLoading}
             columns={columns}
             dataSource={listUser}
             onChange={onChange}
             pagination={{
               current: current,
-              pageSize: 5,
+              pageSize: 7,
               total: total,
               position: ["bottomCenter"],
             }}

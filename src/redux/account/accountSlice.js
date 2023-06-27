@@ -19,21 +19,33 @@ export const accountSlice = createSlice({
   reducers: {
     // actions để nạp data
     doLoginAction: (state, action) => {
-      // Redux Toolkit allows us to write "mutating" logic in reducers. It
-      // doesn't actually mutate the state because it uses the Immer library,
-      // which detects changes to a "draft state" and produces a brand new
-      // immutable state based off those changes
       state.isAuthenticated = true;
       state.user = action.payload;
     }, // -> lấy dc payload sau đấy gán vào state của Redux
 
     doGetAccountAction: (state, action) => {
-      // Redux Toolkit allows us to write "mutating" logic in reducers. It
-      // doesn't actually mutate the state because it uses the Immer library,
-      // which detects changes to a "draft state" and produces a brand new
-      // immutable state based off those changes
       state.isAuthenticated = true;
       state.user = action.payload.user;
+    },
+
+    doLogoutAction: (state, action) => {
+      localStorage.removeItem("token");
+      state.isAuthenticated = false;
+      state.user = {
+        userID: "",
+        username: "",
+        email: "",
+        role: "",
+        avatar: "",
+      };
+    },
+
+    doUpdateUserInfoAction: (state, action) => {
+      state.user.avatar = action.payload.avatar;
+    },
+
+    doUploadAvatarAction: (state, action) => {
+      state.tempAvatar = action.payload.avatar;
     },
   },
   // The `extraReducers` field lets the slice handle actions defined elsewhere,
@@ -41,6 +53,11 @@ export const accountSlice = createSlice({
   extraReducers: (builder) => {},
 });
 
-export const { doLoginAction, doGetAccountAction } = accountSlice.actions;
+export const {
+  doLoginAction,
+  doGetAccountAction,
+  doUpdateUserInfoAction,
+  doUploadAvatarAction,
+} = accountSlice.actions;
 
 export default accountSlice.reducer;

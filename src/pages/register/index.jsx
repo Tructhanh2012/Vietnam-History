@@ -75,8 +75,8 @@ const RegisterPage = () => {
                     whitespace: false,
                   },
                   {
-                    max: 3,
-                    message: "Tên đăng nhập không được quá 5 kí tự",
+                    max: 7,
+                    message: "Tên đăng nhập không được quá 7 kí tự",
                   },
                 ]}
               >
@@ -144,13 +144,11 @@ const RegisterPage = () => {
 
               <Form.Item>
                 <Row className="btn-login">
-                  {/* <Col span={8}></Col> */}
                   <Col span={24} align="middle">
                     <Button type="primary" htmlType="submit" loading={isSubmit}>
                       Đăng ký
                     </Button>
                   </Col>
-                  {/* <Col span={8}></Col> */}
                 </Row>
                 <Divider>Hoặc</Divider>
                 <p className="text" align="middle">
