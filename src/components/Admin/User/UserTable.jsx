@@ -19,16 +19,9 @@ const UserTable = () => {
   const fetchUser = async (keyword) => {
     setIsLoading(true);
     const res = await callGetListUser(keyword);
-    const userList = res.map((user) => {
-      const roleNames = user.roles.map((role) => role.name); // Lấy danh sách tên các vai trò của người dùng
-      return {
-        ...user,
-        roleNames: roleNames.join(", "), // Gộp các tên vai trò thành một chuỗi, phân tách bằng dấu phẩy
-      };
-    });
+    const userList = res;
     setListUser(userList);
     setIsLoading(false);
-    // console.log("check role:", res);
   };
 
   useEffect(() => {
@@ -52,7 +45,7 @@ const UserTable = () => {
     {
       title: "ID",
       dataIndex: "userId",
-      key: "userID",
+      key: "userId",
     },
     {
       title: "Email",
@@ -71,18 +64,14 @@ const UserTable = () => {
     },
     {
       title: "Role",
-      dataIndex: "roleNames",
+      dataIndex: "role",
       key: "role",
-      render: (roleNames) => {
+      render: (role) => {
         let color =
-          roleNames === "ADMIN"
-            ? "gold"
-            : roleNames === "MEMBER"
-            ? "geekblue"
-            : "green";
+          role === "ADMIN" ? "gold" : role === "MEMBER" ? "geekblue" : "green";
         return (
-          <Tag color={color} key={roleNames}>
-            {roleNames.toUpperCase()}
+          <Tag color={color} key={role}>
+            {role.toUpperCase()}
           </Tag>
         );
       },

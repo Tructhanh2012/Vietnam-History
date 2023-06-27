@@ -1,4 +1,4 @@
-import { Divider, Form, Input, Modal } from "antd";
+import { Divider, Form, Input, Modal, message } from "antd";
 import { useEffect, useState } from "react";
 import { callUpdateUser } from "../../../services/api";
 
@@ -9,11 +9,12 @@ const UserUpdate = (props) => {
   const [form] = Form.useForm();
   // console.log("check props: ", props);
   const onFinish = async (values) => {
-    const { userId, userName, email } = values;
+    const { userId, username, email, role } = values;
     setIsSubmit(true);
-    const res = await callUpdateUser(userId, userName, email);
-    console.log("check updateUser: ", res);
-    if (res && res.data) {
+    const res = await callUpdateUser(userId, username, email, role);
+    console.log("check updateUser: ", res.responeMessage.responeMessage);
+
+    if (res && res.responeMessage.responeMessage === "UPDATE USER OKE !") {
       message.success("Cập nhật user thành công");
       setOpenModalUpdate(false);
       //await props.fetchUser;
@@ -58,7 +59,7 @@ const UserUpdate = (props) => {
           hidden
           labelCol={{ span: 24 }}
           label="Id"
-          name="userID"
+          name="userId"
           rules={[
             {
               required: true,
@@ -81,10 +82,10 @@ const UserUpdate = (props) => {
         <Form.Item
           labelCol={{ span: 24 }}
           label="Role"
-          name="roleNames"
+          name="role"
           rules={[{ required: true, message: "Vui lòng nhập tên email!" }]}
         >
-          <Input disabled />
+          <Input />
         </Form.Item>
 
         <Form.Item

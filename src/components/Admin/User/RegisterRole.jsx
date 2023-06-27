@@ -21,18 +21,18 @@ const RegisterRole = (props) => {
   const [form] = Form.useForm();
 
   const onFinish = async (values) => {
-    const { username, password, email, roles } = values;
+    const { username, password, email, role } = values;
     setIsSubmit(true);
-    const res = await callRegisterRole(username, password, email, [roles]);
+    const res = await callRegisterRole(username, password, email, values.role);
     console.log("log res registerrole: ", res);
-    console.log("check register role: ", res);
     setIsSubmit(false);
-    if (res && res.responeMessage === "CREATE ACCOUNT SUCCESSFULLY") {
+    if (res && res.responeMessage === "Register successfully") {
       console.log("here");
 
       message.success("Đăng ký role thành công");
       // navigate("/admin");
     } else {
+      console.log("here2");
       notification.error({
         message: "Có lỗi xảy",
         description: res.responeMessage,
@@ -82,8 +82,8 @@ const RegisterRole = (props) => {
                         whitespace: false,
                       },
                       {
-                        max: 7,
-                        message: "Tên đăng nhập không được quá 7 kí tự",
+                        max: 10,
+                        message: "Tên đăng nhập không được quá 10 kí tự",
                       },
                     ]}
                   >
@@ -149,7 +149,7 @@ const RegisterRole = (props) => {
                   </Form.Item>
 
                   <Form.Item
-                    name="roles"
+                    name="role"
                     label="Role"
                     labelCol={{ span: 5 }}
                     rules={[{ required: true, message: "Hãy chọn role!" }]}

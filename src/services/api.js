@@ -8,12 +8,12 @@ export const callRegister = (username, password, email) => {
   });
 };
 
-export const callRegisterRole = (username, password, email, roles) => {
+export const callRegisterRole = (username, password, email, role) => {
   return axios.post("/admin/accountList/account", {
     username,
     password,
     email,
-    roles: roles,
+    role,
   });
 };
 
@@ -32,17 +32,34 @@ export const callGetListUser = (keyword) => {
   });
 };
 
-export const callUpdateUser = (userId, userName, email) => {
+export const callUpdateUser = (userId, userName, email, userRole) => {
   return axios.put("/admin/accountList/account", {
     userId,
     userName,
     email,
+    userRole,
   });
 };
 
 export const callDeleteUser = (userID) => {
   return axios.delete(`/admin/accountList/account/${userID}`);
 };
+
+export const callGetStatistic = () => {
+  return axios.get("/admin/dashboard");
+};
+export const callPostDashboard = () => {
+  return axios.post("admin/dashboard/newAccs/1");
+}; //=========================finish admin============================================
+
+export const callGetRanking = (keyword) => {
+  return axios.post("/ranking", {
+    data: {
+      keyword: "",
+    },
+  });
+};
+
 //=====Profile
 export const callUpdateAvatar = (fileImg) => {
   const bodyFormData = new FormData();

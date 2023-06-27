@@ -50,7 +50,7 @@ const LayoutAdmin = () => {
     },
   ];
 
-  const [collapsed, setCollapsed] = useState(false);
+  const [collapsed, setCollapsed] = useState(true);
   const [activeMenu, setActiveMenu] = useState("dashboard");
 
   // const user = useSelector((state) => state.account.user);

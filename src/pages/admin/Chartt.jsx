@@ -12,7 +12,6 @@ import {
 } from "chart.js";
 import { useEffect, useState } from "react";
 import { Bar, Line } from "react-chartjs-2";
-import { callPostDashboard } from "../../services/api";
 
 ChartJS.register(
   CategoryScale,
@@ -23,9 +22,9 @@ ChartJS.register(
   Tooltip,
   Legend
 );
-// export const fetchRevenue = () => {
-//   return fetch("https://dummyjson.com/carts").then((res) => res.json());
-// };
+export const fetchRevenue = () => {
+  return fetch("https://dummyjson.com/carts").then((res) => res.json());
+};
 
 const DashboardChart = () => {
   const [reveneuData, setReveneuData] = useState({
@@ -34,12 +33,12 @@ const DashboardChart = () => {
   });
 
   useEffect(() => {
-    callPostDashboard().then((res) => {
-      const labels = res.map((cart) => {
-        return `Tháng-${cart.month}`;
+    fetchRevenue().then((res) => {
+      const labels = res.carts.map((cart) => {
+        return `User-${cart.userId}`;
       });
-      const data = res.map((cart) => {
-        return cart.noOfUsers;
+      const data = res.carts.map((cart) => {
+        return cart.discountedTotal;
       });
 
       const dataSource = {
@@ -48,7 +47,7 @@ const DashboardChart = () => {
           {
             label: "Số lượng người dùng",
             data: data,
-            backgroundColor: "#bc3d52",
+            backgroundColor: "rgba(255, 99, 132, 0.5)",
           },
         ],
       };
@@ -63,7 +62,7 @@ const DashboardChart = () => {
       },
       title: {
         display: true,
-        text: "Lượt truy cập",
+        text: "Order Revenue",
       },
     },
   };
@@ -86,4 +85,4 @@ const Chart = () => {
   return <DashboardChart />;
 };
 
-export default Chart;
+export default Chartt;

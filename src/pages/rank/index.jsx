@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 // import { getRankingData, getMap } from "../../services/api";
 import cup from "../../assets/cup.png";
 import "./rank.scss";
+import { callGetListUser, callGetRanking } from "../../services/api";
 // import { getRanking } from "../../services/api";
 
 const BreadcrumbRank = () => {
@@ -26,6 +27,9 @@ const BreadcrumbRank = () => {
 };
 
 const RankingTable = () => {
+  const [listRank, setListRank] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+
   const data = [
     {
       key: "1",
@@ -38,58 +42,51 @@ const RankingTable = () => {
     { key: "3", stt: 3, username: "bcht39", totalquizz: 344, totalscore: 290 },
   ];
 
-  // const getRankingData = async () => {
-  //   const rakingData = await getRanking();
-  //   console.log(rakingData);
-  // };
-  // useEffect(() => {
-  //   getRankingData();
-  // }, []);
+  const getRankingData = async (keyword) => {
+    setIsLoading(true);
+    const res = await callGetRanking(keyword);
+    setListRank(res);
+    setIsLoading(false);
+  };
+  useEffect(() => {
+    getRankingData();
+  }, []);
 
   const columns = [
     {
       key: "stt",
       title: "STT",
       dataIndex: "stt",
+      render: (_, __, index) => index + 1,
     },
     {
       key: "username",
       title: "Biệt danh",
-      dataIndex: "username",
+      dataIndex: "userName",
     },
     {
       key: "totquizz",
       title: "Tổng Quizz",
-      dataIndex: "totalquizz",
+      dataIndex: "numbOfQuizzes",
     },
     {
       key: "totscore",
       title: "Tổng Điểm",
-      dataIndex: "totalscore",
+      dataIndex: "scores",
     },
   ];
-  //   return (
-  //     <Table
-  //       columns={[
-  //         {
-  //           title: "Name",
-  //           dataIndex: "name",
-  //         },
-  //         {
-  //           title: "Url",
-  //           dataIndex: "url",
-  //         },
-  //       ]}
-  //       dataSource={array}
-  //     />
-  //   );
 
   return (
     <Table
+      loading={isLoading}
       style={{ alignContent: "center" }}
       columns={columns}
-      dataSource={data}
-      pagination="center"
+      dataSource={listRank}
+      //pagination="center"
+      pagination={{
+        pageSize: 4,
+        position: ["bottomCenter"],
+      }}
     />
   );
 };
@@ -134,41 +131,3 @@ const RankingPage = () => {
 };
 
 export default RankingPage;
-
-// useEffect(() => {
-//     fetchMapData();
-//     // getArray();
-//   }, []);
-//   const [mapData, setMapData] = useState([]);
-//   const fetchMapData = async () => {
-//     const object = await getMap();
-//     setMapData(
-//       Object.entries(object).map(([key, value]) => ({
-//         title: value.title,
-//         content: value.content,
-//       }))
-//     );
-//     // console.log(map);
-//   };
-//   return (
-//     <Table
-//       columns={[
-//         {
-//           title: "title",
-//           dataIndex: "title",
-//         },
-//         {
-//           title: "content",
-//           dataIndex: "content",
-//         },
-//       ]}
-//       dataSource={mapData}
-//     />
-//   );
-
-//   const [array, setArray] = useState([]);
-//   async function getArray() {
-//     const data = await getRankingData();
-
-//     setArray(data.results);
-//   }
