@@ -16,11 +16,7 @@ const Footer = () => {
           <div className="d-flex ">
             <div className="col-md-3 d-flex justify-content-center align-items-center">
               <div className="footer-logo">
-                <img
-                  className="logo"
-                  alt=""
-                  src={imageLogo}
-                />
+                <img className="logo" alt="" src={imageLogo} />
                 <p>website_name&copy; 2023</p>
               </div>
             </div>
@@ -44,7 +40,7 @@ const Footer = () => {
 
             <div className="footer-about col-md-6 d-flex justify-content-center align-items-center">
               <div>
-                <h6>About us:</h6>
+                <h6>Về chúng tôi:</h6>
                 <p>
                   wbsitename được thành lập để cung cấp các thông tin chi tiết
                   và chính xác về lịch sử, văn hóa, địa lý và nhiều chủ đề khác

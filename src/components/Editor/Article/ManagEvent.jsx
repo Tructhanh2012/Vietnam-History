@@ -1,12 +1,10 @@
 import { Col, Popconfirm, Row, Table, Pagination, Tag } from "antd";
-import InputSearch from "./InputSearch";
 import { DeleteTwoTone, EditTwoTone } from "@ant-design/icons";
 import { useState } from "react";
-import UserUpdate from "./UserUpdate";
-import { callDeleteUser, callGetListUser } from "../../../services/api";
 import { useEffect } from "react";
+import ManageEventModal from "./ManageEventModal";
 
-const UserTable = () => {
+const ManageEvent = () => {
   const [listUser, setListUser] = useState([]);
   const [current, setCurrent] = useState(1);
   const [pageSize, setPageSize] = useState(2);
@@ -16,16 +14,16 @@ const UserTable = () => {
   const [openModalUpdate, setOpenModalUpdate] = useState(false);
   const [dataUpdate, setDataUpdate] = useState(null);
 
-  const fetchUser = async (keyword) => {
-    setIsLoading(true);
-    const res = await callGetListUser(keyword);
-    const userList = res;
-    setListUser(userList);
-    setIsLoading(false);
-  };
+  // const fetchUser = async (keyword) => {
+  //   setIsLoading(true);
+  //   const res = await callGetListUser(keyword);
+  //   const userList = res;
+  //   setListUser(userList);
+  //   setIsLoading(false);
+  // };
 
   useEffect(() => {
-    fetchUser();
+    // fetchUser();
   }, []);
 
   const handleDeleUser = async (userId) => {
@@ -44,54 +42,18 @@ const UserTable = () => {
   const columns = [
     {
       title: "ID",
-      dataIndex: "userId",
-      key: "userId",
+      dataIndex: "eventID",
+      key: "eventID",
     },
     {
-      title: "Email",
-      dataIndex: "email",
-      key: "email",
+      title: "Tiêu đề bài viết",
+      dataIndex: "title",
+      key: "title",
     },
     {
-      title: "Tên đăng nhập",
-      dataIndex: "username",
-      key: "username",
-    },
-    {
-      title: "Ngày đăng kí",
+      title: "Ngày viết",
       dataIndex: "date",
       key: "date",
-    },
-    {
-      title: "Role",
-      dataIndex: "role",
-      key: "role",
-      render: (role) => {
-        let color =
-          role === "ADMIN" ? "gold" : role === "MEMBER" ? "geekblue" : "green";
-        return (
-          <Tag color={color} key={role}>
-            {role.toUpperCase()}
-          </Tag>
-        );
-      },
-      filters: [
-        {
-          text: "Admin",
-          value: "ADMIN",
-        },
-        {
-          text: "Member",
-          value: "MEMBER",
-        },
-        {
-          text: "Editor",
-          value: "EDITOR",
-        },
-      ],
-      onFilter: (value, record) => record.role.indexOf(value) === 0,
-      sorter: (a, b) => a.role.length - b.role.length,
-      sortDirections: ["descend"],
     },
     {
       title: "Xóa",
@@ -134,6 +96,33 @@ const UserTable = () => {
     },
   ];
 
+  const data = [
+    {
+      key: "1",
+      eventID: "1",
+      date: "2020/07/02",
+      title: "New York No. 1 Lake Park",
+    },
+    {
+      key: "4",
+      eventID: "1",
+      date: "2020/07/02",
+      title: "New York No. 1 Lake Park",
+    },
+    {
+      key: "2",
+      eventID: "1",
+      date: "2020/07/02",
+      title: "New York No. 1 Lake Park",
+    },
+    {
+      key: "13",
+      eventID: "1",
+      date: "2020/07/02",
+      title: "New York No. 1 Lake Park",
+    },
+  ];
+
   const onChange = (pagination, filters, sorter, extra) => {
     // console.log("check2 : ", pagination);
     if (pagination && pagination.current !== current) {
@@ -154,7 +143,7 @@ const UserTable = () => {
             className="def"
             loading={isLoading}
             columns={columns}
-            dataSource={listUser}
+            dataSource={data}
             onChange={onChange}
             pagination={{
               current: current,
@@ -166,7 +155,7 @@ const UserTable = () => {
         </Col>
       </Row>
 
-      <UserUpdate
+      <ManageEventModal
         setDataUpdate={setDataUpdate}
         dataUpdate={dataUpdate}
         openModalUpdate={openModalUpdate}
@@ -176,4 +165,4 @@ const UserTable = () => {
   );
 };
 
-export default UserTable;
+export default ManageEvent;

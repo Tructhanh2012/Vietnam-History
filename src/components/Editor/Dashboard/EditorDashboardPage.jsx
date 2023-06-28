@@ -1,13 +1,11 @@
 import { Card, Col, Row, Space, Statistic } from "antd";
 import { useEffect, useState } from "react";
-import { FaRegUserCircle } from "react-icons/fa";
-import { MdAutoGraph } from "react-icons/md";
-import { MdOutlineArticle } from "react-icons/md";
-import Chart from "./Chart";
-import "./dashboard.scss";
-import { callGetStatistic } from "../../services/api";
+import { MdOutlineArticle, MdOutlineRemoveRedEye } from "react-icons/md";
+import { callGetStatistic } from "../../../services/api";
 import CountUp from "react-countup";
-import Chartt from "./Chartt";
+import { FaRegNewspaper } from "react-icons/fa";
+import LineChart from "./EditorChart";
+import EditorChart from "./EditorChart";
 
 const DashboardCard = ({ title, value, icon }) => {
   return (
@@ -20,7 +18,7 @@ const DashboardCard = ({ title, value, icon }) => {
   );
 };
 
-const Dashboard = () => {
+const EditorDashboardPage = () => {
   const [statistics, setStatistics] = useState({
     noOfAcc: 0,
     noOfEnroll: 0,
@@ -29,7 +27,6 @@ const Dashboard = () => {
   const formatter = (value) => (
     <CountUp end={value} separator="," duration={1000} />
   );
-  // const [statistics, setStatistics] = useState(null);
   useEffect(() => {
     const fetchData = async () => {
       const res = await callGetStatistic();
@@ -41,7 +38,6 @@ const Dashboard = () => {
   }, []);
 
   if (statistics === null) {
-    // Hiển thị một thông báo hoặc PlaceholderCard trong khi đang tải dữ liệu
     return <div>Loading...</div>;
   }
 
@@ -53,11 +49,11 @@ const Dashboard = () => {
             <Col span={6} offset={2}>
               <DashboardCard
                 formatter={formatter}
-                title={"Thành viên mới"}
+                title={"Bài viết mới"}
                 value={statistics?.noOfAcc || 0}
                 icon={
-                  <FaRegUserCircle
-                    size="1.5em"
+                  <FaRegNewspaper
+                    size="1.4em"
                     style={{
                       backgroundColor: "rgb(176, 11, 28, 0.76)",
                       borderRadius: 30,
@@ -72,10 +68,10 @@ const Dashboard = () => {
               <DashboardCard
                 formatter={formatter}
                 style={{ width: "188px" }}
-                title={"Số lượt xem              "}
+                title={"Số lượt xem "}
                 value={statistics.noOfEnroll}
                 icon={
-                  <MdAutoGraph
+                  <MdOutlineRemoveRedEye
                     size="1.5em"
                     style={{
                       backgroundColor: "rgb(176, 11, 28, 0.76)",
@@ -109,12 +105,11 @@ const Dashboard = () => {
         </div>
 
         <div className="dashboard_chart" style={{ padding: "45px 90px" }}>
-          {/* <Chartt /> */}
-          <Chart />
+          <EditorChart />
         </div>
       </div>
     </>
   );
 };
 
-export default Dashboard;
+export default EditorDashboardPage;

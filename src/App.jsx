@@ -13,7 +13,7 @@ import LayoutAdmin from "./components/Admin";
 import ProfilePage from "./pages/profile";
 import UserTable from "./components/Admin/User/UserTable";
 import RegisterRole from "./components/Admin/User/RegisterRole";
-import EditorPage from "./pages/editor";
+import EditorPage from "./components/Editor/EditorPage";
 import RankingPage from "./pages/rank";
 import TimelinePage from "./pages/timeline";
 import TextEditor from "./pages/editor/TextEditor";
@@ -22,6 +22,12 @@ import QuizzPage from "./pages/quizList";
 import Navbar from "./components/Header/Navbar";
 import QuizzApp from "./components/Quiz";
 import BlogPage from "./pages/blog";
+import EditorLayout from "./components/Editor";
+import EditorProfile from "./components/Editor/EditorProfile";
+import EditorDashboard from "./components/Editor/Dashboard/EditorDashboardPage";
+import ManageEvent from "./components/Editor/Article/ManagEvent";
+import EditorCompose from "./components/Editor/Article/EditorCompose";
+import EditorDashboardPage from "./components/Editor/Dashboard/EditorDashboardPage";
 
 /* gọi API
 const getAccount = async () =>
@@ -94,17 +100,29 @@ export default function App() {
         },
       ],
     },
-    // {
-    //   path: "/editor",
-    //   element: <EditorPage />,
-    //   errorElement: <NotFound />,
-    //   children: [],
-    // },
     {
       path: "/editor",
-      element: <TextEditor />,
+      element: <EditorLayout />,
       errorElement: <NotFound />,
-      children: [],
+      children: [
+        {
+          index: true,
+          element: <EditorDashboardPage />,
+        },
+        {
+          path: "manageEvent",
+          element: <ManageEvent />,
+        },
+        {
+          path: "editor-profile",
+          element: <EditorProfile />,
+        },
+        {
+          path: "compose-article",
+          // element: <TextEditor />,
+          element: <EditorCompose />,
+        },
+      ],
     },
     {
       path: "/login",
@@ -114,10 +132,6 @@ export default function App() {
       path: "/register",
       element: <RegisterPage />,
     },
-    // {
-    //   path: "/profile",
-    //   element: <ProfilePage />,
-    // },
   ]);
   return (
     <>

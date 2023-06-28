@@ -31,12 +31,12 @@ const LayoutAdmin = () => {
       icon: <UserOutlined style={{ fontSize: "1.5em" }} />,
       children: [
         {
-          label: <Link to="/admin/user">CRUD</Link>,
+          label: <Link to="/admin/user">Quản lý Account</Link>,
           key: "crud",
           icon: <TeamOutlined />,
         },
         {
-          label: <Link to="/admin/create-role">Tạo role</Link>,
+          label: <Link to="/admin/create-role">Tạo Account</Link>,
           key: "addrole",
           icon: <UserAddOutlined />,
         },

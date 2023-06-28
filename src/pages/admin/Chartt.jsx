@@ -47,7 +47,7 @@ const DashboardChart = () => {
           {
             label: "Số lượng người dùng",
             data: data,
-            backgroundColor: "rgba(255, 99, 132, 0.5)",
+            backgroundColor: "#bc3d52",
           },
         ],
       };
@@ -81,7 +81,7 @@ const DashboardChart = () => {
   );
 };
 
-const Chart = () => {
+const Chartt = () => {
   return <DashboardChart />;
 };
 
