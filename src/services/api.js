@@ -60,6 +60,10 @@ export const callGetRanking = (keyword) => {
   });
 };
 
+export const callMap = () => {
+  return axios.get("/map");
+};
+
 //=====Profile
 export const callUpdateAvatar = (fileImg) => {
   const bodyFormData = new FormData();

@@ -21,6 +21,7 @@ import ArticlePage from "./pages/article";
 import QuizzPage from "./pages/quizList";
 import Navbar from "./components/Header/Navbar";
 import QuizzApp from "./components/Quiz";
+import BlogPage from "./pages/blog";
 
 /* gọi API
 const getAccount = async () =>
@@ -66,6 +67,10 @@ export default function App() {
     {
       path: "/profile",
       element: <ProfilePage />,
+    },
+    {
+      path: "/blog",
+      element: <BlogPage />,
     },
     {
       path: "/admin",
