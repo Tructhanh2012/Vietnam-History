@@ -105,25 +105,26 @@ const ProfilePage = () => {
       </div>
 
       <div className="tabs-container">
-        <div
-          className={`tab ${activeTab === "saved" ? "active" : ""}`}
-          onClick={() => handleTabChange("saved")}
-        >
-          Bài viết đã lưu
-        </div>
-        <div
-          className={`tab ${activeTab === "viewed" ? "active" : ""}`}
-          onClick={() => handleTabChange("viewed")}
-        >
-          Bài viết đã xem
-        </div>
-        <div
-          className={`tab ${activeTab === "quizzes" ? "active" : ""}`}
-          onClick={() => handleTabChange("quizzes")}
-        >
-          Quiz đã làm
-        </div>
-      </div>
+  <button
+    className={`tab ${activeTab === "saved" ? "active" : ""}`}
+    onClick={() => handleTabChange("saved")}
+  >
+    Bài viết đã lưu
+  </button>
+  <button
+    className={`tab ${activeTab === "viewed" ? "active" : ""}`}
+    onClick={() => handleTabChange("viewed")}
+  >
+    Bài viết đã xem
+  </button>
+  <button
+    className={`tab ${activeTab === "quizzes" ? "active" : ""}`}
+    onClick={() => handleTabChange("quizzes")}
+  >
+    Quiz đã làm
+  </button>
+</div>
+
       <div className="tabnd">
         {activeTab === "saved" && (
           <div>

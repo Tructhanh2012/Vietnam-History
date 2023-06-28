@@ -55,7 +55,7 @@ button[type="submit"] {
     }
 }
 button[type="submit"] {
-    background-color: #714c4c;
+    background-color: #edb9b9;
     border-radius: 20px;
     width: 100px;
     height: 30px;
@@ -94,22 +94,21 @@ button[type="submit"]:hover {
         padding-left: 20px;
     }
     p {
-      
         margin-bottom: 10px;
         overflow: hidden;
         text-overflow: ellipsis;
         word-wrap: break-word;
         word-break: break-all;
-      }
-      button {
+    }
+    button {
         width: fit-content;
-        padding: 8px 15px;
+        padding: 5px 15px;
         font-size: 12px;
         border-radius: 10px;
         cursor: pointer;
         margin-right: 50px;
         margin-top: 10px;
-      }
+    }
     &:hover {
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
         transform: translateY(-5px);
@@ -133,14 +132,23 @@ button[type="submit"]:hover {
     }
     .viewlike {
         display: inline-block;
-      }
-      
-      .viewcmt {
-        display: inline-block;
-        vertical-align: top; 
-        margin-left: 10px; 
-        float: right;
-    
-      }
+    }
 
+    .viewcmt {
+        display: inline-block;
+        vertical-align: top;
+        margin-left: 10px;
+        float: right;
+    }
+}
+@media (max-width: 600px) {
+    form {
+        margin-left: 40px;
+        margin-right: 10px;
+    }
+
+    .baiviet {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
 }

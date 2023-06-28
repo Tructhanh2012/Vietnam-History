@@ -66,6 +66,8 @@
   }
 }
 .tabs-container {
+  display: none;
+  font-family: "Gentium Book Basic";
   position: absolute;
   left: 65%;
   transform: translateX(-60%);
@@ -76,15 +78,15 @@
 }
 
 .tab {
+  display: block;
   margin-right: 40px;
   width: 220px;
   font-size: 25px;
+  background-color: transparent;
+  border: none;
 }
 .tabnd {
   margin-top: -170px;
-  // display: flex;
-  // align-items: center;
-  // justify-content: center;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -106,15 +108,6 @@
   grid-gap: 20px;
   align-items: center;
   justify-content: center;
-  // display: flex;
-  // position: absolute;
-  // left: 65%;
-  // transform: translateX(-60%);
-  // top: 150px;
-
-  // color: #000000;
-  // margin-bottom: 20px;
-  // flex-direction: column;
 }
 .article-item {
   border-radius: 15px;
@@ -122,9 +115,7 @@
   background: rgba(229, 151, 151, 0.7);
   height: 200px;
   width: 993.34px;
-  // height: 225.06px;
-  // left: 362.4px;
-  // top: 239px;
+ 
 }
 
 .article-item:hover {
@@ -137,7 +128,7 @@
   box-shadow: 0 0.0625rem 0.125rem 0 rgba(0, 0, 0, 0.1);
   border-radius: 0.125rem;
   padding: 0.3rem;
-  // display: flex;
+ 
 }
 
 .article-item img {
@@ -196,31 +187,191 @@
   align-items: center;
 }
 
-// .article-list button.saved-icon {
-//   color: green;
-// }
-// @media (max-width: 768px) {
-//   .profile-header {
-//     margin-left: auto;
-//     margin-right: auto;
-//     width: 100%;
-//   }
 
-//   .avatar-container {
-//     margin-bottom: 20px;
-//   }
 
-//   .tabs-container {
-//     flex-direction: column;
-//   }
-// }
-// =======
-// .tabs{
-//     .ant-tabs {
-//        .ant-tabs-tab{
-//         font-size: 18px;
-//        }
-//     }
+@media (max-width: 600px) {
+  .profile-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 15px auto 15px;
+    position: relative;
+    z-index: 2;
+ 
 
-// }
-// >>>>>>> 8178ba87a77730897f25de56ef86b2387e0ef06c
+  .avatar-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .avatar {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+    }
+
+    .avatar-icon {
+      // position: absolute;
+      background-color: rgb(255, 255, 255);
+      border-radius: 80%;
+
+      svg {
+        width: 20px;
+        height: 20px;
+      }
+
+      input.hidden {
+        display: none;
+      }
+    }
+  }
+  .name {
+    font-family: "Inter";
+    margin-top: 10px;
+  }
+
+  input {
+    padding: 3px 6px; /* Điều chỉnh giá trị padding để làm nhỏ input */
+    border: 2px solid rgb(65, 22, 22);
+    border-radius: 4px;
+    margin-bottom: 10px;
+    width: 150px; 
+    
+  }
+
+  input.invalid {
+    border-color: red;
+  }
+
+  .error {
+    color: red;
+    margin-bottom: 10px;
+  }
+
+  button {
+    padding: 10px 5px;
+  background-color: rgb(209, 131, 135);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  margin: 10px auto;
+  }
+}
+
+
+.tabs-container {
+  display: flex;
+  font-family: "Gentium Book Basic";
+  position: absolute;
+  left: 47%;
+  transform: translateX(-50%);
+  bottom: -50px;
+  color: #000000;
+  margin-bottom: 130px;
+  z-index: 1;
+  justify-content: center;
+}
+
+.tab {
+  display: block;
+  margin-right: -50px;
+  width: 220px;
+  font-size: 20px;
+  background-color: transparent;
+  border: none;
+  justify-content: center;
+
+}
+
+.tabnd {
+  margin-top: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 250px;
+}
+
+.tab.active {
+  text-decoration: underline;
+  border-radius: 15px;
+  color: rgb(10, 10, 10);
+  margin-bottom: 10px;
+}
+.article-list {
+  margin-left: -125px;
+  width: 100%;
+}
+
+.article-item {
+  background: rgba(229, 151, 151, 0.7);
+  width: 500px; 
+  position: relative;
+  overflow: hidden;
+  height: 150px;
+}
+
+.article-item:hover {
+  box-shadow: 0 0.0625rem 20px 0 rgba(0, 0, 0, 0.05);
+  transform: translateY(-0.0625rem);
+}
+
+.article-item .wrapper {
+  cursor: pointer;
+  box-shadow: 0 0.0625rem 0.125rem 0 rgba(0, 0, 0, 0.1);
+  border-radius: 0.125rem;
+  padding: 0.3rem;
+}
+
+.article-item img {
+  width: 200px; 
+  height: 100%; 
+  float: left; 
+  
+}
+
+.article-text {
+  align-items: center;
+  justify-content: center;
+  font-family: "Gentium Book Basic";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 28px;
+  color: #000000;
+  margin-bottom: 20px;
+ 
+}
+
+.article-list p {
+  margin-bottom: 10px;
+  max-height: 50px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.article-list h5 {
+  font-size: 18px;
+  margin-bottom: 5px;
+  word-wrap: break-word;
+  align-self: flex-start;
+}
+
+.article-list h5 a {
+  text-decoration: none;
+  color: #000000;
+}
+
+.article-list .button-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.article-list button {
+  padding: 6px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+ 
+}
+
+}
