@@ -31,10 +31,20 @@ function Header() {
 
   return (
     <>
-      <Navbar key={expand} expand={expand} className="d-flex navbar-custom">
+      <Navbar
+        key={expand}
+        expand={expand}
+        className="d-flex navbar-custom"
+      >
         <div>
-          <Navbar.Brand className="logo" href="/">
-            <img alt="" src={imageLogo} />
+          <Navbar.Brand
+            className="logo"
+            href="/"
+          >
+            <img
+              alt=""
+              src={imageLogo}
+            />
           </Navbar.Brand>
         </div>
         <div className="navbar-rightside">
@@ -45,7 +55,10 @@ function Header() {
             />
           </span>
           <span className="btn">
-            <Button className="btn-login" onClick={() => navigate("/login")}>
+            <Button
+              className="btn-login"
+              onClick={() => navigate("/login")}
+            >
               Đăng nhập
             </Button>
           </span>
@@ -71,19 +84,31 @@ function Header() {
           className=" sub-navbar"
           style={{ backgroundColor: "black", margin: 0 }}
         >
-          <Nav fill className="w-100">
+          <Nav
+            fill
+            className="w-100"
+          >
             <Nav.Item>
-              <Nav.Link href="/" eventKey="1">
+              <Nav.Link
+                href="/"
+                eventKey="1"
+              >
                 Trang chủ
               </Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link href="/timeline" eventKey="2">
+              <Nav.Link
+                href="/timeline"
+                eventKey="2"
+              >
                 Dòng thời gian
               </Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link href="/rank" eventKey="3">
+              <Nav.Link
+                href="/rank"
+                eventKey="3"
+              >
                 Bảng xếp hạng
               </Nav.Link>
             </Nav.Item>
@@ -119,9 +144,15 @@ function Header() {
           <Offcanvas.Title id="offcanvasNavbarLabel">Menu</Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
-          <Nav fill className="flex-column">
+          <Nav
+            fill
+            className="flex-column"
+          >
             <Nav.Item>
-              <Nav.Link href="/" eventKey="1">
+              <Nav.Link
+                href="/"
+                eventKey="1"
+              >
                 Trang chủ
               </Nav.Link>
             </Nav.Item>
@@ -129,7 +160,10 @@ function Header() {
               <Nav.Link eventKey="2">Dòng thời gian</Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link href="/" eventKey="3">
+              <Nav.Link
+                href="/"
+                eventKey="3"
+              >
                 Bảng xếp hạng
               </Nav.Link>
             </Nav.Item>

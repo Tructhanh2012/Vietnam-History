@@ -28,6 +28,7 @@ import EditorDashboard from "./components/Editor/Dashboard/EditorDashboardPage";
 import ManageEvent from "./components/Editor/Article/ManagEvent";
 import EditorCompose from "./components/Editor/Article/EditorCompose";
 import EditorDashboardPage from "./components/Editor/Dashboard/EditorDashboardPage";
+import EventDetail from "./components/DongSuKien/eventDetail";
 
 /* gọi API
 const getAccount = async () =>
@@ -61,15 +62,20 @@ export default function App() {
       children: [
         { index: true, element: <Home /> },
         { path: "rank", element: <RankingPage /> },
-        { path: "timeline", element: <TimelinePage /> },
         { path: "article", element: <ArticlePage /> },
         { path: "quizdbp", element: <QuizzApp /> },
+        { path: "timeline", element: <TimelinePage /> },
+        {
+          path: "/timeline/:idHistory",
+          element: <EventDetail />,
+        },
         {
           path: "quizz",
           element: <QuizzPage />,
         },
       ],
     },
+
     {
       path: "/profile",
       element: <ProfilePage />,
