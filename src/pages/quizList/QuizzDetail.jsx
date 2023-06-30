@@ -21,9 +21,9 @@ const QuizDetail = () => {
     setScore(newScore);
     setIsModalOpen(false);
   };
-  const [selectedAnswers, setSelectedAnswers] = useState([]);
+
   const handleClear = () => {
-    setSelectedAnswers([]);
+    setSelectedChoices({});
   };
   const [isModalOpen, setIsModalOpen] = useState(false);
   const showModal = () => {
