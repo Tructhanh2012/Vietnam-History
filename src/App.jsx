@@ -29,6 +29,8 @@ import ManageEvent from "./components/Editor/Article/ManagEvent";
 import EditorCompose from "./components/Editor/Article/EditorCompose";
 import EditorDashboardPage from "./components/Editor/Dashboard/EditorDashboardPage";
 import EventDetail from "./components/DongSuKien/eventDetail";
+import Header2 from "./components/Header/header2.0";
+import CharactersPage from "./pages/characters/index";
 
 /* gọi API
 const getAccount = async () =>
@@ -65,10 +67,13 @@ export default function App() {
         { path: "article", element: <ArticlePage /> },
         { path: "quizdbp", element: <QuizzApp /> },
         { path: "timeline", element: <TimelinePage /> },
+
         {
           path: "/timeline/:idHistory",
           element: <EventDetail />,
         },
+        { path: "characters", element: <CharactersPage /> },
+
         {
           path: "quizz",
           element: <QuizzPage />,
@@ -83,6 +88,10 @@ export default function App() {
     {
       path: "/blog",
       element: <BlogPage />,
+    },
+    {
+      path: "/header",
+      element: <Header2 />,
     },
     {
       path: "/admin",
