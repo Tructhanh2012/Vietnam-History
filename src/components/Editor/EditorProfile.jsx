@@ -4,9 +4,21 @@ import "./editorProfile.scss";
 const EditorProfile = () => {
   return (
     <>
-      <div className="main-content">
+      <div className="editor-container">
+        <div className="editor-card js-editor-card ">
+          <div className="editor__img">
+            <img
+              src="https://haycafe.vn/wp-content/uploads/2022/03/Avatar-hai-1.jpg"
+              alt="profile card"
+            />
+          </div>
+
+          <div className="editor-card__cnt js-editor-cnt "></div>
+        </div>
+      </div>
+      {/* <div className="main-content">
         {/* Page content */}
-        <div className="container-fluid mt--7">
+      {/* <div className="container-fluid mt--7">
           <div className="row">
             <div className="col-xl-8 order-xl-2 mb-5 mt-5 mb-xl-0">
               <div className="card card-profile shadow">
@@ -15,7 +27,7 @@ const EditorProfile = () => {
                     <div className="card-profile-image">
                       <a href="#">
                         <img
-                          src="https://demos.creative-tim.com/argon-dashboard/assets-old/img/theme/team-4.jpg"
+                          src="https://haycafe.vn/wp-content/uploads/2022/03/Avatar-hai-1.jpg"
                           className="rounded-circle"
                         />
                       </a>
@@ -38,8 +50,8 @@ const EditorProfile = () => {
             </div>
           </div>
           {/* Footer */}
-        </div>
-      </div>
+      {/* </div>  */}
+      {/* </div>  */}
     </>
   );
 };

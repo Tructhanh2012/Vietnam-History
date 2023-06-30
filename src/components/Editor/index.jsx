@@ -87,7 +87,7 @@ const EditorLayout = () => {
         </Sider>
 
         <Layout className="layoutAdmin__header">
-          <Header
+          {/* <Header
             style={{
               position: "sticky",
               top: 0,
@@ -98,7 +98,7 @@ const EditorLayout = () => {
             }}
           >
             <div className="layoutAdmin__header__welcome"></div>
-          </Header>
+          </Header> */}
 
           <Content>
             <Outlet />

@@ -136,7 +136,7 @@ const ManageEvent = () => {
 
   return (
     <>
-      <Row gutter={[20, 20]}>
+      <Row gutter={[20, 20]} style={{ marginTop: 40 }}>
         <Col span={24}>{/* <InputSearch /> */}</Col>
         <Col span={22} offset={1}>
           <Table

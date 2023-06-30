@@ -9,7 +9,7 @@ import {
   MdOutlineArrowForwardIos,
 } from "react-icons/md";
 
-import { Breadcrumb, Col, Divider, Row } from "antd";
+import { Breadcrumb, Col, Divider, Modal, Row, Timeline } from "antd";
 import { BsFillBookmarkFill } from "react-icons/bs";
 
 function SampleNextArrow({ onClick }) {
@@ -39,12 +39,12 @@ const BreadcrumbRank = () => {
       separator=">"
       items={[
         {
-          // key: "home",
+          key: "home",
           title: "Trang chủ",
           href: "/",
         },
         {
-          // key: "timeline",
+          key: "timeline",
           title: "Dòng thời gian",
           href: "/timeline",
         },
@@ -53,11 +53,17 @@ const BreadcrumbRank = () => {
   );
 };
 const TimelinePage = () => {
-  // const [currentPage, setCurrentPage] = useState(0); // Trang hiện tại
-  // const dotsPerPage = 4; // Số lượng dots hiển thị trên mỗi trang
+  const [modalVisible, setModalVisible] = useState(false);
+  const [selectedTimeline, setSelectedTimeline] = useState(null);
 
-  // const totalDots = 24; // Tổng số dots
+  const handleTitleClick = (timeline) => {
+    setSelectedTimeline(timeline);
+    setModalVisible(true);
+  };
 
+  const closeModal = () => {
+    setModalVisible(false);
+  };
   const settings = {
     dots: true,
     infinite: true,
@@ -71,46 +77,7 @@ const TimelinePage = () => {
         <ul style={{ margin: "0px" }}> {dots} </ul>
       </div>
     ),
-
-    // customPaging: (index) => (
-    //   <div className={`custom-dots ${shouldShowDot(index) ? "visible" : ""}`}>
-    //     <span onClick={() => handleDotClick(index)}>{index + 1}</span>
-    //   </div>
-    // ),
-    // appendDots: (dots) => (
-    //   <div
-    //     className="custom-dots"
-    //     // style={{
-    //     //   backgroundColor: "#ddd",
-    //     //   borderRadius: "10px",
-    //     //   padding: "10px",
-    //     // }}
-    //   >
-    //     <ul style={{ margin: "0px" }}> {dots} </ul>
-    //   </div>
-    // ),
-    // customPaging: (i) => (
-    //   <div
-    //   // style={{
-    //   //   width: "30px",
-    //   //   color: "blue",
-    //   //   border: "1px blue solid",
-    //   // }}
-    //   >
-    //     {i + 1}
-    //   </div>
-    // ),
   };
-  // const shouldShowDot = (index) => {
-  //   const startDotIndex = currentPage * dotsPerPage;
-  //   const endDotIndex = startDotIndex + dotsPerPage - 1;
-  //   return index >= startDotIndex && index <= endDotIndex && index < totalDots;
-  // };
-
-  // const handleDotClick = (index) => {
-  //   const clickedPageIndex = Math.floor(index / dotsPerPage);
-  //   setCurrentPage(clickedPageIndex);
-  // };
 
   return (
     <>
@@ -122,7 +89,9 @@ const TimelinePage = () => {
             {dataHistoryTimeline.map((item) => (
               <div className="card">
                 <div className="card-top">
-                  <h6>{item.title}</h6>
+                  <h6 key={item.id} onClick={() => handleTitleClick(item)}>
+                    {item.title}
+                  </h6>
                 </div>
                 <div className="card-bottom">
                   <p>
@@ -138,6 +107,25 @@ const TimelinePage = () => {
               </div>
             ))}
           </Slider>
+          <Modal
+            // title={selectedTimeline?.title}
+            title="Các sự kiện nổi bật"
+            open={modalVisible}
+            onCancel={closeModal}
+            footer={null}
+          >
+            <Timeline
+              style={{ marginTop: 15 }}
+              items={[
+                {
+                  children: "Nguyên nhân của chiến tranh",
+                },
+                {
+                  children: "Diễn biến và kết cục của chiến tranh",
+                },
+              ]}
+            />
+          </Modal>
         </div>
       </div>
 
@@ -230,15 +218,6 @@ const TimelinePage = () => {
             </div>
           </Col>
         </Row>
-        {/* 
-        <Row style={{ display: "flex", justifyContent: "center" }}>
-           <Pagination
-            defaultCurrent={6}
-            total={500}
-            responsive
-            style={{ margin: "25px" }}
-          />
-       </Row>  */}
       </div>
     </>
   );

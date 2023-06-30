@@ -1,0 +1,32 @@
+.quizlist-container{
+    padding: 20;
+    margin: 20px;
+    .first-col{
+        margin-left: 40px;
+    }
+
+    .quizlist-wrapper{
+        .ant-collapse-item{
+            margin: 10px;
+            // padding: 20;
+        }
+        .ant-collapse.ant-collapse-icon-position-start {
+            border: none; 
+            border-bottom: 0
+        }
+       
+    }
+}
+
+// .ant-layout.ant-layout-has-sider {
+//     background-color: #ffff;
+// }
+.ant-layout{
+    background: #ffff;
+
+}
+
+.ant-timeline-item-head{
+    color: #E59797!important;
+    border-color: #E59797!important
+}

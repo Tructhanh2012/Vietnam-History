@@ -1,5 +1,14 @@
 import { UserOutlined } from "@ant-design/icons";
-import { Avatar, Breadcrumb, Col, Divider, Rate, Row, Space } from "antd";
+import {
+  Avatar,
+  Breadcrumb,
+  Button,
+  Col,
+  Divider,
+  Rate,
+  Row,
+  Space,
+} from "antd";
 import "./article.scss";
 
 const ArticleDetails = () => {
@@ -74,8 +83,12 @@ const ArticleDetails = () => {
                 ngữ. Nền khoa bảng Việt Nam dùng chữ Hán chấm dứt ở kỳ thi cuối
                 cùng năm 1919.
               </p>
-              <div className="article_comment">
-                <Rate />
+              <div className="article_comment ">
+                {/* <Divider /> */}
+                <div className="d-flex justify-content-between">
+                  <Rate />
+                  <Button>Quizz thôi!!</Button>
+                </div>
                 <Divider style={{ margin: 10 }} />
                 <div
                   className="comment"

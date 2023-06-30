@@ -83,7 +83,7 @@ const EditorChart = () => {
     <>
       <Card
         style={{
-          width: 887,
+          width: 800,
           height: 400,
           justifyContent: "center",
           boxShadow: "2px 0.8rem 20px 5px rgba(0, 0, 0, .08)",
@@ -94,9 +94,9 @@ const EditorChart = () => {
             Tên biểu đồ
           </div>
           <AreaChart
-            width={800}
+            width={750}
             height={300}
-            data={reveneuData}
+            data={data}
             margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
           >
             <defs>

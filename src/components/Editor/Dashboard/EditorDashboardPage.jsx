@@ -45,7 +45,15 @@ const EditorDashboardPage = () => {
     <>
       <div className="dashboard">
         <div className="dashboard_card">
-          <Row gutter={40} style={{ background: "#001529", height: "9rem" }}>
+          <Row
+            gutter={40}
+            style={{
+              background: "#001529",
+              height: "11rem",
+              paddingTop: 35,
+              paddingBottom: 15,
+            }}
+          >
             <Col span={6} offset={2}>
               <DashboardCard
                 formatter={formatter}

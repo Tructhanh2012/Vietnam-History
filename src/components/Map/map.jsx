@@ -1,14 +1,32 @@
 import React, { useState, useEffect } from "react";
-import { Button, Drawer } from "antd";
+import { Button, Drawer, Modal } from "antd";
 import "./map.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { callMap } from "../../services/api";
+import { right } from "@popperjs/core";
 
 const CustomMap = () => {
   const [provinceShow, setProvinceShow] = useState([]);
   const [active, setActive] = useState(false);
   const [data, setData] = useState([]);
+  const [open, setOpen] = useState(false);
+  const [childrenDrawer, setChildrenDrawer] = useState(false);
 
+  const showDrawer = () => {
+    setOpen(true);
+  };
+
+  const onCloseModal = () => {
+    setOpen(false);
+  };
+
+  const showChildrenDrawer = () => {
+    setChildrenDrawer(true);
+  };
+
+  const onChildrenDrawerClose = () => {
+    setChildrenDrawer(false);
+  };
   const callMapApi = async () => {
     const res = await callMap();
     setData(res);
@@ -18,47 +36,6 @@ const CustomMap = () => {
   useEffect(() => {
     callMapApi();
   }, []);
-
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const response = await fetch(
-  //         "https://react-history-default-rtdb.firebaseio.com/history.json"
-  //       );
-  //       if (!response.ok) {
-  //         throw new Error("Failed to fetch data from Firebase");
-  //       }
-  //       console.log("check map: ", response);
-  //       const fetchedData = await response.json();
-
-  //       const loadedHistory = [];
-
-  //       for (const key in fetchedData) {
-  //         loadedHistory.push({
-  //           id: key,
-  //           title: fetchedData[key].title,
-  //           content: fetchedData[key].content,
-  //         });
-  //       }
-
-  //       setData(loadedHistory);
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   };
-
-  //   fetchData();
-  // }, []);
-
-  // const ShowHistory = (id) => {
-  //   console.log(data);
-  //   let filterList = data.filter((province) => {
-  //     return province.id === id;
-  //   });
-  //   console.log(filterList);
-  //   setProvinceShow(filterList);
-  //   setActive(true);
-  // };
 
   const ShowHistory = (locationID) => {
     let filterList = data.filter((province) => {
@@ -701,51 +678,42 @@ const CustomMap = () => {
           để hiểu về tương lai
         </div>
 
-        {/* <img className="text-banner-homepage " src={TextPicture} alt="" /> */}
-        {/* {provinceShow.length > 0 && ( // Only render Drawer when provinceShow has values
-        <Drawer
-          title="Basic Drawer"
-          placement="right"
-          onClose={onClose}
-          open={active}
-        >
-          <p>Render content</p>
-          {provinceShow.map((province) => (
-            <div key={province.title}>
-              <p>{province.title}</p>
-              <p>
-                <img
-                  src={province.image}
-                  alt=""
-                />
-              </p>
-              <p>{province.content}</p>
-            </div>
-          ))}
-        </Drawer>
-      )} */}
-        {provinceShow.length > 0 && ( // Only render Drawer when provinceShow has values
+        {provinceShow.length > 0 && (
           <Drawer
-            title="Sự kiện lịch sử: "
+            title={
+              <div>
+                <span>Sự kiện lịch sử:</span>
+                <Button
+                  type="primary"
+                  onClick={showChildrenDrawer}
+                  style={{ position: "absolute", right: 7, top: 10 }}
+                >
+                  Sự kiện
+                </Button>
+              </div>
+            }
             placement="right"
             onClose={onClose}
             open={active}
             width="50%"
             key={provinceShow.locationID}
           >
-            {/* <p>Render content</p> */}
             {provinceShow.map((province) => (
               <div key={province.locationID}>
                 <h4>{province.locationName}</h4>
-                {/* <p>
-                  <img
-                    src={province.image}
-                    alt=""
-                  />
-                </p> */}
+
                 <p>{province.locationDescription}</p>
               </div>
             ))}
+            <Drawer
+              title="Các sự kiện nổi bật"
+              width={320}
+              closable={false}
+              onClose={onChildrenDrawerClose}
+              visible={childrenDrawer}
+            >
+              <p>This is the content of the two-level drawer.</p>
+            </Drawer>
           </Drawer>
         )}
       </div>

@@ -13,7 +13,6 @@ import LayoutAdmin from "./components/Admin";
 import ProfilePage from "./pages/profile";
 import UserTable from "./components/Admin/User/UserTable";
 import RegisterRole from "./components/Admin/User/RegisterRole";
-import EditorPage from "./components/Editor/EditorPage";
 import RankingPage from "./pages/rank";
 import TimelinePage from "./pages/timeline";
 import TextEditor from "./pages/editor/TextEditor";
@@ -28,6 +27,9 @@ import EditorDashboard from "./components/Editor/Dashboard/EditorDashboardPage";
 import ManageEvent from "./components/Editor/Article/ManagEvent";
 import EditorCompose from "./components/Editor/Article/EditorCompose";
 import EditorDashboardPage from "./components/Editor/Dashboard/EditorDashboardPage";
+import QuizzDetail from "./pages/quizList/QuizzDetail";
+import QuizListPage from "./pages/quiz";
+import BlogCard from "./components/Home/BlogCard";
 
 /* gọi API
 const getAccount = async () =>
@@ -63,11 +65,34 @@ export default function App() {
         { path: "rank", element: <RankingPage /> },
         { path: "timeline", element: <TimelinePage /> },
         { path: "article", element: <ArticlePage /> },
-        { path: "quizdbp", element: <QuizzApp /> },
+        // { path: "article/:slug", element: <ArticlePage /> },
         {
           path: "quizz",
-          element: <QuizzPage />,
+          // element: <QuizzPage />,
+          element: <QuizListPage />,
         },
+        // {
+        //   path: "quizzdt",
+        //   element: <QuizzApp />,
+        // },
+        {
+          path: "quizdt",
+          element: <QuizzDetail />,
+        },
+
+        {
+          path: "try",
+          element: <BlogCard />,
+        },
+
+        // {
+        //   path: "quizz",
+        //   element: <QuizzPage />,
+        //   children: [
+        //     { index: true, element: <QuizzPage /> },
+        //     { path: ":id", element: <QuizzApp /> },
+        //   ],
+        // },
       ],
     },
     {

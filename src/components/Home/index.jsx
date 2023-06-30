@@ -4,6 +4,7 @@ import Meta from "antd/es/card/Meta";
 import { BsFillBookmarkFill } from "react-icons/bs";
 import { useState } from "react";
 import LearnByMap from "../Map";
+import BlogCard from "./BlogCard";
 
 const Home = () => {
   const [isSaved, setIsSaved] = useState(false);
@@ -132,14 +133,15 @@ const Home = () => {
 
         <div className="homepage-month-article">
           <Divider orientation="left">
-            <h6>Nổi bật trong tháng</h6>
+            <h6>Blog cá nhân</h6>
           </Divider>
           <div className="homepage-month-article-content">
             <Row
+              // style={(padding = 10)}
               gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}
               className="cuztomize-row"
             >
-              <Col
+              {/* <Col
                 className="gutter-row"
                 span={5}
                 offset={2}
@@ -215,20 +217,17 @@ const Home = () => {
                     //description="This is the description"
                   />
                 </Card>
-              </Col>
+              </Col> */}
+              <BlogCard />
             </Row>
           </div>
         </div>
 
         <div className="homepage-ending">
           <Row>
-            <Col
-              md={18}
-              xs={24}
-              className="homepage-ending-rating"
-            >
+            <Col md={18} xs={24} className="homepage-ending-rating">
               <Divider orientation="left">
-                <h6>Đánh giá cao nhất</h6>
+                <h6>Bài viết trong tháng</h6>
               </Divider>
 
               <Row className="hompage-ending-rating-content">
