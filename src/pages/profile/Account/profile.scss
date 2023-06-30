@@ -1,33 +1,31 @@
-.tabs{
-    .ant-tabs {
-       .ant-tabs-tab{
-        font-size: 18px;
-       }
-    }
-    .ant-tabs-tab-btn{
-         font-family: 'Gentium Book Plus', serif;
-    }
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Serif:wght@400&display=swap');
+.card-profile-image img:hover {
+    transform: translate(-50%, -33%);
 }
 
-.header{
-    .wrapper{
-        .user-dropdown{
-            a{
-                cursor: pointer;
-            }
-        }
-    }
-}
+.profile-container {
+    margin-left: 20px;
 
-.profile-container{
-    margin-top: 50px;
-    padding-left: 20px;
-}
+ .profile-title{
+  text-align: center;
+  position: inherit;
+  top: -48px;
+ }
+ .editor-profile{
+  margin-left: auto;
+  margin-right: auto;
+ }
 
-.profile {
-  width: 300px;
-  min-height: 220px;
-//   margin: auto;
+}
+// .blogcard{
+//     display: flex;
+//     padding: 20px;
+// }
+
+.editor-card {
+  width: 100%;
+  min-height: 400px;
+  margin: auto;
   box-shadow: 0px 8px 30px -5px rgba(163, 165, 165, 0.6);
   background: #fff;
   border-radius: 12px;
@@ -35,9 +33,9 @@
   position: relative;
 
 
-  &__img {
-    width: 100px;
-    height: 100px;
+  .profile__img{
+    width: 120px;
+    height: 120px;
     margin-left: auto;
     margin-right: auto;
     transform: translateY(-50%);
@@ -65,13 +63,10 @@
   }
 
   &__cnt {
-    // margin-top: -42px!important;
+    margin-top: -42px;
     // text-align: center;
-    // padding: 0 15px;
-    // padding-bottom: 10px;
-
-    position: absolute;
-    top: 0;
+    padding: 0 15px;
+    padding-bottom: 10px;
     transition: all .3s;
   }
   &__username{
@@ -106,15 +101,36 @@
 .cardd:hover {
   transform: scale(1.05);
 }
-.profile-container .editor-profile {
-    position: absolute;
-    margin-left: 20px!important;
-    margin-right: auto;
+
+.editor-card__cnt.js-editor-cnt.editor-profile.mt-1{
+  margin: 110px;
+  position: inherit;
+  top: -12px
 }
 
-.btn-editprofile{
-    position: absolute;
-    bottom: -100px;
-    // right: 
-    left: 80px;
+.info {
+  gap: 30px
+}
+
+.information{
+  font-size: medium;
+}
+
+h5{
+ font-family: 'Gentium Book Plus', serif;
+
+}
+
+.information{
+font-family: 'Roboto Serif', serif !important;
+}
+
+.btn-edit{
+  position: absolute;
+  bottom: 20px;
+  // margin-left: auto;
+  // margin-right: auto;
+}
+.form-container{
+   padding: 20px,
 }

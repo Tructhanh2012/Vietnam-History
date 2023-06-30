@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -11,6 +11,8 @@ import {
 
 import { Breadcrumb, Col, Divider, Modal, Row, Timeline } from "antd";
 import { BsFillBookmarkFill } from "react-icons/bs";
+import { callTimelineEvent } from "../../services/api";
+import { Link } from "react-router-dom";
 
 function SampleNextArrow({ onClick }) {
   return (
@@ -52,9 +54,20 @@ const BreadcrumbRank = () => {
     />
   );
 };
+
 const TimelinePage = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedTimeline, setSelectedTimeline] = useState(null);
+  const [events, setEvents] = useState([]);
+
+  const getTimelineEvent = async () => {
+    const res = await callTimelineEvent();
+    setEvents(res);
+  };
+
+  useEffect(() => {
+    getTimelineEvent();
+  }, []);
 
   const handleTitleClick = (timeline) => {
     setSelectedTimeline(timeline);
@@ -109,22 +122,23 @@ const TimelinePage = () => {
           </Slider>
           <Modal
             // title={selectedTimeline?.title}
-            title="Các sự kiện nổi bật"
+            title="Các sự kiện nổi bật:"
             open={modalVisible}
             onCancel={closeModal}
             footer={null}
           >
-            <Timeline
-              style={{ marginTop: 15 }}
-              items={[
-                {
-                  children: "Nguyên nhân của chiến tranh",
-                },
-                {
-                  children: "Diễn biến và kết cục của chiến tranh",
-                },
-              ]}
-            />
+            <Timeline style={{ marginTop: 25 }}>
+              {events.map((event) => (
+                <Timeline.Item key={event.eventId}>
+                  <Link
+                    to="#"
+                    style={{ textDecoration: "none", color: "inherit" }}
+                  >
+                    {event.eventName}
+                  </Link>
+                </Timeline.Item>
+              ))}
+            </Timeline>
           </Modal>
         </div>
       </div>

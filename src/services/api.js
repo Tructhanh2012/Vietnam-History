@@ -58,10 +58,20 @@ export const callGetRanking = (keyword) => {
       keyword: "",
     },
   });
+}; //finish ranking table
+
+//=========== Map =======================
+export const callGetEventMap = () => {
+  return axios.get("map/1");
 };
 
 export const callMap = () => {
   return axios.get("/map");
+};
+
+//========== Timeline ====================
+export const callTimelineEvent = () => {
+  return axios.get("/timeline/1");
 };
 
 //=====Profile
@@ -87,6 +97,7 @@ export const callUpdatePassword = (email, oldpass, newpass) => {
   return axios.put(``, { email, oldpass, newpass });
 };
 //=======
+
 export const getMap = () => {
   return axios.get(
     "https://react-history-default-rtdb.firebaseio.com/history.json"

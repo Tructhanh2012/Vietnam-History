@@ -92,23 +92,50 @@ const ProfilePage = () => {
       {/* content */}
 
       <Row>
-        <Col md={4} offset={1} className="user-info">
+        <Col md={5} offset={0} className="user-info">
           <Space direction="vertical" size={10} style={{ marginTop: 25 }}>
-            <Avatar
-              size={100}
-              icon={<UserOutlined />}
-              style={{ marginLeft: 45 }}
-            />
-            <div className="username" style={{ marginLeft: 55 }}>
-              user fullname
+            <div className="profile-container">
+              <div className="profile js-profile-card ">
+                <div className="profile__img">
+                  <img
+                    src="https://haycafe.vn/wp-content/uploads/2022/03/Avatar-hai-1.jpg"
+                    alt="profile card"
+                  />
+                </div>
+                <div className="profile-title">@editor</div>
+                <Row align="middle">
+                  <div className="profile-card__cnt js-editor-cnt editor-profile mt-1">
+                    <div className="username d-flex info">
+                      <h5>Username: </h5>
+                      <span className="information">username ne</span>
+                    </div>
+                    <div className="email d-flex info ">
+                      <h5>Email: </h5>
+                      <span className="information">user@gmail.com</span>
+                    </div>
+                  </div>
+                </Row>
+
+                <Row>
+                  <Col span={24} align="middle">
+                    <div className="btn-edit">
+                      <Button
+                        className="btn-editprofile"
+                        onClick={() => {
+                          setIsModelOpen(true);
+                        }}
+                      >
+                        Thay đổi thông tin
+                      </Button>
+                    </div>
+                  </Col>
+                </Row>
+              </div>
             </div>
-            <Button onClick={() => setIsModelOpen(true)}>
-              Thay đổi thông tin cá nhân
-            </Button>
           </Space>
         </Col>
 
-        <Col md={18} offset={1} className="user-tab">
+        <Col md={15} offset={3} className="user-tab">
           <div className="tabs">
             <Tabs
               defaultActiveKey="1"
@@ -116,7 +143,7 @@ const ProfilePage = () => {
               items={items}
               centered
               tabBarGutter={150}
-              tabBarStyle={{ marign: 10, fontSize: 30 }}
+              tabBarStyle={{ marign: 10, fontSize: 25 }}
             />
           </div>
         </Col>

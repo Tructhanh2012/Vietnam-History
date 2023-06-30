@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Button, Drawer, Modal } from "antd";
+import { Button, Drawer, Modal, Timeline } from "antd";
 import "./map.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { callMap } from "../../services/api";
+import { callGetEventMap, callMap } from "../../services/api";
 import { right } from "@popperjs/core";
 
 const CustomMap = () => {
@@ -59,7 +59,15 @@ const CustomMap = () => {
   const handleMouseLeave = () => {
     setIsHovered("");
   };
-
+  const [events, setEvents] = useState([]);
+  const getEvent = async () => {
+    const res = await callGetEventMap();
+    // console.log(res);
+    setEvents(res);
+  };
+  useEffect(() => {
+    getEvent();
+  }, []);
   return (
     <>
       {" "}
@@ -710,9 +718,15 @@ const CustomMap = () => {
               width={320}
               closable={false}
               onClose={onChildrenDrawerClose}
-              visible={childrenDrawer}
+              open={childrenDrawer}
             >
-              <p>This is the content of the two-level drawer.</p>
+              <Timeline>
+                {events.map((event) => (
+                  <Timeline.Item key={event.eventId}>
+                    {event.eventName}
+                  </Timeline.Item>
+                ))}
+              </Timeline>
             </Drawer>
           </Drawer>
         )}

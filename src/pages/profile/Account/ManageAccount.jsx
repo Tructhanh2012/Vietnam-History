@@ -1,6 +1,8 @@
 import { Divider, Modal, Tabs } from "antd";
 import { useState } from "react";
 import UserInfo from "./UserInfo";
+import "./profile.scss";
+
 // import ChangePassword from "./ChangePassword";
 
 const items = [

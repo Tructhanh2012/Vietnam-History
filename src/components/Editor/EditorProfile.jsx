@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import "./editorProfile.scss";
+import { Button, Col, Row, Space } from "antd";
+import EditorProfileUpdate from "./Profile/EditorProfileUpdate";
 
 const EditorProfile = () => {
+  const [openModalUpdate, setOpenModalUpdate] = useState(false);
+  const [dataUpdate, setDataUpdate] = useState(null);
   return (
     <>
       <div className="editor-container">
@@ -12,46 +16,42 @@ const EditorProfile = () => {
               alt="profile card"
             />
           </div>
-
-          <div className="editor-card__cnt js-editor-cnt "></div>
-        </div>
-      </div>
-      {/* <div className="main-content">
-        {/* Page content */}
-      {/* <div className="container-fluid mt--7">
-          <div className="row">
-            <div className="col-xl-8 order-xl-2 mb-5 mt-5 mb-xl-0">
-              <div className="card card-profile shadow">
-                <div className="row justify-content-center">
-                  <div className="col-lg-3 order-lg-2">
-                    <div className="card-profile-image">
-                      <a href="#">
-                        <img
-                          src="https://haycafe.vn/wp-content/uploads/2022/03/Avatar-hai-1.jpg"
-                          className="rounded-circle"
-                        />
-                      </a>
-                    </div>
-                  </div>
-                </div>
-                <div className="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4"></div>
-                <div className="card-body pt-0 pt-md-4">
-                  <div className="row">
-                    <div className="col">
-                      <div className="card-profile-stats d-flex justify-content-center mt-md-5"></div>
-                    </div>
-                  </div>
-                  <div className="text">
-                    <h4>UserName: Editor</h4>
-                    <h4>Email: editor@gmail.com</h4>
-                  </div>
-                </div>
+          <div className="editor-title">@editor</div>
+          <Row align="middle">
+            <div className="editor-card__cnt js-editor-cnt editor-profile mt-1">
+              <div className="username d-flex info">
+                <h5>Username: </h5>
+                <span className="information">username ne</span>
+              </div>
+              <div className="email d-flex info ">
+                <h5>Email: </h5>
+                <span className="information">user@gmail.com</span>
               </div>
             </div>
-          </div>
-          {/* Footer */}
-      {/* </div>  */}
-      {/* </div>  */}
+          </Row>
+
+          <Row>
+            <Col span={10} offset={8}>
+              <div className="btn-edit">
+                <Button
+                  onClick={() => {
+                    setOpenModalUpdate(true);
+                    setDataUpdate(record);
+                  }}
+                >
+                  Thay đổi thông tin
+                </Button>
+              </div>
+            </Col>
+          </Row>
+        </div>
+      </div>
+      <EditorProfileUpdate
+        setDataUpdate={setDataUpdate}
+        dataUpdate={dataUpdate}
+        openModalUpdate={openModalUpdate}
+        setOpenModalUpdate={setOpenModalUpdate}
+      />
     </>
   );
 };

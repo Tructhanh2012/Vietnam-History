@@ -1,4 +1,4 @@
-
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Serif:wght@400&display=swap');
 .card-profile-image img:hover {
     transform: translate(-50%, -33%);
 }
@@ -9,7 +9,15 @@
     // margin: 20px 10px 10px 10px;
     margin: 30px 5px 10px 5px;
 
- 
+ .editor-title{
+  text-align: center;
+  position: inherit;
+  top: -48px;
+ }
+ .editor-profile{
+  margin-left: auto;
+  margin-right: auto;
+ }
 
 }
 // .blogcard{
@@ -97,6 +105,35 @@
   transform: scale(1.05);
 }
 
+.editor-card__cnt.js-editor-cnt.editor-profile.mt-1{
+  margin: 110px;
+  position: inherit;
+  top: -12px
+}
 
+.info {
+  gap: 30px
+}
 
+.information{
+  font-size: medium;
+}
 
+h5{
+ font-family: 'Gentium Book Plus', serif;
+
+}
+
+.information{
+font-family: 'Roboto Serif', serif !important;
+}
+
+.btn-edit{
+  position: absolute;
+  bottom: 20px;
+  // margin-left: auto;
+  // margin-right: auto;
+}
+.form-container{
+   padding: 20px,
+}
