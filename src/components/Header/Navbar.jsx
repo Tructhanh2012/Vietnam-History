@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import $ from "jquery";
 import "./navbar.scss";
 import { FaBars } from "react-icons/fa";
@@ -7,7 +7,9 @@ import { useEffect, useState } from "react";
 import { TiTimesOutline } from "react-icons/ti";
 import imageLogo from "../../assets/logo.png";
 import { SearchOutlined } from "@ant-design/icons";
-import { Button, Input } from "antd";
+import { Avatar, Button, Dropdown, Input, Space } from "antd";
+import { useDispatch, useSelector } from "react-redux";
+import { DownOutlined } from "@ant-design/icons";
 
 const Navbar = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
@@ -54,7 +56,52 @@ const Navbar = () => {
       }, 1000);
     });
   }, []);
+  //=======
+  const isAuthenticated = useSelector((state) => state.account.isAuthenticated);
+  const user = useSelector((state) => state.account.user);
+  const dispatch = useDispatch();
 
+  const handleLogout = () => {
+    dispatch(doLogoutAction());
+    navigate("/login");
+  };
+  let items = [
+    {
+      label: (
+        <label
+          style={{ cursor: "pointer" }}
+          onClick={() => navigate("/profile")}
+        >
+          Quản lý tài khoản
+        </label>
+      ),
+      key: "account",
+    },
+    {
+      label: (
+        <label style={{ cursor: "pointer" }} onClick={handleLogout}>
+          Đăng xuất
+        </label>
+      ),
+      key: "logout",
+    },
+  ];
+  // console.log(user);
+
+  if (user?.role === "ADMIN") {
+    items.unshift({
+      //unshift đẩy lên đầutiên
+      label: <Link to="/admin">Trang quản trị</Link>,
+      key: "admin",
+    });
+  }
+
+  // const urlAvatar = `${import.meta.env.VITE_BACKEND_URL}/images/avatar/${
+  //   user?.avatar
+  // }`;
+
+  const urlAvatar = `${user?.avatar}`;
+  // console.log("urlava: ", urlAvatar);
   return (
     <>
       <div className="d-flex navbar-custom">
@@ -65,15 +112,29 @@ const Navbar = () => {
           <img alt="" src={imageLogo} />
         </NavLink>
 
-        <span className="input_search">
+        {/* <span className="input_search">
           <label className="search" htmlFor="inpt_search">
             <input id="inpt_search" type="text" />
           </label>
-        </span>
+        </span> */}
         <span className="btn">
-          <Button className="btn-login" onClick={() => navigate("/login")}>
-            Đăng nhập
-          </Button>
+          {isAuthenticated == false ? (
+            <Button className="btn-login" onClick={() => navigate("/login")}>
+              Đăng nhập
+            </Button>
+          ) : (
+            <Dropdown menu={{ items }} trigger={["click"]}>
+              <a onClick={(e) => e.preventDefault()}>
+                <Space>
+                  <div className="account_navbar">
+                    <Avatar src={urlAvatar} style={{ marginRight: 2 }} />
+                    Welcome {user?.userName}
+                    <DownOutlined />
+                  </div>
+                </Space>
+              </a>
+            </Dropdown>
+          )}
         </span>
       </div>
 

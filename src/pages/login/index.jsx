@@ -17,11 +17,10 @@ const LoginPage = () => {
     setIsSubmit(true);
     const res = await callLogin(username, password);
     setIsSubmit(false);
-    // console.log("check res 1: ", res);
 
-    if (res.token) {
+    if (res?.user) {
       localStorage.setItem("token", res.token); //save access_token to localStorage
-      //dispatch(doLoginAction(res.));
+      dispatch(doLoginAction(res.user));
       // console.log("check res 2", res);
       message.success("Đăng nhập tài khoản thành công");
       navigate("/");

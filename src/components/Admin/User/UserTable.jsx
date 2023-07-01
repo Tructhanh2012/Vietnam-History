@@ -26,7 +26,7 @@ const UserTable = () => {
 
   useEffect(() => {
     fetchUser();
-  }, []);
+  }, [dataUpdate]);
 
   const handleDeleUser = async (userId) => {
     const res = await callDeleteUser(userId);
@@ -171,6 +171,7 @@ const UserTable = () => {
         dataUpdate={dataUpdate}
         openModalUpdate={openModalUpdate}
         setOpenModalUpdate={setOpenModalUpdate}
+        fetchUser={fetchUser}
       />
     </>
   );

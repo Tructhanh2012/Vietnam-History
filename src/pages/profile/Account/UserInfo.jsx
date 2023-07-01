@@ -19,6 +19,7 @@ const UserInfo = () => {
   //  const user = useSelector((state) => state.account.user);
   // const [isSubmit, setIsSubmit] = useState(false);
   //const [userAvatar, setUserAvatar] = useState(user?.avatar ?? "");
+  const user = useSelector((state) => state.account.user);
 
   const dispatch = useDispatch();
 
@@ -71,11 +72,12 @@ const UserInfo = () => {
       });
     }
   };
+  // const user = useSelector((state) => state.account.user);
   return (
     <>
       <div style={{ minHeight: 400 }}>
         <Row>
-          <Col sm={24} md={10} offset={1}>
+          {/* <Col sm={24} md={10} offset={1}>
             <Row gutter={[20, 20]}>
               <Col span={24}>
                 <Avatar
@@ -91,9 +93,9 @@ const UserInfo = () => {
                 </Upload>
               </Col>
             </Row>
-          </Col>
+          </Col> */}
 
-          <Col sm={24} md={11}>
+          <Col sm={24} md={18} offset={3}>
             <Form onFinish={onFinish} autoComplete="off">
               <Form.Item
                 labelCol={{ span: 24 }}
@@ -111,7 +113,7 @@ const UserInfo = () => {
                   },
                 ]}
               >
-                <Input />
+                <Input placeholder={user.userName} />
               </Form.Item>
 
               <Form.Item
@@ -129,7 +131,7 @@ const UserInfo = () => {
                   },
                 ]}
               >
-                <Input />
+                <Input placeholder={user.email} />
               </Form.Item>
 
               <Form.Item

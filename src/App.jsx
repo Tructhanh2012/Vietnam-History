@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./styles/reset.scss";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import LoginPage from "./pages/login";
@@ -30,6 +30,11 @@ import EditorDashboardPage from "./components/Editor/Dashboard/EditorDashboardPa
 import QuizzDetail from "./pages/quizList/QuizzDetail";
 import QuizListPage from "./pages/quiz";
 import BlogCard from "./components/Home/BlogCard";
+import { callFetchAccount } from "./services/api";
+import { useDispatch, useSelector } from "react-redux";
+import { doGetAccountAction } from "./redux/account/accountSlice";
+import Loading from "./components/Loading";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 /* gọi API
 const getAccount = async () =>
@@ -40,6 +45,14 @@ const getAccount = async () =>
 }
 useEffect(()=>{},[]);
 */
+// const LayoutAdmin = () => {
+//   const isAuthenticated = window.location.pathname.startsWith("admin");
+//   const user = useSelector((state) => state.account.user);
+//   const userRole = user.role;
+//   return (
+//     <div className="layout-app"></div>
+//   )
+// };
 
 const Layout = () => {
   return (
@@ -55,6 +68,24 @@ const Layout = () => {
 };
 
 export default function App() {
+  const dispatch = useDispatch();
+  const isLoading = useSelector((state) => state.account.isLoading);
+  const user = useSelector((state) => state.account.user);
+
+  const FetchAccount = async () => {
+    if (window.location.pathname === "/login") return;
+    if (window.location.pathname === "/register") return;
+    // if (window.location.pathname === "/") return;
+
+    const res = await callFetchAccount();
+    if (res && res.token) {
+      dispatch(doGetAccountAction(res));
+    }
+  };
+  useEffect(() => {
+    FetchAccount();
+  }, []);
+
   const router = createBrowserRouter([
     {
       path: "/",
@@ -112,7 +143,9 @@ export default function App() {
           index: true,
           element: (
             // Authenticate !!!!!
-            <AdminPage />
+            <ProtectedRoute>
+              <AdminPage />
+            </ProtectedRoute>
           ),
         },
         {
@@ -160,7 +193,22 @@ export default function App() {
   ]);
   return (
     <>
-      <RouterProvider router={router} />
+      {isLoading === false ||
+      window.location.pathname === "/login" ||
+      window.location.pathname === "/register" ||
+      window.location.pathname === "/" ? (
+        <RouterProvider router={router} />
+      ) : (
+        <Loading />
+      )}
+
+      {/* <RouterProvider router={router} /> */}
+
+      {/* {isAuthenticated === true ? (
+        <RouterProvider router={router} />
+      ) : (
+        <Loading />
+      )} */}
     </>
   );
 }

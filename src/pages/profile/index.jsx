@@ -8,6 +8,7 @@ import ManageAccount from "./Account/ManageAccount";
 import { NavLink, useNavigate } from "react-router-dom";
 import Footer from "../../components/Footer";
 import SavedArticle from "./Tab/SavedArticle";
+import { useSelector } from "react-redux";
 
 const { TabPane } = Tabs;
 const onChange = (key) => {
@@ -50,6 +51,7 @@ const ProfilePage = () => {
       key: "logout",
     },
   ];
+  const user = useSelector((state) => state.account.user);
   return (
     <>
       <header
@@ -79,9 +81,10 @@ const ProfilePage = () => {
             <Dropdown menu={{ items: itemsDropdown }} trigger={["click"]}>
               <a onClick={(e) => e.preventDefault}>
                 <Space>
-                  @userName
-                  {/* Welcome admin {user?.fullName} */}
-                  <DownOutlined />
+                  <div className="account_nav">
+                    Welcome {user.userName}
+                    <DownOutlined />
+                  </div>
                 </Space>
               </a>
             </Dropdown>
@@ -97,21 +100,18 @@ const ProfilePage = () => {
             <div className="profile-container">
               <div className="profile js-profile-card ">
                 <div className="profile__img">
-                  <img
-                    src="https://haycafe.vn/wp-content/uploads/2022/03/Avatar-hai-1.jpg"
-                    alt="profile card"
-                  />
+                  <img src={user.avatar} alt="profile card" />
                 </div>
-                <div className="profile-title">@editor</div>
+                <div className="profile-title">@{user.role}</div>
                 <Row align="middle">
                   <div className="profile-card__cnt js-editor-cnt editor-profile mt-1">
                     <div className="username d-flex info">
                       <h5>Username: </h5>
-                      <span className="information">username ne</span>
+                      <span className="information">{user.userName}</span>
                     </div>
                     <div className="email d-flex info ">
                       <h5>Email: </h5>
-                      <span className="information">user@gmail.com</span>
+                      <span className="information">{user.email}</span>
                     </div>
                   </div>
                 </Row>
@@ -141,6 +141,7 @@ const ProfilePage = () => {
               defaultActiveKey="1"
               onChange={onChange}
               items={items}
+              style={{ animation: "pink" }}
               centered
               tabBarGutter={150}
               tabBarStyle={{ marign: 10, fontSize: 25 }}

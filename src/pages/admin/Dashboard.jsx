@@ -34,7 +34,6 @@ const Dashboard = () => {
     const fetchData = async () => {
       const res = await callGetStatistic();
       setStatistics(res);
-      console.log(res);
     };
 
     fetchData();

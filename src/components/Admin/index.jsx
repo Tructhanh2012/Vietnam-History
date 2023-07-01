@@ -11,14 +11,23 @@ import {
 } from "@ant-design/icons";
 import { useState } from "react";
 import { Layout, Menu, Dropdown, Space, Divider } from "antd";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { GrDashboard } from "react-icons/gr";
 import { MdPersonAddAlt } from "react-icons/md";
 
 const LayoutAdmin = () => {
+  // const isAuthenticated = window.location.pathname.startsWith("/admin");
+  const isAuthenticated = useSelector((state) => state.account.isAuthenticated);
+  const user = useSelector((state) => state.account.user);
+  const userRole = user.role;
   const { Content, Footer, Sider, Header } = Layout;
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
+  // const handleLogout = () => {
+  //   dispatch(doLogoutAction());
+  //   navigate("/");
+  // };
   const items = [
     {
       label: <Link to="/admin">Dashboard</Link>,
@@ -45,7 +54,17 @@ const LayoutAdmin = () => {
   ];
   const itemsDropdown = [
     {
-      label: <label onClick={() => navigate("/")}>Đăng xuất</label>,
+      label: (
+        <label
+        // onClick={handleLogout}
+        >
+          Đăng xuất
+        </label>
+      ),
+      key: "logout",
+    },
+    {
+      label: <label onClick={() => navigate("/")}>Trang chủ</label>,
       key: "logout",
     },
   ];
@@ -59,82 +78,84 @@ const LayoutAdmin = () => {
       style={{ minHeight: "100vh", overflow: "hidden" }}
       className="layoutAdmin"
     >
-      <Sider
-        theme="light"
-        collapsible
-        collapsed={collapsed}
-        onCollapse={(value) => setCollapsed(value)}
-      >
-        <div className="layoutAdmin__title">
-          <div
+      {isAuthenticated && userRole === "ADMIN" && (
+        <Sider
+          theme="light"
+          collapsible
+          collapsed={collapsed}
+          onCollapse={(value) => setCollapsed(value)}
+        >
+          <div className="layoutAdmin__title">
+            <div
+              style={{
+                height: 32,
+                margin: 16,
+                textAlign: "center",
+                fontSize: "large",
+                marginTop: "30px",
+              }}
+            >
+              Admin
+              <Divider />
+            </div>
+          </div>
+
+          <Menu
+            defaultSelectedKeys={[activeMenu]}
+            mode="inline"
+            items={items}
+            onClick={(e) => setActiveMenu(e.key)}
+          />
+        </Sider>
+      )}
+      <Layout className="layoutAdmin__header">
+        {isAuthenticated && userRole === "ADMIN" && (
+          <Header
             style={{
-              height: 32,
-              margin: 16,
-              textAlign: "center",
-              fontSize: "large",
-              marginTop: "30px",
+              position: "sticky",
+              top: 0,
+              zIndex: 1,
+              width: "100%",
+              display: "flex",
+              alignItems: "center",
+              // height: "20%",
             }}
           >
-            Admin
-            <Divider />
-          </div>
-        </div>
+            <div
+              className="layoutAdmin__header__welcome"
+              // style={{ position: "absolute", right: "15px" }}
+            >
+              <span>
+                {React.createElement(
+                  collapsed ? MenuUnfoldOutlined : MenuFoldOutlined,
+                  {
+                    className: "trigger",
+                    onClick: () => setCollapsed(!collapsed),
+                  }
+                )}
+              </span>
 
-        <Menu
-          defaultSelectedKeys={[activeMenu]}
-          mode="inline"
-          items={items}
-          onClick={(e) => setActiveMenu(e.key)}
-        />
-      </Sider>
-
-      <Layout className="layoutAdmin__header">
-        <Header
-          style={{
-            position: "sticky",
-            top: 0,
-            zIndex: 1,
-            width: "100%",
-            display: "flex",
-            alignItems: "center",
-            // height: "20%",
-          }}
-        >
-          <div
-            className="layoutAdmin__header__welcome"
-            // style={{ position: "absolute", right: "15px" }}
-          >
-            <span>
-              {React.createElement(
-                collapsed ? MenuUnfoldOutlined : MenuFoldOutlined,
-                {
-                  className: "trigger",
-                  onClick: () => setCollapsed(!collapsed),
-                }
-              )}
-            </span>
-
-            <Dropdown menu={{ items: itemsDropdown }} trigger={["click"]}>
-              <a onClick={(e) => e.preventDefault}>
-                <Space>
-                  Welcome
-                  {/* Welcome admin {user?.fullName} */}
-                  <DownOutlined />
-                </Space>
-              </a>
-            </Dropdown>
-          </div>
-        </Header>
-
+              {/* <Dropdown menu={{ items: itemsDropdown }} trigger={["click"]}>
+                <a onClick={(e) => e.preventDefault}>
+                  <Space>
+                    Welcome{user?.userName}
+                    <DownOutlined />
+                  </Space>
+                </a>
+              </Dropdown> */}
+            </div>
+          </Header>
+        )}
         <Content>
           <Outlet />
         </Content>
-
-        <Footer
-          style={{ padding: 0, display: "flex", justifyContent: "center" }}
-        >
-          webname&copy; 2023.
-        </Footer>
+        {isAuthenticated && userRole === "ADMIN" && (
+          <Footer
+            style={{ padding: 0, display: "flex", justifyContent: "center" }}
+          >
+            webname&copy; 2023.
+          </Footer>
+        )}
       </Layout>
     </Layout>
   );

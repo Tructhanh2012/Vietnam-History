@@ -30,7 +30,7 @@ const CustomMap = () => {
   const callMapApi = async () => {
     const res = await callMap();
     setData(res);
-    console.log("check res of map", res);
+    // console.log("check res of map", res);
   };
 
   useEffect(() => {
@@ -44,7 +44,7 @@ const CustomMap = () => {
     // console.log(filterList);
 
     setProvinceShow(filterList);
-    console.log("logdata:", provinceShow);
+    // console.log("logdata:", provinceShow);
     setActive(true);
   };
   const onClose = () => {

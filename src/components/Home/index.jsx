@@ -2,16 +2,29 @@ import { Card, Col, Divider, Pagination, Row } from "antd";
 import "./home.scss";
 import Meta from "antd/es/card/Meta";
 import { BsFillBookmarkFill } from "react-icons/bs";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import LearnByMap from "../Map";
 import BlogCard from "./BlogCard";
+import { getOutstandingEvent } from "../../services/api";
 
 const Home = () => {
   const [isSaved, setIsSaved] = useState(false);
-
+  const [outstandList, setOutstandList] = useState([]);
   const handleOnClickIsSave = () => {
     setIsSaved(true);
   };
+
+  const callGetOutstandingEvent = async () => {
+    const res = await getOutstandingEvent();
+    if (res && res?.listOutstanding) {
+      const listOutstanding = res.listOutstanding;
+      setOutstandList(listOutstanding);
+    }
+  };
+
+  useEffect(() => {
+    callGetOutstandingEvent();
+  }, []);
   return (
     <>
       <div className="homepage">
@@ -30,30 +43,27 @@ const Home = () => {
 
           <Row className="homepage-article-content">
             <div className="article">
-              <div className="wrapper">
-                <div className="image">
-                  <img
-                    className="img"
-                    src="https://nguoikesu.com/images/wiki/nha-nguyen/f3ddf4ba5ac21a0f1ab37de7ccf99789.jpg"
-                  />
-                </div>
-                <div className="text">
-                  <h5>Bản đồ đối chiếu triều đại Việt Nam và Trung Quốc</h5>
-                  <p>
-                    Dưới đây chúng tôi giới thiệu Bảng đối chiếu các triều đại
-                    Việt Nam với năm dương lịch và các triều đại Trung Quốc là
-                    nước láng giềng
-                  </p>
-                </div>
-                <div className="save-icon">
-                  <BsFillBookmarkFill
-                    onClick={() => handleOnClickIsSave()}
-                    style={{ color: isSaved ? "#963B3E" : "black" }}
-                  />
-                </div>
-              </div>
+              {outstandList?.map((item, index) => {
+                return (
+                  <div className="wrapper" key={item.eventId}>
+                    <div className="image">
+                      <img src={item.thumbnail} alt="thumbnail" />
+                    </div>
+                    <div className="text">
+                      <h5>{item.eventName}</h5>
+                      <p>{item.content}</p>
+                    </div>
+                    <div className="save-icon">
+                      <BsFillBookmarkFill
+                        onClick={() => handleOnClickIsSave()}
+                        style={{ color: isSaved ? "#963B3E" : "black" }}
+                      />
+                    </div>
+                  </div>
+                );
+              })}
             </div>
-
+            ;
             <div className="article">
               <div className="wrapper">
                 <div className="image">
@@ -78,7 +88,6 @@ const Home = () => {
                 </div>
               </div>
             </div>
-
             <div className="article">
               <div className="wrapper">
                 <div className="image">
@@ -103,7 +112,6 @@ const Home = () => {
                 </div>
               </div>
             </div>
-
             <div className="article">
               <div className="wrapper">
                 <div className="image">

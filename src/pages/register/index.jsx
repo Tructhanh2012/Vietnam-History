@@ -27,8 +27,6 @@ const RegisterPage = () => {
     const res = await callRegister(username, password, email);
     setIsSubmit(false);
 
-    console.log("check res ne: ", res);
-
     if (res && res.responeMessage === "Register successfully") {
       message.success("Đăng ký tài khoản thành công");
       navigate("/login");

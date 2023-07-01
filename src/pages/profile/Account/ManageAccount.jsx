@@ -28,7 +28,7 @@ const ManageAccount = (props) => {
       footer={null}
       onCancel={() => setIsModelOpen(false)}
       maskClosable={true}
-      width={"60vw"}
+      width={"40vw"}
     >
       {/* <Tabs items={items}></Tabs> */}
       <Divider />

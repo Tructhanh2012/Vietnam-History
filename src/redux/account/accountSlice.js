@@ -2,12 +2,14 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   isAuthenticated: false, //user đã đn chưa
+  isLoading: true,
+
   user: {
     userId: "",
     avatar: "",
     email: "",
+    userName: "",
     role: "",
-    avatar: "",
   },
   status: "idle",
 };
@@ -20,11 +22,14 @@ export const accountSlice = createSlice({
     // actions để nạp data
     doLoginAction: (state, action) => {
       state.isAuthenticated = true;
+      state.isLoading = false;
       state.user = action.payload;
+      // state.user = action.payload.user;
     }, // -> lấy dc payload sau đấy gán vào state của Redux
 
     doGetAccountAction: (state, action) => {
       state.isAuthenticated = true;
+      state.isLoading = false;
       state.user = action.payload.user;
     },
 
@@ -32,11 +37,11 @@ export const accountSlice = createSlice({
       localStorage.removeItem("token");
       state.isAuthenticated = false;
       state.user = {
-        userID: "",
-        username: "",
-        email: "",
-        role: "",
+        userId: "",
         avatar: "",
+        email: "",
+        userName: "",
+        role: "",
       };
     },
 
@@ -56,6 +61,7 @@ export const accountSlice = createSlice({
 export const {
   doLoginAction,
   doGetAccountAction,
+  doLogoutAction,
   doUpdateUserInfoAction,
   doUploadAvatarAction,
 } = accountSlice.actions;

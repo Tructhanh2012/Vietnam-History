@@ -24,15 +24,11 @@ const RegisterRole = (props) => {
     const { username, password, email, role } = values;
     setIsSubmit(true);
     const res = await callRegisterRole(username, password, email, values.role);
-    console.log("log res registerrole: ", res);
     setIsSubmit(false);
     if (res && res.responeMessage === "Register successfully") {
-      console.log("here");
-
       message.success("Đăng ký role thành công");
       // navigate("/admin");
     } else {
-      console.log("here2");
       notification.error({
         message: "Có lỗi xảy",
         description: res.responeMessage,

@@ -3,8 +3,13 @@ import { useEffect, useState } from "react";
 import { callUpdateUser } from "../../../services/api";
 
 const UserUpdate = (props) => {
-  const { openModalUpdate, setOpenModalUpdate, dataUpdate, setDataUpdate } =
-    props;
+  const {
+    openModalUpdate,
+    setOpenModalUpdate,
+    dataUpdate,
+    setDataUpdate,
+    fetchUser,
+  } = props;
   const [isSubmit, setIsSubmit] = useState(false);
   const [form] = Form.useForm();
   // console.log("check props: ", props);
@@ -17,7 +22,7 @@ const UserUpdate = (props) => {
     if (res && res.responeMessage.responeMessage === "UPDATE USER OKE !") {
       message.success("Cập nhật user thành công");
       setOpenModalUpdate(false);
-      //await props.fetchUser;
+      fetchUser();
     } else {
       notification.error({
         message: "Đã có lỗi xảy ra",

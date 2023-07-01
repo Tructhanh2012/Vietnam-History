@@ -24,6 +24,10 @@ export const callLogin = (username, password) => {
   });
 };
 
+export const callFetchAccount = () => {
+  return axios.get("/reload");
+};
+
 export const callGetListUser = (keyword) => {
   return axios.post("/admin/accountList", {
     data: {
@@ -102,6 +106,10 @@ export const getMap = () => {
   return axios.get(
     "https://react-history-default-rtdb.firebaseio.com/history.json"
   );
+};
+
+export const getOutstandingEvent = () => {
+  return axios.get("/homepage");
 };
 // export const getAPI = () => {
 //   return axios.get("https://jsonplaceholder.typicode.com/todos");

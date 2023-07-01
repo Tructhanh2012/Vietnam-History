@@ -5,6 +5,6 @@ import accountReducer from "../redux/account/accountSlice";
 export const store = configureStore({
   reducer: {
     counter: counterReducer,
-    acount: accountReducer,
+    account: accountReducer,
   },
 });
