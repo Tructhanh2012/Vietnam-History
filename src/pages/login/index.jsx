@@ -5,22 +5,33 @@ import { Link, useNavigate } from "react-router-dom";
 import { notification } from "antd";
 import { useDispatch } from "react-redux";
 import { doLoginAction } from "../../redux/account/accountSlice";
-import { callLogin } from "../../services/api";
+import { callLogin, callPostLogin } from "../../services/api";
 
 const LoginPage = () => {
   const navigate = useNavigate();
   const [isSubmit, setIsSubmit] = useState(false);
-  const dispatch = useDispatch();
-
+  
   const onFinish = async (values) => {
-    const { username, password } = values;
+    const { email, password } = values;
     setIsSubmit(true);
-    const res = await callLogin(username, password);
+    const res = await callPostLogin(email, password);
+    const user = res.data.user;
+    const jwtToken = res.data.jwtToken;
+    const refreshToken = res.data.refreshToken;
+    console.log("check res", res);
     setIsSubmit(false);
 
-    if (res?.user) {
-      localStorage.setItem("token", res.token); //save access_token to localStorage
-      dispatch(doLoginAction(res.user));
+    if (res?.data) {
+      sessionStorage.setItem("jwtToken", res.jwtToken); //save access_token to localStorage
+      sessionStorage.setItem("refreshToken", res.refreshToken);
+      sessionStorage.setItem("user", JSON.stringify(user));
+      if(user.role === "ADMIN") {
+        navigate("/admin");
+      }else if(user.role === "EDITOR"){
+        navigate("/editor");
+      }else if(user.role === "MEMBER"){
+        navigate("/");
+      }
       // console.log("check res 2", res);
       message.success("Đăng nhập tài khoản thành công");
       navigate("/");
@@ -57,21 +68,25 @@ const LoginPage = () => {
                   {/* <Col span={6}></Col> */}
                 </Row>
               </div>
+
               <Form.Item
                 labelCol={{ span: 24 }}
-                name="username"
-                label="Tên đăng nhập"
+                name="email"
+                label="Email:"
                 rules={[
                   {
+                    type: "email",
+                    message: "Hãy nhập đúng định dạng Email!",
+                  },
+                  {
                     required: true,
-                    message: "Hãy nhập Tên đăng nhập!",
-                    whitespace: false,
+                    message: "Hãy nhập email của bạn",
                   },
                 ]}
-                className="custom-form-item"
               >
                 <Input />
               </Form.Item>
+
               <Form.Item
                 labelCol={{ span: 24 }}
                 name="password"

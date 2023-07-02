@@ -11,7 +11,7 @@ import { Avatar, Button, Dropdown, Input, Space, notification } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { DownOutlined } from "@ant-design/icons";
 import { doLogoutAction } from "../../redux/account/accountSlice";
-import { callLogout } from "../../services/api";
+// import { callLogout } from "../../services/api";
 
 const Navbar = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./editorProfile.scss";
 import { Button, Col, Row, Space } from "antd";
-import EditorProfileUpdate from "./Profile/EditorProfileUpdate";
+import EditorProfileUpdate from "./EditorProfileUpdate";
 import { useSelector } from "react-redux";
 
 const EditorProfile = () => {

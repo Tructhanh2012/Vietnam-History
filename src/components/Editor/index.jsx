@@ -6,7 +6,10 @@ import { GrArticle, GrDashboard } from "react-icons/gr";
 import { TfiWrite } from "react-icons/tfi";
 import { TiDocumentAdd } from "react-icons/ti";
 import { CgProfile } from "react-icons/cg";
-import { AiOutlineLogout } from "react-icons/ai";
+import { AiOutlineLogout,  } from "react-icons/ai";
+
+import {MdOutlineQuiz} from "react-icons/md";
+import {BiSelectMultiple} from "react-icons/bi";
 
 const EditorLayout = () => {
   const { Content, Footer, Sider, Header } = Layout;
@@ -31,6 +34,18 @@ const EditorLayout = () => {
           key: "compose-article",
           icon: <TiDocumentAdd size="1.4em" />,
         },
+      ],
+    },
+    {
+      label: <span>Quiz</span>,
+      icon: <MdOutlineQuiz size="1.5em" />,
+      children: [
+        {
+          label: <Link to="/editor/create-quiz">Tạo quiz</Link>,
+          key: "create-quiz",
+          icon: <BiSelectMultiple />,
+        },
+        
       ],
     },
     {

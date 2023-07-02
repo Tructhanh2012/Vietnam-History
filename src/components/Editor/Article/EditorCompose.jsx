@@ -1,10 +1,11 @@
 import TextArea from "antd/es/input/TextArea";
 import "./editorCompose.scss";
 
-import React, { useState } from "react";
-import { Upload, message, Input, Button, Col, Form } from "antd";
+import React, { useEffect, useState } from "react";
+import { Upload, message, Input, Button, Col, Form, Select } from "antd";
 import { LoadingOutlined, PlusOutlined } from "@ant-design/icons";
 import axios from "axios";
+import { callGetHashtag } from "../../../services/api";
 
 const EditorPage = () => {
   const [title, setTitle] = useState("");
@@ -53,6 +54,13 @@ const EditorPage = () => {
   const handleContentChange = (e) => {
     setContent(e.target.value);
   };
+  const [selectHashtag, setSelectHashtag] = useState(null);
+  const handleSelectionChange = (value) => {
+      console.log(`Selected: ${value}`);
+      setSelectHashtag(value);
+  
+    // Set giá trị đã chọn vào content
+  };
 
   const handleSubmit = () => {
     // Create a new FormData object
@@ -61,27 +69,12 @@ const EditorPage = () => {
     // Append title and content to the formData
     formData.append("title", title);
     formData.append("content", content);
-
+    formData.append("hashtag", selectHashtag)
     // Append each file to the formData
     fileList.forEach((file) => {
       formData.append("images", file.originFileObj);
     });
 
-    // Send the formData to the backend API
-    // axios
-    //   .post("https://example.com/api/post", formData)
-    //   .then((response) => {
-    //     // Handle successful response
-    //     message.success("Post submitted successfully.");
-    //     // Reset the form
-    //     setTitle("");
-    //     setContent("");
-    //     setFileList([]);
-    //   })
-    //   .catch((error) => {
-    //     // Handle error
-    //     message.error("Post submission failed.");
-    //   });
   };
 
   const uploadButton = (
@@ -90,6 +83,23 @@ const EditorPage = () => {
       <div style={{ marginTop: 8 }}>Upload</div>
     </div>
   );
+
+  const [hashtag, setHashtag] = useState([]);
+  const getHashtags = async () => {
+    const res = await callGetHashtag();
+    console.log(res.data);
+    const hashtagOptions = res.data.map((item) => ({
+      label: item.name,
+      value: item.id,
+    }));
+    // setHashtag(res.data.map(item =>({ label: item.name, key: item.id })));
+    setHashtag(hashtagOptions)
+  }
+ 
+
+  useEffect(() => {
+    getHashtags()
+  }, [])
 
   return (
     <div className="editor">
@@ -115,13 +125,23 @@ const EditorPage = () => {
           </div>
 
           <div className="editor-content">
-            <Form.Item name="content">
+            <Form.Item name="textArea">
               <TextArea
                 className="text-area"
                 placeholder="Nội dung bài viết"
                 value={content}
                 rows={7}
                 onChange={handleContentChange}
+              />
+            </Form.Item>
+            <Form.Item name="hashtag">
+              <Select
+                size="middle"
+                placeholder="Hashtag"
+                defaultValue={hashtag[0]}
+                onChange={handleSelectionChange}
+                style={{ width: '100%' }}
+                options={hashtag}
               />
             </Form.Item>
 
