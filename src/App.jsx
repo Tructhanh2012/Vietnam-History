@@ -31,6 +31,7 @@ import EditorDashboardPage from "./components/Editor/Dashboard/EditorDashboardPa
 import EventDetail from "./components/DongSuKien/eventDetail";
 import Header2 from "./components/Header/header2.0";
 import CharactersPage from "./pages/characters/index";
+import CharacterDetails from "./components/Characters/charactersDetail";
 
 /* gọi API
 const getAccount = async () =>
@@ -73,7 +74,10 @@ export default function App() {
           element: <EventDetail />,
         },
         { path: "characters", element: <CharactersPage /> },
-
+        {
+          path: "/characters/:idHistory",
+          element: <CharacterDetails />,
+        },
         {
           path: "quizz",
           element: <QuizzPage />,

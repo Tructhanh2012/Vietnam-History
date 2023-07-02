@@ -40,6 +40,9 @@ export const callUpdateUser = (userId, userName, email, userRole) => {
     userRole,
   });
 };
+export const callTimeline = () => {
+  return axios.get("/timeline");
+}
 
 export const callDeleteUser = (userID) => {
   return axios.delete(`/admin/accountList/account/${userID}`);

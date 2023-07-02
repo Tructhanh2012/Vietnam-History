@@ -108,7 +108,13 @@
 }
 .timeline-content-textbelow p {
   font-family: Petrona;
-  font-size: 18px;
+  font-size: 20px;
+}
+li.ant-pagination-options {
+  display: none;
+}
+.ant-select.ant-pagination-options-size-changer.css-dev-only-do-not-override-mxhywb.ant-select-single.ant-select-show-arrow {
+  display: none;
 }
 .pagination {
   justify-content: center;
@@ -133,6 +139,11 @@
   --bs-pagination-disabled-color: var(--bs-secondary-color);
   --bs-pagination-disabled-bg: var(--bs-secondary-bg);
   --bs-pagination-disabled-border-color: var(--bs-border-color);
+}
+.pagination-timeline {
+  display: flex;
+  text-align: center;
+  justify-content: center;
 }
 
 //==================

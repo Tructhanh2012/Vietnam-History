@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -14,6 +14,7 @@ import { Pagination } from "antd";
 import { Breadcrumb, Col, Divider, Row, Table } from "antd";
 import { BsFillBookmarkFill } from "react-icons/bs";
 import { dataTextHistoryTimeline } from "./dataText";
+import { callTimeline } from "../../services/api";
 
 function SampleNextArrow({ onClick }) {
   return (
@@ -81,13 +82,25 @@ const TimelinePage = () => {
 
   // const handlePageClick = () => {};
   const [currentPage, setCurrentPage] = useState(1);
-  const pageSize = 10;
-  const totalItems = 100;
+  const pageSize = 6;
+  const totalItems = 160;
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
     window.scrollTo(0, 0);
   };
+  const [data, setData] = useState([]);
+
+  const callTimelineApi = async () => {
+    const res = await callTimeline();
+    setData(res);
+    console.log("check res of map", res);
+  };
+
+  useEffect(() => {
+    callTimelineApi();
+  }, []);
+
   return (
     <>
       <BreadcrumbRank />
@@ -95,21 +108,23 @@ const TimelinePage = () => {
       <div className="Timeline">
         <div className="Timeline-card">
           <Slider {...settings}>
-            {dataHistoryTimeline.map((item) => (
-              <div className="card">
-                <div className="card-top">
-                  <h6>{item.title}</h6>
-                </div>
-                <div className="card-bottom">
-                  <p>
-                    {/* {item.content} */}
-                    {item.content.split("\n").map((line, index) => (
-                      <React.Fragment key={index}>
-                        {line}
-                        <br />
-                      </React.Fragment>
-                    ))}
-                  </p>
+            {data.map((item) => (
+              <div key={item.dynastyID}>
+                <div className="card">
+                  <div className="card-top">
+                    <h6>{item.dynastyName}</h6>
+                  </div>
+                  <div className="card-bottom">
+                    <p>
+                      {item.dynastyDescription}
+                      {/* {item.content.split("\n").map((line, index) => (
+                        <React.Fragment key={index}>
+                          {line}
+                          <br />
+                        </React.Fragment>
+                      ))} */}
+                    </p>
+                  </div>
                 </div>
               </div>
             ))}
@@ -121,7 +136,7 @@ const TimelinePage = () => {
           <Col span={14}>
             <h1>Dòng Lịch Sử</h1>
             <div>
-              {dataHistoryTimeline
+              {dataTextHistoryTimeline
                 .slice((currentPage - 1) * pageSize, currentPage * pageSize)
                 .map((item) => (
                   <div key={item.id}>
@@ -129,7 +144,7 @@ const TimelinePage = () => {
                       <h2>{item.title}</h2>
                     </div>
                     <div>
-                      <p>
+                      <p className="timeline-content-textbelow-detail">
                         {item.content.split("\n").map((line, index) => (
                           <React.Fragment key={index}>
                             {line}
@@ -142,6 +157,7 @@ const TimelinePage = () => {
                 ))}
             </div>
             <Pagination
+              className="pagination-timeline"
               total={totalItems}
               current={currentPage}
               pageSize={pageSize}
