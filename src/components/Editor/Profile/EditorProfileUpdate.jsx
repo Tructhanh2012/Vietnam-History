@@ -1,11 +1,14 @@
 import { Divider, Form, Input, Modal } from "antd";
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
 const EditorProfileUpdate = (props) => {
   const { openModalUpdate, setOpenModalUpdate, dataUpdate, setDataUpdate } =
     props;
   const [isSubmit, setIsSubmit] = useState(false);
   const [form] = Form.useForm();
+  const user = useSelector((state) => state.account.user);
+
   // console.log("check props: ", props);
   const onFinish = async (values) => {
     const { userId, username, email, role } = values;
@@ -76,7 +79,7 @@ const EditorProfileUpdate = (props) => {
             name="username"
             rules={[{ required: true, message: "Vui lòng nhập tên đăng nhập" }]}
           >
-            <Input />
+            <Input placeholder={user.userName} />
           </Form.Item>
 
           <Form.Item
@@ -85,7 +88,7 @@ const EditorProfileUpdate = (props) => {
             name="email"
             rules={[{ required: true, message: "Vui lòng nhập tên email!" }]}
           >
-            <Input />
+            <Input placeholder={user.email} />
           </Form.Item>
 
           <Form.Item

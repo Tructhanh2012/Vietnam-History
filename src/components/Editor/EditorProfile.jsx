@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import "./editorProfile.scss";
 import { Button, Col, Row, Space } from "antd";
 import EditorProfileUpdate from "./Profile/EditorProfileUpdate";
+import { useSelector } from "react-redux";
 
 const EditorProfile = () => {
   const [openModalUpdate, setOpenModalUpdate] = useState(false);
   const [dataUpdate, setDataUpdate] = useState(null);
+  const user = useSelector((state) => state.account.user);
   return (
     <>
       <div className="editor-container">
@@ -16,16 +18,16 @@ const EditorProfile = () => {
               alt="profile card"
             />
           </div>
-          <div className="editor-title">@editor</div>
+          <div className="editor-title">@{user.role}</div>
           <Row align="middle">
             <div className="editor-card__cnt js-editor-cnt editor-profile mt-1">
               <div className="username d-flex info">
                 <h5>Username: </h5>
-                <span className="information">username ne</span>
+                <span className="information">{user.userName}</span>
               </div>
               <div className="email d-flex info ">
                 <h5>Email: </h5>
-                <span className="information">user@gmail.com</span>
+                <span className="information">{user.email}</span>
               </div>
             </div>
           </Row>

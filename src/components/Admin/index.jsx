@@ -6,14 +6,14 @@ import {
   UserAddOutlined,
   MenuUnfoldOutlined,
   MenuFoldOutlined,
-  HeartTwoTone,
-  DownOutlined,
 } from "@ant-design/icons";
 import { useState } from "react";
-import { Layout, Menu, Dropdown, Space, Divider } from "antd";
+import { Layout, Menu, Dropdown, Space, Divider, Button } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { GrDashboard } from "react-icons/gr";
-import { MdPersonAddAlt } from "react-icons/md";
+import { BiNavigation } from "react-icons/bi";
+import { HiOutlineHome } from "react-icons/hi";
+import { AiOutlineLogout } from "react-icons/ai";
 
 const LayoutAdmin = () => {
   // const isAuthenticated = window.location.pathname.startsWith("/admin");
@@ -24,10 +24,25 @@ const LayoutAdmin = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  // const handleLogout = () => {
-  //   dispatch(doLogoutAction());
-  //   navigate("/");
-  // };
+  const [isSubmit, setIsSubmit] = useState(false);
+
+  const handleLogout = async (values) => {
+    const { username, password } = values;
+    setIsSubmit(true);
+    const res = await callLogout(username, password);
+    setIsSubmit(false);
+    if (res && res.status === 404) {
+      console.log("check res logout", res.status);
+      dispatch(doLogoutAction());
+      navigate("/login");
+    } else {
+      notification.error({
+        message: "Có lỗi xảy",
+        description: res.message,
+        duration: 5,
+      });
+    }
+  };
   const items = [
     {
       label: <Link to="/admin">Dashboard</Link>,
@@ -51,21 +66,31 @@ const LayoutAdmin = () => {
         },
       ],
     },
+    {
+      label: <span>Điều hướng</span>,
+      icon: <BiNavigation size="1.5em" />,
+      children: [
+        {
+          label: <Link to="/">Trang chủ</Link>,
+          key: "homepage",
+          icon: <HiOutlineHome />,
+        },
+        {
+          label: <Button onClick={handleLogout}>Đăng xuất</Button>,
+          key: "logout",
+          icon: <AiOutlineLogout />,
+        },
+      ],
+    },
   ];
   const itemsDropdown = [
     {
-      label: (
-        <label
-        // onClick={handleLogout}
-        >
-          Đăng xuất
-        </label>
-      ),
+      label: <label onClick={handleLogout}>Đăng xuất</label>,
       key: "logout",
     },
     {
       label: <label onClick={() => navigate("/")}>Trang chủ</label>,
-      key: "logout",
+      key: "home",
     },
   ];
 

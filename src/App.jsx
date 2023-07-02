@@ -15,7 +15,6 @@ import UserTable from "./components/Admin/User/UserTable";
 import RegisterRole from "./components/Admin/User/RegisterRole";
 import RankingPage from "./pages/rank";
 import TimelinePage from "./pages/timeline";
-import TextEditor from "./pages/editor/TextEditor";
 import ArticlePage from "./pages/article";
 import QuizzPage from "./pages/quizList";
 import Navbar from "./components/Header/Navbar";
@@ -23,7 +22,6 @@ import QuizzApp from "./components/Quiz";
 import BlogPage from "./pages/blog";
 import EditorLayout from "./components/Editor";
 import EditorProfile from "./components/Editor/EditorProfile";
-import EditorDashboard from "./components/Editor/Dashboard/EditorDashboardPage";
 import ManageEvent from "./components/Editor/Article/ManagEvent";
 import EditorCompose from "./components/Editor/Article/EditorCompose";
 import EditorDashboardPage from "./components/Editor/Dashboard/EditorDashboardPage";
@@ -35,6 +33,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { doGetAccountAction } from "./redux/account/accountSlice";
 import Loading from "./components/Loading";
 import ProtectedRoute from "./components/ProtectedRoute";
+import ArticleDetails from "./pages/article/ArticleDetails";
 
 /* gọi API
 const getAccount = async () =>
@@ -58,8 +57,8 @@ const Layout = () => {
   return (
     <>
       <div className="layout-app">
-        {/* <Header /> */}
-        <Navbar />
+        <Header />
+        {/* <Navbar /> */}
         <Outlet />
         <Footer />
       </div>
@@ -83,7 +82,7 @@ export default function App() {
     }
   };
   useEffect(() => {
-    FetchAccount();
+    // FetchAccount();
   }, []);
 
   const router = createBrowserRouter([
@@ -95,7 +94,7 @@ export default function App() {
         { index: true, element: <Home /> },
         { path: "rank", element: <RankingPage /> },
         { path: "timeline", element: <TimelinePage /> },
-        { path: "article", element: <ArticlePage /> },
+        { path: "singleEvent/:slug", element: <ArticleDetails /> },
         // { path: "article/:slug", element: <ArticlePage /> },
         {
           path: "quizz",
@@ -193,16 +192,16 @@ export default function App() {
   ]);
   return (
     <>
-      {isLoading === false ||
+      {/* {isLoading === false ||
       window.location.pathname === "/login" ||
       window.location.pathname === "/register" ||
       window.location.pathname === "/" ? (
         <RouterProvider router={router} />
       ) : (
         <Loading />
-      )}
+      )} */}
 
-      {/* <RouterProvider router={router} /> */}
+      <RouterProvider router={router} />
 
       {/* {isAuthenticated === true ? (
         <RouterProvider router={router} />

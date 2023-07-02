@@ -10,12 +10,20 @@ import {
   Space,
 } from "antd";
 import "./article.scss";
+import { callGetSingleEvent } from "../../services/api";
+import { useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 const ArticleDetails = () => {
   const BreadcrumbArticle = () => {
     return (
       <Breadcrumb
-        style={{ marginLeft: 30, padding: 20, paddingBottom: 0 }}
+        style={{
+          marginLeft: 30,
+          padding: 20,
+          paddingBottom: 40,
+          paddingTop: 44,
+        }}
         separator=">"
         items={[
           {
@@ -32,57 +40,54 @@ const ArticleDetails = () => {
       />
     );
   };
+  const [events, setEvents] = useState(null);
+  let location = useLocation();
+
+  let params = new URLSearchParams(location.search);
+  const eventId = params.get("eventId");
+  // const eventId = 1;
+
+  // const eventId = location.state.eventId;
+  const fetchContent = async (eventId) => {
+    console.log("log eventID: ", eventId);
+    const res = await callGetSingleEvent(eventId);
+    console.log("check res single page:", res);
+    if (res && res?.eventForm) {
+      let raw = res.eventForm;
+      console.log("rew", raw);
+      setEvents(raw);
+    }
+  };
+  useEffect(() => {
+    console.log("log eventId: ", eventId);
+
+    fetchContent(eventId);
+  }, [eventId]);
 
   return (
     <>
-      <BreadcrumbArticle />
+      <Divider orientation="left">
+        <BreadcrumbArticle />
+      </Divider>
       <div className="article-container">
         <Row gutter={[20, 20]}>
           <Col md={17} xs={24} offset={1}>
             <div className="title" style={{ textAlign: "center" }}>
-              <h2>Lịch sử chữ tiếng Việt</h2>
+              <h2>{events.eventName}</h2>
             </div>
 
             <div className="text">
-              <p>
-                Tiếng Việt là ngôn ngữ của người Việt và là ngôn ngữ chính thức
-                của Việt Nam. Trong lịch sử Việt Nam đã có ba loại văn tự được
-                dùng để ghi chép tiếng Việt là chữ Hán, chữ Nôm và chữ quốc ngữ.
-                Chữ Hán và chữ Nôm là văn tự ngữ tố, mỗi chữ Hán và chữ Nôm biểu
-                thị một hoặc một số âm tiết. Chữ quốc ngữ đã bắt đầu được sử
-                dụng chính thức tại Việt Nam vào đầu thế kỷ XX.
-              </p>
+              <p>{events.content}</p>
               <div className="image" style={{ width: "70%" }}>
                 <img
                   className="image_content"
                   style={{
                     width: "100%",
                   }}
-                  src="https://nguoikesu.com/images/wiki/tinh-quang-tri/57f4d51ba53a286dab4f743cd619a8f0.jpg"
+                  src={events.image}
                 />
               </div>
-              <p>
-                Vai trò của chữ Hán để ghi chép tiếng Việt chủ yếu là ghi lại
-                các yếu tố Hán-Việt có trong văn bản Nôm, ngoài ra, chữ Hán cũng
-                là thành tố quan trọng để tạo ra chữ Nôm. Từ đầu công nguyên đến
-                thế kỷ X, Việt Nam chịu sự đô hộ của phong kiến Trung Hoa, chữ
-                Hán và tiếng Hán được giới quan lại cai trị áp đặt sử dụng. Theo
-                Đào Duy Anh thì nước Việt bắt đầu có Hán học khi viên Thái thú
-                Sĩ Nhiếp (137 - 226) đã dạy dân Việt thi thư. Trong khoảng thời
-                gian hơn một ngàn năm, hầu hết các bài văn khắc trên tấm bia đều
-                bằng chữ Hán. Có ý kiến cho rằng chữ Hán đã hiện diện ở Việt Nam
-                từ trước Công nguyên, dựa trên suy diễn về dấu khắc được coi là
-                chữ trên một con dao găm . Tuy nhiên đó là lúc chữ Hán chưa hình
-                thành, và trên các trống đồng Đông Sơn có thời kỳ 700 TCN - 100
-                SCN thì hiện diện "các chữ của người Việt cổ" chưa được minh
-                giải, và chưa có tư liệu xác định vào thời kỳ trước Công nguyên
-                cư dân Việt cổ đã sử dụng chữ. Từ sau thế kỷ thứ X, tuy Việt Nam
-                giành được độc lập tự chủ, nhưng chữ Hán và tiếng Hán vẫn tiếp
-                tục là một phương tiện chính trong việc ghi chép và trước tác.
-                Đến cuối thế kỷ 19 - đầu thế kỷ 20 thì bị thay thế bởi chữ Quốc
-                ngữ. Nền khoa bảng Việt Nam dùng chữ Hán chấm dứt ở kỳ thi cuối
-                cùng năm 1919.
-              </p>
+              <p>{events.content} </p>
               <div className="article_comment ">
                 {/* <Divider /> */}
                 <div className="d-flex justify-content-between">

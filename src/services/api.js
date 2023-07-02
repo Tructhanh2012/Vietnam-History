@@ -24,6 +24,13 @@ export const callLogin = (username, password) => {
   });
 };
 
+export const callLogout = (username, password) => {
+  return axios.post("/logout", {
+    username,
+    password,
+  });
+};
+
 export const callFetchAccount = () => {
   return axios.get("/reload");
 };
@@ -108,9 +115,15 @@ export const getMap = () => {
   );
 };
 
+//============== EVENT ===================
 export const getOutstandingEvent = () => {
   return axios.get("/homepage");
 };
+
+export const callGetSingleEvent = (id) => {
+  return axios.get(`/singleEvent/${id}`);
+};
+
 // export const getAPI = () => {
 //   return axios.get("https://jsonplaceholder.typicode.com/todos");
 // };

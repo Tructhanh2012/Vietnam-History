@@ -1,6 +1,15 @@
  @import url('https://fonts.googleapis.com/css2?family=Gentium+Book+Plus:wght@700&display=swap');
 
 
+
+ .ant-divider-inner-text{
+   .ant-breadcrumb{
+      ol{
+         flex-wrap: nowrap!important;
+      }
+   }
+ }
+
 .article-container{
    h2{
                 font-family: 'Gentium Book Plus', serif;

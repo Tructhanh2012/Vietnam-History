@@ -1,6 +1,6 @@
 import { Nav, NavDropdown, Navbar, Offcanvas } from "react-bootstrap";
 import { Button, Input } from "antd";
-import "./header.scss";
+// import "./header.scss";
 import { SearchOutlined } from "@ant-design/icons";
 import imageLogo from "../../assets/logo.png";
 import { CgMenu } from "react-icons/cg";

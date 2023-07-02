@@ -7,9 +7,11 @@ import { useEffect, useState } from "react";
 import { TiTimesOutline } from "react-icons/ti";
 import imageLogo from "../../assets/logo.png";
 import { SearchOutlined } from "@ant-design/icons";
-import { Avatar, Button, Dropdown, Input, Space } from "antd";
+import { Avatar, Button, Dropdown, Input, Space, notification } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { DownOutlined } from "@ant-design/icons";
+import { doLogoutAction } from "../../redux/account/accountSlice";
+import { callLogout } from "../../services/api";
 
 const Navbar = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
@@ -60,10 +62,24 @@ const Navbar = () => {
   const isAuthenticated = useSelector((state) => state.account.isAuthenticated);
   const user = useSelector((state) => state.account.user);
   const dispatch = useDispatch();
+  const [isSubmit, setIsSubmit] = useState(false);
 
-  const handleLogout = () => {
-    dispatch(doLogoutAction());
-    navigate("/login");
+  const handleLogout = async (values) => {
+    const { username, password } = values;
+    setIsSubmit(true);
+    const res = await callLogout(username, password);
+    setIsSubmit(false);
+    if (res && res.status === 404) {
+      console.log("check res logout", res.status);
+      dispatch(doLogoutAction());
+      navigate("/login");
+    } else {
+      notification.error({
+        message: "Có lỗi xảy",
+        description: res.message,
+        duration: 5,
+      });
+    }
   };
   let items = [
     {
