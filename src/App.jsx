@@ -15,13 +15,10 @@ import UserTable from "./components/Admin/User/UserTable";
 import RegisterRole from "./components/Admin/User/RegisterRole";
 import RankingPage from "./pages/rank";
 import TimelinePage from "./pages/timeline";
-import ArticlePage from "./pages/article";
-import QuizzPage from "./pages/quizList";
-import Navbar from "./components/Header/Navbar";
-import QuizzApp from "./components/Quiz";
+// import QuizzApp from "./components/Quiz";
 import BlogPage from "./pages/blog";
 import EditorLayout from "./components/Editor";
-import EditorProfile from "./components/Editor/EditorProfile";
+import EditorProfile from "./components/Editor/Profile/EditorProfile";
 import ManageEvent from "./components/Editor/Article/ManagEvent";
 import EditorCompose from "./components/Editor/Article/EditorCompose";
 import EditorDashboardPage from "./components/Editor/Dashboard/EditorDashboardPage";
@@ -34,6 +31,7 @@ import { doGetAccountAction } from "./redux/account/accountSlice";
 import Loading from "./components/Loading";
 import ProtectedRoute from "./components/ProtectedRoute";
 import ArticleDetails from "./pages/article/ArticleDetails";
+import CreateQuizPage from "./components/Editor/Quiz/CreateQuiz";
 
 /* gọi API
 const getAccount = async () =>
@@ -178,6 +176,11 @@ export default function App() {
           path: "compose-article",
           // element: <TextEditor />,
           element: <EditorCompose />,
+        },
+        {
+          path: "create-quiz",
+          // element: <TextEditor />,
+          element: <CreateQuizPage />,
         },
       ],
     },

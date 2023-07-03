@@ -1,4 +1,6 @@
-import axios from "../utils/axios-customize";
+// import axios from "../utils/axios-customize";
+
+import axios from "axios";
 
 export const callRegister = (username, password, email) => {
   return axios.post("/signup", {
@@ -24,12 +26,12 @@ export const callLogin = (username, password) => {
   });
 };
 
-export const callLogout = (username, password) => {
-  return axios.post("/logout", {
-    username,
-    password,
-  });
-};
+// export const callLogout = (username, password) => {
+//   return axios.post("/logout", {
+//     username,
+//     password,
+//   });
+// };
 
 export const callFetchAccount = () => {
   return axios.get("/reload");
@@ -133,3 +135,26 @@ export const callGetSingleEvent = (id) => {
 //     "https://dashboardcard-733ac-default-rtdb.asia-southeast1.firebasedatabase.app/table"
 //   );
 // };
+
+export const callPostLogin = (email, password) => {
+  return axios.post("https://vietnamhistory-production.up.railway.app/authenticate",
+  {
+    email,
+    password,
+  });
+};
+
+export const callGetHashtag = () => {
+  return axios.get("https://vietnamhistory-production.up.railway.app/general/hashtags");
+}
+
+export const callPostQuiz = () => {
+  return axios.post("https://vietnamhistory-production.up.railway.app/editor/create-questions", {
+    question,
+    firstChoice,
+    secondChoice,
+    thirdChoice,
+    answer,
+    hashtagId
+  })
+}

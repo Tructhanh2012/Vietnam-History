@@ -8,10 +8,12 @@ import {
   Modal,
   message,
   notification,
+  Select,
 } from "antd";
 import TextArea from "antd/es/input/TextArea";
 import { useEffect, useState } from "react";
 import { LoadingOutlined, PlusOutlined } from "@ant-design/icons";
+import { callGetHashtag } from "../../../services/api";
 
 const ManageEventModal = (props) => {
   const { dataUpdate, setDataUpdate, openModalUpdate, setOpenModalUpdate } =
@@ -98,6 +100,7 @@ const ManageEventModal = (props) => {
     // Append title and content to the formData
     formData.append("title", title);
     formData.append("content", content);
+    formData.append("hashtag", selectHashtag)
 
     // Append each file to the formData
     fileList.forEach((file) => {
@@ -105,6 +108,25 @@ const ManageEventModal = (props) => {
     });
   };
 
+  const [hashtag, setHashtag] = useState([]);
+  const [selectHashtag, setSelectHashtag] = useState(null);
+  const getHashtags = async () => {
+    const res = await callGetHashtag();
+    console.log(res.data);
+    const hashtagOptions = res.data.map((item) => ({
+      label: item.name,
+      value: item.id,
+    }));
+    // setHashtag(res.data.map(item =>({ label: item.name, key: item.id })));
+    setHashtag(hashtagOptions)
+  }
+ useEffect(()=> {getHashtags()},[])
+  const handleSelectionChange = (value) => {
+    console.log(`Selected: ${value}`);
+    setSelectHashtag(value);
+
+  // Set giá trị đã chọn vào content
+};
   const uploadButton = (
     <div>
       {uploading ? <LoadingOutlined /> : <PlusOutlined />}
@@ -157,6 +179,17 @@ const ManageEventModal = (props) => {
                 // value={content}
                 rows={7}
                 // onChange={handleContentChange}
+              />
+            </Form.Item>
+
+            <Form.Item name="hashtag">
+              <Select
+                size="middle"
+                placeholder="Hashtag"
+                initialValues={hashtag[0]}
+                onChange={handleSelectionChange}
+                style={{ width: '100%' }}
+                options={hashtag}
               />
             </Form.Item>
 
