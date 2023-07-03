@@ -10,7 +10,7 @@ import { callLogin, callPostLogin } from "../../services/api";
 const LoginPage = () => {
   const navigate = useNavigate();
   const [isSubmit, setIsSubmit] = useState(false);
-  
+
   const onFinish = async (values) => {
     const { email, password } = values;
     setIsSubmit(true);
@@ -18,23 +18,22 @@ const LoginPage = () => {
     const user = res.data.user;
     const jwtToken = res.data.jwtToken;
     const refreshToken = res.data.refreshToken;
-    console.log("check res", res);
     setIsSubmit(false);
-
+    console.log(user);
     if (res?.data) {
-      sessionStorage.setItem("jwtToken", res.jwtToken); //save access_token to localStorage
-      sessionStorage.setItem("refreshToken", res.refreshToken);
+      sessionStorage.setItem("jwtToken", jwtToken); //save access_token to localStorage
+      sessionStorage.setItem("refreshToken", refreshToken);
       sessionStorage.setItem("user", JSON.stringify(user));
-      if(user.role === "ADMIN") {
+      if (user.role === "ADMIN") {
         navigate("/admin");
-      }else if(user.role === "EDITOR"){
+      } else if (user.role === "EDITOR") {
         navigate("/editor");
-      }else if(user.role === "MEMBER"){
+      } else if (user.role === "MEMBER") {
         navigate("/");
       }
       // console.log("check res 2", res);
       message.success("Đăng nhập tài khoản thành công");
-      navigate("/");
+      // navigate("/");
     } else {
       // message.error("Có lỗi xảy ra");
       notification.error({
@@ -46,7 +45,10 @@ const LoginPage = () => {
   };
   return (
     <div className="login-page">
-      <Col span={4} style={{ display: "flex", alignItems: "center" }}></Col>
+      <Col
+        span={4}
+        style={{ display: "flex", alignItems: "center" }}
+      ></Col>
       <div className="login-box">
         <div className="login-form">
           <Form
@@ -105,7 +107,10 @@ const LoginPage = () => {
                 <Row>
                   <Col span={4}></Col>
 
-                  <Col span={16} align="middle">
+                  <Col
+                    span={16}
+                    align="middle"
+                  >
                     <div
                       className="button"
                       // display
@@ -123,7 +128,10 @@ const LoginPage = () => {
                   <Col span={4}></Col>
                 </Row>
                 <Divider>Hoặc</Divider>
-                <p className="text" align="middle">
+                <p
+                  className="text"
+                  align="middle"
+                >
                   Chưa có tài khoản?
                   <span>
                     <Link to="/register"> Đăng ký</Link>

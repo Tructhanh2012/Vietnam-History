@@ -6,20 +6,13 @@ import { Upload, message, Input, Button, Col, Form, Select } from "antd";
 import { LoadingOutlined, PlusOutlined } from "@ant-design/icons";
 import axios from "axios";
 import { callGetHashtag } from "../../../services/api";
+import { error, event, post } from "jquery";
 
 const EditorPage = () => {
+  const [linkImage, setLinkImage] = useState("");
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [fileList, setFileList] = useState([]);
-  const [uploading, setUploading] = useState(false);
-
-  const beforeUpload = (file) => {
-    const isImage = file.type.startsWith("image/");
-    if (!isImage) {
-      message.error("Bạn chỉ có thể upload file ảnh!");
-    }
-    return isImage;
-  };
 
   const handleChange = (info) => {
     let fileList = [...info.fileList];
@@ -31,20 +24,10 @@ const EditorPage = () => {
     setFileList(fileList);
 
     // Display uploading status
-    if (info.file.status === "uploading") {
-      setUploading(true);
-      return;
-    }
 
     // Handle upload success or failure
-    if (info.file.status === "done") {
-      message.success(`${info.file.name} file uploaded thành công.`);
-    } else if (info.file.status === "error") {
-      message.error(`${info.file.name} file upload thất bại.`);
-    }
 
     // Clear uploading status
-    setUploading(false);
   };
 
   const handleTitleChange = (e) => {
@@ -56,33 +39,40 @@ const EditorPage = () => {
   };
   const [selectHashtag, setSelectHashtag] = useState(null);
   const handleSelectionChange = (value) => {
-      console.log(`Selected: ${value}`);
-      setSelectHashtag(value);
-  
+    console.log(`Selected: ${value}`);
+    setSelectHashtag(value);
+
     // Set giá trị đã chọn vào content
   };
 
-  const handleSubmit = () => {
-    // Create a new FormData object
-    const formData = new FormData();
-
-    // Append title and content to the formData
-    formData.append("title", title);
-    formData.append("content", content);
-    formData.append("hashtag", selectHashtag)
-    // Append each file to the formData
-    fileList.forEach((file) => {
-      formData.append("images", file.originFileObj);
-    });
-
+  const handleSubmitClick = async () => {
+    const user = JSON.parse(sessionStorage.getItem("user"));
+    const token = sessionStorage.getItem("jwtToken");
+    let article = {
+      editorId: user.id,
+      hashtagId: selectHashtag,
+      title: title,
+      content: content,
+      image: linkImage,
+    };
+    console.log(article);
+    const response = await fetch(
+      "https://vietnamhistory-production.up.railway.app/editor/create-article",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(article),
+      }
+    );
+    if (!response.ok) {
+      throw new Error("Có lỗi xảy ra, vui lòng thử lại.");
+    }
+    const data = await response.json();
+    console.log(data);
   };
-
-  const uploadButton = (
-    <div>
-      {uploading ? <LoadingOutlined /> : <PlusOutlined />}
-      <div style={{ marginTop: 8 }}>Upload</div>
-    </div>
-  );
 
   const [hashtag, setHashtag] = useState([]);
   const getHashtags = async () => {
@@ -93,18 +83,20 @@ const EditorPage = () => {
       value: item.id,
     }));
     // setHashtag(res.data.map(item =>({ label: item.name, key: item.id })));
-    setHashtag(hashtagOptions)
-  }
- 
+    setHashtag(hashtagOptions);
+  };
 
   useEffect(() => {
-    getHashtags()
-  }, [])
+    getHashtags();
+  }, []);
 
   return (
     <div className="editor">
       <div className="editor-wrapper">
-        <Form name="login" autoComplete="off">
+        <Form
+          name="login"
+          autoComplete="off"
+        >
           <div className="title">
             <Form.Item
               name="title"
@@ -140,29 +132,27 @@ const EditorPage = () => {
                 placeholder="Hashtag"
                 defaultValue={hashtag[0]}
                 onChange={handleSelectionChange}
-                style={{ width: '100%' }}
+                style={{ width: "100%" }}
                 options={hashtag}
               />
             </Form.Item>
 
             <Form.Item name="upload-img">
-              <Upload
-                className="upload-img"
-                action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-                listType="picture-card"
-                fileList={fileList}
-                beforeUpload={beforeUpload}
-                onChange={handleChange}
-              >
-                {fileList.length >= 5 ? null : uploadButton}
-              </Upload>
+              <input
+                placeholder="link ảnh"
+                onChange={(event) => {
+                  setLinkImage(event.target.value);
+                }}
+                type="text"
+                value={linkImage}
+              />
             </Form.Item>
             <Form.Item>
               <Col align="middle">
                 <Button
                   type="primary"
-                  onClick={handleSubmit}
-                  disabled={!title || !content || uploading}
+                  onClick={handleSubmitClick}
+                  disabled={!title || !content}
                 >
                   Submit
                 </Button>
