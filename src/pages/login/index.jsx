@@ -33,7 +33,7 @@ const LoginPage = () => {
       }
       // console.log("check res 2", res);
       message.success("Đăng nhập tài khoản thành công");
-      // navigate("/");
+      navigate("/");
     } else {
       // message.error("Có lỗi xảy ra");
       notification.error({
