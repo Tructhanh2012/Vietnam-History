@@ -11,7 +11,7 @@ import {
 
 import { Breadcrumb, Col, Divider, Modal, Row, Timeline } from "antd";
 import { BsFillBookmarkFill } from "react-icons/bs";
-import { callTimelineEvent, getOutstandingEvent } from "../../services/api";
+import { callTimelineEvent } from "../../services/api";
 import { Link } from "react-router-dom";
 
 function SampleNextArrow({ onClick }) {
@@ -57,33 +57,30 @@ const BreadcrumbRank = () => {
 
 const TimelinePage = () => {
   const [modalVisible, setModalVisible] = useState(false);
-  const [selectedTimeline, setSelectedTimeline] = useState(null);
-  const [events, setEvents] = useState([]);
-  const [outstandList, setOutstandList] = useState([]);
+  const [timelineId, setTimelineId] = useState();
+  const [data, setData] = useState([]);
+  const [eventName, setEventName] = useState();
 
-  const getTimelineEvent = async () => {
-    const res = await callTimelineEvent();
-    setEvents(res);
-  };
-  const callGetOutstandingEvent = async () => {
-    const res = await getOutstandingEvent();
-    console.log("check res timeline: ", res);
-    if (res && res?.listOutstanding) {
-      const listOutstanding = res.listOutstanding;
-      setOutstandList(listOutstanding);
-    }
+  const handleTitleClick = (timeline) => {
+    // setSelectedTimeline(timeline);
+    const id = timeline.id;
+    setTimelineId(id); //
+
+    setModalVisible(true);
   };
 
   useEffect(() => {
-    callGetOutstandingEvent();
+    if (timelineId) {
+      const getTimelineEvent = async () => {
+        const res = await callTimelineEvent(timelineId);
+        const title = res.data.map((item) => item.title);
+        setEventName(title);
+        setData(res.data);
+      };
 
-    getTimelineEvent();
-  }, []);
-
-  const handleTitleClick = (timeline) => {
-    setSelectedTimeline(timeline);
-    setModalVisible(true);
-  };
+      getTimelineEvent();
+    }
+  }, [timelineId]);
 
   const closeModal = () => {
     setModalVisible(false);
@@ -139,16 +136,14 @@ const TimelinePage = () => {
             footer={null}
           >
             <Timeline style={{ marginTop: 25 }}>
-              {events.map((event) => (
-                <Timeline.Item key={event.eventId}>
-                  <Link
-                    to="#"
-                    style={{ textDecoration: "none", color: "inherit" }}
-                  >
-                    {event.eventName}
-                  </Link>
-                </Timeline.Item>
-              ))}
+              <Timeline.Item key={timelineId}>
+                <Link
+                  to="#"
+                  style={{ textDecoration: "none", color: "inherit" }}
+                >
+                  {eventName}
+                </Link>
+              </Timeline.Item>
             </Timeline>
           </Modal>
         </div>
@@ -161,24 +156,32 @@ const TimelinePage = () => {
         </Divider>
         <Row className="text" gutter={{ xs: 8, sm: 16, md: 20, lg: 32 }}>
           <Col md={20} offset={1} xs={22} sm={22}>
-            {outstandList?.map((item, index) => {
-              return (
-                <div className="article" key={index}>
-                  <div className="wrapper" key={item.eventId}>
-                    <div className="image">
-                      <img className="img" src={item.thumbnail} />
-                    </div>
-                    <div className="text">
-                      <h5>{item.eventName}</h5>
-                      <p>{item.content}</p>
-                    </div>
-                    <div className="save-icon">
-                      <BsFillBookmarkFill />
-                    </div>
-                  </div>
+            <div className="article">
+              <div className="wrapper">
+                <div className="image">
+                  <img
+                    className="img"
+                    src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQeIxdyi812Cq3neI9VzsMm2E0AJQ91LVUw_t6EGJ3T0gs8mDpy"
+                  />
                 </div>
-              );
-            })}
+                <div className="text">
+                  <h5>Trận Bản Đông năm 1971</h5>
+                  <p>
+                    Trận Bản Đông là một trận đánh then chốt của Quân đội Nhân
+                    dân Việt Nam trong Chiến dịch Đường 9 - Nam Lào, diễn ra từ
+                    ngày 8 tháng 2 đến ngày 20 tháng 3 năm 1971. Ngày 8 tháng 2
+                    năm 1971, mở màn Chiến dịch Lam Sơn 719, mũi chủ yếu của
+                    Quân lực Việt Nam Cộng hòa do chiến đoàn đặc nhiệm gồm Lữ
+                    đoàn dù số 1, hai Thiết đoàn 11, 17 tiến công theo trục
+                    Đường 9 bằng cơ giới và thiết giáp, trong khi Tiểu đoàn 9
+                    .....
+                  </p>
+                </div>
+                <div className="save-icon">
+                  <BsFillBookmarkFill />
+                </div>
+              </div>
+            </div>
 
             <div className="article">
               <div className="wrapper">

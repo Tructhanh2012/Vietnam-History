@@ -2,7 +2,16 @@ import TextArea from "antd/es/input/TextArea";
 import "./editorCompose.scss";
 
 import React, { useEffect, useState } from "react";
-import { Upload, message, Input, Button, Col, Form, Select } from "antd";
+import {
+  Upload,
+  message,
+  Input,
+  Button,
+  Col,
+  Form,
+  Select,
+  notification,
+} from "antd";
 import { LoadingOutlined, PlusOutlined } from "@ant-design/icons";
 import axios from "axios";
 import { callGetHashtag } from "../../../services/api";
@@ -13,7 +22,7 @@ const EditorPage = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [fileList, setFileList] = useState([]);
-
+  const [isSubmit, setIsSubmit] = useState(false);
   const handleChange = (info) => {
     let fileList = [...info.fileList];
 
@@ -48,6 +57,8 @@ const EditorPage = () => {
   const handleSubmitClick = async () => {
     const user = JSON.parse(sessionStorage.getItem("user"));
     const token = sessionStorage.getItem("jwtToken");
+    setIsSubmit(true);
+
     let article = {
       editorId: user.id,
       hashtagId: selectHashtag,
@@ -55,7 +66,7 @@ const EditorPage = () => {
       content: content,
       image: linkImage,
     };
-    console.log(article);
+    console.log(token);
     const response = await fetch(
       "http://localhost:8084/editor/create-article",
       {
@@ -67,7 +78,11 @@ const EditorPage = () => {
         body: JSON.stringify(article),
       }
     );
+    setIsSubmit(false);
+    console.log("res creat article: ", res);
+    message.success("Viết bài thành công");
     if (!response.ok) {
+      notification.error("Có lỗi xảy ra");
       throw new Error("Có lỗi xảy ra, vui lòng thử lại.");
     }
     const data = await response.json();
@@ -77,7 +92,6 @@ const EditorPage = () => {
   const [hashtag, setHashtag] = useState([]);
   const getHashtags = async () => {
     const res = await callGetHashtag();
-    console.log(res.data);
     const hashtagOptions = res.data.map((item) => ({
       label: item.name,
       value: item.id,
@@ -93,10 +107,7 @@ const EditorPage = () => {
   return (
     <div className="editor">
       <div className="editor-wrapper">
-        <Form
-          name="login"
-          autoComplete="off"
-        >
+        <Form name="login" autoComplete="off">
           <div className="title">
             <Form.Item
               name="title"
@@ -152,6 +163,7 @@ const EditorPage = () => {
                 <Button
                   type="primary"
                   onClick={handleSubmitClick}
+                  loading={isSubmit}
                   disabled={!title || !content}
                 >
                   Submit

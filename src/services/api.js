@@ -83,9 +83,9 @@ export const callMap = () => {
 };
 
 //========== Timeline ====================
-export const callTimelineEvent = () => {
-  return axios.get("/timeline/1");
-};
+// export const callTimelineEvent = () => {
+//   return axios.get("/timeline/1");
+// };
 
 //=====Profile
 export const callUpdateAvatar = (fileImg) => {
@@ -137,16 +137,15 @@ export const callGetSingleEvent = (id) => {
 // };
 
 export const callPostLogin = (email, password) => {
-  return axios.post("http://localhost:8084/authenticate",
-    {
-      email,
-      password,
-    });
+  return axios.post("http://localhost:8084/authenticate", {
+    email,
+    password,
+  });
 };
 
 export const callGetHashtag = () => {
   return axios.get("http://localhost:8084/general/hashtags");
-}
+};
 
 export const callPostQuiz = () => {
   return axios.post("http://localhost:8084/editor/create-questions", {
@@ -155,6 +154,10 @@ export const callPostQuiz = () => {
     secondChoice,
     thirdChoice,
     answer,
-    hashtagId
-  })
-}
+    hashtagId,
+  });
+};
+
+export const callTimelineEvent = (id) => {
+  return axios.post("http://localhost:8084/general/articles-hashtag", { id });
+};
