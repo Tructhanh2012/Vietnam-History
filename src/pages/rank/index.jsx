@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 // import { getRankingData, getMap } from "../../services/api";
 import cup from "../../assets/cup.png";
 import "./rank.scss";
-import { callGetListUser, callGetRanking } from "../../services/api";
+import { callGetRanking } from "../../services/api";
 // import { getRanking } from "../../services/api";
 
 const BreadcrumbRank = () => {
@@ -42,10 +42,11 @@ const RankingTable = () => {
     { key: "3", stt: 3, username: "bcht39", totalquizz: 344, totalscore: 290 },
   ];
 
-  const getRankingData = async (keyword) => {
+  const getRankingData = async () => {
     setIsLoading(true);
-    const res = await callGetRanking(keyword);
-    setListRank(res);
+    const res = await callGetRanking();
+    console.log(res);
+    setListRank(res.data);
     setIsLoading(false);
   };
   useEffect(() => {
@@ -62,17 +63,17 @@ const RankingTable = () => {
     {
       key: "username",
       title: "Biệt danh",
-      dataIndex: "userName",
+      dataIndex: "name",
     },
     {
       key: "totquizz",
       title: "Tổng Quizz",
-      dataIndex: "numbOfQuizzes",
+      dataIndex: "numberOfQuiz",
     },
     {
       key: "totscore",
       title: "Tổng Điểm",
-      dataIndex: "scores",
+      dataIndex: "totalPoint",
     },
   ];
 

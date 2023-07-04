@@ -38,6 +38,7 @@ const items = [
 ];
 
 const ProfilePage = () => {
+  const user = JSON.parse(sessionStorage.getItem("user"));
   const navigate = useNavigate();
   const [isModelOpen, setIsModelOpen] = useState(false);
 
@@ -51,7 +52,6 @@ const ProfilePage = () => {
       key: "logout",
     },
   ];
-  const user = useSelector((state) => state.account.user);
   return (
     <>
       <header
@@ -82,7 +82,7 @@ const ProfilePage = () => {
               <a onClick={(e) => e.preventDefault}>
                 <Space>
                   <div className="account_nav">
-                    Welcome {user.userName}
+                    Welcome {user.name}
                     <DownOutlined />
                   </div>
                 </Space>
@@ -107,7 +107,7 @@ const ProfilePage = () => {
                   <div className="profile-card__cnt js-editor-cnt editor-profile mt-1">
                     <div className="username d-flex info">
                       <h5>Username: </h5>
-                      <span className="information">{user.userName}</span>
+                      <span className="information">{user.name}</span>
                     </div>
                     <div className="email d-flex info ">
                       <h5>Email: </h5>

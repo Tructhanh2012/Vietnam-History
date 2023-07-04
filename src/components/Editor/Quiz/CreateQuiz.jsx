@@ -69,40 +69,6 @@ const CreateQuizPage = () => {
     }
   };
 
-  // const onFinish = async (values) => {
-  //   const {
-  //     question,
-  //     firstChoice,
-  //     secondChoice,
-  //     thirdChoice,
-  //     answer,
-  //     hashtagId,
-  //   } = values;
-  //   setIsSubmit(true);
-
-  //   const selectedHashtag = hashtags.find(
-  //     (item) => item.id === Number(hashtagId)
-  //   );
-
-  //   const data = {
-  //     question,
-  //     firstChoice,
-  //     secondChoice,
-  //     thirdChoice,
-  //     answer,
-  //     hashtagId: selectedHashtag ? selectedHashtag.id : null,
-  //   };
-
-  //   try {
-  //     const res = await callPostQuiz(data);
-  //     console.log("log res:", res);
-  //     setIsSubmit(false);
-  //   } catch (error) {
-  //     console.error(error.response);
-  //     setIsSubmit(false);
-  //   }
-  // };
-
   //=============================================
   const [hashtags, setHashtags] = useState([]);
   const [hashtagId, setHashtagId] = useState();

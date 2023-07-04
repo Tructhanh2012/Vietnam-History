@@ -65,13 +65,13 @@ export const callPostDashboard = () => {
   return axios.post("admin/dashboard/newAccs/1");
 }; //=========================finish admin============================================
 
-export const callGetRanking = (keyword) => {
-  return axios.post("/ranking", {
-    data: {
-      keyword: "",
-    },
-  });
-}; //finish ranking table
+// export const callGetRanking = (keyword) => {
+//   return axios.post("/ranking", {
+//     data: {
+//       keyword: "",
+//     },
+//   });
+// }; //finish ranking table
 
 //=========== Map =======================
 export const callGetEventMap = () => {
@@ -160,4 +160,8 @@ export const callPostQuiz = () => {
 
 export const callTimelineEvent = (id) => {
   return axios.post("http://localhost:8084/general/articles-hashtag", { id });
+};
+
+export const callGetRanking = () => {
+  return axios.get("http://localhost:8084/general/top-member");
 };

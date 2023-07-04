@@ -20,16 +20,19 @@ const LoginPage = () => {
     const jwtToken = res.data.jwtToken;
     const refreshToken = res.data.refreshToken;
     setIsSubmit(false);
-    console.log(user);
-    if (res?.data) {
+    // console.log(user);
+    console.log("res ne:", res);
+    if (res && res?.data) {
+      console.log("here");
       sessionStorage.setItem("jwtToken", jwtToken); //save access_token to localStorage
       sessionStorage.setItem("refreshToken", refreshToken);
       sessionStorage.setItem("user", JSON.stringify(user));
-      if (user.role === "ADMIN") {
+      const userRole = user.role;
+      if (userRole === "ADMIN") {
         navigate("/admin");
-      } else if (user.role === "EDITOR") {
+      } else if (userRole === "EDITOR") {
         navigate("/editor");
-      } else if (user.role === "MEMBER") {
+      } else if (userRole === "MEMBER") {
         navigate("/");
       }
       // console.log("check res 2", res);
@@ -46,10 +49,7 @@ const LoginPage = () => {
   };
   return (
     <div className="login-page">
-      <Col
-        span={4}
-        style={{ display: "flex", alignItems: "center" }}
-      ></Col>
+      <Col span={4} style={{ display: "flex", alignItems: "center" }}></Col>
       <div className="login-box">
         <div className="login-form">
           <Form
@@ -108,10 +108,7 @@ const LoginPage = () => {
                 <Row>
                   <Col span={4}></Col>
 
-                  <Col
-                    span={16}
-                    align="middle"
-                  >
+                  <Col span={16} align="middle">
                     <div
                       className="button"
                       // display
@@ -129,10 +126,7 @@ const LoginPage = () => {
                   <Col span={4}></Col>
                 </Row>
                 <Divider>Hoặc</Divider>
-                <p
-                  className="text"
-                  align="middle"
-                >
+                <p className="text" align="middle">
                   Chưa có tài khoản?
                   <span>
                     <Link to="/register"> Đăng ký</Link>
