@@ -57,7 +57,7 @@ const EditorPage = () => {
     };
     console.log(article);
     const response = await fetch(
-      "https://vietnamhistory-production.up.railway.app/editor/create-article",
+      "http://localhost:8084/editor/create-article",
       {
         method: "POST",
         headers: {

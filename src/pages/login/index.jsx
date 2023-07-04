@@ -15,6 +15,7 @@ const LoginPage = () => {
     const { email, password } = values;
     setIsSubmit(true);
     const res = await callPostLogin(email, password);
+    // console.log("res", res);
     const user = res.data.user;
     const jwtToken = res.data.jwtToken;
     const refreshToken = res.data.refreshToken;
@@ -33,7 +34,7 @@ const LoginPage = () => {
       }
       // console.log("check res 2", res);
       message.success("Đăng nhập tài khoản thành công");
-      navigate("/");
+      // navigate("/");
     } else {
       // message.error("Có lỗi xảy ra");
       notification.error({

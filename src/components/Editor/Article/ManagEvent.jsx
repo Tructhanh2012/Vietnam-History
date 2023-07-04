@@ -21,7 +21,7 @@ const ManageEvent = () => {
       const token = sessionStorage.getItem("jwtToken");
       const id = { id: user.id };
       const response = await fetch(
-        "https://vietnamhistory-production.up.railway.app/editor/articles-editor",
+        "http://localhost:8084/editor/articles-editor",
         {
           method: "POST",
           headers: {
@@ -49,7 +49,7 @@ const ManageEvent = () => {
     // const id = { id: article.id };
     // console.log(id);
     const response = await fetch(
-      "https://vietnamhistory-production.up.railway.app/editor/delete-article",
+      "http://localhost:8084/editor/delete-article",
       {
         method: "DELETE",
         headers: {
@@ -77,17 +77,14 @@ const ManageEvent = () => {
   };
   const handleUpdateArticle = async (articleData) => {
     const token = sessionStorage.getItem("jwtToken");
-    const response = await fetch(
-      "https://vietnamhistory-production.up.railway.app/editor/edit-article",
-      {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify(articleData),
-      }
-    );
+    const response = await fetch("http://localhost:8084/editor/edit-article", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(articleData),
+    });
     if (response.ok) {
       // Update the article in the listArticles state with the updated data
       setListArticles((prevList) =>

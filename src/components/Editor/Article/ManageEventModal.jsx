@@ -50,15 +50,7 @@ const ManageEventModal = (props) => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [fileList, setFileList] = useState([]);
-  const [uploading, setUploading] = useState(false);
-
-  const beforeUpload = (file) => {
-    const isImage = file.type.startsWith("image/");
-    if (!isImage) {
-      message.error("Bạn chỉ có thể upload file ảnh!");
-    }
-    return isImage;
-  };
+  const [linkImage, setLinkImage] = useState("");
 
   const handleChange = (info) => {
     let fileList = [...info.fileList];
@@ -70,20 +62,6 @@ const ManageEventModal = (props) => {
     setFileList(fileList);
 
     // Display uploading status
-    if (info.file.status === "uploading") {
-      setUploading(true);
-      return;
-    }
-
-    // Handle upload success or failure
-    if (info.file.status === "done") {
-      message.success(`${info.file.name} file uploaded thành công.`);
-    } else if (info.file.status === "error") {
-      message.error(`${info.file.name} file upload thất bại.`);
-    }
-
-    // Clear uploading status
-    setUploading(false);
   };
 
   const handleTitleChange = (e) => {
@@ -117,7 +95,7 @@ const ManageEventModal = (props) => {
     try {
       // Call the API to update the article
       const response = await axios.put(
-        "https://vietnamhistory-production.up.railway.app/editor/edit-article",
+        "http://localhost:8084/editor/edit-article",
         formData,
         {
           // Set any additional headers if required
@@ -171,12 +149,6 @@ const ManageEventModal = (props) => {
 
     // Set giá trị đã chọn vào content
   };
-  const uploadButton = (
-    <div>
-      {uploading ? <LoadingOutlined /> : <PlusOutlined />}
-      <div style={{ marginTop: 8 }}>Upload</div>
-    </div>
-  );
 
   return (
     <>
@@ -244,16 +216,14 @@ const ManageEventModal = (props) => {
             </Form.Item>
 
             <Form.Item name="upload-img">
-              <Upload
-                className="upload-img"
-                action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-                listType="picture-card"
-                fileList={fileList}
-                beforeUpload={beforeUpload}
-                onChange={handleChange}
-              >
-                {fileList.length >= 5 ? null : uploadButton}
-              </Upload>
+              <input
+                placeholder="link ảnh"
+                onChange={(event) => {
+                  setLinkImage(event.target.value);
+                }}
+                type="text"
+                value={linkImage}
+              />
             </Form.Item>
           </div>
         </Form>

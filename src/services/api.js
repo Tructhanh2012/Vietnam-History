@@ -137,19 +137,19 @@ export const callGetSingleEvent = (id) => {
 // };
 
 export const callPostLogin = (email, password) => {
-  return axios.post("https://vietnamhistory-production.up.railway.app/authenticate",
-  {
-    email,
-    password,
-  });
+  return axios.post("http://localhost:8084/authenticate",
+    {
+      email,
+      password,
+    });
 };
 
 export const callGetHashtag = () => {
-  return axios.get("https://vietnamhistory-production.up.railway.app/general/hashtags");
+  return axios.get("http://localhost:8084/general/hashtags");
 }
 
 export const callPostQuiz = () => {
-  return axios.post("https://vietnamhistory-production.up.railway.app/editor/create-questions", {
+  return axios.post("http://localhost:8084/editor/create-questions", {
     question,
     firstChoice,
     secondChoice,
