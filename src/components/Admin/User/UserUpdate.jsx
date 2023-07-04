@@ -3,13 +3,7 @@ import { useEffect, useState } from "react";
 import { callUpdateUser } from "../../../services/api";
 
 const UserUpdate = (props) => {
-  const {
-    openModalUpdate,
-    setOpenModalUpdate,
-    dataUpdate,
-    setDataUpdate,
-    fetchUser,
-  } = props;
+  const { openModalUpdate, setOpenModalUpdate, fetchUser } = props;
   const [isSubmit, setIsSubmit] = useState(false);
   const [form] = Form.useForm();
   // console.log("check props: ", props);
@@ -41,9 +35,7 @@ const UserUpdate = (props) => {
     <Modal
       title="Cập nhật người dùng"
       open={openModalUpdate}
-      onOk={() => {
-        form.submit();
-      }}
+      onOk={form.submit}
       onCancel={() => {
         setOpenModalUpdate(false);
         setDataUpdate(null);

@@ -2,6 +2,7 @@ import React from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import $ from "jquery";
 import "./navbar.scss";
+import "./header.scss";
 import { FaBars } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import { TiTimesOutline } from "react-icons/ti";
@@ -59,8 +60,8 @@ const Navbar = () => {
     });
   }, []);
   //=======
-  const isAuthenticated = useSelector((state) => state.account.isAuthenticated);
-  const user = useSelector((state) => state.account.user);
+  const user = JSON.parse(sessionStorage.getItem("user"));
+  console.log(user);
   const dispatch = useDispatch();
   const [isSubmit, setIsSubmit] = useState(false);
 
@@ -134,7 +135,7 @@ const Navbar = () => {
           </label>
         </span> */}
         <span className="btn">
-          {isAuthenticated == false ? (
+          {!user ? (
             <Button className="btn-login" onClick={() => navigate("/login")}>
               Đăng nhập
             </Button>
@@ -143,9 +144,12 @@ const Navbar = () => {
               <a onClick={(e) => e.preventDefault()}>
                 <Space>
                   <div className="account_navbar">
-                    <Avatar src={urlAvatar} style={{ marginRight: 2 }} />
-                    Welcome {user?.userName}
-                    <DownOutlined />
+                    <Avatar
+                      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQd-ySpkhKCTWBYov62UHbrAtaeeQIZVDmL3g&usqp=CAU"
+                      style={{ marginRight: 2 }}
+                    />
+                    Welcome {user?.name}
+                    <DownOutlined style={{ marginLeft: 2 }} />
                   </div>
                 </Space>
               </a>

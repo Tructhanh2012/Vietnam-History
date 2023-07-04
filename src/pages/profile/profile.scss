@@ -73,6 +73,7 @@
     position: absolute;
     top: 0;
     transition: all .3s;
+    
   }
   &__username{
     text-align: center;
@@ -123,3 +124,7 @@
    color: white;
   text-decoration: none;
 }
+
+.info{
+      gap: 12px !important;
+    }

@@ -1,14 +1,25 @@
-import { Avatar, Button, Col, Dropdown, Row, Space, Tabs } from "antd";
+import {
+  Avatar,
+  Button,
+  Col,
+  Divider,
+  Dropdown,
+  Modal,
+  Row,
+  Space,
+  Tabs,
+} from "antd";
 import "./profile.scss";
 import imageLogo from "../../assets/logo.png";
 import FakeContent from "./Tab/FakeContent";
 import { DownOutlined, UserOutlined } from "@ant-design/icons";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ManageAccount from "./Account/ManageAccount";
 import { NavLink, useNavigate } from "react-router-dom";
 import Footer from "../../components/Footer";
 import SavedArticle from "./Tab/SavedArticle";
 import { useSelector } from "react-redux";
+import UserInfo from "./Account/UserInfoUpdate";
 
 const { TabPane } = Tabs;
 const onChange = (key) => {
@@ -52,6 +63,7 @@ const ProfilePage = () => {
       key: "logout",
     },
   ];
+
   return (
     <>
       <header
@@ -83,7 +95,7 @@ const ProfilePage = () => {
                 <Space>
                   <div className="account_nav">
                     Welcome {user.name}
-                    <DownOutlined />
+                    <DownOutlined style={{ width: "0.8em" }} />
                   </div>
                 </Space>
               </a>
@@ -100,7 +112,10 @@ const ProfilePage = () => {
             <div className="profile-container">
               <div className="profile js-profile-card ">
                 <div className="profile__img">
-                  <img src={user.avatar} alt="profile card" />
+                  <img
+                    src="https://haycafe.vn/wp-content/uploads/2022/03/Avatar-hai-1.jpg"
+                    alt="profile card"
+                  />
                 </div>
                 <div className="profile-title">@{user.role}</div>
                 <Row align="middle">
@@ -109,10 +124,10 @@ const ProfilePage = () => {
                       <h5>Username: </h5>
                       <span className="information">{user.name}</span>
                     </div>
-                    <div className="email d-flex info ">
+                    {/* <div className="email d-flex info ">
                       <h5>Email: </h5>
                       <span className="information">{user.email}</span>
-                    </div>
+                    </div> */}
                   </div>
                 </Row>
 
@@ -150,10 +165,26 @@ const ProfilePage = () => {
         </Col>
       </Row>
 
-      <ManageAccount
+      {/* <ManageAccount
         isModelOpen={isModelOpen}
         setIsModelOpen={setIsModelOpen}
-      />
+      /> */}
+
+      {/* <Modal
+        title="Quản lý tài khoản"
+        open={isModelOpen}
+        footer={null}
+        onCancel={() => setIsModelOpen(false)}
+        maskClosable={true}
+        width={"40vw"}
+        confirmLoading={isSubmit}
+      >
+        {/* <Tabs items={items}></Tabs> */}
+      {/* <Divider />
+        <UserInfo />
+      </Modal> */}
+
+      <UserInfo isModelOpen={isModelOpen} setIsModelOpen={setIsModelOpen} />
 
       <div className="footer">
         <Footer />

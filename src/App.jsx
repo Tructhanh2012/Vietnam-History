@@ -32,6 +32,7 @@ import Loading from "./components/Loading";
 import ProtectedRoute from "./components/ProtectedRoute";
 import ArticleDetails from "./pages/article/ArticleDetails";
 import CreateQuizPage from "./components/Editor/Quiz/CreateQuiz";
+import Navbar from "./components/Header/Navbar";
 
 /* gọi API
 const getAccount = async () =>
@@ -55,8 +56,8 @@ const Layout = () => {
   return (
     <>
       <div className="layout-app">
-        <Header />
-        {/* <Navbar /> */}
+        {/* <Header /> */}
+        <Navbar />
         <Outlet />
         <Footer />
       </div>

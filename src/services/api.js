@@ -165,3 +165,11 @@ export const callTimelineEvent = (id) => {
 export const callGetRanking = () => {
   return axios.get("http://localhost:8084/general/top-member");
 };
+
+export const callUpdateProfile = (id, name, password) => {
+  return axios.put("http://localhost:8084/general/update-profile", {
+    id,
+    name,
+    password,
+  });
+};

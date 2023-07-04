@@ -1,6 +1,6 @@
 import { Divider, Modal, Tabs } from "antd";
 import { useState } from "react";
-import UserInfo from "./UserInfo";
+import UserInfo from "./UserInfoUpdate";
 import "./profile.scss";
 
 // import ChangePassword from "./ChangePassword";
