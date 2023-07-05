@@ -20,20 +20,28 @@ const RegisterRole = (props) => {
   const [isSubmit, setIsSubmit] = useState(false);
   const [form] = Form.useForm();
 
-  const onFinish = async (values) => {
-    const { username, password, email, role } = values;
-    setIsSubmit(true);
-    const res = await callRegisterRole(username, password, email, values.role);
-    setIsSubmit(false);
-    if (res && res.responeMessage === "Register successfully") {
-      message.success("Đăng ký role thành công");
-      // navigate("/admin");
+  const onFinish = async (formdata) => {
+    const user = JSON.parse(sessionStorage.getItem("user"));
+    const token = sessionStorage.getItem("jwtToken");
+
+    const data = {
+      name: formdata.name,
+      email: formdata.email,
+      password: formdata.password,
+    };
+    const res = await fetch("http://localhost:8084/admin/create-editor", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(data),
+    });
+    console.log("dataa: ", res);
+    if (!res.ok) {
+      throw new Error("response not okay");
     } else {
-      notification.error({
-        message: "Có lỗi xảy",
-        description: res.responeMessage,
-        duration: 5,
-      });
+      message.success("Tạo tài khoản thành công");
     }
   };
 
@@ -69,7 +77,7 @@ const RegisterRole = (props) => {
                 <div className="content">
                   <Form.Item
                     labelCol={{ span: 5 }}
-                    name="username"
+                    name="name"
                     label="Tên đăng nhập:"
                     rules={[
                       {
@@ -142,18 +150,6 @@ const RegisterRole = (props) => {
                     ]}
                   >
                     <Input.Password />
-                  </Form.Item>
-
-                  <Form.Item
-                    name="role"
-                    label="Role"
-                    labelCol={{ span: 5 }}
-                    rules={[{ required: true, message: "Hãy chọn role!" }]}
-                  >
-                    <Radio.Group>
-                      <Radio value={"ADMIN"}> Admin </Radio>
-                      <Radio value={"EDITOR"}> Editor </Radio>
-                    </Radio.Group>
                   </Form.Item>
 
                   <Form.Item>

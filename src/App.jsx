@@ -93,8 +93,8 @@ export default function App() {
         { index: true, element: <Home /> },
         { path: "rank", element: <RankingPage /> },
         { path: "timeline", element: <TimelinePage /> },
-        { path: "singleEvent/:slug", element: <ArticleDetails /> },
-        // { path: "article/:slug", element: <ArticlePage /> },
+        // { path: "singleEvent/:slug", element: <ArticleDetails /> },
+        { path: "article", element: <ArticleDetails /> },
         {
           path: "quizz",
           // element: <QuizzPage />,
@@ -141,9 +141,7 @@ export default function App() {
           index: true,
           element: (
             // Authenticate !!!!!
-            <ProtectedRoute>
-              <AdminPage />
-            </ProtectedRoute>
+            <AdminPage />
           ),
         },
         {

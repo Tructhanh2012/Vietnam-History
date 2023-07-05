@@ -3,7 +3,13 @@ import { useEffect, useState } from "react";
 import { callUpdateUser } from "../../../services/api";
 
 const UserUpdate = (props) => {
-  const { openModalUpdate, setOpenModalUpdate, fetchUser } = props;
+  const {
+    openModalUpdate,
+    setOpenModalUpdate,
+    fetchUser,
+    dataUpdate,
+    setDataUpdate,
+  } = props;
   const [isSubmit, setIsSubmit] = useState(false);
   const [form] = Form.useForm();
   // console.log("check props: ", props);

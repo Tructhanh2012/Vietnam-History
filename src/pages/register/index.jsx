@@ -73,8 +73,8 @@ const RegisterPage = () => {
                     whitespace: false,
                   },
                   {
-                    max: 7,
-                    message: "Tên đăng nhập không được quá 7 kí tự",
+                    max: 20,
+                    message: "Tên đăng nhập không được quá 20 kí tự",
                   },
                 ]}
               >
@@ -142,24 +142,14 @@ const RegisterPage = () => {
 
               <Form.Item>
                 <Row className="btn-login">
-                  <Col
-                    span={24}
-                    align="middle"
-                  >
-                    <Button
-                      type="primary"
-                      htmlType="submit"
-                      loading={isSubmit}
-                    >
+                  <Col span={24} align="middle">
+                    <Button type="primary" htmlType="submit" loading={isSubmit}>
                       Đăng ký
                     </Button>
                   </Col>
                 </Row>
                 <Divider>Hoặc</Divider>
-                <p
-                  className="text"
-                  align="middle"
-                >
+                <p className="text" align="middle">
                   Đã có tài khoản?
                   <span>
                     <Link to="/login"> Đăng nhập</Link>

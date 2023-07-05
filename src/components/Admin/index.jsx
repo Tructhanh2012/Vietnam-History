@@ -103,64 +103,61 @@ const LayoutAdmin = () => {
       style={{ minHeight: "100vh", overflow: "hidden" }}
       className="layoutAdmin"
     >
-      {isAuthenticated && userRole === "ADMIN" && (
-        <Sider
-          theme="light"
-          collapsible
-          collapsed={collapsed}
-          onCollapse={(value) => setCollapsed(value)}
-        >
-          <div className="layoutAdmin__title">
-            <div
-              style={{
-                height: 32,
-                margin: 16,
-                textAlign: "center",
-                fontSize: "large",
-                marginTop: "30px",
-              }}
-            >
-              Admin
-              <Divider />
-            </div>
-          </div>
-
-          <Menu
-            defaultSelectedKeys={[activeMenu]}
-            mode="inline"
-            items={items}
-            onClick={(e) => setActiveMenu(e.key)}
-          />
-        </Sider>
-      )}
-      <Layout className="layoutAdmin__header">
-        {isAuthenticated && userRole === "ADMIN" && (
-          <Header
+      <Sider
+        theme="light"
+        collapsible
+        collapsed={collapsed}
+        onCollapse={(value) => setCollapsed(value)}
+      >
+        <div className="layoutAdmin__title">
+          <div
             style={{
-              position: "sticky",
-              top: 0,
-              zIndex: 1,
-              width: "100%",
-              display: "flex",
-              alignItems: "center",
-              // height: "20%",
+              height: 32,
+              margin: 16,
+              textAlign: "center",
+              fontSize: "large",
+              marginTop: "30px",
             }}
           >
-            <div
-              className="layoutAdmin__header__welcome"
-              // style={{ position: "absolute", right: "15px" }}
-            >
-              <span>
-                {React.createElement(
-                  collapsed ? MenuUnfoldOutlined : MenuFoldOutlined,
-                  {
-                    className: "trigger",
-                    onClick: () => setCollapsed(!collapsed),
-                  }
-                )}
-              </span>
+            Admin
+            <Divider />
+          </div>
+        </div>
 
-              {/* <Dropdown menu={{ items: itemsDropdown }} trigger={["click"]}>
+        <Menu
+          defaultSelectedKeys={[activeMenu]}
+          mode="inline"
+          items={items}
+          onClick={(e) => setActiveMenu(e.key)}
+        />
+      </Sider>
+      <Layout className="layoutAdmin__header">
+        <Header
+          style={{
+            position: "sticky",
+            top: 0,
+            zIndex: 1,
+            width: "100%",
+            display: "flex",
+            alignItems: "center",
+            // height: "20%",
+          }}
+        >
+          <div
+            className="layoutAdmin__header__welcome"
+            // style={{ position: "absolute", right: "15px" }}
+          >
+            <span>
+              {React.createElement(
+                collapsed ? MenuUnfoldOutlined : MenuFoldOutlined,
+                {
+                  className: "trigger",
+                  onClick: () => setCollapsed(!collapsed),
+                }
+              )}
+            </span>
+
+            {/* <Dropdown menu={{ items: itemsDropdown }} trigger={["click"]}>
                 <a onClick={(e) => e.preventDefault}>
                   <Space>
                     Welcome{user?.userName}
@@ -168,19 +165,16 @@ const LayoutAdmin = () => {
                   </Space>
                 </a>
               </Dropdown> */}
-            </div>
-          </Header>
-        )}
+          </div>
+        </Header>
         <Content>
           <Outlet />
         </Content>
-        {isAuthenticated && userRole === "ADMIN" && (
-          <Footer
-            style={{ padding: 0, display: "flex", justifyContent: "center" }}
-          >
-            webname&copy; 2023.
-          </Footer>
-        )}
+        <Footer
+          style={{ padding: 0, display: "flex", justifyContent: "center" }}
+        >
+          webname&copy; 2023.
+        </Footer>
       </Layout>
     </Layout>
   );

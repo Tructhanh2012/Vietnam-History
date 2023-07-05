@@ -66,27 +66,34 @@ const EditorPage = () => {
       content: content,
       image: linkImage,
     };
-    console.log(token);
-    const response = await fetch(
-      "http://localhost:8084/editor/create-article",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify(article),
+
+    try {
+      const response = await fetch(
+        "http://localhost:8084/editor/create-article",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify(article),
+        }
+      );
+
+      if (response.ok) {
+        message.success("Viết bài thành công");
+      } else {
+        const errorData = await response.json();
+        throw new Error(errorData.message);
       }
-    );
-    setIsSubmit(false);
-    console.log("res creat article: ", res);
-    message.success("Viết bài thành công");
-    if (!response.ok) {
-      notification.error("Có lỗi xảy ra");
-      throw new Error("Có lỗi xảy ra, vui lòng thử lại.");
+    } catch (error) {
+      notification.error({
+        message: "Có lỗi xảy ra",
+        description: error.message,
+      });
+    } finally {
+      setIsSubmit(false);
     }
-    const data = await response.json();
-    console.log(data);
   };
 
   const [hashtag, setHashtag] = useState([]);
