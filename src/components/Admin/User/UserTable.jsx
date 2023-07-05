@@ -1,10 +1,24 @@
-import { Col, Popconfirm, Row, Table, Pagination, Tag } from "antd";
+import {
+  Col,
+  Popconfirm,
+  Row,
+  Table,
+  Pagination,
+  Tag,
+  notification,
+  message,
+} from "antd";
 import InputSearch from "./InputSearch";
 import { DeleteTwoTone, EditTwoTone } from "@ant-design/icons";
 import { useState } from "react";
 import UserUpdate from "./UserUpdate";
-import { callDeleteUser, callGetListUser } from "../../../services/api";
+import {
+  callDeleteUser,
+  callGetEditorList,
+  callGetListUser,
+} from "../../../services/api";
 import { useEffect } from "react";
+import axios from "../../../utils/axios-customize";
 
 const UserTable = () => {
   const [listUser, setListUser] = useState([]);
@@ -16,52 +30,64 @@ const UserTable = () => {
   const [openModalUpdate, setOpenModalUpdate] = useState(false);
   const [dataUpdate, setDataUpdate] = useState(null);
 
-  const fetchUser = async (keyword) => {
+  const [userCount, setUserCount] = useState(0);
+
+  const fetchUser = async () => {
+    // const token = sessionStorage.getItem("jwtToken");
     setIsLoading(true);
-    const res = await callGetListUser(keyword);
-    const userList = res;
+    const res = await axios.get("admin/editors");
+    const response = await axios.get("/admin/members");
+    const userList = [...res, ...response];
     setListUser(userList);
     setIsLoading(false);
   };
-
   useEffect(() => {
     fetchUser();
   }, [dataUpdate]);
 
-  const handleDeleUser = async (userId) => {
-    const res = await callDeleteUser(userId);
-    if (res && res.responeMessage) {
-      message.success("Xoá user thành công");
-      fetchUser();
+  const handleDeleUser = async (id) => {
+    const token = sessionStorage.getItem("jwtToken");
+    const response = await fetch("http://localhost:8084/admin/delete-user", {
+      method: "Delete",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ id: id }),
+    });
+    console.log(response);
+    if (!response.ok) {
+      throw new Error("Có lỗi xảy ra, vui lòng thử lại.");
     } else {
-      notification.error({
-        message: "Có lỗi xảy ra",
-        description: res.responeMessage,
-      });
+      message.success("Xóa người dùng thành công.");
+      const data = await response.json();
+      console.log("data", data);
+      setListUser(data);
+      fetchUser();
     }
   };
 
   const columns = [
     {
       title: "ID",
-      dataIndex: "userId",
-      key: "userId",
+      dataIndex: "id",
+      key: "id",
+    },
+    {
+      title: "Tên",
+      dataIndex: "name",
+      key: "name",
     },
     {
       title: "Email",
       dataIndex: "email",
-      key: "email",
+      key: "mail",
     },
-    {
-      title: "Tên đăng nhập",
-      dataIndex: "username",
-      key: "username",
-    },
-    {
-      title: "Ngày đăng kí",
-      dataIndex: "date",
-      key: "date",
-    },
+    // {
+    //   title: "Role",
+    //   dataIndex: "date",
+    //   key: "date",
+    // },
     {
       title: "Role",
       dataIndex: "role",
@@ -101,7 +127,7 @@ const UserTable = () => {
             placement="leftTop"
             title={"Xác nhận xóa user"}
             description={"Bạn có chắc chắn muốn xóa user này?"}
-            onConfirm={() => handleDeleUser(record.userId)}
+            onConfirm={() => handleDeleUser(record.id)}
             okText="Xác nhận"
             cancelText="Hủy"
           >
@@ -159,7 +185,7 @@ const UserTable = () => {
             pagination={{
               current: current,
               pageSize: 7,
-              total: total,
+              // total: total,
               position: ["bottomCenter"],
             }}
           ></Table>

@@ -12,7 +12,7 @@ const instance = axios.create(
   // console.log("check baseURL: ", baseURL)
 );
 instance.defaults.headers.common = {
-  Authorization: `Bearer ${localStorage.getItem("token")}`,
+  Authorization: `Bearer ${sessionStorage.getItem("jwtToken")}`,
 };
 // Add a request interceptor
 instance.interceptors.request.use(

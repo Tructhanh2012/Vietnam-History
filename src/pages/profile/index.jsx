@@ -43,7 +43,7 @@ const items = [
   },
   {
     key: "3",
-    label: `Quizz đã làm`,
+    label: `Chiến tích`,
     children: <></>,
   },
 ];
@@ -79,7 +79,7 @@ const ProfilePage = () => {
           backgroundColor: "#333",
         }}
       >
-        <div className="wrapper" style={{ padding: "10px" }}>
+        <div className="wrapper" style={{ padding: "0px" }}>
           <span className="logo">
             <NavLink to="/">
               <img alt="" src={imageLogo} />
@@ -94,7 +94,8 @@ const ProfilePage = () => {
               <a onClick={(e) => e.preventDefault}>
                 <Space>
                   <div className="account_nav">
-                    Welcome {user.name}
+                    <span> Xin chào </span>
+                    <span>{user.name} &nbsp;</span>
                     <DownOutlined style={{ width: "0.8em" }} />
                   </div>
                 </Space>

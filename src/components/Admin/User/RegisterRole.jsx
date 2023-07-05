@@ -42,6 +42,7 @@ const RegisterRole = (props) => {
       throw new Error("response not okay");
     } else {
       message.success("Tạo tài khoản thành công");
+      form.resetFields();
     }
   };
 

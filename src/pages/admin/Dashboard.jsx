@@ -108,8 +108,8 @@ const Dashboard = () => {
         </div>
 
         <div className="dashboard_chart" style={{ padding: "45px 90px" }}>
-          {/* <Chartt /> */}
-          <Chart />
+          <Chartt />
+          {/* <Chart /> */}
         </div>
       </div>
     </>

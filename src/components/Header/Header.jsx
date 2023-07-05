@@ -4,7 +4,7 @@ import "./header.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
-const Header = () => {
+const Header2 = () => {
   const [activeItem, setActiveItem] = useState("");
 
   const handleClick = (item) => {
@@ -36,7 +36,7 @@ const Header = () => {
                 icon={faAngleDown}
               />
             </NavLink>
-            <ul className="dropdown">
+            {/* <ul className="dropdown">
               <li>
                 <NavLink to="/timeline/1">
                   {" "}
@@ -260,7 +260,7 @@ const Header = () => {
           <li
             className={activeItem === "article" ? "active" : ""}
             onClick={() => handleClick("article")}
-          >
+          > */}
             <NavLink to="/article" activeClassName="active">
               TƯ LIỆU
             </NavLink>
@@ -295,4 +295,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default Header2;

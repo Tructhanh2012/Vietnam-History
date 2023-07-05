@@ -2,8 +2,6 @@
 
 import axios from "axios";
 
-
-
 export const callRegisterRole = (username, password, email, role) => {
   return axios.post("/admin/accountList/account", {
     username,
@@ -46,10 +44,6 @@ export const callUpdateUser = (userId, userName, email, userRole) => {
     email,
     userRole,
   });
-};
-
-export const callDeleteUser = (userID) => {
-  return axios.delete(`/admin/accountList/account/${userID}`);
 };
 
 export const callGetStatistic = () => {
@@ -174,4 +168,15 @@ export const callUpdateProfile = (id, name, password) => {
     name,
     password,
   });
+};
+
+export const callGetEditorList = () => {
+  return axios.get("http://localhost:8084/admin/editors");
+};
+// export const callGetMemberList = () => {
+//   return axios.get("http://localhost:8084/admin/editors");
+// };
+
+export const callDeleteUser = (id) => {
+  return axios.delete("http://localhost:8084/admin/delete-user", { id });
 };

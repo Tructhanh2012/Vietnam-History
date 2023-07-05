@@ -76,21 +76,15 @@ const LayoutAdmin = () => {
           icon: <HiOutlineHome />,
         },
         {
-          label: <Button onClick={handleLogout}>Đăng xuất</Button>,
+          label: (
+            <Link to="/login">
+              <Button onClick={handleLogout}>Đăng xuất</Button>
+            </Link>
+          ),
           key: "logout",
           icon: <AiOutlineLogout />,
         },
       ],
-    },
-  ];
-  const itemsDropdown = [
-    {
-      label: <label onClick={handleLogout}>Đăng xuất</label>,
-      key: "logout",
-    },
-    {
-      label: <label onClick={() => navigate("/")}>Trang chủ</label>,
-      key: "home",
     },
   ];
 

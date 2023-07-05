@@ -122,7 +122,7 @@ const Home = () => {
                 );
               })}
             </div>
-            ;
+
             <div className="article">
               <div className="wrapper">
                 <div className="image">

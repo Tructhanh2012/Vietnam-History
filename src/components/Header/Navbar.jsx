@@ -59,7 +59,7 @@ const Navbar = () => {
       }, 1000);
     });
   }, []);
-  //=======
+  //=========
   const user = JSON.parse(sessionStorage.getItem("user"));
   console.log(user);
   const dispatch = useDispatch();
@@ -159,7 +159,7 @@ const Navbar = () => {
           )}
         </span>
       </div>
-
+      {/* //====== */}
       <nav className="navbar navbar-expand-lg navbar-mainbg">
         {isNavOpen && (
           <nav className="nav_mobile">
