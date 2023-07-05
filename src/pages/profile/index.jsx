@@ -165,25 +165,6 @@ const ProfilePage = () => {
         </Col>
       </Row>
 
-      {/* <ManageAccount
-        isModelOpen={isModelOpen}
-        setIsModelOpen={setIsModelOpen}
-      /> */}
-
-      {/* <Modal
-        title="Quản lý tài khoản"
-        open={isModelOpen}
-        footer={null}
-        onCancel={() => setIsModelOpen(false)}
-        maskClosable={true}
-        width={"40vw"}
-        confirmLoading={isSubmit}
-      >
-        {/* <Tabs items={items}></Tabs> */}
-      {/* <Divider />
-        <UserInfo />
-      </Modal> */}
-
       <UserInfo isModelOpen={isModelOpen} setIsModelOpen={setIsModelOpen} />
 
       <div className="footer">
