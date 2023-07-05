@@ -151,7 +151,9 @@ const ArticleDetails = () => {
                 {/* <Divider /> */}
                 <div className="d-flex justify-content-between">
                   <Rate />
-                  <Button>Quizz thôi!!</Button>
+                  <Button onClick={() => navigate("/quizdt")}>
+                    Quizz thôi!!
+                  </Button>
                 </div>
                 <Divider style={{ margin: 10 }} />
                 <div

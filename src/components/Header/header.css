@@ -27,9 +27,9 @@
     padding-bottom: 12px;
   }
   
-  .menu li.active {
+  /* .menu li.active {
     background-color: #fff;
-  }
+  } */
   .menu li a.active,
 .menu li a:hover {
   border-bottom-color: #fff; /* Màu border khi kích hoạt hoặc hover */

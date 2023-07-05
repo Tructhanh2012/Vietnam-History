@@ -18,12 +18,7 @@ export const callLogin = (username, password) => {
   });
 };
 
-export const callLogout = (username, password) => {
-  return axios.get("http://localhost:8084/logout", {
-    username,
-    password,
-  });
-};
+
 
 export const callFetchAccount = () => {
   return axios.get("/reload");
@@ -62,9 +57,9 @@ export const callPostDashboard = () => {
 // }; //finish ranking table
 
 //=========== Map =======================
-export const callGetEventMap = () => {
-  return axios.get("map/1");
-};
+// export const callGetEventMap = () => {
+//   return axios.get("map/1");
+// };
 
 export const callMap = () => {
   return axios.get("/map");
@@ -123,6 +118,13 @@ export const callGetSingleEvent = (id) => {
 //     "https://dashboardcard-733ac-default-rtdb.asia-southeast1.firebasedatabase.app/table"
 //   );
 // };
+
+export const callLogout = (username, password) => {
+  return axios.get("http://localhost:8084/logout", {
+    username,
+    password,
+  });
+};
 export const callRegister = (name, email, password) => {
   return axios.post("http://localhost:8084/register", {
     name,

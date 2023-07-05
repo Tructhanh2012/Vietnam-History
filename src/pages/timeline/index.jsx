@@ -3,11 +3,14 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { dataHistoryTimeline } from "../timeline/data";
+import TimelineComponent from "../../components/DongSuKien";
+import { dataTextHistoryTimeline } from "./dataText";
 import "./timeline.scss";
 import {
   MdOutlineArrowBackIos,
   MdOutlineArrowForwardIos,
 } from "react-icons/md";
+import { Pagination } from "antd";
 
 import { Breadcrumb, Col, Divider, Modal, Row, Timeline } from "antd";
 import { BsFillBookmarkFill } from "react-icons/bs";
@@ -16,7 +19,10 @@ import { Link } from "react-router-dom";
 
 function SampleNextArrow({ onClick }) {
   return (
-    <div className="arrow arrow-right " onClick={onClick}>
+    <div
+      className="arrow arrow-right "
+      onClick={onClick}
+    >
       <MdOutlineArrowForwardIos />
     </div>
   );
@@ -60,6 +66,14 @@ const TimelinePage = () => {
   const [timelineId, setTimelineId] = useState();
   const [data, setData] = useState([]);
   const [eventName, setEventName] = useState();
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 6;
+  const totalItems = 80;
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+    window.scrollTo(0, 0);
+  };
 
   const handleTitleClick = (timeline) => {
     // setSelectedTimeline(timeline);
@@ -110,7 +124,10 @@ const TimelinePage = () => {
             {dataHistoryTimeline.map((item) => (
               <div className="card">
                 <div className="card-top">
-                  <h6 key={item.id} onClick={() => handleTitleClick(item)}>
+                  <h6
+                    key={item.id}
+                    onClick={() => handleTitleClick(item)}
+                  >
                     {item.title}
                   </h6>
                 </div>
@@ -149,93 +166,43 @@ const TimelinePage = () => {
         </div>
       </div>
 
-      <></>
-      <div className="article">
-        <Divider orientation="left" style={{ margin: 30 }}>
-          <h6>Bài viết nổi bật</h6>
-        </Divider>
-        <Row className="text" gutter={{ xs: 8, sm: 16, md: 20, lg: 32 }}>
-          <Col md={20} offset={1} xs={22} sm={22}>
-            <div className="article">
-              <div className="wrapper">
-                <div className="image">
-                  <img
-                    className="img"
-                    src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQeIxdyi812Cq3neI9VzsMm2E0AJQ91LVUw_t6EGJ3T0gs8mDpy"
-                  />
-                </div>
-                <div className="text">
-                  <h5>Trận Bản Đông năm 1971</h5>
-                  <p>
-                    Trận Bản Đông là một trận đánh then chốt của Quân đội Nhân
-                    dân Việt Nam trong Chiến dịch Đường 9 - Nam Lào, diễn ra từ
-                    ngày 8 tháng 2 đến ngày 20 tháng 3 năm 1971. Ngày 8 tháng 2
-                    năm 1971, mở màn Chiến dịch Lam Sơn 719, mũi chủ yếu của
-                    Quân lực Việt Nam Cộng hòa do chiến đoàn đặc nhiệm gồm Lữ
-                    đoàn dù số 1, hai Thiết đoàn 11, 17 tiến công theo trục
-                    Đường 9 bằng cơ giới và thiết giáp, trong khi Tiểu đoàn 9
-                    .....
-                  </p>
-                </div>
-                <div className="save-icon">
-                  <BsFillBookmarkFill />
-                </div>
-              </div>
+      <div className="timeline-content-textbelow">
+        <Row>
+          <Col span={14}>
+            <h1>Dòng Lịch Sử</h1>
+            <div>
+              {dataTextHistoryTimeline
+                .slice((currentPage - 1) * pageSize, currentPage * pageSize)
+                .map((item) => (
+                  <div key={item.id}>
+                    <div>
+                      <h2>{item.title}</h2>
+                    </div>
+                    <div>
+                      <p className="timeline-content-textbelow-detail">
+                        {item.content.split("\n").map((line, index) => (
+                          <React.Fragment key={index}>
+                            {line}
+                            <br />
+                          </React.Fragment>
+                        ))}
+                      </p>
+                    </div>
+                  </div>
+                ))}
             </div>
+            <Pagination
+              className="pagination-timeline"
+              total={totalItems}
+              current={currentPage}
+              pageSize={pageSize}
+              onChange={handlePageChange}
+            />
+          </Col>
+          <Col span={2}></Col>
 
-            <div className="article">
-              <div className="wrapper">
-                <div className="image">
-                  <img
-                    className="img"
-                    src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQeIxdyi812Cq3neI9VzsMm2E0AJQ91LVUw_t6EGJ3T0gs8mDpy"
-                  />
-                </div>
-                <div className="text">
-                  <h5>Trận Bản Đông năm 1971</h5>
-                  <p>
-                    Trận Bản Đông là một trận đánh then chốt của Quân đội Nhân
-                    dân Việt Nam trong Chiến dịch Đường 9 - Nam Lào, diễn ra từ
-                    ngày 8 tháng 2 đến ngày 20 tháng 3 năm 1971. Ngày 8 tháng 2
-                    năm 1971, mở màn Chiến dịch Lam Sơn 719, mũi chủ yếu của
-                    Quân lực Việt Nam Cộng hòa do chiến đoàn đặc nhiệm gồm Lữ
-                    đoàn dù số 1, hai Thiết đoàn 11, 17 tiến công theo trục
-                    Đường 9 bằng cơ giới và thiết giáp, trong khi Tiểu đoàn 9
-                    .....
-                  </p>
-                </div>
-                <div className="save-icon">
-                  <BsFillBookmarkFill />
-                </div>
-              </div>
-            </div>
-
-            <div className="article">
-              <div className="wrapper">
-                <div className="image">
-                  <img
-                    className="img"
-                    src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQeIxdyi812Cq3neI9VzsMm2E0AJQ91LVUw_t6EGJ3T0gs8mDpy"
-                  />
-                </div>
-                <div className="text">
-                  <h5>Trận Bản Đông năm 1971</h5>
-                  <p>
-                    Trận Bản Đông là một trận đánh then chốt của Quân đội Nhân
-                    dân Việt Nam trong Chiến dịch Đường 9 - Nam Lào, diễn ra từ
-                    ngày 8 tháng 2 đến ngày 20 tháng 3 năm 1971. Ngày 8 tháng 2
-                    năm 1971, mở màn Chiến dịch Lam Sơn 719, mũi chủ yếu của
-                    Quân lực Việt Nam Cộng hòa do chiến đoàn đặc nhiệm gồm Lữ
-                    đoàn dù số 1, hai Thiết đoàn 11, 17 tiến công theo trục
-                    Đường 9 bằng cơ giới và thiết giáp, trong khi Tiểu đoàn 9
-                    .....
-                  </p>
-                </div>
-                <div className="save-icon">
-                  <BsFillBookmarkFill />
-                </div>
-              </div>
-            </div>
+          <Col span={5}>
+            <TimelineComponent />
           </Col>
         </Row>
       </div>

@@ -1,0 +1,32 @@
+.timeline-list-event {
+  margin-top: 50px;
+}
+.timeline-list-title {
+  font-weight: bold;
+  font-size: 20px;
+  font-family: "Petrona";
+  color: #303030;
+  border-bottom: 1px solid rgb(200, 200, 200);
+}
+.link-timeline-event {
+  text-decoration: none;
+  color: #303030;
+  display: inline-block;
+  background: #f6f7f8;
+  padding: 10px 12px;
+  position: relative;
+  left: 0;
+  margin: 5px;
+}
+li {
+  list-style-type: none;
+}
+.textLink-timeline-event {
+  font-weight: 100;
+  font-size: 18px;
+  font-family: "Petrona";
+}
+.link-timeline-event:hover {
+  background-color: #000;
+  color: #fff;
+}
