@@ -81,36 +81,49 @@ const ManageEventModal = (props) => {
     // setOpenModalUpdate(false);
 
     //Create a new FormData object
-    const formData = new FormData();
+    // const formData = new FormData();
 
     // Append title and content to the formData
-    formData.append("title", title);
-    formData.append("content", content);
-    formData.append("hashtag", selectHashtag);
-
     //Append each file to the formData
-    fileList.forEach((file) => {
-      formData.append("images", file.originFileObj);
-    });
+
+    // formData.append("title", title);
+    // formData.append("content", content);
+    // formData.append("hashtag", selectHashtag);
+
+    // fileList.forEach((file) => {
+    //   formData.append("images", file.originFileObj);
+    // });
+    const user = JSON.parse(sessionStorage.getItem("user"));
+    const token = sessionStorage.getItem("jwtToken");
+    setIsSubmit(true);
+
+    let article = {
+      articleId: dataUpdate.key,
+      hashtagId: selectHashtag,
+      title: title,
+      image: linkImage,
+      content: content,
+    };
+
     try {
       // Call the API to update the article
-      const response = await axios.put(
+      const response = await fetch(
         "http://localhost:8084/editor/edit-article",
-        formData,
         {
-          // Set any additional headers if required
+          method: "PUT",
           headers: {
-            "Content-Type": "multipart/form-data",
-            // Add any authentication headers if required
-            Authorization: "Bearer YOUR_AUTH_TOKEN",
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
           },
+          body: JSON.stringify(article),
         }
       );
 
       // Handle the response
-      if (response.status === 200) {
+      if (response.ok) {
         message.success("Cập nhật bài viết thành công");
         setOpenModalUpdate(false);
+        window.location.reload();
       } else {
         // Handle the error condition
         notification.error({
@@ -125,6 +138,8 @@ const ManageEventModal = (props) => {
         message: "Đã có lỗi xảy ra",
         description: "Đã xảy ra lỗi khi cập nhật bài viết.",
       });
+    } finally {
+      setIsSubmit(false);
     }
   };
 

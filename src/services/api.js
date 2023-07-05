@@ -2,13 +2,7 @@
 
 import axios from "axios";
 
-export const callRegister = (username, password, email) => {
-  return axios.post("/signup", {
-    username,
-    password,
-    email,
-  });
-};
+
 
 export const callRegisterRole = (username, password, email, role) => {
   return axios.post("/admin/accountList/account", {
@@ -26,12 +20,12 @@ export const callLogin = (username, password) => {
   });
 };
 
-// export const callLogout = (username, password) => {
-//   return axios.post("/logout", {
-//     username,
-//     password,
-//   });
-// };
+export const callLogout = (username, password) => {
+  return axios.get("http://localhost:8084/logout", {
+    username,
+    password,
+  });
+};
 
 export const callFetchAccount = () => {
   return axios.get("/reload");
@@ -135,6 +129,14 @@ export const callGetSingleEvent = (id) => {
 //     "https://dashboardcard-733ac-default-rtdb.asia-southeast1.firebasedatabase.app/table"
 //   );
 // };
+export const callRegister = (name, email, password) => {
+  return axios.post("http://localhost:8084/register", {
+    name,
+
+    email,
+    password,
+  });
+};
 
 export const callPostLogin = (email, password) => {
   return axios.post("http://localhost:8084/authenticate", {

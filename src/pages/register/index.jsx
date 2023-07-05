@@ -22,18 +22,18 @@ const RegisterPage = () => {
   const [isSubmit, setIsSubmit] = useState(false);
 
   const onFinish = async (values) => {
-    const { username, password, email } = values;
+    const { name, email, password } = values;
     setIsSubmit(true);
-    const res = await callRegister(username, password, email);
+    const res = await callRegister(name, email, password);
     setIsSubmit(false);
 
-    if (res && res.responeMessage === "Register successfully") {
+    if (res) {
       message.success("Đăng ký tài khoản thành công");
       navigate("/login");
     } else {
       notification.error({
         message: "Có lỗi xảy ra",
-        description: res.responeMessage,
+        description: res.responseMessage,
         duration: 5,
       });
     }
@@ -64,7 +64,7 @@ const RegisterPage = () => {
 
               <Form.Item
                 labelCol={{ span: 24 }}
-                name="username"
+                name="name"
                 label="Tên đăng nhập:"
                 rules={[
                   {
@@ -142,14 +142,24 @@ const RegisterPage = () => {
 
               <Form.Item>
                 <Row className="btn-login">
-                  <Col span={24} align="middle">
-                    <Button type="primary" htmlType="submit" loading={isSubmit}>
+                  <Col
+                    span={24}
+                    align="middle"
+                  >
+                    <Button
+                      type="primary"
+                      htmlType="submit"
+                      loading={isSubmit}
+                    >
                       Đăng ký
                     </Button>
                   </Col>
                 </Row>
                 <Divider>Hoặc</Divider>
-                <p className="text" align="middle">
+                <p
+                  className="text"
+                  align="middle"
+                >
                   Đã có tài khoản?
                   <span>
                     <Link to="/login"> Đăng nhập</Link>
