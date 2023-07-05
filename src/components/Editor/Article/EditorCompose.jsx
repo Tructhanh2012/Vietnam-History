@@ -16,8 +16,10 @@ import { LoadingOutlined, PlusOutlined } from "@ant-design/icons";
 import axios from "axios";
 import { callGetHashtag } from "../../../services/api";
 import { error, event, post } from "jquery";
+import { useNavigate } from "react-router-dom";
 
 const EditorPage = () => {
+  const navigate = useNavigate();
   const [linkImage, setLinkImage] = useState("");
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
@@ -57,7 +59,6 @@ const EditorPage = () => {
   const handleSubmitClick = async () => {
     const user = JSON.parse(sessionStorage.getItem("user"));
     const token = sessionStorage.getItem("jwtToken");
-    setIsSubmit(true);
 
     let article = {
       editorId: user.id,
@@ -67,6 +68,7 @@ const EditorPage = () => {
       image: linkImage,
     };
     console.log(token);
+
     const response = await fetch(
       "http://localhost:8084/editor/create-article",
       {
@@ -78,15 +80,16 @@ const EditorPage = () => {
         body: JSON.stringify(article),
       }
     );
-    setIsSubmit(false);
-    console.log("res creat article: ", res);
-    message.success("Viết bài thành công");
+    console.log("res creat article: ", response);
     if (!response.ok) {
       notification.error("Có lỗi xảy ra");
       throw new Error("Có lỗi xảy ra, vui lòng thử lại.");
     }
     const data = await response.json();
     console.log(data);
+
+    navigate("/editor/manageEvent");
+    message.success("Viết bài thành công");
   };
 
   const [hashtag, setHashtag] = useState([]);
@@ -107,7 +110,10 @@ const EditorPage = () => {
   return (
     <div className="editor">
       <div className="editor-wrapper">
-        <Form name="login" autoComplete="off">
+        <Form
+          name="login"
+          autoComplete="off"
+        >
           <div className="title">
             <Form.Item
               name="title"

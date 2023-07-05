@@ -4,7 +4,7 @@ import "./header.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
-const Header = () => {
+const HeaderPage = () => {
   const [activeItem, setActiveItem] = useState("");
 
   const handleClick = (item) => {
@@ -19,7 +19,11 @@ const Header = () => {
             className={activeItem === "home" ? "active" : ""}
             onClick={() => handleClick("home")}
           >
-            <NavLink to="/" exact activeClassName="active">
+            <NavLink
+              to="/"
+              exact
+              activeClassName="active"
+            >
               TRANG CHỦ
             </NavLink>
           </li>
@@ -29,7 +33,10 @@ const Header = () => {
             }`}
             onClick={() => handleClick("timeline")}
           >
-            <NavLink to="/timeline" activeClassName="active">
+            <NavLink
+              to="/timeline"
+              activeClassName="active"
+            >
               DÒNG THỜI GIAN
               <FontAwesomeIcon
                 className="icon-arrow-dropdown"
@@ -261,7 +268,10 @@ const Header = () => {
             className={activeItem === "article" ? "active" : ""}
             onClick={() => handleClick("article")}
           >
-            <NavLink to="/article" activeClassName="active">
+            <NavLink
+              to="/article"
+              activeClassName="active"
+            >
               TƯ LIỆU
             </NavLink>
           </li>
@@ -269,7 +279,10 @@ const Header = () => {
             className={activeItem === "characters" ? "active" : ""}
             onClick={() => handleClick("characters")}
           >
-            <NavLink to="/characters" activeClassName="active">
+            <NavLink
+              to="/character"
+              activeClassName="active"
+            >
               NHÂN VẬT
             </NavLink>
           </li>
@@ -277,7 +290,10 @@ const Header = () => {
             className={activeItem === "leaderboard" ? "active" : ""}
             onClick={() => handleClick("leaderboard")}
           >
-            <NavLink to="/rank" activeClassName="active">
+            <NavLink
+              to="/rank"
+              activeClassName="active"
+            >
               BẢNG XẾP HẠNG
             </NavLink>
           </li>
@@ -285,7 +301,10 @@ const Header = () => {
             className={activeItem === "quizz" ? "active" : ""}
             onClick={() => handleClick("quizz")}
           >
-            <NavLink to="/quizz" activeClassName="active">
+            <NavLink
+              to="/quizz"
+              activeClassName="active"
+            >
               QUIZ
             </NavLink>
           </li>
@@ -295,4 +314,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default HeaderPage;

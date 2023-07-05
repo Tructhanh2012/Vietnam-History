@@ -6,15 +6,20 @@ import { GrArticle, GrDashboard } from "react-icons/gr";
 import { TfiWrite } from "react-icons/tfi";
 import { TiDocumentAdd } from "react-icons/ti";
 import { CgProfile } from "react-icons/cg";
-import { AiOutlineLogout,  } from "react-icons/ai";
+import { AiOutlineLogout, AiOutlineHome } from "react-icons/ai";
 
-import {MdOutlineQuiz} from "react-icons/md";
-import {BiSelectMultiple} from "react-icons/bi";
+import { MdOutlineQuiz } from "react-icons/md";
+import { BiSelectMultiple } from "react-icons/bi";
 
 const EditorLayout = () => {
   const { Content, Footer, Sider, Header } = Layout;
 
   const items = [
+    {
+      label: <Link to="/">Trang Chủ</Link>,
+      key: "editor-dashboard",
+      icon: <AiOutlineHome size="1.5em" />,
+    },
     {
       label: <Link to="/editor">Dashboard</Link>,
       key: "editor-dashboard",
@@ -45,7 +50,6 @@ const EditorLayout = () => {
           key: "create-quiz",
           icon: <BiSelectMultiple />,
         },
-        
       ],
     },
     {

@@ -70,7 +70,10 @@ const UserTable = () => {
         let color =
           role === "ADMIN" ? "gold" : role === "MEMBER" ? "geekblue" : "green";
         return (
-          <Tag color={color} key={role}>
+          <Tag
+            color={color}
+            key={role}
+          >
             {role.toUpperCase()}
           </Tag>
         );
@@ -149,7 +152,10 @@ const UserTable = () => {
     <>
       <Row gutter={[20, 20]}>
         <Col span={24}>{/* <InputSearch /> */}</Col>
-        <Col span={22} offset={1}>
+        <Col
+          span={22}
+          offset={1}
+        >
           <Table
             className="def"
             loading={isLoading}
