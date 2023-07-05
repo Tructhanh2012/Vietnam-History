@@ -59,8 +59,8 @@ const Layout = () => {
   return (
     <>
       <div className="layout-app">
-        {/* <Header /> */}
-        <Navbar />
+        <HeaderPage />
+        {/* <Navbar /> */}
         <Outlet />
         <Footer />
       </div>
@@ -97,9 +97,10 @@ export default function App() {
         { path: "rank", element: <RankingPage /> },
         { path: "timeline", element: <TimelinePage /> },
         { path: "character", element: <CharactersPage /> },
-
         { path: "singleEvent/:slug", element: <ArticleDetails /> },
         // { path: "article/:slug", element: <ArticlePage /> },
+        // { path: "singleEvent/:slug", element: <ArticleDetails /> },
+        { path: "article", element: <ArticleDetails /> },
         {
           path: "/timeline/:idHistory",
           element: <EventDetail />,
@@ -150,9 +151,11 @@ export default function App() {
           index: true,
           element: (
             // Authenticate !!!!!
+
             // <ProtectedRoute>
             //   <AdminPage />
             // </ProtectedRoute>
+
             <AdminPage />
           ),
         },

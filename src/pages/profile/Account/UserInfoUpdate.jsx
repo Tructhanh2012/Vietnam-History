@@ -22,40 +22,80 @@ const UserInfo = (props) => {
   //const [userAvatar, setUserAvatar] = useState(user?.avatar ?? "");
   const { isModelOpen, setIsModelOpen } = props;
   const [isSubmit, setIsSubmit] = useState(false);
-  const user = JSON.parse(sessionStorage.getItem("user"));
+  const [user, setUser] = useState(JSON.parse(sessionStorage.getItem("user")));
 
   const onFinish = async (formData) => {
-    const user = JSON.parse(sessionStorage.getItem("user"));
-    const data = {
-      id: user.id,
+    const updatedUser = {
+      ...user,
       name: formData.name,
       password: formData.password,
     };
 
     setIsSubmit(true);
-    const res = await fetch("http://localhost:8084/general/update-profile", {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
-    const dataa = await res.json();
-    console.log("dataa: ", dataa);
 
-    setIsSubmit(true);
-    console.log("update user", res);
-    if (res?.ok) {
-      message.success("Cập nhật thông tin user thành công");
-      // sessionStorage.removeItem("token");
-      setIsModelOpen(false);
-    } else {
+    try {
+      const res = await fetch("http://localhost:8084/general/update-profile", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(updatedUser),
+      });
+
+      if (res.ok) {
+        message.success("Cập nhật thông tin user thành công");
+        setIsModelOpen(false);
+        sessionStorage.setItem("user", JSON.stringify(updatedUser));
+        setUser(updatedUser);
+      } else {
+        const errorData = await res.json();
+        throw new Error(errorData.message);
+      }
+    } catch (error) {
       notification.error({
         message: "Đã có lỗi xảy ra",
-        description: res.message,
+        description: error.message,
       });
+    } finally {
+      setIsSubmit(false);
     }
   };
+
+  //   const user = JSON.parse(sessionStorage.getItem("user"));
+  // const [user, setUser] = useState(JSON.parse(sessionStorage.getItem("user")));
+
+  //   const onFinish = async (formData) => {
+  //     const user = JSON.parse(sessionStorage.getItem("user"));
+  //     const data = {
+  //       id: user.id,
+  //       name: formData.name,
+  //       password: formData.password,
+  //     };
+
+  //     setIsSubmit(true);
+  //     const res = await fetch("http://localhost:8084/general/update-profile", {
+  //       method: "PUT",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify(data),
+  //     });
+  //     const dataa = await res.json();
+  //     console.log("dataa: ", dataa);
+
+  //     setIsSubmit(true);
+  //     console.log("update user", res);
+  //     if (res?.ok) {
+  //       message.success("Cập nhật thông tin user thành công");
+  //       // sessionStorage.removeItem("token");
+  //       setIsModelOpen(false);
+  //     } else {
+  //       notification.error({
+  //         message: "Đã có lỗi xảy ra",
+  //         description: res.message,
+  //       });
+  //     }
+  //   };
 
   return (
     <>
@@ -105,7 +145,7 @@ const UserInfo = (props) => {
                     },
                   ]}
                 >
-                  <Input placeholder={user.name} />
+                  <Input placeholder="" />
                 </Form.Item>
 
                 <Form.Item
