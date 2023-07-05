@@ -23,7 +23,6 @@ const LoginPage = () => {
     // console.log(user);
     console.log("res ne:", res);
     if (res && res?.data) {
-      console.log("here");
       sessionStorage.setItem("jwtToken", jwtToken); //save access_token to localStorage
       sessionStorage.setItem("refreshToken", refreshToken);
       sessionStorage.setItem("user", JSON.stringify(user));
@@ -49,7 +48,10 @@ const LoginPage = () => {
   };
   return (
     <div className="login-page">
-      <Col span={4} style={{ display: "flex", alignItems: "center" }}></Col>
+      <Col
+        span={4}
+        style={{ display: "flex", alignItems: "center" }}
+      ></Col>
       <div className="login-box">
         <div className="login-form">
           <Form
@@ -108,7 +110,10 @@ const LoginPage = () => {
                 <Row>
                   <Col span={4}></Col>
 
-                  <Col span={16} align="middle">
+                  <Col
+                    span={16}
+                    align="middle"
+                  >
                     <div
                       className="button"
                       // display
@@ -126,7 +131,10 @@ const LoginPage = () => {
                   <Col span={4}></Col>
                 </Row>
                 <Divider>Hoặc</Divider>
-                <p className="text" align="middle">
+                <p
+                  className="text"
+                  align="middle"
+                >
                   Chưa có tài khoản?
                   <span>
                     <Link to="/register"> Đăng ký</Link>

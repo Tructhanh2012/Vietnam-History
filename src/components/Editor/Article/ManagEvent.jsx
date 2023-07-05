@@ -75,28 +75,6 @@ const ManageEvent = () => {
     setOpenModalUpdate(true);
     setDataUpdate(record);
   };
-  const handleUpdateArticle = async (articleData) => {
-    const token = sessionStorage.getItem("jwtToken");
-    const response = await fetch("http://localhost:8084/editor/edit-article", {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify(articleData),
-    });
-    if (response.ok) {
-      // Update the article in the listArticles state with the updated data
-      setListArticles((prevList) =>
-        prevList.map((article) =>
-          article.id === articleData.id ? articleData : article
-        )
-      );
-      console.log("Cập nhật bài viết thành công");
-    } else {
-      console.error("Lỗi khi cập nhật bài viết");
-    }
-  };
 
   const columns = [
     {
@@ -227,7 +205,6 @@ const ManageEvent = () => {
         dataUpdate={dataUpdate}
         openModalUpdate={openModalUpdate}
         setOpenModalUpdate={setOpenModalUpdate}
-        handleUpdateArticle={handleUpdateArticle}
       />
     </>
   );

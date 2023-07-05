@@ -19,7 +19,7 @@ const LayoutAdmin = () => {
   // const isAuthenticated = window.location.pathname.startsWith("/admin");
   const isAuthenticated = useSelector((state) => state.account.isAuthenticated);
   const user = useSelector((state) => state.account.user);
-  const userRole = user.role;
+  const userRole = user?.role;
   const { Content, Footer, Sider, Header } = Layout;
   const navigate = useNavigate();
   const dispatch = useDispatch();

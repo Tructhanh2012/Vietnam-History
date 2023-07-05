@@ -96,7 +96,10 @@ const Navbar = () => {
     },
     {
       label: (
-        <label style={{ cursor: "pointer" }} onClick={handleLogout}>
+        <label
+          style={{ cursor: "pointer" }}
+          onClick={handleLogout}
+        >
           Đăng xuất
         </label>
       ),
@@ -126,7 +129,10 @@ const Navbar = () => {
           className="logo"
           // to="/"
         >
-          <img alt="" src={imageLogo} />
+          <img
+            alt=""
+            src={imageLogo}
+          />
         </NavLink>
 
         {/* <span className="input_search">
@@ -136,11 +142,17 @@ const Navbar = () => {
         </span> */}
         <span className="btn">
           {!user ? (
-            <Button className="btn-login" onClick={() => navigate("/login")}>
+            <Button
+              className="btn-login"
+              onClick={() => navigate("/login")}
+            >
               Đăng nhập
             </Button>
           ) : (
-            <Dropdown menu={{ items }} trigger={["click"]}>
+            <Dropdown
+              menu={{ items }}
+              trigger={["click"]}
+            >
               <a onClick={(e) => e.preventDefault()}>
                 <Space>
                   <div className="account_navbar">
@@ -166,7 +178,10 @@ const Navbar = () => {
               onClick={handleNavToggle}
               // onClick={animation}
             >
-              <TiTimesOutline size="2em" fill="#fff" />
+              <TiTimesOutline
+                size="2em"
+                fill="#fff"
+              />
             </div>
 
             <ul className="nav_mobilelist">
@@ -175,19 +190,31 @@ const Navbar = () => {
                 <div className="right"></div>
               </div>
               <li className="nav-item mobile">
-                <NavLink className="nav-link " to="/" exact="true">
+                <NavLink
+                  className="nav-link "
+                  to="/"
+                  exact="true"
+                >
                   TRANG CHỦ
                 </NavLink>
               </li>
 
               <li className="nav-item mobile">
-                <NavLink className="nav-link " to="/timeline" exact="true">
+                <NavLink
+                  className="nav-link "
+                  to="/timeline"
+                  exact="true"
+                >
                   DÒNG THỜI GIAN
                 </NavLink>
               </li>
 
               <li className="nav-item mobile">
-                <NavLink className="nav-link  " to="/rank" exact="true">
+                <NavLink
+                  className="nav-link  "
+                  to="/rank"
+                  exact="true"
+                >
                   BẢNG XẾP HẠNG
                 </NavLink>
               </li>
@@ -205,7 +232,10 @@ const Navbar = () => {
           <FaBars fill="#fff" />
         </label>
 
-        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+        <div
+          className="collapse navbar-collapse"
+          id="navbarSupportedContent"
+        >
           <ul className="navbar-nav ml-auto">
             <div className="hori-selector">
               <div className="left"></div>
@@ -213,19 +243,31 @@ const Navbar = () => {
             </div>
 
             <li className="nav-item active">
-              <NavLink className="nav-link" to="/" exact="true">
+              <NavLink
+                className="nav-link"
+                to="/"
+                exact="true"
+              >
                 TRANG CHỦ
               </NavLink>
             </li>
 
             <li className="nav-item">
-              <NavLink className="nav-link" to="/timeline" exact="true">
+              <NavLink
+                className="nav-link"
+                to="/timeline"
+                exact="true"
+              >
                 DÒNG THỜI GIAN
               </NavLink>
             </li>
 
             <li className="nav-item">
-              <NavLink className="nav-link" to="/rank" exact="true">
+              <NavLink
+                className="nav-link"
+                to="/rank"
+                exact="true"
+              >
                 BẢNG XẾP HẠNG
               </NavLink>
             </li>
