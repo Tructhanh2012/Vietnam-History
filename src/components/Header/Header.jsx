@@ -9,33 +9,35 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import { Avatar, Button, Dropdown, Input, Space, notification } from "antd";
 import { DownOutlined } from "@ant-design/icons";
 import { doLogoutAction } from "../../redux/account/accountSlice";
-const HeaderPage = () => {
+const HeaderPage = (props) => {
   const [activeItem, setActiveItem] = useState("");
-
+  const navigate = useNavigate();
   const handleClick = (item) => {
     setActiveItem(item);
   };
   const user = JSON.parse(sessionStorage.getItem("user"));
+  const { token } = props;
   console.log(user);
-  const dispatch = useDispatch();
   const [isSubmit, setIsSubmit] = useState(false);
 
-  const handleLogout = async (values) => {
-    const { username, password } = values;
-    setIsSubmit(true);
-    const res = await callLogout(username, password);
-    setIsSubmit(false);
-    if (res && res.status === 404) {
-      console.log("check res logout", res.status);
-      dispatch(doLogoutAction());
-      navigate("/login");
-    } else {
-      notification.error({
-        message: "Có lỗi xảy",
-        description: res.message,
-        duration: 5,
-      });
-    }
+  const handleLogout = () => {
+    sessionStorage.removeItem("user");
+    sessionStorage.removeItem("token");
+    // const { username, password } = values;
+    // setIsSubmit(true);
+    // const res = await callLogout(username, password);
+    // setIsSubmit(false);
+    // if (res && res.status === 404) {
+    //   console.log("check res logout", res.status);
+    //   dispatch(doLogoutAction());
+    //   navigate("/login");
+    // } else {
+    //   notification.error({
+    //     message: "Có lỗi xảy",
+    //     description: res.message,
+    //     duration: 5,
+    //   });
+    // }
   };
   let items = [
     {
@@ -121,7 +123,7 @@ const HeaderPage = () => {
               className={activeItem === "home" ? "active" : ""}
               onClick={() => handleClick("home")}
             >
-              <NavLink to="/" exact activeClassName="active">
+              <NavLink to="/" exact activeclassname="active">
                 TRANG CHỦ
               </NavLink>
             </li>
@@ -131,7 +133,7 @@ const HeaderPage = () => {
               }`}
               onClick={() => handleClick("timeline")}
             >
-              <NavLink to="/timeline" activeClassName="active">
+              <NavLink to="/timeline" activeclassname="active">
                 DÒNG THỜI GIAN
                 <FontAwesomeIcon className="icon-arrow-dropdown" />
               </NavLink>
@@ -360,7 +362,7 @@ const HeaderPage = () => {
               className={activeItem === "article" ? "active" : ""}
               onClick={() => handleClick("article")}
             >
-              <NavLink to="/article" activeClassName="active">
+              <NavLink to="/article" activeclassname="active">
                 TƯ LIỆU
               </NavLink>
             </li>
@@ -368,7 +370,7 @@ const HeaderPage = () => {
               className={activeItem === "characters" ? "active" : ""}
               onClick={() => handleClick("characters")}
             >
-              <NavLink to="/character" activeClassName="active">
+              <NavLink to="/character" activeclassname="active">
                 NHÂN VẬT
               </NavLink>
             </li>
@@ -376,7 +378,7 @@ const HeaderPage = () => {
               className={activeItem === "leaderboard" ? "active" : ""}
               onClick={() => handleClick("leaderboard")}
             >
-              <NavLink to="/rank" activeClassName="active">
+              <NavLink to="/rank" activeclassname="active">
                 BẢNG XẾP HẠNG
               </NavLink>
             </li>
@@ -384,7 +386,7 @@ const HeaderPage = () => {
               className={activeItem === "quizz" ? "active" : ""}
               onClick={() => handleClick("quizz")}
             >
-              <NavLink to="/quizz" activeClassName="active">
+              <NavLink to="/quizz" activeclassname="active">
                 QUIZ
               </NavLink>
             </li> */}

@@ -49,7 +49,7 @@ const QuizDetail = () => {
 
     console.log("log token:", token);
 
-    const value = { id: 9 };
+    const value = { id: 5 };
 
     try {
       const res = await fetch("http://localhost:8084/member/create-quiz", {
@@ -148,7 +148,7 @@ const QuizDetail = () => {
             ))}
         </div>
         <div className="col-md-3 carddd mt-4 ">
-          <div>
+          {/* <div>
             <div className="card-body border p-2  border-dark rounded">
               <h5 className="card-title">Số câu đã làm </h5>
               <div className="carddd" style={{ width: "25px" }}>
@@ -157,7 +157,7 @@ const QuizDetail = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
           <div className="card-body border p-2 mt-2 border-dark rounded">
             <p>Số câu trả lời đúng: {correctAnswerCount}</p>
           </div>

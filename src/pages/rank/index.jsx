@@ -45,7 +45,7 @@ const RankingTable = () => {
   const getRankingData = async () => {
     setIsLoading(true);
     const res = await callGetRanking();
-    console.log(res);
+    console.log("res ranking:", res);
     setListRank(res.data);
     setIsLoading(false);
   };
@@ -102,8 +102,10 @@ const RankingPage = () => {
       <Row gutter={40}>
         <Col span={15} offset={1}>
           <div className="ranking_table">
-            <h2>Bảng xếp hạng các hào kiệt</h2>
-            <Input placeholder="Nhập tên bạn muốn tìm...." />
+            <div className="table-title" style={{ marginBottom: "20px" }}>
+              <h2>Bảng xếp hạng các hào kiệt</h2>
+            </div>
+            {/* <Input placeholder="Nhập tên bạn muốn tìm...." /> */}
             <RankingTable />
           </div>
           <Row></Row>

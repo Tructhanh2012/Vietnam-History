@@ -132,13 +132,13 @@ const UserInfo = (props) => {
                 <Form.Item
                   labelCol={{ span: 24 }}
                   name="name"
-                  label="Tên đăng nhập:"
+                  label="Tên:"
                   rules={[
-                    {
-                      required: true,
-                      message: "Hãy nhập Tên đăng nhập!",
-                      whitespace: false,
-                    },
+                    // {
+                    //   required: true,
+                    //   message: "Hãy nhập Tên đăng nhập!",
+                    //   whitespace: false,
+                    // },
                     {
                       max: 10,
                       message: "Tên đăng nhập không được quá 10 kí tự",

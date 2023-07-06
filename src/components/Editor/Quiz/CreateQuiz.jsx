@@ -9,6 +9,8 @@ import {
   Row,
   Col,
   Select,
+  message,
+  notification,
 } from "antd";
 import { callGetHashtag } from "../../../services/api";
 import "./createquiz.scss";
@@ -58,14 +60,16 @@ const CreateQuizPage = () => {
 
       if (res.ok) {
         console.log("API call successful");
-        // Xử lý phản hồi từ API nếu cần
+        message.success("Tạo câu hỏi thành công");
       } else {
         console.error("API call failed");
-        // Xử lý lỗi từ API nếu cần
+        notification.error({
+          message: "Đã có lỗi xảy ra",
+          description: "Vui lòng tạo câu hỏi lại!",
+        });
       }
     } catch (error) {
       console.error(error);
-      // Xử lý lỗi nếu có lỗi trong quá trình gọi API
     }
   };
 

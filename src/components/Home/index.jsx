@@ -200,7 +200,7 @@ const Home = () => {
 
         <div className="homepage-month-article">
           <Divider orientation="left">
-            <h6>Blog cá nhân</h6>
+            <h6>Top các hào kiệt</h6>
           </Divider>
           <div className="homepage-month-article-content">
             <Row

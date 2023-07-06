@@ -7,7 +7,8 @@ import { useSelector } from "react-redux";
 const EditorProfile = () => {
   const [openModalUpdate, setOpenModalUpdate] = useState(false);
   const [dataUpdate, setDataUpdate] = useState(null);
-  const user = useSelector((state) => state.account.user);
+  const user = JSON.parse(sessionStorage.getItem("user"));
+
   return (
     <>
       <div className="editor-container">
@@ -23,12 +24,12 @@ const EditorProfile = () => {
             <div className="editor-card__cnt js-editor-cnt editor-profile mt-1">
               <div className="username d-flex info">
                 <h5>Username: </h5>
-                <span className="information">{user.userName}</span>
+                <span className="information">{user.name}</span>
               </div>
-              <div className="email d-flex info ">
+              {/* <div className="email d-flex info ">
                 <h5>Email: </h5>
                 <span className="information">{user.email}</span>
-              </div>
+              </div> */}
             </div>
           </Row>
 
