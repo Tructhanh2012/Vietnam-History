@@ -181,106 +181,111 @@ export const dataTextHistoryTimeline = [
   },
   {
     id: 31,
-    title: "",
-    content: "",
+    title: "Lý Nhân Tông - Lý Càn Đức",
+    content:
+      "Lý Nhân Tông (1072 – 1128)\n\nThái tử Càn Đức là con trưởng của Lý Thánh Tông, mẹ là bà Nguyên phi Ỷ Lan, sau là Thái hậu Linh Nhân, Thái tử sinh ngày 25 tháng Giêng năm Bính Ngọ (1066), khi Lý Thánh Tông mất, Thái tử lên ngôi Hoàng đế (1072) lúc mới 6 tuổi, Hoàng Thái hậu Ỷ Lan phải buông rèm nhiếp chính.\n\nNăm 1075, thời Tống Thần Tông, Vương An Thạch làm Tể tướng âm mưu xâm lược nước ta, Thái úy Lý Thường Kiệt biết rõ âm mưu xâm lược của nhà Tống nên đã đánh phá các căn cứ tập kết lương thực, vũ khí của chúng ở Châu Khâm, Châu Liêm, Châu Ung (Quảng Đông, Quảng Tây) rồi chủ động rút quân về nước lập phòng tuyến ở bờ nam sông Cầu để chặn giặc.",
   },
   {
     id: 32,
-    title: "",
-    content: "",
+    title: "Lý Thần Tông - Lý Dương Hoán",
+    content:
+      'Lý Thần Tông (1128 - 1138)\n\nVua Lý Nhân Tông không có con trai, lập con của em trai là Sùng Hiền Hầu Dương Hoán lên làm Thái tử, kế vị Hoàng đế là vua Lý Thần Tông.\n\nVua Lý Thần Tông khuyến khích phát triển nông nghiệp, thực hiện chính sách "ngụ binh ư nông", cho binh lính đổi phiên, cứ lần lượt 6 tháng một được về làm ruộng, do vậy nhân dân no đủ, an cư lạc nghiệp.',
   },
   {
     id: 33,
-    title: "",
-    content: "",
+    title: "Lý Anh Tông - Lý Thiên Tộ",
+    content:
+      "Lý Anh Tông (1138 - 1175)\n\nLý Thiên Tộ là con đích trưởng của Lý Thần Tông, con bà Lê Hoàng hậu, sinh tháng 4 năm Bính Thìn (1136), lên ngôi Hoàng đế năm 1138, lúc đó mới 3 tuổi. Lê Hoàng hậu cầm quyền nhiếp chính lại tư thông với Đỗ Anh Vũ làm cho triều đình đổ nát, sau nhờ có các trung thần như Tô Hiến Thành, Hoàng Nghĩa Hiền, Lý Công Tín nên giữ vững được cơ đồ nhà Lý.",
   },
   {
     id: 34,
+    title: "Lý Cao Tông - Lý Long Trát",
+    content:
+      "Lý Cao Tông (1176 - 1210)\n\nLý Anh Tông mất, Thái tử Long Cán lúc đó chưa đầy 3 tuổi, bà Chiêu Linh Thái hậu muốn lập con cả của mình là Long Xưởng lên ngôi vua. Bà đem vàng bạc đút lót cho vợ Tô Hiến Thành, nhưng Tô Hiến Thành nhất định không nghe cứ theo di chiếu lập Long Cán lên làm vua, hiệu là Lý Cao Tông. Lớn lên Cao Tông chơi bời vô độ, chính sự hình pháp không rõ ràng, giặc cướp nổi lên như ong, đói kém liên miên, cơ nghiệp nhà Lý từ đó suy đồi.",
+  },
+  {
+    id: 35,
+    title: "Lý Huệ Tông - Lý Sảm",
+    content:
+      "Lý Huệ Tông (1211 - 1224)\n\nThái tử Sảm lên ngôi Hoàng đế, hiệu là Huệ Tông, lập Trần Thị Dung làm nguyên phi, phong cho Trần Tự Khánh làm Chương Tín hầu, Tô Trung Tự làm Thái uý, Thuận Lưu Bá, Trần Thừa làm Nội thị phán thủ.\n\n",
+  },
+  {
+    id: 36,
     title: "",
     content: "",
   },
   {
-    id: 1,
+    id: 37,
     title: "",
     content: "",
   },
   {
-    id: 1,
+    id: 38,
     title: "",
     content: "",
   },
   {
-    id: 1,
+    id: 39,
     title: "",
     content: "",
   },
   {
-    id: 1,
+    id: 40,
     title: "",
     content: "",
   },
   {
-    id: 1,
+    id: 41,
     title: "",
     content: "",
   },
   {
-    id: 1,
+    id: 42,
     title: "",
     content: "",
   },
   {
-    id: 1,
+    id: 43,
     title: "",
     content: "",
   },
   {
-    id: 1,
+    id: 44,
     title: "",
     content: "",
   },
   {
-    id: 1,
+    id: 45,
     title: "",
     content: "",
   },
   {
-    id: 1,
+    id: 46,
     title: "",
     content: "",
   },
   {
-    id: 1,
+    id: 47,
     title: "",
     content: "",
   },
   {
-    id: 1,
+    id: 48,
     title: "",
     content: "",
   },
   {
-    id: 1,
+    id: 49,
     title: "",
     content: "",
   },
   {
-    id: 1,
+    id: 50,
     title: "",
     content: "",
   },
   {
-    id: 1,
-    title: "",
-    content: "",
-  },
-  {
-    id: 1,
-    title: "",
-    content: "",
-  },
-  {
-    id: 1,
+    id: 51,
     title: "",
     content: "",
   },
