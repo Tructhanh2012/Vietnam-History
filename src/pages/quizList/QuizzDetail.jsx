@@ -158,9 +158,9 @@ const QuizDetail = () => {
               </div>
             </div>
           </div> */}
-          <div className="card-body border p-2 mt-2 border-dark rounded">
-            <p>Số câu trả lời đúng: {correctAnswerCount}</p>
-          </div>
+          {/* <div className="card-body border p-2 mt-2 border-dark rounded">
+            {/* <p>Số câu trả lời đúng: {correctAnswerCount}</p> */}
+          {/* </div>  */}
         </div>
         <div className="col-md-8"></div>
         <div className="col-md-4 mt-2">

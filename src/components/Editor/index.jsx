@@ -17,6 +17,7 @@ const EditorLayout = (props) => {
   const handleLogout = () => {
     sessionStorage.removeItem("user");
     sessionStorage.removeItem("token");
+    message.success("Đăng xuất thành công");
   };
   const items = [
     {

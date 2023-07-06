@@ -23,6 +23,8 @@ const HeaderPage = (props) => {
   const handleLogout = () => {
     sessionStorage.removeItem("user");
     sessionStorage.removeItem("token");
+    message.success("Đăng xuất thành công");
+
     // const { username, password } = values;
     // setIsSubmit(true);
     // const res = await callLogout(username, password);

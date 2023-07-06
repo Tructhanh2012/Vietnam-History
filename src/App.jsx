@@ -36,6 +36,7 @@ import Navbar from "./components/Header/Navbar";
 import EventDetail from "./components/DongSuKien/eventDetail";
 import CharactersPage from "./pages/characters";
 import HeaderPage from "./components/Header/Header";
+import EditorTable from "./components/Admin/User/EditorTable";
 
 /* gọi API
 const getAccount = async () =>
@@ -160,8 +161,12 @@ export default function App() {
           ),
         },
         {
-          path: "user",
+          path: "member",
           element: <UserTable />,
+        },
+        {
+          path: "editor",
+          element: <EditorTable />,
         },
         {
           path: "create-role",

@@ -97,7 +97,7 @@ const UserUpdate = (props) => {
           name="email"
           rules={[{ required: true, message: "Vui lòng nhập tên email!" }]}
         >
-          <Input />
+          <Input disabled />
         </Form.Item>
       </Form>
     </Modal>
