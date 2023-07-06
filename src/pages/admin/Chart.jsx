@@ -12,7 +12,6 @@ import {
 } from "chart.js";
 import { useEffect, useState } from "react";
 import { Bar, Line } from "react-chartjs-2";
-import { callPostDashboard } from "../../services/api";
 
 ChartJS.register(
   CategoryScale,

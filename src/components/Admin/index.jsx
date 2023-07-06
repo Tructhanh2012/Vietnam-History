@@ -51,24 +51,23 @@ const LayoutAdmin = (props) => {
     },
     {
       label: <span>Quản lí </span>,
-      // key: "user",
-      // icon: <UserOutlined style={{ fontSize: "1.5em" }} />,
+      key: "crud",
       icon: <MdOutlineManageAccounts style={{ fontSize: "1.8em" }} />,
       children: [
         {
           label: <Link to="/admin/member">MEMBER</Link>,
-          key: "crud",
+          key: "crud-member",
           icon: <TeamOutlined />,
         },
         {
           label: <Link to="/admin/editor">EDITOR</Link>,
-          key: "addrole",
+          key: "crud-editor",
           icon: <UserOutlined />,
         },
       ],
     },
     {
-      label: <Link to="/admin">Tạo Account</Link>,
+      label: <Link to="/admin/create-role">Tạo Account</Link>,
       key: "addrole",
       icon: <UserAddOutlined style={{ fontSize: "1.5em" }} />,
     },

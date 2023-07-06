@@ -34,6 +34,7 @@ const Dashboard = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get("/admin/editor-quantity");
+        // console.log(response);
         setStatistics(response.map((item) => item.quantity));
         const responseNoOfMem = await axios.get("/admin/member-quantity");
         setMemberStistics(responseNoOfMem.map((item) => item.quantity));
