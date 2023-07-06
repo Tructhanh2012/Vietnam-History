@@ -9,7 +9,7 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import { Avatar, Button, Dropdown, Input, Space, notification } from "antd";
 import { DownOutlined } from "@ant-design/icons";
 import { doLogoutAction } from "../../redux/account/accountSlice";
-const HeaderPage = () => {
+const HeaderPage = (props) => {
   const navigate = useNavigate();
   const [activeItem, setActiveItem] = useState("");
 
@@ -17,26 +17,30 @@ const HeaderPage = () => {
     setActiveItem(item);
   };
   const user = JSON.parse(sessionStorage.getItem("user"));
+  const { token } = props;
   console.log(user);
-  const dispatch = useDispatch();
   const [isSubmit, setIsSubmit] = useState(false);
 
-  const handleLogout = async (values) => {
-    const { username, password } = values;
-    setIsSubmit(true);
-    const res = await callLogout(username, password);
-    setIsSubmit(false);
-    if (res && res.status === 404) {
-      console.log("check res logout", res.status);
-      dispatch(doLogoutAction());
-      navigate("/login");
-    } else {
-      notification.error({
-        message: "Có lỗi xảy",
-        description: res.message,
-        duration: 5,
-      });
-    }
+  const handleLogout = () => {
+    sessionStorage.removeItem("user");
+    sessionStorage.removeItem("token");
+    message.success("Đăng xuất thành công");
+
+    // const { username, password } = values;
+    // setIsSubmit(true);
+    // const res = await callLogout(username, password);
+    // setIsSubmit(false);
+    // if (res && res.status === 404) {
+    //   console.log("check res logout", res.status);
+    //   dispatch(doLogoutAction());
+    //   navigate("/login");
+    // } else {
+    //   notification.error({
+    //     message: "Có lỗi xảy",
+    //     description: res.message,
+    //     duration: 5,
+    //   });
+    // }
   };
   let items = [
     {
@@ -137,7 +141,7 @@ const HeaderPage = () => {
               <NavLink
                 to="/"
                 exact
-                activeClassName="active"
+                activeclassname="active"
               >
                 TRANG CHỦ
               </NavLink>
@@ -150,7 +154,7 @@ const HeaderPage = () => {
             >
               <NavLink
                 to="/timeline"
-                activeClassName="active"
+                activeclassname="active"
               >
                 DÒNG THỜI GIAN
                 <FontAwesomeIcon className="icon-arrow-dropdown" />
@@ -393,7 +397,7 @@ const HeaderPage = () => {
             >
               <NavLink
                 to="/character"
-                activeClassName="active"
+                activeclassname="active"
               >
                 NHÂN VẬT
               </NavLink>
@@ -404,7 +408,7 @@ const HeaderPage = () => {
             >
               <NavLink
                 to="/rank"
-                activeClassName="active"
+                activeclassname="active"
               >
                 BẢNG XẾP HẠNG
               </NavLink>
@@ -413,7 +417,7 @@ const HeaderPage = () => {
               className={activeItem === "quizz" ? "active" : ""}
               onClick={() => handleClick("quizz")}
             >
-              <NavLink to="/quizz" activeClassName="active">
+              <NavLink to="/quizz" activeclassname="active">
                 QUIZ
               </NavLink>
             </li> */}

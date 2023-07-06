@@ -7,8 +7,7 @@ const EditorProfileUpdate = (props) => {
     props;
   const [isSubmit, setIsSubmit] = useState(false);
   const [form] = Form.useForm();
-  const user = useSelector((state) => state.account.user);
-
+  const user = JSON.parse(sessionStorage.getItem("user"));
   // console.log("check props: ", props);
   const onFinish = async (values) => {
     const { userId, username, email, role } = values;
@@ -79,7 +78,7 @@ const EditorProfileUpdate = (props) => {
             name="username"
             rules={[{ required: true, message: "Vui lòng nhập tên đăng nhập" }]}
           >
-            <Input placeholder={user.userName} />
+            <Input placeholder={user.name} />
           </Form.Item>
 
           <Form.Item

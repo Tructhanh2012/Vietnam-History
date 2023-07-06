@@ -48,18 +48,27 @@ const items = [
   },
 ];
 
-const ProfilePage = () => {
+const ProfilePage = (props) => {
+  const { token } = props;
   const user = JSON.parse(sessionStorage.getItem("user"));
   const navigate = useNavigate();
   const [isModelOpen, setIsModelOpen] = useState(false);
 
+  const handleLogout = () => {
+    sessionStorage.removeItem("user");
+    sessionStorage.removeItem("token");
+  };
   const itemsDropdown = [
     {
       label: <label onClick={() => navigate("/")}>Trang chủ</label>,
       key: "homepage",
     },
     {
-      label: <label onClick={() => navigate("/login")}>Đăng xuất</label>,
+      label: (
+        <label onClick={(() => navigate("/login"), { handleLogout })}>
+          Đăng xuất
+        </label>
+      ),
       key: "logout",
     },
   ];

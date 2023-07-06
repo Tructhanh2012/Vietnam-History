@@ -20,7 +20,7 @@ import {
 import { useEffect } from "react";
 import axios from "../../../utils/axios-customize";
 
-const UserTable = () => {
+const EditorTable = () => {
   const [listUser, setListUser] = useState([]);
   const [current, setCurrent] = useState(1);
   const [pageSize, setPageSize] = useState(2);
@@ -35,10 +35,10 @@ const UserTable = () => {
   const fetchUser = async () => {
     // const token = sessionStorage.getItem("jwtToken");
     setIsLoading(true);
-    // const res = await axios.get("admin/editors");
-    const response = await axios.get("/admin/members");
+    const res = await axios.get("admin/editors");
+    // const response = await axios.get("/admin/members");
     // const userList = [...res, ...response];
-    setListUser(response);
+    setListUser(res);
     setIsLoading(false);
   };
   useEffect(() => {
@@ -143,21 +143,21 @@ const UserTable = () => {
         );
       },
     },
-    // {
-    //   title: "Cập nhật",
-    //   render: (text, record, index) => {
-    //     return (
-    //       <EditTwoTone
-    //         twoToneColor="#f57800"
-    //         style={{ cursor: "pointer" }}
-    //         onClick={() => {
-    //           setOpenModalUpdate(true);
-    //           setDataUpdate(record);
-    //         }}
-    //       />
-    //     );
-    //   },
-    // },
+    {
+      title: "Cập nhật",
+      render: (text, record, index) => {
+        return (
+          <EditTwoTone
+            twoToneColor="#f57800"
+            style={{ cursor: "pointer" }}
+            onClick={() => {
+              setOpenModalUpdate(true);
+              setDataUpdate(record);
+            }}
+          />
+        );
+      },
+    },
   ];
 
   const onChange = (pagination, filters, sorter, extra) => {
@@ -203,4 +203,4 @@ const UserTable = () => {
   );
 };
 
-export default UserTable;
+export default EditorTable;

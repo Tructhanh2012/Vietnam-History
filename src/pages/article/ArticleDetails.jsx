@@ -150,12 +150,12 @@ const ArticleDetails = () => {
               <div className="article_comment ">
                 {/* <Divider /> */}
                 <div className="d-flex justify-content-between">
-                  <Rate />
+                  {/* <Rate /> */}
                   <Button onClick={() => navigate("/quizdt")}>
                     Quizz thôi!!
                   </Button>
                 </div>
-                <Divider style={{ margin: 10 }} />
+                {/* <Divider style={{ margin: 10 }} />
                 <div
                   className="comment"
                   style={{
@@ -168,8 +168,8 @@ const ArticleDetails = () => {
                   <input
                     //   placeholder="Hãy viết bình luận của bạn..."
                     style={{ width: "80%", height: "80px" }}
-                  />
-                </div>
+                  /> */}
+                {/* </div> */}
               </div>
             </div>
           </Col>

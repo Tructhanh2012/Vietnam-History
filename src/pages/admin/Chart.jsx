@@ -1,5 +1,5 @@
 import { Card } from "antd";
-import axios from "axios";
+import axios from "../../utils/axios-customize";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -34,19 +34,19 @@ const DashboardChart = () => {
   });
 
   useEffect(() => {
-    callPostDashboard().then((res) => {
+    axios.get("/admin/question-quantity").then((res) => {
       const labels = res.map((cart) => {
-        return `Tháng-${cart.month}`;
+        return `${cart.hashtag}`;
       });
       const data = res.map((cart) => {
-        return cart.noOfUsers;
+        return cart.numberOfArticle;
       });
 
       const dataSource = {
         labels,
         datasets: [
           {
-            label: "Số lượng người dùng",
+            label: "Số lượng câu hỏi",
             data: data,
             backgroundColor: "#bc3d52",
           },
@@ -63,7 +63,7 @@ const DashboardChart = () => {
       },
       title: {
         display: true,
-        text: "Lượt truy cập",
+        text: "SỐ LƯỢNG CÂU HỎI THEO THỜI KỲ",
       },
     },
   };

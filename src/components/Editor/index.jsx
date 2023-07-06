@@ -11,9 +11,14 @@ import { AiOutlineLogout, AiOutlineHome } from "react-icons/ai";
 import { MdOutlineQuiz } from "react-icons/md";
 import { BiSelectMultiple } from "react-icons/bi";
 
-const EditorLayout = () => {
+const EditorLayout = (props) => {
+  const { user, token } = props;
   const { Content, Footer, Sider, Header } = Layout;
-
+  const handleLogout = () => {
+    sessionStorage.removeItem("user");
+    sessionStorage.removeItem("token");
+    message.success("Đăng xuất thành công");
+  };
   const items = [
     {
       label: <Link to="/">Trang Chủ</Link>,
@@ -52,15 +57,15 @@ const EditorLayout = () => {
         },
       ],
     },
-    {
-      label: <Link to="/editor/editor-profile">Thông tin cá nhân</Link>,
-      key: "editor-profile",
-      icon: <CgProfile size="1.5em" />,
-    },
+    // {
+    //   label: <Link to="/editor/editor-profile">Thông tin cá nhân</Link>,
+    //   key: "editor-profile",
+    //   icon: <CgProfile size="1.5em" />,
+    // },
     {
       label: (
         <Link to="/login">
-          <Button>Đăng xuất</Button>
+          <Button onClick={handleLogout}>Đăng xuất</Button>
         </Link>
       ),
       key: "btn-logout",

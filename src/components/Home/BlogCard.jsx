@@ -17,7 +17,7 @@ const BlogCard = () => {
             <div className="profile-card__cnt js-profile-cnt">
               <div className="profile-card__username">@tructtse</div>
               <div className="text">
-                <h4>Blog name ne</h4>
+                <h4>Top 1</h4>
                 <p>
                   Lorem ipsum, dolor sit amet consectetur adipisicing elit. Hic
                   cumque tempora, dolore optio cum saepe quibusdam inventore vel
@@ -41,7 +41,7 @@ const BlogCard = () => {
             <div className="profile-card__cnt js-profile-cnt cardd">
               <div className="profile-card__username">@tructtse</div>
               <div className="text">
-                <h4>Blog name ne</h4>
+                <h4>Top 2</h4>
                 <p>
                   Lorem ipsum, dolor sit amet consectetur adipisicing elit. Hic
                   cumque tempora, dolore optio cum saepe quibusdam inventore vel
@@ -64,7 +64,7 @@ const BlogCard = () => {
             <div className="profile-card__cnt js-profile-cnt">
               <div className="profile-card__username">@tructtse</div>
               <div className="text">
-                <h4>Blog name ne</h4>
+                <h4>Top 3</h4>
                 <p>
                   Lorem ipsum, dolor sit amet consectetur adipisicing elit. Hic
                   cumque tempora, dolore optio cum saepe quibusdam inventore vel
@@ -87,7 +87,7 @@ const BlogCard = () => {
             <div className="profile-card__cnt js-profile-cnt">
               <div className="profile-card__username">@tructtse</div>
               <div className="text">
-                <h4>Blog name ne</h4>
+                <h4>Top 4</h4>
                 <p>
                   Lorem ipsum, dolor sit amet consectetur adipisicing elit. Hic
                   cumque tempora, dolore optio cum saepe quibusdam inventore vel

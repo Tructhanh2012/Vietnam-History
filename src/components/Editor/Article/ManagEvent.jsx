@@ -1,4 +1,4 @@
-import { Col, Popconfirm, Row, Table, Pagination, Tag } from "antd";
+import { Col, Popconfirm, Row, Table, Pagination, Tag, message } from "antd";
 import { DeleteTwoTone, EditTwoTone } from "@ant-design/icons";
 import { useState } from "react";
 import { useEffect } from "react";
@@ -61,6 +61,7 @@ const ManageEvent = () => {
       }
     );
     if (response.ok) {
+      message.success("Xóa bài viết thành công");
       setListArticles((prevList) =>
         prevList.filter((article) => article.id !== id)
       );
@@ -175,15 +176,9 @@ const ManageEvent = () => {
 
   return (
     <>
-      <Row
-        gutter={[20, 20]}
-        style={{ marginTop: 40 }}
-      >
+      <Row gutter={[20, 20]} style={{ marginTop: 40 }}>
         <Col span={24}>{/* <InputSearch /> */}</Col>
-        <Col
-          span={22}
-          offset={1}
-        >
+        <Col span={22} offset={1}>
           <Table
             className="def"
             loading={isLoading}
