@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Button, Drawer } from "antd";
 import "./map.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { Link } from "react-router-dom";
 
 const CustomMap = () => {
   const [provinceShow, setProvinceShow] = useState([]);
@@ -27,7 +28,10 @@ const CustomMap = () => {
           loadedHistory.push({
             id: key,
             title: fetchedData[key].title,
+            image: fetchedData[key].image,
             content: fetchedData[key].content,
+            linkHistory: fetchedData[key].link,
+            linkHistory2: fetchedData[key].link2,
           });
         }
 
@@ -717,12 +721,25 @@ const CustomMap = () => {
             strokeWidth="0.1"
           />
           <path
+            className="map-button"
+            onClick={() => ShowHistory("h26")}
             d="M351.1 430.35H349.282L350.744 427.523L350.761 427.49L350.735 427.465L349.963 426.692L351.443 424.226L351.459 424.198L351.441 424.171L349.841 421.871L349.82 421.841L349.785 421.852L348.206 422.346L345.236 420.663L343.743 418.075L343.738 418.066L343.73 418.06L341.644 416.471L341.248 414.888L341.245 414.873L341.233 414.862L339.039 412.967L337.649 410.684L337.451 408.414L340.641 403.829L340.648 403.819L340.649 403.806L340.949 401.506L340.953 401.482L340.935 401.465L339.765 400.294L341.624 397.653L343.695 397.85L343.703 397.85L343.71 397.849L354.61 395.549L354.61 395.55L354.62 395.546L357.312 394.349L360.503 394.15L360.527 394.148L360.541 394.128L361.419 392.86L363.283 393.547L363.306 393.555L363.326 393.542L365.65 392.09V393.6V393.62L365.664 393.635L368.339 396.408L367.656 397.676L367.64 397.705L367.661 397.731L369.661 400.231L369.674 400.248L369.695 400.25L370.741 400.345L370.454 401.974L368.867 403.362L368.848 403.379L368.85 403.404L369.25 408.504L369.249 408.504L369.252 408.513L370.152 411.913L370.151 411.913L370.153 411.918L372.853 418.918L372.853 418.918L372.856 418.925L375.556 423.725L375.556 423.725L375.559 423.729L377.538 426.499L376.96 427.27L376.947 427.287L376.95 427.307L377.732 432.58L376.24 431.368L374.744 428.477L374.736 428.461L374.719 428.454L370.919 426.854L370.904 426.847L370.888 426.851L368.498 427.449L366.208 427.051L366.178 427.045L366.16 427.07L365.573 427.853L362.494 428.25L362.451 428.256L362.45 428.299L362.351 431.75H359.5H359.483L359.47 431.76L356.195 434.241L352.335 432.162L351.142 430.372L351.127 430.35H351.1Z"
             fill="#ED1C24"
             fillOpacity="0.56"
             stroke="black"
             strokeWidth="0.1"
+            onMouseEnter={() => handleMouseEnter("h26")}
+            onMouseLeave={handleMouseLeave}
           />
+          {isHovered === "h26" && (
+            <text
+              className="hover-text"
+              x="51%"
+              y="51%"
+            >
+              Quảng Ngãi
+            </text>
+          )}
           <mask
             id="path-48-inside-4_101_2"
             fill="white"
@@ -936,13 +953,47 @@ const CustomMap = () => {
             {provinceShow.map((province) => (
               <div key={province.title}>
                 <h2>{province.title}</h2>
-                {/* <p>
-                  <img
-                    src={province.image}
-                    alt=""
-                  />
-                </p> */}
+
+                <img
+                  style={{ width: "100%", marginBottom: "15px" }}
+                  src={province.image}
+                  alt=""
+                />
+
                 <p style={{ fontSize: "19px" }}>{province.content}</p>
+                {/* <a href={province.linkHistory}>{province.linkHistory}</a> */}
+                {/* <a
+                  href={province.linkHistory}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {province.linkHistory}
+                </a> */}
+                <h4>Link tham khảo thêm:</h4>
+                <a
+                  href={province.linkHistory}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    wordBreak: "break-all",
+                    display: "block",
+                    maxWidth: "100%",
+                  }}
+                >
+                  {province.linkHistory}
+                </a>
+                <a
+                  href={province.linkHistory2}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    wordBreak: "break-all",
+                    display: "block",
+                    maxWidth: "100%",
+                  }}
+                >
+                  {province.linkHistory2}
+                </a>
               </div>
             ))}
           </Drawer>

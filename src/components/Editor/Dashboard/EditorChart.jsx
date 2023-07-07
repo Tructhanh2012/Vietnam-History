@@ -13,8 +13,10 @@ import {
 
 import "./linechart.scss";
 import { useEffect, useState } from "react";
-import { callPostDashboard } from "../../../services/api";
+// import { callPostDashboard } from "../../../services/api";
 import { Card } from "antd";
+import axios from "../../../utils/axios-customize";
+import { statistic } from "antd/es/theme/internal";
 
 const data = [
   {
@@ -66,18 +68,73 @@ const EditorChart = () => {
     labels: [],
     datasets: [],
   });
+  const [responseData, setResponseData] = useState([]);
+
+  const callPostDashboard = async () => {
+    const user = JSON.parse(sessionStorage.getItem("user"));
+    const token = sessionStorage.getItem("jwtToken");
+    const value = {
+      id: user.id,
+    };
+
+    try {
+      const response = await fetch(
+        "http://localhost:8084/editor/articles-in-week",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify(value),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Error fetching data from API");
+      }
+
+      const data = await response.json();
+
+      if (Array.isArray(data)) {
+        const transformedData = data.map((item) => ({
+          name: item.hashtag,
+          noOfArticles: item.numberOfArticle,
+        }));
+        setResponseData(transformedData);
+      } else {
+        throw new Error("Invalid data format received from API");
+      }
+    } catch (error) {
+      console.error(error);
+      // Handle error state or display error message
+    }
+  };
 
   useEffect(() => {
-    callPostDashboard().then((response) => {
-      const data = response;
-      // console.log("item: ", data);
+    // callPostDashboard().then((response) => {
+    //   const data = response;
+    //   console.log("item: ", data);
 
-      const transformedData = data.map((item) => ({
-        name: `Tháng-${item.month}`,
-        noOfUsers: item.noOfUsers,
-      }));
-      setRevenueData(transformedData);
-    });
+    //   const transformedData = data.map((item) => ({
+    //     name: `Tháng-${item.month}`,
+    //     noOfUsers: item.noOfUsers,
+    //   }));
+    //   setRevenueData(transformedData);
+    // });
+
+    // callPostDashboard().then((response) => {
+    //   const data = response;
+    //   console.log("item: ", data);
+
+    //   const transformedData = responseData.map((item) => ({
+    //     name: `Tháng-${item.hashtag}`,
+    //     noOfUsers: item.noOfUsers,
+    //   }));
+    //   setRevenueData(transformedData);
+    // });
+
+    callPostDashboard();
   }, []);
   return (
     <>
@@ -96,13 +153,13 @@ const EditorChart = () => {
           <AreaChart
             width={750}
             height={300}
-            data={data}
+            data={responseData}
             margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
           >
             <defs>
-              <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="5%" stopColor="#8884d8" stopOpacity={0.8} />
-                <stop offset="95%" stopColor="#8884d8" stopOpacity={0} />
+              <linearGradient id="gradientRed" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="5%" stopColor="#ff4d4d" stopOpacity={0.8} />
+                <stop offset="95%" stopColor="#ff4d4d" stopOpacity={0} />
               </linearGradient>
               <linearGradient id="colorPv" x1="0" y1="0" x2="0" y2="1">
                 <stop offset="5%" stopColor="#82ca9d" stopOpacity={0.8} />
@@ -115,16 +172,17 @@ const EditorChart = () => {
             <Tooltip />
             <Area
               type="monotone"
-              dataKey="noOfUsers"
-              stroke="#8884d8"
+              dataKey="noOfArticles"
+              stroke="#ff4d4d"
               fillOpacity={1}
-              fill="url(#colorUv)"
+              fill="url(#gradientRed)"
             />
             <Area
               type="monotone"
               dataKey="pv"
               stroke="#82ca9d"
               fillOpacity={1}
+              // fill={`url(#color${color})`}
               fill="url(#colorPv)"
             />
           </AreaChart>

@@ -56,6 +56,9 @@ const EditorPage = () => {
     // Set giá trị đã chọn vào content
   };
 
+  const [day, setDay] = useState(new Date().getDate());
+  const [month, setMonth] = useState(new Date().getMonth() + 1);
+
   const handleSubmitClick = async () => {
     const user = JSON.parse(sessionStorage.getItem("user"));
     const token = sessionStorage.getItem("jwtToken");
@@ -66,6 +69,8 @@ const EditorPage = () => {
       title: title,
       content: content,
       image: linkImage,
+      date: Number(day),
+      month: Number(month),
     };
     console.log(token);
 
@@ -110,10 +115,7 @@ const EditorPage = () => {
   return (
     <div className="editor">
       <div className="editor-wrapper">
-        <Form
-          name="login"
-          autoComplete="off"
-        >
+        <Form name="login" autoComplete="off">
           <div className="title">
             <Form.Item
               name="title"

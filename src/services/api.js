@@ -18,8 +18,6 @@ export const callLogin = (username, password) => {
   });
 };
 
-
-
 export const callFetchAccount = () => {
   return axios.get("/reload");
 };
@@ -44,9 +42,9 @@ export const callUpdateUser = (userId, userName, email, userRole) => {
 export const callGetStatistic = () => {
   return axios.get("/admin/dashboard");
 };
-export const callPostDashboard = () => {
-  return axios.post("admin/dashboard/newAccs/1");
-}; //=========================finish admin============================================
+// export const callPostDashboard = () => {
+//   return axios.post("admin/dashboard/newAccs/1");
+// }; //=========================finish admin============================================
 
 // export const callGetRanking = (keyword) => {
 //   return axios.post("/ranking", {

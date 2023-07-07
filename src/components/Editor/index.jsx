@@ -20,11 +20,11 @@ const EditorLayout = (props) => {
     message.success("Đăng xuất thành công");
   };
   const items = [
-    {
-      label: <Link to="/">Trang Chủ</Link>,
-      key: "editor-dashboard",
-      icon: <AiOutlineHome size="1.5em" />,
-    },
+    // {
+    //   label: <Link to="/">Trang Chủ</Link>,
+    //   key: "editor-dashboard",
+    //   icon: <AiOutlineHome size="1.5em" />,
+    // },
     {
       label: <Link to="/editor">Dashboard</Link>,
       key: "editor-dashboard",
