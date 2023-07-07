@@ -19,10 +19,7 @@ import { Link } from "react-router-dom";
 
 function SampleNextArrow({ onClick }) {
   return (
-    <div
-      className="arrow arrow-right "
-      onClick={onClick}
-    >
+    <div className="arrow arrow-right " onClick={onClick}>
       <MdOutlineArrowForwardIos />
     </div>
   );
@@ -84,12 +81,16 @@ const TimelinePage = () => {
   };
 
   useEffect(() => {
+    // console.log("timelineid", timelineId);
     if (timelineId) {
       const getTimelineEvent = async () => {
         const res = await callTimelineEvent(timelineId);
-        const title = res.data.map((item) => item.title);
-        setEventName(title);
-        setData(res.data);
+        console.log("data ne", res.data);
+        const name = res.data;
+        // const title = res.map((item) => item.title);
+        setEventName(name);
+        console.log("eventName", eventName);
+        setData(res);
       };
 
       getTimelineEvent();
@@ -124,10 +125,7 @@ const TimelinePage = () => {
             {dataHistoryTimeline.map((item) => (
               <div className="card">
                 <div className="card-top">
-                  <h6
-                    key={item.id}
-                    onClick={() => handleTitleClick(item)}
-                  >
+                  <h6 key={item.id} onClick={() => handleTitleClick(item)}>
                     {item.title}
                   </h6>
                 </div>
@@ -147,20 +145,23 @@ const TimelinePage = () => {
           </Slider>
           <Modal
             // title={selectedTimeline?.title}
-            title="Các sự kiện nổi bật:"
+            title="Các sự kiện nổi bật trong thời kỳ:"
             open={modalVisible}
             onCancel={closeModal}
             footer={null}
           >
-            <Timeline style={{ marginTop: 25 }}>
-              <Timeline.Item key={timelineId}>
-                <Link
-                  to="#"
-                  style={{ textDecoration: "none", color: "inherit" }}
-                >
-                  {eventName}
-                </Link>
-              </Timeline.Item>
+            <Timeline style={{ marginTop: 25 }} key={timelineId}>
+              {eventName &&
+                eventName.map((item) => (
+                  <Timeline.Item key={item.id}>
+                    <Link
+                      to="#"
+                      style={{ textDecoration: "none", color: "inherit" }}
+                    >
+                      {item.title}
+                    </Link>
+                  </Timeline.Item>
+                ))}
             </Timeline>
           </Modal>
         </div>

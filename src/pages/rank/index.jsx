@@ -30,18 +30,6 @@ const RankingTable = () => {
   const [listRank, setListRank] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  const data = [
-    {
-      key: "1",
-      stt: 1,
-      username: "tranha03",
-      totalquizz: 3000,
-      totalscore: 2930,
-    },
-    { key: "2", stt: 2, username: "ttt22", totalquizz: 1888, totalscore: 3906 },
-    { key: "3", stt: 3, username: "bcht39", totalquizz: 344, totalscore: 290 },
-  ];
-
   const getRankingData = async () => {
     setIsLoading(true);
     const res = await callGetRanking();

@@ -109,7 +109,7 @@ const HeaderPage = (props) => {
                       src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQd-ySpkhKCTWBYov62UHbrAtaeeQIZVDmL3g&usqp=CAU"
                       style={{ marginRight: 2 }}
                     />
-                    Welcome {user?.name}
+                    Xin chào {user?.name}
                     <DownOutlined style={{ marginLeft: 2 }} />
                   </div>
                 </Space>

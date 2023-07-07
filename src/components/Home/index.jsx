@@ -285,7 +285,9 @@ const Home = () => {
                   />
                 </Card>
               </Col> */}
-              <BlogCard />
+              <Col offset={2}>
+                <BlogCard />
+              </Col>
             </Row>
           </div>
         </div>

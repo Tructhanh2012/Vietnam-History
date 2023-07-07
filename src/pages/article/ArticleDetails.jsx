@@ -11,10 +11,11 @@ import {
 } from "antd";
 import "./article.scss";
 import { callGetSingleEvent } from "../../services/api";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 const ArticleDetails = () => {
+  const navigate = useNavigate();
   const BreadcrumbArticle = () => {
     return (
       <Breadcrumb

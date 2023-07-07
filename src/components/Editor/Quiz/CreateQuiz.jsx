@@ -61,6 +61,7 @@ const CreateQuizPage = () => {
       if (res.ok) {
         console.log("API call successful");
         message.success("Tạo câu hỏi thành công");
+        form.resetFields();
       } else {
         console.error("API call failed");
         notification.error({

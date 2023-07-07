@@ -27,11 +27,11 @@ const onChange = (key) => {
 };
 
 const items = [
-  {
-    key: "1",
-    label: `Bài viết đã xem`,
-    children: <FakeContent />,
-  },
+  // {
+  //   key: "1",
+  //   label: `Bài viết đã xem`,
+  //   children: <FakeContent />,
+  // },
   {
     key: "2",
     label: `Bài viết đã lưu`,
