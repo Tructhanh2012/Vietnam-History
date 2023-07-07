@@ -6,6 +6,7 @@ import CountUp from "react-countup";
 import { FaRegNewspaper } from "react-icons/fa";
 import LineChart from "./EditorChart";
 import EditorChart from "./EditorChart";
+import { Header } from "antd/es/layout/layout";
 
 const DashboardCard = ({ title, value, icon }) => {
   return (
@@ -45,7 +46,7 @@ const EditorDashboardPage = () => {
     <>
       <div className="dashboard">
         <div className="dashboard_card">
-          <Row
+          {/* <Row
             gutter={40}
             style={{
               background: "#001529",
@@ -109,7 +110,20 @@ const EditorDashboardPage = () => {
                 }
               />
             </Col>
-          </Row>
+          </Row> */}
+
+          <Header
+            style={{
+              position: "sticky",
+              top: 0,
+              zIndex: 1,
+              width: "100%",
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
+            <div className="layoutAdmin__header__welcome"></div>
+          </Header>
         </div>
 
         <div className="dashboard_chart" style={{ padding: "45px 90px" }}>

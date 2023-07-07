@@ -1,0 +1,11 @@
+.pcContentEditor {
+   position: relative;
+
+   :global {
+      .cke_screen_reader_only {
+         &.cke_copyformatting_notification {
+            display: none;
+         }
+      }
+   }
+}

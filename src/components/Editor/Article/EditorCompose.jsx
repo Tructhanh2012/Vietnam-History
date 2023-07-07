@@ -1,4 +1,5 @@
 import TextArea from "antd/es/input/TextArea";
+import Ckeditor from "../../../components/Ckeditor/content-editor/ckeditor";
 import "./editorCompose.scss";
 
 import React, { useEffect, useState } from "react";
@@ -45,8 +46,8 @@ const EditorPage = () => {
     setTitle(e.target.value);
   };
 
-  const handleContentChange = (e) => {
-    setContent(e.target.value);
+  const handleContentChange = (value) => {
+    setContent(value);
   };
   const [selectHashtag, setSelectHashtag] = useState(null);
   const handleSelectionChange = (value) => {
@@ -137,13 +138,7 @@ const EditorPage = () => {
 
           <div className="editor-content">
             <Form.Item name="textArea">
-              <TextArea
-                className="text-area"
-                placeholder="Nội dung bài viết"
-                value={content}
-                rows={7}
-                onChange={handleContentChange}
-              />
+              <Ckeditor onChange={handleContentChange} />
             </Form.Item>
             <Form.Item name="hashtag">
               <Select

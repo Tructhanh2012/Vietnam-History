@@ -68,7 +68,7 @@ const ArticleDetails = () => {
   return (
     <>
       <Divider orientation="left">
-        <BreadcrumbArticle />
+        <BreadcrumbArticle style={{ padding: "44px 20px 40px 0" }} />
       </Divider>
       <div className="article-container">
         <Row gutter={[20, 20]}>

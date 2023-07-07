@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+
 import "./register.scss";
 import { Button, Col, Divider, Form, Input, Row, Space, message } from "antd";
 import { Link, useNavigate } from "react-router-dom";
@@ -65,16 +66,16 @@ const RegisterPage = () => {
               <Form.Item
                 labelCol={{ span: 24 }}
                 name="name"
-                label="Tên đăng nhập:"
+                label="Tên:"
                 rules={[
                   {
                     required: true,
-                    message: "Hãy nhập Tên đăng nhập!",
+                    message: "Hãy nhập Tên của bạn!",
                     whitespace: false,
                   },
                   {
                     max: 20,
-                    message: "Tên đăng nhập không được quá 20 kí tự",
+                    message: "Tên không được quá 20 kí tự",
                   },
                 ]}
               >
