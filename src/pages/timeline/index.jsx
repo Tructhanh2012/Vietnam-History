@@ -65,7 +65,7 @@ const TimelinePage = () => {
   const [eventName, setEventName] = useState();
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 6;
-  const totalItems = 80;
+  const totalItems = 105;
 
   const handlePageChange = (page) => {
     setCurrentPage(page);

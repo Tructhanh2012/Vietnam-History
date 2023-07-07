@@ -10,8 +10,9 @@ import { Avatar, Button, Dropdown, Input, Space, notification } from "antd";
 import { DownOutlined } from "@ant-design/icons";
 import { doLogoutAction } from "../../redux/account/accountSlice";
 const HeaderPage = (props) => {
-  const [activeItem, setActiveItem] = useState("");
   const navigate = useNavigate();
+  const [activeItem, setActiveItem] = useState("");
+
   const handleClick = (item) => {
     setActiveItem(item);
   };
@@ -56,7 +57,10 @@ const HeaderPage = (props) => {
     {
       label: (
         <Link to="/login">
-          <label style={{ cursor: "pointer" }} onClick={handleLogout}>
+          <label
+            style={{ cursor: "pointer" }}
+            onClick={handleLogout}
+          >
             Đăng xuất
           </label>
         </Link>
@@ -87,7 +91,10 @@ const HeaderPage = (props) => {
           className="logo"
           // to="/"
         >
-          <img alt="" src={imageLogo} />
+          <img
+            alt=""
+            src={imageLogo}
+          />
         </NavLink>
 
         {/* <span className="input_search">
@@ -97,11 +104,17 @@ const HeaderPage = (props) => {
         </span> */}
         <span className="btn">
           {!user ? (
-            <Button className="btn-login" onClick={() => navigate("/login")}>
+            <Button
+              className="btn-login"
+              onClick={() => navigate("/login")}
+            >
               Đăng nhập
             </Button>
           ) : (
-            <Dropdown menu={{ items }} trigger={["click"]}>
+            <Dropdown
+              menu={{ items }}
+              trigger={["click"]}
+            >
               <a onClick={(e) => e.preventDefault()}>
                 <Space>
                   <div className="account_navbar">
@@ -125,7 +138,11 @@ const HeaderPage = (props) => {
               className={activeItem === "home" ? "active" : ""}
               onClick={() => handleClick("home")}
             >
-              <NavLink to="/" exact activeclassname="active">
+              <NavLink
+                to="/"
+                exact
+                activeclassname="active"
+              >
                 TRANG CHỦ
               </NavLink>
             </li>
@@ -135,7 +152,10 @@ const HeaderPage = (props) => {
               }`}
               onClick={() => handleClick("timeline")}
             >
-              <NavLink to="/timeline" activeclassname="active">
+              <NavLink
+                to="/timeline"
+                activeclassname="active"
+              >
                 DÒNG THỜI GIAN
                 <FontAwesomeIcon className="icon-arrow-dropdown" />
               </NavLink>
@@ -364,7 +384,10 @@ const HeaderPage = (props) => {
               className={activeItem === "article" ? "active" : ""}
               onClick={() => handleClick("article")}
             >
-              <NavLink to="/article" activeclassname="active">
+              <NavLink
+                to="/article"
+                activeClassName="active"
+              >
                 TƯ LIỆU
               </NavLink>
             </li>
@@ -372,7 +395,10 @@ const HeaderPage = (props) => {
               className={activeItem === "characters" ? "active" : ""}
               onClick={() => handleClick("characters")}
             >
-              <NavLink to="/character" activeclassname="active">
+              <NavLink
+                to="/character"
+                activeclassname="active"
+              >
                 NHÂN VẬT
               </NavLink>
             </li>
@@ -380,7 +406,10 @@ const HeaderPage = (props) => {
               className={activeItem === "leaderboard" ? "active" : ""}
               onClick={() => handleClick("leaderboard")}
             >
-              <NavLink to="/rank" activeclassname="active">
+              <NavLink
+                to="/rank"
+                activeclassname="active"
+              >
                 BẢNG XẾP HẠNG
               </NavLink>
             </li>
