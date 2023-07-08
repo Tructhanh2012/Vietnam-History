@@ -131,7 +131,7 @@ const EditorLayout = (props) => {
           <Footer
             style={{ padding: 0, display: "flex", justifyContent: "center" }}
           >
-            webname&copy; 2023.
+            Lịch sử Việt Nam&copy; 2023.
           </Footer>
         </Layout>
       </Layout>

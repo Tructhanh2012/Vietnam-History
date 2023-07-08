@@ -15,10 +15,6 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 const ArticleDetails = () => {
-  const navigate = useNavigate();
-  const handleOnClick = () => {
-    navigate.push("/quizdt");
-  };
   const BreadcrumbArticle = () => {
     return (
       <Breadcrumb
@@ -71,7 +67,7 @@ const ArticleDetails = () => {
   return (
     <>
       <Divider orientation="left">
-        <BreadcrumbArticle />
+        <BreadcrumbArticle style={{ padding: "44px 20px 40px 0" }} />
       </Divider>
       <div className="article-container">
         <Row gutter={[20, 20]}>

@@ -62,7 +62,7 @@ const DashboardChart = () => {
       },
       title: {
         display: true,
-        text: "SỐ LƯỢNG CÂU HỎI THEO THỜI KỲ",
+        text: "THỐNG KÊ SỐ LƯỢNG CÂU HỎi",
       },
     },
   };

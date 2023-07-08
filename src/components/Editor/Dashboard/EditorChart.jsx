@@ -147,8 +147,11 @@ const EditorChart = () => {
         }}
       >
         <div className="chart">
-          <div className="title d-flex justify-content-center ">
-            Tên biểu đồ
+          <div
+            className="title d-flex justify-content-center "
+            style={{ fontFamily: "Petrona" }}
+          >
+            <h5>THỐNG KÊ CÁC BÀI VIẾT</h5>
           </div>
           <AreaChart
             width={750}

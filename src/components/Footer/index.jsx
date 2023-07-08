@@ -17,7 +17,7 @@ const Footer = () => {
             <div className="col-md-3 d-flex justify-content-center align-items-center">
               <div className="footer-logo">
                 <img className="logo" alt="" src={imageLogo} />
-                <p>website_name&copy; 2023</p>
+                <p>LichSuVietNam&copy; 2023</p>
               </div>
             </div>
             <div className="footer-contact col-md-3 d-flex justify-content-center align-items-center">
@@ -33,7 +33,7 @@ const Footer = () => {
                   <span>
                     <MailOutlined />
                   </span>
-                  <p> : websitename@gmail.com</p>
+                  <p> : lichsuVN@gmail.com</p>
                 </div>
               </div>
             </div>
@@ -42,11 +42,11 @@ const Footer = () => {
               <div>
                 <h6>Về chúng tôi:</h6>
                 <p>
-                  wbsitename được thành lập để cung cấp các thông tin chi tiết
-                  và chính xác về lịch sử, văn hóa, địa lý và nhiều chủ đề khác
-                  liên quan đến Việt Nam. Chúng tôi muốn tạo ra một không gian
-                  để mọi người có thể trải nghiệm và cảm nhận về quá khứ của đất
-                  nước và con người Việt Nam một cách đầy hứng thú.
+                  "Lịch sử Việt Nam" được thành lập để cung cấp các thông tin
+                  chi tiết và chính xác về lịch sử, văn hóa, địa lý và nhiều chủ
+                  đề khác liên quan đến Việt Nam. Chúng tôi muốn tạo ra một
+                  không gian để mọi người có thể trải nghiệm và cảm nhận về quá
+                  khứ của đất nước và con người Việt Nam một cách đầy hứng thú.
                 </p>
                 <p>
                   Chúng tôi hi vọng rằng trang web của chúng tôi sẽ giúp người

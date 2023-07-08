@@ -92,6 +92,91 @@ const ManageEvent = () => {
       title: "HashTag",
       dataIndex: "HashTag",
       key: "HashTag",
+      filters: [
+        {
+          text: "Hồng Bàng & Văn Lang",
+          value: "Hồng Bàng & Văn Lang",
+        },
+        {
+          text: "Âu Lạc & Nam Việt",
+          value: "Âu Lạc & Nam Việt",
+        },
+        {
+          text: "Bắc thuộc",
+          value: "Bắc thuộc",
+        },
+        {
+          text: "Nhà Lý & nhà Triệu",
+          value: "Nhà Lý & nhà Triệu",
+        },
+        {
+          text: "Nhà Ngô",
+          value: "Nhà Ngô",
+        },
+        {
+          text: "Nhà Đinh",
+          value: "Nhà Đinh",
+        },
+        {
+          text: "Nhà Tiền Lê",
+          value: "Nhà Tiền Lê",
+        },
+        {
+          text: "Nhà Lý",
+          value: "Nhà Lý",
+        },
+        {
+          text: "Nhà Trần",
+          value: "Nhà Trần",
+        },
+        {
+          text: "Nhà Hồ",
+          value: "Nhà Hồ",
+        },
+        {
+          text: "Nhà Hậu Trần",
+          value: "Nhà Hậu Trần",
+        },
+        {
+          text: "Nhà Hậu Lê",
+          value: "Nhà Hậu Lê",
+        },
+        {
+          text: "Nam Bắc Triều",
+          value: "Nam Bắc Triều",
+        },
+        {
+          text: "Trịnh Nguyễn Phân Tranh",
+          value: "Trịnh Nguyễn Phân Tranh",
+        },
+        {
+          text: "Nhà Tây Sơn",
+          value: "Nhà Tây Sơn",
+        },
+        {
+          text: "Nhà Nguyễn",
+          value: "Nhà Nguyễn",
+        },
+        {
+          text: "Pháp Thuộc",
+          value: "Pháp Thuộc",
+        },
+        {
+          text: "Trưng Nữ Vương",
+          value: "Trưng Nữ Vương",
+        },
+        {
+          text: "Việt Nam Dân Chủ Cộng Hoà",
+          value: "Việt Nam Dân Chủ Cộng Hoà",
+        },
+        {
+          text: "Cộng hoà xã hội chủ nghĩa Việt Nam",
+          value: "Cộng hoà xã hội chủ nghĩa Việt Nam",
+        },
+      ],
+      onFilter: (value, record) => record.HashTag.indexOf(value) === 0,
+      sorter: (a, b) => a.HashTag.length - b.HashTag.length,
+      sortDirections: ["descend"],
     },
     {
       title: "Xóa",
