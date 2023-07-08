@@ -15,6 +15,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 const ArticleDetails = () => {
+  const navigate = useNavigate();
   const BreadcrumbArticle = () => {
     return (
       <Breadcrumb
@@ -161,7 +162,9 @@ const ArticleDetails = () => {
                 {/* <Divider /> */}
                 <div className="d-flex justify-content-between">
                   {/* <Rate /> */}
-                  <Button onClick={handleOnClick}>Quizz thôi!!</Button>
+                  <Button onClick={() => navigate("/quizdt")}>
+                    Quizz thôi!!
+                  </Button>
                 </div>
                 {/* <Divider style={{ margin: 10 }} />
                 <div
