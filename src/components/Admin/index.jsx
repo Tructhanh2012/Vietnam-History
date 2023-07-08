@@ -55,12 +55,12 @@ const LayoutAdmin = (props) => {
       icon: <MdOutlineManageAccounts style={{ fontSize: "1.8em" }} />,
       children: [
         {
-          label: <Link to="/admin/member">MEMBER</Link>,
+          label: <Link to="/admin/member">Member</Link>,
           key: "crud-member",
           icon: <TeamOutlined />,
         },
         {
-          label: <Link to="/admin/editor">EDITOR</Link>,
+          label: <Link to="/admin/editor">Editor</Link>,
           key: "crud-editor",
           icon: <UserOutlined />,
         },

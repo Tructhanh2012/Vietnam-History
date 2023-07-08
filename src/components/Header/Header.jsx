@@ -403,6 +403,7 @@ const HeaderPage = (props) => {
               </NavLink>
             </li>
             <li
+              style={{ position: "absolute", right: "2%" }}
               className={activeItem === "leaderboard" ? "active" : ""}
               onClick={() => handleClick("leaderboard")}
             >

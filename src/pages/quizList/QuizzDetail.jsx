@@ -100,7 +100,10 @@ const QuizDetail = () => {
         <div className="col-md-9 ">
           {question &&
             question.map((question, index) => (
-              <div className="row mt-4" key={question.id}>
+              <div
+                className="row mt-4"
+                key={question.id}
+              >
                 <div className="col-md-3 carddd ps-5">
                   <div className="card-body p-2 border border-dark rounded">
                     <h5 className="card-title">Câu: {index + 1} </h5>
@@ -164,7 +167,10 @@ const QuizDetail = () => {
         </div>
         <div className="col-md-8"></div>
         <div className="col-md-4 mt-2">
-          <Button type="primary" onClick={showModal}>
+          <Button
+            type="primary"
+            onClick={showModal}
+          >
             Kết thúc bài làm
           </Button>
           <Modal

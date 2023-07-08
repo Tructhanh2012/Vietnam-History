@@ -11,10 +11,14 @@ import {
 } from "antd";
 import "./article.scss";
 import { callGetSingleEvent } from "../../services/api";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 const ArticleDetails = () => {
+  const navigate = useNavigate();
+  const handleOnClick = () => {
+    navigate.push("/quizdt");
+  };
   const BreadcrumbArticle = () => {
     return (
       <Breadcrumb
@@ -71,8 +75,15 @@ const ArticleDetails = () => {
       </Divider>
       <div className="article-container">
         <Row gutter={[20, 20]}>
-          <Col md={17} xs={24} offset={1}>
-            <div className="title" style={{ textAlign: "center" }}>
+          <Col
+            md={17}
+            xs={24}
+            offset={1}
+          >
+            <div
+              className="title"
+              style={{ textAlign: "center" }}
+            >
               <h2>Lịch sử Chữ viết tiếng Việt Tư Liệu Lịch Sử</h2>
             </div>
 
@@ -85,7 +96,10 @@ const ArticleDetails = () => {
                 thị một hoặc một số âm tiết. Chữ quốc ngữ đã bắt đầu được sử
                 dụng chính thức tại Việt Nam vào đầu thế kỷ XX.
               </p>
-              <div className="image" style={{ width: "70%" }}>
+              <div
+                className="image"
+                style={{ width: "70%" }}
+              >
                 <img
                   className="image_content"
                   style={{
@@ -151,9 +165,7 @@ const ArticleDetails = () => {
                 {/* <Divider /> */}
                 <div className="d-flex justify-content-between">
                   {/* <Rate /> */}
-                  <Button onClick={() => navigate("/quizdt")}>
-                    Quizz thôi!!
-                  </Button>
+                  <Button onClick={handleOnClick}>Quizz thôi!!</Button>
                 </div>
                 {/* <Divider style={{ margin: 10 }} />
                 <div
@@ -174,11 +186,21 @@ const ArticleDetails = () => {
             </div>
           </Col>
 
-          <Col md={4} xs={0} offset={1}>
-            <Space direction={"vertical"} size={500}>
+          <Col
+            md={4}
+            xs={0}
+            offset={1}
+          >
+            <Space
+              direction={"vertical"}
+              size={500}
+            >
               <Row gutter={[0, 30]}></Row>
               <Row>
-                <Divider orientation="left" style={{ margin: "10px 0" }}>
+                <Divider
+                  orientation="left"
+                  style={{ margin: "10px 0" }}
+                >
                   <h6>Tham khảo</h6>
                 </Divider>
                 <div className="homepage-ending-doc-content">
