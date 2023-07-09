@@ -8,18 +8,6 @@ import { Col, Divider, Row } from "antd";
 
 function HomePage() {
   const { postList } = getPostList();
-  // const callGetOutstandingEvent = async () => {
-  //   const res = await getOutstandingEvent();
-  //   if (res && res?.listOutstanding) {
-  //     const listOutstanding = res.listOutstanding;
-  //     setOutstandList(listOutstanding);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   callGetOutstandingEvent();
-  // }, []);
-
   //========================================
   const nonAccentVietnamese = (str) => {
     str = str.replace(/A|Á|À|Ã|Ạ|Â|Ấ|Ầ|Ẫ|Ậ|Ă|Ắ|Ằ|Ẵ|Ặ/g, "A");
@@ -66,10 +54,11 @@ function HomePage() {
 
   const navigate = useNavigate();
   const handleRedirectEvent = (event) => {
-    const slug = convertSlug(event.eventName);
-    const eventId = event.eventId;
+    console.log("event", event);
+    const slug = convertSlug(event.title);
+    const eventId = event.id;
     navigate(`/singleEvent/${slug}?eventId=${eventId}`);
-    // navigate(`/singleEvent/${slug}?${events.eventId}`);
+    // navigate(`/singleEvent/${slug}?${event.eventId}`);
   };
 
   // const getListArticle = async () => {
@@ -87,7 +76,11 @@ function HomePage() {
   // }, []);
   const renderPostItem = (post) => {
     return (
-      <div key={`post-item-${post.title}`} className={styles.post_item}>
+      <div
+        key={`post-item-${post.title}`}
+        className={styles.post_item}
+        onClick={() => handleRedirectEvent(post)}
+      >
         <img className={styles.image} src={post.image} />
         <div className={styles.info}>
           <span className={styles.title}>{post.title}</span>

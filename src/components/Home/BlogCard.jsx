@@ -44,11 +44,11 @@ const BlogCard = () => {
                     className="discription"
                     style={{ margin: "20px 75px 0 75px" }}
                   >
-                    <p>
+                    <div>
                       {" "}
                       <h6>Tổng điểm: {item.totalPoint}</h6>
                       <h6>Tổng quiz: {item.numberOfQuiz}</h6>
-                    </p>
+                    </div>
                   </div>
                 </div>
               </div>
