@@ -13,21 +13,22 @@ import { doLogoutAction } from "../../redux/account/accountSlice";
 import { BsTrophy } from "react-icons/bs";
 import styles from "./style.module.scss";
 
-const HeaderPage = (props) => {
+const HeaderPage = () => {
   const navigate = useNavigate();
   const [activeItem, setActiveItem] = useState("");
 
   const handleClick = (item) => {
     setActiveItem(item);
   };
+
+  const jwtToken = sessionStorage.getItem("jwtToken");
   const user = JSON.parse(sessionStorage.getItem("user"));
-  const { token } = props;
   // console.log(user);
   const [isSubmit, setIsSubmit] = useState(false);
 
   const handleLogout = () => {
+    sessionStorage.removeItem("jwtToken");
     sessionStorage.removeItem("user");
-    sessionStorage.removeItem("token");
     message.success("Đăng xuất thành công");
   };
   let items = [
@@ -49,8 +50,6 @@ const HeaderPage = (props) => {
       key: "admin",
     });
   }
-
-  const urlAvatar = `${user?.avatar}`;
 
   const renderHeaderTop = () => {
     return (

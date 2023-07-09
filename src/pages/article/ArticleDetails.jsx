@@ -25,12 +25,12 @@ const ArticleDetails = () => {
         separator=">"
         items={[
           {
-            // key: "home",
+            key: "home",
             title: "Trang chủ",
             href: "/",
           },
           {
-            // key: "timeline",
+            key: "timeline",
             title: "Tư liệu",
             // href: "/",
           },
@@ -60,7 +60,7 @@ const ArticleDetails = () => {
   axios
     .request(config)
     .then((response) => {
-      console.log(JSON.stringify(response.data));
+      // console.log(JSON.stringify(response.data));
       const { title, image, content } = response.data;
 
       // Gán dữ liệu cho các phần tử trong giao diện

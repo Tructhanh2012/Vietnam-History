@@ -1,5 +1,4 @@
 @import url("https://fonts.googleapis.com/css2?family=Petrona:wght@700&display=swap");
-
 .layoutAdmin {
   overflow-x: hidden;
 
@@ -30,4 +29,9 @@
 }
 // .ant-menu-submenu.ant-menu-submenu-inline{
 //   margin-top: 20px;
+// }
+// .ant-menu-title-content {
+a {
+  text-decoration: none !important;
+}
 // }

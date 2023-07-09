@@ -15,6 +15,7 @@ import { BiNavigation } from "react-icons/bi";
 import { HiOutlineHome } from "react-icons/hi";
 import { AiOutlineLogout } from "react-icons/ai";
 import { MdOutlineManageAccounts } from "react-icons/md";
+import "./layout.scss";
 
 const LayoutAdmin = (props) => {
   const { user, token } = props;
@@ -53,9 +54,11 @@ const LayoutAdmin = (props) => {
       label: <span>Quản lí </span>,
       key: "crud",
       icon: <MdOutlineManageAccounts style={{ fontSize: "1.8em" }} />,
+      id: "sidebar-link",
       children: [
         {
           label: <Link to="/admin/member">Member</Link>,
+
           key: "crud-member",
           icon: <TeamOutlined />,
         },
@@ -126,6 +129,7 @@ const LayoutAdmin = (props) => {
         <Menu
           defaultSelectedKeys={[activeMenu]}
           mode="inline"
+          id="abc"
           items={items}
           onClick={(e) => setActiveMenu(e.key)}
         />
@@ -151,6 +155,7 @@ const LayoutAdmin = (props) => {
                 collapsed ? MenuUnfoldOutlined : MenuFoldOutlined,
                 {
                   className: "trigger",
+
                   onClick: () => setCollapsed(!collapsed),
                 }
               )}
