@@ -1,7 +1,18 @@
-import { Avatar, Breadcrumb, Button, Col, Divider, Rate, Row } from "antd";
-import "./article.scss";
-import { useNavigate } from "react-router-dom";
+import {
+  Anchor,
+  Avatar,
+  Breadcrumb,
+  Button,
+  Col,
+  Divider,
+  Image,
+  Rate,
+  Row,
+} from "antd";
+// import "./article.scss";
+import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
+import styles from "./style.module.scss";
 
 const ArticleDetails = () => {
   const navigate = useNavigate();
@@ -9,10 +20,7 @@ const ArticleDetails = () => {
     return (
       <Breadcrumb
         style={{
-          marginLeft: 30,
-          padding: 20,
-          paddingBottom: 40,
-          paddingTop: 44,
+          margin: "32px 0",
         }}
         separator=">"
         items={[
@@ -31,8 +39,12 @@ const ArticleDetails = () => {
     );
   };
 
+  let location = useLocation();
+  let params = new URLSearchParams(location.search);
+  const eventId = params.get("eventId");
+  console.log("id baiviet:", eventId);
   let data = JSON.stringify({
-    id: 3,
+    id: eventId,
   });
 
   let config = {
@@ -60,20 +72,58 @@ const ArticleDetails = () => {
       console.log(error);
     });
 
-  return (
-    <>
-      <Divider orientation="left">
-        <BreadcrumbArticle style={{ padding: "44px 20px 40px 0" }} />
-      </Divider>
-      <div className="single_article">
-        <span className="title">
+  const items = [
+    {
+      key: "titleElement",
+      href: "#titleElement",
+      title: "Tiêu đề",
+    },
+    {
+      key: "imageElement",
+      href: "#imageElement",
+      title: "Ảnh",
+    },
+    {
+      key: "contentElement",
+      href: "#contentElement",
+      title: "Nội dung",
+    },
+  ];
+
+  const renderArticleDetails = () => {
+    return (
+      <div className={styles.article_detail}>
+        <span className={styles.title}>
           <h2 id="titleElement"></h2>
         </span>
-        <img id="imageElement" src="" alt="Article Image" />
-        <span id="contentElement"></span>
+        <img className={styles.image} id="imageElement" alt="Article Image" />
+        <span className={styles.text} id="contentElement"></span>
       </div>
+    );
+  };
 
-      <Button onClick={() => navigate("/quizdt")}>Quizz thôi!!</Button>
+  return (
+    <>
+      <div className={styles.single_article}>
+        <div className="container-custom">
+          <div className={styles.wrapper}>
+            <div className={styles.article_content}>
+              <BreadcrumbArticle />
+              {renderArticleDetails()}
+              <div className={styles.btn}>
+                <Button onClick={() => navigate("/quizdt")}>
+                  Quizz thôi!!
+                </Button>
+              </div>
+            </div>
+            <div className={styles.anchor}>
+              <Col>
+                <Anchor items={items} />
+              </Col>
+            </div>
+          </div>
+        </div>
+      </div>
 
       {/* <Divider style={{ margin: 10 }} />
                 <div

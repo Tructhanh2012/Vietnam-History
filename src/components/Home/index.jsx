@@ -58,22 +58,8 @@ function HomePage() {
     const slug = convertSlug(event.title);
     const eventId = event.id;
     navigate(`/singleEvent/${slug}?eventId=${eventId}`);
-    // navigate(`/singleEvent/${slug}?${event.eventId}`);
   };
 
-  // const getListArticle = async () => {
-  //   const res = await callGetArticle();
-  //   // console.log("list article:", res);
-  //   if (res && res?.data) {
-  //     // const list = res.data;
-  //     setOutstandList(res.data);
-  //     console.log("log", outstandList);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   getListArticle();
-  // }, []);
   const renderPostItem = (post) => {
     return (
       <div
@@ -96,11 +82,11 @@ function HomePage() {
       <Divider orientation="left">Tư liệu theo thời kỳ</Divider>
       <div className="container-custom">
         {/* <span className={styles.header}>Các thời kỳ Việt Nam</span> */}
-
         <div className={styles.history_period}>
           {postList.map(renderPostItem)}
         </div>
       </div>
+
       <div className="">
         <span>
           <Divider orientation="left">Top các kiện tướng</Divider>
@@ -111,6 +97,7 @@ function HomePage() {
           </Col>
         </Row>
       </div>
+
       <Divider orientation="left">Tư liệu theo địa danh</Divider>
       <div className={`${styles.place_container} container-custom`}>
         <div className={styles.left_block}>
