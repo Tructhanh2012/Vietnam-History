@@ -54,14 +54,14 @@ const RankingTable = () => {
       dataIndex: "name",
     },
     {
-      key: "totquizz",
-      title: "Tổng Quizz",
-      dataIndex: "numberOfQuiz",
-    },
-    {
       key: "totscore",
       title: "Tổng Điểm",
       dataIndex: "totalPoint",
+    },
+    {
+      key: "totquizz",
+      title: "Tổng Quizz",
+      dataIndex: "numberOfQuiz",
     },
   ];
 
@@ -88,10 +88,16 @@ const RankingPage = () => {
       </div>
 
       <Row gutter={40}>
-        <Col span={15} offset={1}>
+        <Col
+          span={15}
+          offset={1}
+        >
           <div className="ranking_table">
-            <div className="table-title" style={{ marginBottom: "20px" }}>
-              <h2>Bảng xếp hạng các hào kiệt</h2>
+            <div
+              className="table-title"
+              style={{ marginBottom: "20px" }}
+            >
+              <h2>Bảng xếp hạng các thành viên</h2>
             </div>
             {/* <Input placeholder="Nhập tên bạn muốn tìm...." /> */}
             <RankingTable />
@@ -99,10 +105,16 @@ const RankingPage = () => {
           <Row></Row>
         </Col>
 
-        <Col span={6} offset={1}>
+        <Col
+          span={6}
+          offset={1}
+        >
           <div className="form">
             <div className="form_container">
-              <img src={cup} style={{ width: "120px", marginBottom: 10 }} />
+              <img
+                src={cup}
+                style={{ width: "120px", marginBottom: 10 }}
+              />
               <div className="text">
                 <h6>BẢNG XẾP HẠNG THI ĐẤU</h6>
                 <p>
@@ -110,7 +122,10 @@ const RankingPage = () => {
                   thủ đạt được trong tuần, trong tháng thông qua thi đấu.
                 </p>
               </div>
-              <div className="button" style={{ marginBottom: 8 }}>
+              <div
+                className="button"
+                style={{ marginBottom: 8 }}
+              >
                 <Button>Thi đấu ngay</Button>
               </div>
             </div>

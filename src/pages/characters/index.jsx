@@ -30,7 +30,7 @@ const BreadcrumbRank = () => {
 const CharactersPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 6;
-  const totalItems = 10;
+  const totalItems = 18;
 
   const handlePageChange = (page) => {
     setCurrentPage(page);

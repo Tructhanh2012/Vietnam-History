@@ -9,7 +9,7 @@
     list-style-type: none;
     margin: 0;
     padding: 0;
-    margin-left: 10%;
+    margin-left: 3%;
   }
   
   .menu li {
@@ -81,4 +81,8 @@
   .dropdown li:hover {
     transform: translateX(5px);
   }
+  .navbar{
+    position: relative;
+  }
+  
   
