@@ -55,7 +55,7 @@ const EditorTable = () => {
       },
       body: JSON.stringify({ id: id }),
     });
-    console.log(response);
+    // console.log(response);
     if (!response.ok) {
       throw new Error("Có lỗi xảy ra, vui lòng thử lại.");
     } else {

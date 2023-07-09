@@ -33,7 +33,7 @@ const RankingTable = () => {
   const getRankingData = async () => {
     setIsLoading(true);
     const res = await callGetRanking();
-    console.log("res ranking:", res);
+    // console.log("res ranking:", res);
     setListRank(res.data);
     setIsLoading(false);
   };

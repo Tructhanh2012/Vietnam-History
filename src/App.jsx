@@ -38,30 +38,11 @@ import CharactersPage from "./pages/characters";
 import HeaderPage from "./components/Header/Header";
 import EditorTable from "./components/Admin/User/EditorTable";
 
-/* gọi API
-const getAccount = async () =>
-{
-  if (window.location.pathname === "/login") return;
-    if (window.location.pathname === "/register") return;
-    const res;
-}
-useEffect(()=>{},[]);
-*/
-// const LayoutAdmin = () => {
-//   const isAuthenticated = window.location.pathname.startsWith("admin");
-//   const user = useSelector((state) => state.account.user);
-//   const userRole = user.role;
-//   return (
-//     <div className="layout-app"></div>
-//   )
-// };
-
 const Layout = () => {
   return (
     <>
       <div className="layout-app">
         <HeaderPage />
-        {/* <Navbar /> */}
         <Outlet />
         <Footer />
       </div>

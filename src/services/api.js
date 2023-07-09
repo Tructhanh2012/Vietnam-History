@@ -180,3 +180,11 @@ export const callGetEditorList = () => {
 export const callDeleteUser = (id) => {
   return axios.delete("http://localhost:8084/admin/delete-user", { id });
 };
+
+export const callGetArticleDetail = (id) => {
+  return axios.post("http://localhost:8084/general/article"), { id };
+};
+
+export const callGetArticle = () => {
+  return axios.get("http://localhost:8084/general/list-article");
+};

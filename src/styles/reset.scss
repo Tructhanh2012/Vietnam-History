@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap");
+
 *,
 *::before,
 *::after {
@@ -6,5 +8,23 @@
 }
 
 body {
+  // font-family: Inter !important;
+  font-family: Inter;
+  font-size: 16px;
   overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+}
+
+.container-custom {
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 1300px) {
+  .container-custom {
+    max-width: 1120px;
+  }
 }

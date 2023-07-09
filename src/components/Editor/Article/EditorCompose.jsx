@@ -138,7 +138,14 @@ const EditorPage = () => {
 
           <div className="editor-content">
             <Form.Item name="textArea">
-              <Ckeditor onChange={handleContentChange} />
+              {/* <Ckeditor onChange={handleContentChange} /> */}
+              <TextArea
+                className="text-area"
+                placeholder="Nội dung bài viết"
+                value={content}
+                rows={7}
+                onChange={handleContentChange}
+              />
             </Form.Item>
             <Form.Item name="hashtag">
               <Select

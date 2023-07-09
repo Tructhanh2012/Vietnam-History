@@ -1,4 +1,3 @@
-import { Space } from "antd";
 import "./blogcard.scss";
 import { callGetRanking } from "../../services/api";
 import { useEffect, useState } from "react";
@@ -10,7 +9,7 @@ const BlogCard = () => {
   const getRankingData = async () => {
     setIsLoading(true);
     const res = await callGetRanking();
-    console.log("res ranking:", res);
+    // console.log("res ranking:", res);
     setListRank(res.data);
     console.log(listRank);
     setIsLoading(false);

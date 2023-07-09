@@ -172,7 +172,7 @@ const LayoutAdmin = (props) => {
         <Footer
           style={{ padding: 0, display: "flex", justifyContent: "center" }}
         >
-          webname&copy; 2023.
+          lichsuVietNam&copy; 2023.
         </Footer>
       </Layout>
     </Layout>

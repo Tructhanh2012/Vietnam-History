@@ -182,19 +182,19 @@ const Navbar = (props) => {
                 <div className="right"></div>
               </div>
               <li className="nav-item mobile">
-                <NavLink className="nav-link " to="/" exact="true">
+                <NavLink className="nav-link " to="/" exact>
                   TRANG CHỦ
                 </NavLink>
               </li>
 
               <li className="nav-item mobile">
-                <NavLink className="nav-link " to="/timeline" exact="true">
+                <NavLink className="nav-link " to="/timeline" exact>
                   DÒNG THỜI GIAN
                 </NavLink>
               </li>
 
               <li className="nav-item mobile">
-                <NavLink className="nav-link  " to="/rank" exact="true">
+                <NavLink className="nav-link  " to="/rank" exact>
                   BẢNG XẾP HẠNG
                 </NavLink>
               </li>
@@ -220,19 +220,19 @@ const Navbar = (props) => {
             </div>
 
             <li className="nav-item active">
-              <NavLink className="nav-link" to="/" exact="true">
+              <NavLink className="nav-link" to="/" exact>
                 TRANG CHỦ
               </NavLink>
             </li>
 
             <li className="nav-item">
-              <NavLink className="nav-link" to="/timeline" exact="true">
+              <NavLink className="nav-link" to="/timeline" exact>
                 DÒNG THỜI GIAN
               </NavLink>
             </li>
 
             <li className="nav-item">
-              <NavLink className="nav-link" to="/rank" exact="true">
+              <NavLink className="nav-link" to="/rank" exact>
                 BẢNG XẾP HẠNG
               </NavLink>
             </li>
