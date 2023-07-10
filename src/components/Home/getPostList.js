@@ -3,6 +3,7 @@ import { callGetArticle } from "../../services/api";
 
 export default function getPostList() {
   const [postList, setPostList] = useState([]);
+  const [document, setDocument] = useState([]);
 
   async function getListArticle() {
     const res = await callGetArticle();
@@ -17,6 +18,8 @@ export default function getPostList() {
   }, []);
 
   return {
-    postList: postList.slice(0, 6),
+    postList: postList.slice(postList.length - 6, postList.length),
+    document: postList,
+    setPostList,
   };
 }
