@@ -21,7 +21,7 @@ const LoginPage = () => {
     const refreshToken = res.data.refreshToken;
     setIsSubmit(false);
     // console.log(user);
-    console.log("res ne:", res);
+    // console.log("res ne:", res);
     if (res && res?.data) {
       sessionStorage.setItem("jwtToken", jwtToken); //save access_token to localStorage
       sessionStorage.setItem("refreshToken", refreshToken);

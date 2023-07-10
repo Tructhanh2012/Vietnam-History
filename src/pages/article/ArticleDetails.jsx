@@ -1,18 +1,9 @@
-import {
-  Anchor,
-  Avatar,
-  Breadcrumb,
-  Button,
-  Col,
-  Divider,
-  Image,
-  Rate,
-  Row,
-} from "antd";
+import { Anchor, Breadcrumb, Button, Col } from "antd";
 // import "./article.scss";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import styles from "./style.module.scss";
+import { useState } from "react";
 
 const ArticleDetails = () => {
   const navigate = useNavigate();
@@ -25,14 +16,14 @@ const ArticleDetails = () => {
         separator=">"
         items={[
           {
-            // key: "home",
+            key: "home",
             title: "Trang chủ",
             href: "/",
           },
           {
-            // key: "timeline",
+            key: "timeline",
             title: "Tư liệu",
-            // href: "/",
+            href: "/timeline",
           },
         ]}
       />
@@ -42,7 +33,7 @@ const ArticleDetails = () => {
   let location = useLocation();
   let params = new URLSearchParams(location.search);
   const eventId = params.get("eventId");
-  console.log("id baiviet:", eventId);
+  // console.log("id baiviet:", eventId);
   let data = JSON.stringify({
     id: eventId,
   });
@@ -57,12 +48,15 @@ const ArticleDetails = () => {
     data: data,
   };
 
+  const [hashtagId, setHastagId] = useState();
+
   axios
     .request(config)
     .then((response) => {
-      console.log(JSON.stringify(response.data));
-      const { title, image, content } = response.data;
-
+      // console.log(JSON.stringify(response.data));
+      const { title, image, content, hashtagEntity } = response.data;
+      const hashtagID = hashtagEntity.id;
+      setHastagId(hashtagID);
       // Gán dữ liệu cho các phần tử trong giao diện
       document.getElementById("titleElement").textContent = title;
       document.getElementById("imageElement").src = image;
@@ -90,6 +84,10 @@ const ArticleDetails = () => {
     },
   ];
 
+  const handleOnClick = () => {
+    navigate(`/quizdt?hashtagId=${hashtagId}`);
+  };
+
   const renderArticleDetails = () => {
     return (
       <div className={styles.article_detail}>
@@ -111,9 +109,7 @@ const ArticleDetails = () => {
               <BreadcrumbArticle />
               {renderArticleDetails()}
               <div className={styles.btn}>
-                <Button onClick={() => navigate("/quizdt")}>
-                  Quizz thôi!!
-                </Button>
+                <Button onClick={handleOnClick}>Quizz thôi!!</Button>
               </div>
             </div>
             <div className={styles.anchor}>

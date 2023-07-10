@@ -26,6 +26,8 @@ const EditorPage = () => {
   const [content, setContent] = useState("");
   const [fileList, setFileList] = useState([]);
   const [isSubmit, setIsSubmit] = useState(false);
+
+  const form = Form.useForm();
   const handleChange = (info) => {
     let fileList = [...info.fileList];
 
@@ -46,12 +48,14 @@ const EditorPage = () => {
     setTitle(e.target.value);
   };
 
-  const handleContentChange = (value) => {
-    setContent(value);
+  const handleContentChange = (e) => {
+    setContent(e.target.value);
   };
+  // const handleContentChange = (value) => {
+  //   setContent(value);
+  // };
   const [selectHashtag, setSelectHashtag] = useState(null);
   const handleSelectionChange = (value) => {
-    console.log(`Selected: ${value}`);
     setSelectHashtag(value);
 
     // Set giá trị đã chọn vào content
@@ -73,6 +77,7 @@ const EditorPage = () => {
       date: Number(day),
       month: Number(month),
     };
+    // console.log(article);
 
     const response = await fetch(
       "http://localhost:8084/editor/create-article",
@@ -85,16 +90,21 @@ const EditorPage = () => {
         body: JSON.stringify(article),
       }
     );
-    console.log("res creat article: ", response);
+    // console.log("res creat article: ", response.json());
+    console.log("response: ", response);
     if (!response.ok) {
-      notification.error("Có lỗi xảy ra");
-      throw new Error("Có lỗi xảy ra, vui lòng thử lại.");
+      notification.error({
+        message: "Đã có lỗi xảy ra",
+        description: "Vui lòng thử lại sau!",
+      });
+      // throw new Error("Có lỗi xảy ra, vui lòng thử lại.");
+    } else {
+      const data = await response.json();
+      console.log("data ne:", data);
+      message.success("Viết bài thành công");
+      form;
     }
-    const data = await response.json();
-    console.log(data);
-
-    navigate("/editor/manageEvent");
-    message.success("Viết bài thành công");
+    // navigate("/editor/manageEvent");
   };
 
   const [hashtag, setHashtag] = useState([]);
@@ -140,7 +150,11 @@ const EditorPage = () => {
 
           <div className="editor-content">
             <Form.Item name="textArea">
-              {/* <Ckeditor onChange={handleContentChange} /> */}
+              {/* <Ckeditor
+                className="text-area"
+                value={content}
+                onChange={handleContentChange}
+              /> */}
               <TextArea
                 className="text-area"
                 placeholder="Nội dung bài viết"
@@ -153,7 +167,7 @@ const EditorPage = () => {
               <Select
                 size="middle"
                 placeholder="Hashtag"
-                defaultValue={hashtag[0]}
+                initialvalues={hashtag[0]}
                 onChange={handleSelectionChange}
                 style={{ width: "100%" }}
                 options={hashtag}
