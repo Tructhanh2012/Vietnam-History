@@ -43,7 +43,7 @@ const ArticleDetails = () => {
   let location = useLocation();
   let params = new URLSearchParams(location.search);
   const eventId = params.get("eventId");
-  console.log("id baiviet:", eventId);
+  // console.log("id baiviet:", eventId);
   let data = JSON.stringify({
     id: eventId,
   });

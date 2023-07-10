@@ -91,7 +91,7 @@ const QuizDetail = () => {
   let location = useLocation();
   let params = new URLSearchParams(location.search);
   const hashtagId = params.get("hashtagId");
-  console.log("id quiz:", hashtagId);
+  // console.log("id quiz:", hashtagId);
 
   const [question, setQuestion] = useState([]);
   const getQuiz = async () => {
