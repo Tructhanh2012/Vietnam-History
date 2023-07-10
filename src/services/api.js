@@ -186,5 +186,5 @@ export const callGetArticleDetail = (id) => {
 };
 
 export const callGetArticle = () => {
-  return axios.get("http://localhost:8084/general/list-article");
+  return axios.get("http://localhost:8084/general/list-articles");
 };

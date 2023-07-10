@@ -37,6 +37,7 @@ import EventDetail from "./components/DongSuKien/eventDetail";
 import CharactersPage from "./pages/characters";
 import HeaderPage from "./components/Header/Header";
 import EditorTable from "./components/Admin/User/EditorTable";
+import ArticleList from "./pages/article/ArticleList";
 
 const Layout = () => {
   return (
@@ -83,6 +84,7 @@ export default function App() {
         // { path: "article/:slug", element: <ArticlePage /> },
         // { path: "singleEvent/:slug", element: <ArticleDetails /> },
         { path: "article", element: <ArticleDetails /> },
+        { path: "documents", element: <ArticleList /> },
         {
           path: "/timeline/:idHistory",
           element: <EventDetail />,

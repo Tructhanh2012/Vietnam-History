@@ -73,7 +73,6 @@ const EditorPage = () => {
       date: Number(day),
       month: Number(month),
     };
-    console.log(token);
 
     const response = await fetch(
       "http://localhost:8084/editor/create-article",
@@ -116,7 +115,10 @@ const EditorPage = () => {
   return (
     <div className="editor">
       <div className="editor-wrapper">
-        <Form name="login" autoComplete="off">
+        <Form
+          name="login"
+          autoComplete="off"
+        >
           <div className="title">
             <Form.Item
               name="title"

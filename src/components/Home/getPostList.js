@@ -17,6 +17,7 @@ export default function getPostList() {
   }, []);
 
   return {
-    postList: postList.slice(0, 6),
+    // postList: postList.slice(0, 6),
+    postList: postList,
   };
 }

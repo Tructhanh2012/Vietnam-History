@@ -34,7 +34,10 @@ const HeaderPage = (props) => {
     {
       label: (
         <Link to="/login">
-          <label style={{ cursor: "pointer" }} onClick={handleLogout}>
+          <label
+            style={{ cursor: "pointer" }}
+            onClick={handleLogout}
+          >
             Đăng xuất
           </label>
         </Link>
@@ -59,14 +62,23 @@ const HeaderPage = (props) => {
         style={{ background: `url(${headerBackground})` }}
       >
         <div className={`${styles.container} container-custom`}>
-          <img className={styles.image} src={imageLogo} />
+          <img
+            className={styles.image}
+            src={imageLogo}
+          />
           <>
             {!user ? (
-              <Button className="btn-login" onClick={() => navigate("/login")}>
+              <Button
+                className="btn-login"
+                onClick={() => navigate("/login")}
+              >
                 Đăng nhập
               </Button>
             ) : (
-              <Dropdown menu={{ items }} trigger={["click"]}>
+              <Dropdown
+                menu={{ items }}
+                trigger={["click"]}
+              >
                 <div className={styles.authorize}>
                   <Avatar src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQd-ySpkhKCTWBYov62UHbrAtaeeQIZVDmL3g&usqp=CAU" />
                   Xin chào {user?.name}
@@ -114,14 +126,20 @@ const HeaderPage = (props) => {
                   className={styles.menu_item}
                   data-active={activeItem === item.handleClick}
                 >
-                  <NavLink to={item.link} exact>
+                  <NavLink
+                    to={item.link}
+                    exact
+                  >
                     {item.label}
                   </NavLink>
                 </li>
               );
             })}
           </ul>
-          <NavLink to="/rank" className={styles.ranking}>
+          <NavLink
+            to="/rank"
+            className={styles.ranking}
+          >
             <BsTrophy />
             BẢNG XẾP HẠNG
           </NavLink>
