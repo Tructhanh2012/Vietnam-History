@@ -1,10 +1,12 @@
 import React from "react";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Breadcrumb, Col, Divider, Row, Table } from "antd";
 import { dataHistoryCharacters } from "./data";
 import { useRef, useState } from "react";
 import { Pagination } from "antd";
 import TimelineComponent from "../../components/DongSuKien";
+import { useLocation } from "react-router-dom";
 import "./character.scss";
 
 const BreadcrumbRank = () => {
@@ -28,6 +30,19 @@ const BreadcrumbRank = () => {
   );
 };
 const CharactersPage = () => {
+  const location = useLocation();
+  const page = location.state?.page || 1;
+  const fetchData = (page) => {
+    // Add your logic here to fetch character data based on the specified page
+    // For example:
+    // axios.get(`/api/characters?page=${page}`).then((response) => {
+    //   // Handle the fetched data
+    // });
+  };
+  useEffect(() => {
+    // Handle the logic for fetching data and rendering the characters based on the `page` parameter
+    fetchData(page);
+  }, [page]);
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 6;
   const totalItems = 18;
@@ -79,6 +94,7 @@ const CharactersPage = () => {
                 ))}
             </div>
             <Pagination
+              style={{ marginBottom: "30px" }}
               className="pagination-characters"
               total={totalItems}
               current={currentPage}

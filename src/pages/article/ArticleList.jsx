@@ -1,22 +1,14 @@
-import React, { useEffect, useState } from "react";
-import LearnByMap from "../Map";
-import BlogCard from "./BlogCard";
-import getPostList from "./getPostList";
-import styles from "./style.module.scss";
+import React from "react";
+import getPostList from "../../components/Home/getPostList";
 import { useNavigate } from "react-router-dom";
-import { Col, Divider, Pagination, Row } from "antd";
-import { callGetArticle } from "../../services/api";
+import { Col, Divider, Row } from "antd";
+import styles from "./style.module.scss";
+import { Link } from "react-router-dom";
+import { BsArrowRight } from "react-icons/bs";
 
-function HomePage() {
+const ArticleList = () => {
   const { postList } = getPostList();
-  const [current, setCurrent] = useState(1);
-  const [pageSize, setPageSize] = useState(4);
-  const [total, setTotal] = useState(0);
 
-  useEffect(() => {
-    setTotal(postList.length);
-  }, [postList]);
-  //========================================
   const nonAccentVietnamese = (str) => {
     str = str.replace(/A|Á|À|Ã|Ạ|Â|Ấ|Ầ|Ẫ|Ậ|Ă|Ắ|Ằ|Ẵ|Ặ/g, "A");
     str = str.replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g, "a");
@@ -73,68 +65,43 @@ function HomePage() {
       <div
         key={`post-item-${post.title}`}
         className={styles.post_item}
-        onClick={() => handleRedirectEvent(post)}
       >
-        <img className={styles.image} src={post.image} />
+        <img
+          className={styles.image}
+          src={post.image}
+        />
         <div className={styles.info}>
           <span className={styles.title}>{post.title}</span>
           <span className={styles.content}>{post.content}</span>
+          <Link
+            className={styles.link}
+            onClick={() => handleRedirectEvent(post)}
+          >
+            Tiếp tục đọc →
+          </Link>
         </div>
       </div>
     );
   };
-
-  const handleOnchangePage = (page, pageSize) => {
-    setCurrent(page);
-    setPageSize(pageSize);
-  };
-
-  const paginatedPostList = postList.slice(
-    (current - 1) * pageSize,
-    current * pageSize
-  );
-
   return (
-    <div className={styles.home_page}>
-      <LearnByMap />
-      <Divider orientation="left">Tư liệu mới:</Divider>
-      <div className="container-custom">
-        <div className={styles.history_period}>
-          {modifiedPostList.map(renderPostItem)}
-        </div>
-      </div>
-
-      <div className="">
-        <span>
-          <Divider orientation="left">Top các kiện tướng:</Divider>
-        </span>
-        <Row>
-          <Col offset={2}>
-            <BlogCard />
-          </Col>
-        </Row>
-      </div>
-
-      <Divider orientation="left">Tư liệu:</Divider>
+    <div className={styles.place_articleList}>
       <div className={`${styles.place_container} container-custom`}>
         <div className={styles.left_block}>
+          <span className={styles.header}>Danh mục các bài viết</span>
           <div className={styles.history_place}>
-            {paginatedPostList.map(renderPostItem)}
-            <Row style={{ display: "flex", justifyContent: "center" }}>
-              <Pagination
-                current={current}
-                total={total}
-                pageSize={pageSize}
-                responsive
-                onChange={handleOnchangePage}
-              />
-            </Row>
+            {postList.map(renderPostItem)}
           </div>
         </div>
-        <div className={styles.right_block}></div>
+        <div className={styles.right_block}>
+          <div className={styles.banner}>
+            <div className="banner-content">
+              <span className={styles.header}>Bài viết theo địa danh</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
-}
+};
 
-export default HomePage;
+export default ArticleList;

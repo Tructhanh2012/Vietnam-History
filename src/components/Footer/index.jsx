@@ -2,49 +2,61 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import styles from "./style.module.scss";
 import logo from "../../assets/logo.png";
+import { useEffect } from "react";
 
 function Footer() {
   const menuList = [
     {
       label: "Anh hùng dân tộc tiêu biểu",
-      link: "#",
+      link: "/character",
+      scrollY: 0,
     },
     {
       label: "Ngô Quyền",
-      link: "#",
+      link: "/character",
+      scrollY: 3470,
     },
     {
-      label: "Lý Thường kiệt",
-      link: "#",
+      label: "Đinh Tiên Hoàng",
+      link: "/character",
+      scrollY: 4800,
+    },
+
+    {
+      label: "Hai Bà Trưng",
+      link: "/character",
+      scrollY: 1125,
     },
     {
-      label: "Lê Thái Tổ",
-      link: "#",
+      label: "Nhà Lý",
+      link: "/timeline/12",
+      scrollY: 0,
     },
     {
-      label: "Nguyễn Huệ",
-      link: "#",
+      label: "Nhà Hậu Trần",
+      link: "/timeline/15",
+      scrollY: 0,
     },
     {
-      label: "Di tích lịch sử",
-      link: "#",
+      label: "Nhà Tây Sơn",
+      link: "/timeline/20",
+      scrollY: 0,
     },
     {
-      label: "Quần thể di tích cố đô Huế",
-      link: "#",
+      label: "Nhà Nguyễn",
+      link: "/timeline/21",
+      scrollY: 0,
     },
-    {
-      label: "Khu di tích Pác Pó",
-      link: "#",
-    },
-    {
-      label: "Đền Ngọc Sơn",
-      link: "#",
-    },
-    {
-      label: "Thành nhà Hồ",
-      link: "#",
-    },
+    // {
+    //   label: "Đền Ngọc Sơn",
+    //   link: "#",
+    //   scrollY: 1000,
+    // },
+    // {
+    //   label: "Thành nhà Hồ",
+    //   link: "#",
+    //   scrollY: 1000,
+    // },
   ];
 
   const renderFooterTop = () => {
@@ -94,8 +106,17 @@ function Footer() {
         <ul className={styles.sub_menu}>
           {menuList.map((item) => {
             return (
-              <li key={`sub-menu-${item.label}`} className={styles.menu_item}>
-                <NavLink to={item.link} exact>
+              <li
+                key={`sub-menu-${item.label}`}
+                className={styles.menu_item}
+              >
+                <NavLink
+                  to={item.link}
+                  exact
+                  onClick={() => {
+                    window.scrollTo(0, item.scrollY);
+                  }}
+                >
                   {item.label}
                 </NavLink>
               </li>

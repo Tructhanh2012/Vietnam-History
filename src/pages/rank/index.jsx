@@ -116,7 +116,7 @@ const RankingPage = () => {
                 style={{ width: "120px", marginBottom: 10 }}
               />
               <div className="text">
-                <h6>BẢNG XẾP HẠNG THI ĐẤU</h6>
+                <h6>ĐẤU TRƯỜNG KIẾN THỨC</h6>
                 <p>
                   Bảng xếp hạng thi đấu dựa trên tổng số điểm danh hiệu mỗi đấu
                   thủ đạt được trong tuần, trong tháng thông qua thi đấu.
