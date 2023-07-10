@@ -37,6 +37,7 @@ import EventDetail from "./components/DongSuKien/eventDetail";
 import CharactersPage from "./pages/characters";
 import HeaderPage from "./components/Header/Header";
 import EditorTable from "./components/Admin/User/EditorTable";
+import { elements } from "chart.js";
 // import QuizDetail from "./pages/quizList/QuizzDetail";
 
 const Layout = () => {
@@ -77,6 +78,7 @@ export default function App() {
       errorElement: <NotFound />,
       children: [
         { index: true, element: <Home /> },
+
         { path: "rank", element: <RankingPage /> },
         { path: "timeline", element: <TimelinePage /> },
         { path: "character", element: <CharactersPage /> },
@@ -86,26 +88,17 @@ export default function App() {
         // { path: "singleEvent/:slug", element: <ArticleDetails /> },
         { path: "article", element: <ArticleDetails /> },
         {
-          path: "/timeline/:idHistory",
+          path: "timeline/:idHistory",
           element: <EventDetail />,
         },
-        {
-          path: "quizz",
-          // element: <QuizzPage />,
-          element: <QuizListPage />,
-        },
         // {
-        //   path: "quizzdt",
-        //   element: <QuizzApp />,
+        //   path: "quizz",
+        //   element: <QuizListPage />,
         // },
+
         {
           path: "quizdt",
           element: <QuizzDetail />,
-        },
-
-        {
-          path: "try",
-          element: <BlogCard />,
         },
 
         // {

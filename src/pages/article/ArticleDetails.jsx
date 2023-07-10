@@ -1,14 +1,4 @@
-import {
-  Anchor,
-  Avatar,
-  Breadcrumb,
-  Button,
-  Col,
-  Divider,
-  Image,
-  Rate,
-  Row,
-} from "antd";
+import { Anchor, Breadcrumb, Button, Col } from "antd";
 // import "./article.scss";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
