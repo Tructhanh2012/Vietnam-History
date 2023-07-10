@@ -13,6 +13,7 @@ import {
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import styles from "./style.module.scss";
+import { useState } from "react";
 
 const ArticleDetails = () => {
   const navigate = useNavigate();
@@ -32,7 +33,7 @@ const ArticleDetails = () => {
           {
             key: "timeline",
             title: "Tư liệu",
-            // href: "/",
+            href: "/timeline",
           },
         ]}
       />
@@ -57,12 +58,15 @@ const ArticleDetails = () => {
     data: data,
   };
 
+  const [hashtagId, setHastagId] = useState();
+
   axios
     .request(config)
     .then((response) => {
       // console.log(JSON.stringify(response.data));
-      const { title, image, content } = response.data;
-
+      const { title, image, content, hashtagEntity } = response.data;
+      const hashtagID = hashtagEntity.id;
+      setHastagId(hashtagID);
       // Gán dữ liệu cho các phần tử trong giao diện
       document.getElementById("titleElement").textContent = title;
       document.getElementById("imageElement").src = image;
@@ -90,6 +94,10 @@ const ArticleDetails = () => {
     },
   ];
 
+  const handleOnClick = () => {
+    navigate(`/quizdt?hashtagId=${hashtagId}`);
+  };
+
   const renderArticleDetails = () => {
     return (
       <div className={styles.article_detail}>
@@ -111,9 +119,7 @@ const ArticleDetails = () => {
               <BreadcrumbArticle />
               {renderArticleDetails()}
               <div className={styles.btn}>
-                <Button onClick={() => navigate("/quizdt")}>
-                  Quizz thôi!!
-                </Button>
+                <Button onClick={handleOnClick}>Quizz thôi!!</Button>
               </div>
             </div>
             <div className={styles.anchor}>

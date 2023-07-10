@@ -48,12 +48,12 @@ const EditorPage = () => {
     setTitle(e.target.value);
   };
 
-  // const handleContentChange = (e) => {
-  //   setContent(e.target.value);
-  // };
-  const handleContentChange = (value) => {
-    setContent(value);
+  const handleContentChange = (e) => {
+    setContent(e.target.value);
   };
+  // const handleContentChange = (value) => {
+  //   setContent(value);
+  // };
   const [selectHashtag, setSelectHashtag] = useState(null);
   const handleSelectionChange = (value) => {
     setSelectHashtag(value);
@@ -147,18 +147,18 @@ const EditorPage = () => {
 
           <div className="editor-content">
             <Form.Item name="textArea">
-              <Ckeditor
+              {/* <Ckeditor
                 className="text-area"
                 value={content}
                 onChange={handleContentChange}
-              />
-              {/* <TextArea
+              /> */}
+              <TextArea
                 className="text-area"
                 placeholder="Nội dung bài viết"
                 value={content}
                 rows={7}
                 onChange={handleContentChange}
-              /> */}
+              />
             </Form.Item>
             <Form.Item name="hashtag">
               <Select

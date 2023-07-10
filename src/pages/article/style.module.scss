@@ -29,8 +29,9 @@
   align-items: center;
 
   .image {
-    width: 500px;
+    width: 100%;
     aspect-ratio: 10/9;
+    max-height: 600px;
   }
 
   .test {

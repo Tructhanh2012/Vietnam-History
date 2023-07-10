@@ -37,6 +37,7 @@ import EventDetail from "./components/DongSuKien/eventDetail";
 import CharactersPage from "./pages/characters";
 import HeaderPage from "./components/Header/Header";
 import EditorTable from "./components/Admin/User/EditorTable";
+// import QuizDetail from "./pages/quizList/QuizzDetail";
 
 const Layout = () => {
   return (
@@ -80,6 +81,7 @@ export default function App() {
         { path: "timeline", element: <TimelinePage /> },
         { path: "character", element: <CharactersPage /> },
         { path: "singleEvent/:slug", element: <ArticleDetails /> },
+        { path: "quizdt/:id", element: <QuizzDetail /> },
         // { path: "article/:slug", element: <ArticlePage /> },
         // { path: "singleEvent/:slug", element: <ArticleDetails /> },
         { path: "article", element: <ArticleDetails /> },
