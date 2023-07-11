@@ -100,7 +100,7 @@ function HomePage() {
       <Divider orientation="left">Tư liệu mới:</Divider>
       <div className="container-custom">
         <div className={styles.history_period}>
-          {modifiedPostList.map(renderPostItem)}
+          {postList.map(renderPostItem)}
         </div>
       </div>
 
@@ -109,7 +109,11 @@ function HomePage() {
           <Divider orientation="left">Top các kiện tướng:</Divider>
         </span>
         <Row>
-          <Col offset={2}>
+          <Col
+            md={{ span: 20, offset: 2 }}
+            xs={24}
+            // lg={{ span: 18, offset: 3 }}
+          >
             <BlogCard />
           </Col>
         </Row>
