@@ -75,7 +75,10 @@ function HomePage() {
         className={styles.post_item}
         onClick={() => handleRedirectEvent(post)}
       >
-        <img className={styles.image} src={post.image} />
+        <img
+          className={styles.image}
+          src={post.image}
+        />
         <div className={styles.info}>
           <span className={styles.title}>{post.title}</span>
           <span className={styles.content}>{post.content}</span>
@@ -100,7 +103,7 @@ function HomePage() {
       <Divider orientation="left">Tư liệu mới:</Divider>
       <div className="container-custom">
         <div className={styles.history_period}>
-          {modifiedPostList.map(renderPostItem)}
+          {postList.map(renderPostItem)}
         </div>
       </div>
 
