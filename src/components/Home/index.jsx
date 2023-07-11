@@ -75,7 +75,10 @@ function HomePage() {
         className={styles.post_item}
         onClick={() => handleRedirectEvent(post)}
       >
-        <img className={styles.image} src={post.image} />
+        <img
+          className={styles.image}
+          src={post.image}
+        />
         <div className={styles.info}>
           <span className={styles.title}>{post.title}</span>
           <span className={styles.content}>{post.content}</span>
