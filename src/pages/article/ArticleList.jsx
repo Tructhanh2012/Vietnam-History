@@ -92,13 +92,13 @@ const ArticleList = () => {
             {postList.map(renderPostItem)}
           </div>
         </div>
-        <div className={styles.right_block}>
+        {/* <div className={styles.right_block}>
           <div className={styles.banner}>
             <div className="banner-content">
               <span className={styles.header}>Bài viết theo địa danh</span>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

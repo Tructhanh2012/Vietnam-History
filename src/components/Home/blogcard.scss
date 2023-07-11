@@ -12,7 +12,7 @@
 }
 
 .profile-card {
-  width: 100%;
+  width: 110%;
   min-height: 220px;
   //   margin: auto;
   box-shadow: 0px 8px 30px -5px rgba(163, 165, 165, 0.6);
@@ -79,6 +79,10 @@
   .text {
     padding: 5px;
   }
+  // .text-point {
+  //   text-align: center;
+
+  // }
 }
 .cardd {
   transition: transform 0.3s ease;

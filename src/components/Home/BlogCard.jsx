@@ -20,8 +20,11 @@ const BlogCard = () => {
   return (
     <>
       <div className="blogcard">
-        {listRank.map((item, index) => (
-          <div className="wrapper" key={index}>
+        {listRank.slice(0, 3).map((item, index) => (
+          <div
+            className="wrapper"
+            key={index}
+          >
             <div className="profile-card js-profile-card cardd">
               <div className="profile-card__img">
                 <img
@@ -44,8 +47,7 @@ const BlogCard = () => {
                     className="discription"
                     style={{ margin: "20px 75px 0 75px" }}
                   >
-                    <div>
-                      {" "}
+                    <div className="text-point">
                       <h6>Tổng điểm: {item.totalPoint}</h6>
                       <h6>Tổng quiz: {item.numberOfQuiz}</h6>
                     </div>
