@@ -1,14 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import LearnByMap from "../Map";
 import BlogCard from "./BlogCard";
 import getPostList from "./getPostList";
 import styles from "./style.module.scss";
 import { useNavigate } from "react-router-dom";
-import { Col, Divider, Row } from "antd";
+import { Col, Divider, Pagination, Row } from "antd";
+import { callGetArticle } from "../../services/api";
 
 function HomePage() {
   const { postList } = getPostList();
-  const modifiedPostList = postList.slice(0, 6);
+  const [current, setCurrent] = useState(1);
+  const [pageSize, setPageSize] = useState(4);
+  const [total, setTotal] = useState(0);
+
+  useEffect(() => {
+    setTotal(postList.length);
+  }, [postList]);
   //========================================
   const nonAccentVietnamese = (str) => {
     str = str.replace(/A|Á|À|Ã|Ạ|Â|Ấ|Ầ|Ẫ|Ậ|Ă|Ắ|Ằ|Ẵ|Ặ/g, "A");
@@ -68,10 +75,7 @@ function HomePage() {
         className={styles.post_item}
         onClick={() => handleRedirectEvent(post)}
       >
-        <img
-          className={styles.image}
-          src={post.image}
-        />
+        <img className={styles.image} src={post.image} />
         <div className={styles.info}>
           <span className={styles.title}>{post.title}</span>
           <span className={styles.content}>{post.content}</span>
@@ -80,12 +84,21 @@ function HomePage() {
     );
   };
 
+  const handleOnchangePage = (page, pageSize) => {
+    setCurrent(page);
+    setPageSize(pageSize);
+  };
+
+  const paginatedPostList = postList.slice(
+    (current - 1) * pageSize,
+    current * pageSize
+  );
+
   return (
     <div className={styles.home_page}>
       <LearnByMap />
-      <Divider orientation="left">Tư liệu theo thời kỳ</Divider>
+      <Divider orientation="left">Tư liệu mới:</Divider>
       <div className="container-custom">
-        {/* <span className={styles.header}>Các thời kỳ Việt Nam</span> */}
         <div className={styles.history_period}>
           {modifiedPostList.map(renderPostItem)}
         </div>
@@ -93,7 +106,7 @@ function HomePage() {
 
       <div className="">
         <span>
-          <Divider orientation="left">Top các kiện tướng</Divider>
+          <Divider orientation="left">Top các kiện tướng:</Divider>
         </span>
         <Row>
           <Col offset={2}>
@@ -102,12 +115,20 @@ function HomePage() {
         </Row>
       </div>
 
-      <Divider orientation="left">Tư liệu theo địa danh</Divider>
+      <Divider orientation="left">Tư liệu:</Divider>
       <div className={`${styles.place_container} container-custom`}>
         <div className={styles.left_block}>
-          {/* <span className={styles.header}>Các địa danh Việt Nam</span> */}
           <div className={styles.history_place}>
-            {modifiedPostList.map(renderPostItem)}
+            {paginatedPostList.map(renderPostItem)}
+            <Row style={{ display: "flex", justifyContent: "center" }}>
+              <Pagination
+                current={current}
+                total={total}
+                pageSize={pageSize}
+                responsive
+                onChange={handleOnchangePage}
+              />
+            </Row>
           </div>
         </div>
         <div className={styles.right_block}></div>

@@ -185,10 +185,7 @@ const ManageEventModal = (props) => {
         confirmLoading={isSubmit}
       >
         <Divider />
-        <Form
-          name="login"
-          autoComplete="off"
-        >
+        <Form name="login" autoComplete="off">
           <div className="title">
             <Form.Item
               name="title"
@@ -222,7 +219,7 @@ const ManageEventModal = (props) => {
             <Form.Item name="hashtag">
               <Select
                 size="middle"
-                placeholder="Hashtag"
+                placeholder="Thời đại"
                 initialValues={hashtag[0]}
                 onChange={handleSelectionChange}
                 style={{ width: "100%" }}
