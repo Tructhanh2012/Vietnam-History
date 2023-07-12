@@ -5,6 +5,7 @@ import { Col, Divider, Row } from "antd";
 import styles from "./style.module.scss";
 import { Link } from "react-router-dom";
 import { BsArrowRight } from "react-icons/bs";
+import TimelineComponent from "../../components/DongSuKien";
 
 const ArticleList = () => {
   const { postList } = getPostList();
@@ -92,13 +93,14 @@ const ArticleList = () => {
             {postList.map(renderPostItem)}
           </div>
         </div>
-        {/* <div className={styles.right_block}>
-          <div className={styles.banner}>
+        <div className={styles.right_block}>
+          {/* <div className={styles.banner}>
             <div className="banner-content">
               <span className={styles.header}>Bài viết theo địa danh</span>
             </div>
-          </div>
-        </div> */}
+          </div> */}
+          <TimelineComponent />
+        </div>
       </div>
     </div>
   );
