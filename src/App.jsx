@@ -128,15 +128,7 @@ export default function App() {
       children: [
         {
           index: true,
-          element: (
-            // Authenticate !!!!!
-
-            // <ProtectedRoute>
-            //   <AdminPage />
-            // </ProtectedRoute>
-
-            <AdminPage />
-          ),
+          element: <AdminPage />,
         },
         {
           path: "member",
@@ -171,12 +163,10 @@ export default function App() {
         },
         {
           path: "compose-article",
-          // element: <TextEditor />,
           element: <EditorCompose />,
         },
         {
           path: "create-quiz",
-          // element: <TextEditor />,
           element: <CreateQuizPage />,
         },
       ],

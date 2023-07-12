@@ -112,7 +112,11 @@ function HomePage() {
           <Divider orientation="left">Top các kiện tướng:</Divider>
         </span>
         <Row>
-          <Col offset={2}>
+          <Col
+            md={{ span: 20, offset: 2 }}
+            xs={24}
+            // lg={{ span: 18, offset: 3 }}
+          >
             <BlogCard />
           </Col>
         </Row>

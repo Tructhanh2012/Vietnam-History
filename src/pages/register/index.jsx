@@ -27,16 +27,17 @@ const RegisterPage = () => {
     setIsSubmit(true);
     const res = await callRegister(name, email, password);
     setIsSubmit(false);
+    console.log("res", res);
 
-    if (res) {
-      message.success("Đăng ký tài khoản thành công");
-      navigate("/login");
-    } else {
+    if (res.data === "Register fail") {
       notification.error({
-        message: "Có lỗi xảy ra",
-        description: res.responseMessage,
+        message: "Đăng ký thất bại!",
+        description: "Tài khoản đã tồn tại",
         duration: 5,
       });
+    } else {
+      message.success("Đăng ký tài khoản thành công");
+      navigate("/login");
     }
   };
 

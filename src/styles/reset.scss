@@ -28,3 +28,18 @@ img {
     max-width: 1120px;
   }
 }
+
+.ant-btn {
+  background-color: #ba161c;
+  > span {
+    color: #ffff;
+  }
+}
+
+.ant-divider {
+  .ant-divider-inner-text {
+    font-family: "Gentium Book Plus", serif;
+
+    // font-family: "Petrona", sans-serif;
+  }
+}

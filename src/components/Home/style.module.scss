@@ -63,7 +63,8 @@
   }
 
   .image {
-    border: 1px solid #000000;
+    // border: 1px solid #000000;
+    border-radius: 6px;
     aspect-ratio: 10/9;
     min-width: 200px;
   }
