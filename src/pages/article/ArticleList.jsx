@@ -1,14 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import getPostList from "../../components/Home/getPostList";
 import { useNavigate } from "react-router-dom";
-import { Col, Divider, Row } from "antd";
+import { Col, Divider, Row, Pagination } from "antd";
 import styles from "./style.module.scss";
 import { Link } from "react-router-dom";
 import { BsArrowRight } from "react-icons/bs";
 import TimelineComponent from "../../components/DongSuKien";
 
 const ArticleList = () => {
-  const { postList } = getPostList();
+  const { document } = getPostList();
+  const [current, setCurrent] = useState(1);
+  const [pageSize, setPageSize] = useState(9);
+  const [totalItems, setTotalItems] = useState(0);
+
+  useEffect(() => {
+    setTotalItems(document.length);
+  }, [document]);
 
   const nonAccentVietnamese = (str) => {
     str = str.replace(/A|Á|À|Ã|Ạ|Â|Ấ|Ầ|Ẫ|Ậ|Ă|Ắ|Ằ|Ẵ|Ặ/g, "A");
@@ -52,6 +59,14 @@ const ArticleList = () => {
 
     return str;
   };
+  const handleOnchangePage = (page, pageSize) => {
+    setCurrent(page);
+    setPageSize(pageSize);
+  };
+  const paginatedPostList = document.slice(
+    (current - 1) * pageSize,
+    current * pageSize
+  );
 
   const navigate = useNavigate();
   const handleRedirectEvent = (event) => {
@@ -90,7 +105,16 @@ const ArticleList = () => {
         <div className={styles.left_block}>
           <span className={styles.header}>Danh mục các bài viết</span>
           <div className={styles.history_place}>
-            {postList.map(renderPostItem)}
+            {paginatedPostList.map(renderPostItem)}
+            <Row style={{ display: "flex", justifyContent: "center" }}>
+              <Pagination
+                current={current}
+                total={totalItems}
+                pageSize={pageSize}
+                responsive
+                onChange={handleOnchangePage}
+              />
+            </Row>
           </div>
         </div>
         <div className={styles.right_block}>

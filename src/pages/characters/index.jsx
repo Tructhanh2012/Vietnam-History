@@ -164,7 +164,7 @@ const CharactersPage = () => {
                 ))}
             </div>
             <Pagination
-              style={{ marginBottom: "30px" }}
+              style={{ marginBottom: "34px" }}
               className="pagination-characters"
               total={totalItems}
               current={currentPage}
@@ -175,7 +175,6 @@ const CharactersPage = () => {
           <Col span={2}></Col>
 
           <Col span={6}>
-            <TimelineComponent />
             <Anchor
               items={items}
               style={{ padding: "10px", marginLeft: "26px" }}

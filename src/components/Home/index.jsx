@@ -8,10 +8,15 @@ import { Col, Divider, Pagination, Row } from "antd";
 import { callGetArticle } from "../../services/api";
 
 function HomePage() {
-  const { postList } = getPostList();
+  const { postList, document } = getPostList();
   const [current, setCurrent] = useState(1);
   const [pageSize, setPageSize] = useState(4);
   const [total, setTotal] = useState(0);
+  const [totalItems, setTotalItems] = useState(0);
+
+  useEffect(() => {
+    setTotalItems(document.length);
+  }, [document]);
 
   useEffect(() => {
     setTotal(postList.length);
@@ -92,7 +97,7 @@ function HomePage() {
     setPageSize(pageSize);
   };
 
-  const paginatedPostList = postList.slice(
+  const paginatedPostList = document.slice(
     (current - 1) * pageSize,
     current * pageSize
   );
@@ -130,7 +135,7 @@ function HomePage() {
             <Row style={{ display: "flex", justifyContent: "center" }}>
               <Pagination
                 current={current}
-                total={total}
+                total={totalItems}
                 pageSize={pageSize}
                 responsive
                 onChange={handleOnchangePage}

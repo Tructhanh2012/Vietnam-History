@@ -94,8 +94,15 @@ const ArticleDetails = () => {
         <span className={styles.title}>
           <h2 id="titleElement"></h2>
         </span>
-        <img className={styles.image} id="imageElement" alt="Article Image" />
-        <span className={styles.text} id="contentElement"></span>
+        <img
+          className={styles.image}
+          id="imageElement"
+          alt="Article Image"
+        />
+        <span
+          className={styles.text}
+          id="contentElement"
+        ></span>
       </div>
     );
   };
