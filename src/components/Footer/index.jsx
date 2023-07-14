@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import Facebook from "../Facebook/fanpage";
 import styles from "./style.module.scss";
 import logo from "../../assets/logo.png";
 import { useEffect } from "react";
@@ -103,13 +104,10 @@ function Footer() {
   const renderFooterCenter = () => {
     return (
       <div className={styles.footer_center}>
-        <ul className={styles.sub_menu}>
+        {/* <ul className={styles.sub_menu}>
           {menuList.map((item) => {
             return (
-              <li
-                key={`sub-menu-${item.label}`}
-                className={styles.menu_item}
-              >
+              <li key={`sub-menu-${item.label}`} className={styles.menu_item}>
                 <NavLink
                   to={item.link}
                   exact
@@ -122,7 +120,10 @@ function Footer() {
               </li>
             );
           })}
-        </ul>
+        </ul> */}
+
+        <img src={logo} />
+        <b>LichsuVietNam&copy; 2023</b>
       </div>
     );
   };
@@ -130,8 +131,9 @@ function Footer() {
   const renderFooterRight = () => {
     return (
       <div className={styles.footer_right}>
-        <img src={logo} />
-        <b>LichsuVietNam&copy; 2023</b>
+        {/* <img src={logo} />
+        <b>LichsuVietNam&copy; 2023</b> */}
+        <Facebook link="https://www.facebook.com/nguoikesu" />
       </div>
     );
   };

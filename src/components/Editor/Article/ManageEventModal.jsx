@@ -185,7 +185,10 @@ const ManageEventModal = (props) => {
         confirmLoading={isSubmit}
       >
         <Divider />
-        <Form name="login" autoComplete="off">
+        <Form
+          name="login"
+          autoComplete="off"
+        >
           <div className="title">
             <Form.Item
               name="title"

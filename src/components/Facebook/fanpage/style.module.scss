@@ -1,0 +1,12 @@
+.pcFacebook {
+   position: relative;
+
+   :global {
+      .fb_iframe_widget {
+         span,
+         iframe {
+            width: 100% !important;
+         }
+      }
+   }
+}
