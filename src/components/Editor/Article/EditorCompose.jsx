@@ -13,7 +13,6 @@ import {
   Select,
   notification,
 } from "antd";
-import { LoadingOutlined, PlusOutlined } from "@ant-design/icons";
 import axios from "axios";
 import { callGetHashtag } from "../../../services/api";
 import { error, event, post } from "jquery";
@@ -28,32 +27,33 @@ const EditorPage = () => {
   const [isSubmit, setIsSubmit] = useState(false);
 
   const form = Form.useForm();
-  const handleChange = (info) => {
-    let fileList = [...info.fileList];
+  // const handleChange = (info) => {
+  //   let fileList = [...info.fileList];
 
-    // Limit the number of uploaded images
-    fileList = fileList.slice(-5);
+  //   // Limit the number of uploaded images
+  //   fileList = fileList.slice(-5);
 
-    // Update fileList state
-    setFileList(fileList);
-
-    // Display uploading status
-
-    // Handle upload success or failure
-
-    // Clear uploading status
-  };
+  //   // Update fileList state
+  //   setFileList(fileList);
+  // };
 
   const handleTitleChange = (e) => {
     setTitle(e.target.value);
   };
 
-  const handleContentChange = (e) => {
-    setContent(e.target.value);
-  };
-  // const handleContentChange = (value) => {
-  //   setContent(value);
+  // const handleContentChange = (e) => {
+  //   setContent(e.target.value);
   // };
+  const handleContentChange = (value) => {
+    setContent(value);
+  };
+
+  const [data, setData] = useState("");
+
+  const handleTest = (e, editor) => {
+    setData(editor.getData());
+  };
+
   const [selectHashtag, setSelectHashtag] = useState(null);
   const handleSelectionChange = (value) => {
     setSelectHashtag(value);
@@ -90,14 +90,12 @@ const EditorPage = () => {
         body: JSON.stringify(article),
       }
     );
-    // console.log("res creat article: ", response.json());
     console.log("response: ", response);
     if (!response.ok) {
       notification.error({
         message: "Đã có lỗi xảy ra",
         description: "Vui lòng thử lại sau!",
       });
-      // throw new Error("Có lỗi xảy ra, vui lòng thử lại.");
     } else {
       const data = await response.json();
       console.log("data ne:", data);
@@ -125,10 +123,7 @@ const EditorPage = () => {
   return (
     <div className="editor">
       <div className="editor-wrapper">
-        <Form
-          name="login"
-          autoComplete="off"
-        >
+        <Form name="login" autoComplete="off">
           <div className="title">
             <Form.Item
               name="title"
@@ -150,19 +145,24 @@ const EditorPage = () => {
 
           <div className="editor-content">
             <Form.Item name="textArea">
-              {/* <Ckeditor
+              <Ckeditor
                 className="text-area"
                 value={content}
                 onChange={handleContentChange}
-              /> */}
-              <TextArea
+
+                // onChange={(e, editor) => {
+                //   handleTest(e, editor);
+                // }}
+              />
+              {/* <TextArea
                 className="text-area"
                 placeholder="Nội dung bài viết"
                 value={content}
                 rows={7}
                 onChange={handleContentChange}
-              />
+              /> */}
             </Form.Item>
+            <div>{data}</div>
             <Form.Item name="hashtag">
               <Select
                 size="middle"

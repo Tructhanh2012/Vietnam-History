@@ -7,7 +7,7 @@ export default function getPostList() {
 
   async function getListArticle() {
     const res = await callGetArticle();
-
+    // console.log("get all article:", res);
     if (res && res?.data) {
       setPostList(res.data);
     }

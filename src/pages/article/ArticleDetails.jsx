@@ -4,6 +4,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import styles from "./style.module.scss";
 import { useState } from "react";
+import ReactHTMLParser from "html-react-parser";
 
 const ArticleDetails = () => {
   const navigate = useNavigate();
@@ -49,7 +50,7 @@ const ArticleDetails = () => {
   };
 
   const [hashtagId, setHastagId] = useState();
-
+  const [content, setContent] = useState("");
   axios
     .request(config)
     .then((response) => {
@@ -57,6 +58,7 @@ const ArticleDetails = () => {
       const { title, image, content, hashtagEntity } = response.data;
       const hashtagID = hashtagEntity.id;
       setHastagId(hashtagID);
+      setContent(content);
       // Gán dữ liệu cho các phần tử trong giao diện
       document.getElementById("titleElement").textContent = title;
       document.getElementById("imageElement").src = image;
@@ -94,8 +96,9 @@ const ArticleDetails = () => {
         <span className={styles.title}>
           <h2 id="titleElement"></h2>
         </span>
-        <img className={styles.image} id="imageElement" alt="Article Image" />
-        <span className={styles.text} id="contentElement"></span>
+        <img className={styles.image} id="imageElement" />
+        <span className={styles.text}>{ReactHTMLParser(content)}</span>
+        {/* <span className={styles.text} id="contentElement"></span> */}
       </div>
     );
   };

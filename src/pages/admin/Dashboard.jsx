@@ -14,10 +14,7 @@ const DashboardCard = ({ title, value, icon }) => {
   return (
     <Card align="middle">
       <Space direction="horizontal">
-        <Statistic
-          title={title}
-          value={value}
-        />
+        <Statistic title={title} value={value} />
         {icon}
       </Space>
     </Card>
@@ -59,14 +56,8 @@ const Dashboard = () => {
     <>
       <div className="dashboard">
         <div className="dashboard_card">
-          <Row
-            gutter={40}
-            style={{ background: "#001529", height: "9rem" }}
-          >
-            <Col
-              span={6}
-              offset={2}
-            >
+          <Row gutter={40} style={{ background: "#001529", height: "9rem" }}>
+            <Col span={6} offset={2}>
               <DashboardCard
                 // formatter={formatter}
                 title={"Số thành viên"}
@@ -124,10 +115,7 @@ const Dashboard = () => {
           </Row>
         </div>
 
-        <div
-          className="dashboard_chart"
-          style={{ padding: "45px 90px" }}
-        >
+        <div className="dashboard_chart" style={{ padding: "45px 90px" }}>
           {/* <Chartt /> */}
           <Chart />
         </div>
