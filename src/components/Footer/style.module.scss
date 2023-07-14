@@ -32,7 +32,7 @@
 }
 
 .footer_left {
-  grid-area: left;
+  grid-area: center;
   display: flex;
   flex-direction: column;
   gap: 6px;
@@ -45,8 +45,16 @@
 }
 
 .footer_center {
-  grid-area: center;
-
+  grid-area: left;
+  //
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  text-align: center;
+  font-size: 12px;
+  max-width: 150px;
+  align-items: center;
+  //
   .sub_menu {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -72,10 +80,10 @@
 
 .footer_right {
   grid-area: right;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  text-align: center;
-  font-size: 12px;
-  max-width: 150px;
+  // display: flex;
+  // flex-direction: column;
+  // gap: 4px;
+  // text-align: center;
+  // font-size: 12px;
+  // max-width: 150px;
 }

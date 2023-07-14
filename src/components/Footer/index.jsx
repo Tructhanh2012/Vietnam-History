@@ -104,7 +104,7 @@ function Footer() {
   const renderFooterCenter = () => {
     return (
       <div className={styles.footer_center}>
-        <ul className={styles.sub_menu}>
+        {/* <ul className={styles.sub_menu}>
           {menuList.map((item) => {
             return (
               <li key={`sub-menu-${item.label}`} className={styles.menu_item}>
@@ -120,7 +120,10 @@ function Footer() {
               </li>
             );
           })}
-        </ul>
+        </ul> */}
+
+        <img src={logo} />
+        <b>LichsuVietNam&copy; 2023</b>
       </div>
     );
   };
@@ -128,9 +131,9 @@ function Footer() {
   const renderFooterRight = () => {
     return (
       <div className={styles.footer_right}>
-        <img src={logo} />
-        <b>LichsuVietNam&copy; 2023</b>
-        {/* <Facebook link="https://www.facebook.com/nguoikesu" /> */}
+        {/* <img src={logo} />
+        <b>LichsuVietNam&copy; 2023</b> */}
+        <Facebook link="https://www.facebook.com/nguoikesu" />
       </div>
     );
   };
