@@ -27,6 +27,7 @@
   flex-direction: column;
   gap: 12px;
   align-items: center;
+  padding: 0 120px 0 30px;
 
   .image {
     width: 100%;
@@ -34,8 +35,12 @@
     max-height: 600px;
   }
 
-  .test {
+  .text {
     text-align: justify;
+  }
+  img {
+    display: flex;
+    justify-content: center;
   }
 }
 
@@ -119,4 +124,8 @@
   margin-top: 20px;
 }
 .right_block {
+}
+img {
+  align-items: center;
+  display: flex;
 }

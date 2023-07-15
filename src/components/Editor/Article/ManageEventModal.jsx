@@ -1,8 +1,5 @@
 import {
-  Upload,
   Input,
-  Button,
-  Col,
   Divider,
   Form,
   Modal,
@@ -14,36 +11,57 @@ import TextArea from "antd/es/input/TextArea";
 import { useEffect, useState } from "react";
 import { LoadingOutlined, PlusOutlined } from "@ant-design/icons";
 import { callGetHashtag } from "../../../services/api";
-import axios from "axios";
+import axios from "../../../utils/axios-customize";
+import Ckeditor from "../../Ckeditor/content-editor/ckeditor";
 
 const ManageEventModal = (props) => {
-  const { dataUpdate, setDataUpdate, openModalUpdate, setOpenModalUpdate } =
-    props;
+  const {
+    dataUpdate,
+    setDataUpdate,
+    openModalUpdate,
+    setOpenModalUpdate,
+    loadArticles,
+  } = props;
   const [isSubmit, setIsSubmit] = useState(false);
   const [form] = Form.useForm();
 
   const onFinish = async (values) => {
     const { userId, username, email, role } = values;
     setIsSubmit(true);
-    const res = await callUpdateUser(userId, username, email, role);
-    console.log("check updateUser: ", res.responeMessage.responeMessage);
-
-    if (res && res.responeMessage.responeMessage === "UPDATE USER OKE !") {
-      message.success("Cập nhật user thành công");
+    const res = await axios.put("/editor/edit-article", {
+      userId,
+      username,
+      email,
+      role,
+    });
+    console.log("check updateUser: ", res);
+    if (res.ok) {
+      message.success("Cập nhật bài viết thành công");
       setOpenModalUpdate(false);
-      //await props.fetchUser;
+      loadArticles();
     } else {
+      // Handle the error condition
       notification.error({
         message: "Đã có lỗi xảy ra",
-        description: res.message,
+        description: response.data.message,
       });
     }
-    setIsSubmit(false);
+
+    // if (res && res.responeMessage.responeMessage === "UPDATE USER OKE !") {
+    //   message.success("Cập nhật user thành công");
+    //   setOpenModalUpdate(false);
+    //   //await props.fetchUser;
+    // } else {
+    //   notification.error({
+    //     message: "Đã có lỗi xảy ra",
+    //     description: res.message,
+    //   });
+    // }
+    // setIsSubmit(false);
   };
 
   useEffect(() => {
     form.setFieldsValue(dataUpdate);
-    // setFieldValue;
   }, [dataUpdate]);
 
   //modal content===================================
@@ -68,79 +86,79 @@ const ManageEventModal = (props) => {
     setTitle(e.target.value);
   };
 
-  const handleContentChange = (e) => {
-    setContent(e.target.value);
+  // const handleContentChange = (e) => {
+  //   setContent(e.target.value);
+  // };
+  const handleContentChange = (value) => {
+    setContent(value);
   };
 
   const handleSubmit = async () => {
-    // setIsSubmit(true);
-    // const articleData = form.getFieldsValue();
-    // articleData.id = dataUpdate.key;
-    // await props.handleUpdateArticle(articleData);
-    // setIsSubmit(false);
-    // setOpenModalUpdate(false);
-
-    //Create a new FormData object
-    // const formData = new FormData();
-
-    // Append title and content to the formData
-    //Append each file to the formData
-
-    // formData.append("title", title);
-    // formData.append("content", content);
-    // formData.append("hashtag", selectHashtag);
-
-    // fileList.forEach((file) => {
-    //   formData.append("images", file.originFileObj);
-    // });
-    const user = JSON.parse(sessionStorage.getItem("user"));
-    const token = sessionStorage.getItem("jwtToken");
+    const { articleId, hashtagId, title, image, content } = values;
     setIsSubmit(true);
+    const res = await axios;
+    console.log("check updateUser: ", res.responeMessage.responeMessage);
 
-    let article = {
-      articleId: dataUpdate.key,
-      hashtagId: selectHashtag,
-      title: title,
-      image: linkImage,
-      content: content,
-    };
-
-    try {
-      // Call the API to update the article
-      const response = await fetch(
-        "http://localhost:8084/editor/edit-article",
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify(article),
-        }
-      );
-
-      // Handle the response
-      if (response.ok) {
-        message.success("Cập nhật bài viết thành công");
-        setOpenModalUpdate(false);
-        window.location.reload();
-      } else {
-        // Handle the error condition
-        notification.error({
-          message: "Đã có lỗi xảy ra",
-          description: response.data.message,
-        });
-      }
-    } catch (error) {
-      // Handle any network or API errors
-      console.error("Error updating article:", error);
+    if (res && res.responeMessage.responeMessage === "UPDATE USER OKE !") {
+      message.success("Cập nhật user thành công");
+      setOpenModalUpdate(false);
+      fetchUser();
+    } else {
       notification.error({
         message: "Đã có lỗi xảy ra",
-        description: "Đã xảy ra lỗi khi cập nhật bài viết.",
+        description: res.message,
       });
-    } finally {
-      setIsSubmit(false);
     }
+    setIsSubmit(false);
+
+    // const user = JSON.parse(sessionStorage.getItem("user"));
+    // const token = sessionStorage.getItem("jwtToken");
+    // setIsSubmit(true);
+
+    // let article = {
+    //   articleId: dataUpdate.key,
+    //   hashtagId: selectHashtag,
+    //   title: title,
+    //   image: linkImage,
+    //   content: content,
+    // };
+
+    // try {
+    //   // Call the API to update the article
+    //   const response = await fetch(
+    //     "http://localhost:8084/editor/edit-article",
+    //     {
+    //       method: "PUT",
+    //       headers: {
+    //         "Content-Type": "application/json",
+    //         Authorization: `Bearer ${token}`,
+    //       },
+    //       body: JSON.stringify(article),
+    //     }
+    //   );
+
+    //   // Handle the response
+    //   if (response.ok) {
+    //     message.success("Cập nhật bài viết thành công");
+    //     setOpenModalUpdate(false);
+    //     window.location.reload();
+    //   } else {
+    //     // Handle the error condition
+    //     notification.error({
+    //       message: "Đã có lỗi xảy ra",
+    //       description: response.data.message,
+    //     });
+    //   }
+    // } catch (error) {
+    //   // Handle any network or API errors
+    //   console.error("Error updating article:", error);
+    //   notification.error({
+    //     message: "Đã có lỗi xảy ra",
+    //     description: "Đã xảy ra lỗi khi cập nhật bài viết.",
+    //   });
+    // } finally {
+    //   setIsSubmit(false);
+    // }
   };
 
   const [hashtag, setHashtag] = useState([]);
@@ -170,22 +188,19 @@ const ManageEventModal = (props) => {
       <Modal
         title="Cập nhật bài viết"
         open={openModalUpdate}
-        onOk={
-          handleSubmit
-          //   () => {
-          //   form.submit();
-          // }
-        }
+        // onOk={handleSubmit}
+        onOk={form.submit}
         onCancel={() => {
           setOpenModalUpdate(false);
           setDataUpdate(null);
         }}
-        // onText={"Cập nhật"}
-        // cancelTe={"Hủy"}
+        onText={"Cập nhật"}
+        cancelTe={"Hủy"}
         confirmLoading={isSubmit}
       >
         <Divider />
         <Form
+<<<<<<< HEAD
           name="login"
           autoComplete="off"
         >
@@ -207,40 +222,62 @@ const ManageEventModal = (props) => {
               />
             </Form.Item>
           </div>
+=======
+          name="update-article"
+          form={form}
+          onFinish={onFinish}
+          autoComplete="off"
+        >
+          <Form.Item
+            name="title"
+            rules={[
+              {
+                required: true,
+                message: "Hãy nhập tiêu đề bài viết!",
+                whitespace: false,
+              },
+            ]}
+          >
+            <Input />
+          </Form.Item>
+>>>>>>> b66e0db0aa537c885bc382034e252f637d5df1e0
 
-          <div className="editor-content">
-            <Form.Item name="content">
-              <TextArea
-                className="text-area"
-                placeholder="Nội dung bài viết"
-                value={content}
-                rows={7}
-                onChange={handleContentChange}
-              />
-            </Form.Item>
+          <Form.Item name="content">
+            <Ckeditor
+              className="text-area"
+              value={content}
+              onChange={handleContentChange}
+            />
+            {/* <TextArea
+              className="text-area"
+              placeholder="Nội dung bài viết"
+              value={content}
+              rows={7}
+              onChange={handleContentChange}
+            /> */}
+          </Form.Item>
 
-            <Form.Item name="hashtag">
-              <Select
-                size="middle"
-                placeholder="Thời đại"
-                initialValues={hashtag[0]}
-                onChange={handleSelectionChange}
-                style={{ width: "100%" }}
-                options={hashtag}
-              />
-            </Form.Item>
+          <Form.Item name="HashTag">
+            <Select
+              size="middle"
+              placeholder="Thời đại"
+              initialValues={hashtag[0]}
+              onChange={handleSelectionChange}
+              style={{ width: "100%" }}
+              options={hashtag}
+            />
+          </Form.Item>
 
-            <Form.Item name="upload-img">
-              <input
-                placeholder="link ảnh"
-                onChange={(event) => {
-                  setLinkImage(event.target.value);
-                }}
-                type="text"
-                value={linkImage}
-              />
-            </Form.Item>
-          </div>
+          <Form.Item name="image">
+            <input
+              placeholder="link ảnh"
+              onChange={(event) => {
+                setLinkImage(event.target.value);
+              }}
+              type="text"
+              value={linkImage}
+            />
+          </Form.Item>
         </Form>
       </Modal>
     </>

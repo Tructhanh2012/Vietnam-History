@@ -61,7 +61,7 @@ const ArticleDetails = () => {
       setContent(content);
       // Gán dữ liệu cho các phần tử trong giao diện
       document.getElementById("titleElement").textContent = title;
-      document.getElementById("imageElement").src = image;
+      // document.getElementById("imageElement").src = image;
       document.getElementById("contentElement").textContent = content;
     })
     .catch((error) => {
@@ -74,11 +74,11 @@ const ArticleDetails = () => {
       href: "#titleElement",
       title: "Tiêu đề",
     },
-    {
-      key: "imageElement",
-      href: "#imageElement",
-      title: "Ảnh",
-    },
+    // {
+    //   key: "imageElement",
+    //   href: "#imageElement",
+    //   title: "Ảnh",
+    // },
     {
       key: "contentElement",
       href: "#contentElement",
@@ -96,10 +96,10 @@ const ArticleDetails = () => {
         <span className={styles.title}>
           <h2 id="titleElement"></h2>
         </span>
-        <img
+        {/* <img
           className={styles.image}
           id="imageElement"
-        />
+        /> */}
         <span className={styles.text}>{ReactHTMLParser(content)}</span>
         {/* <span className={styles.text} id="contentElement"></span> */}
       </div>
@@ -119,9 +119,9 @@ const ArticleDetails = () => {
               </div>
             </div>
             <div className={styles.anchor}>
-              <Col>
+              {/* <Col>
                 <Anchor items={items} />
-              </Col>
+              </Col> */}
             </div>
           </div>
         </div>

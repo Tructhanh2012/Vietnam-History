@@ -149,10 +149,6 @@ const EditorPage = () => {
                 className="text-area"
                 value={content}
                 onChange={handleContentChange}
-
-                // onChange={(e, editor) => {
-                //   handleTest(e, editor);
-                // }}
               />
               {/* <TextArea
                 className="text-area"

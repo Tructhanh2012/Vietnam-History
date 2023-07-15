@@ -11,7 +11,6 @@ import {
 import { Button } from "antd";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { callRegisterRole } from "../../../services/api";
 import "./register-role.scss";
 import { useForm } from "antd/es/form/Form";
 

@@ -13,7 +13,6 @@ import {
 
 import "./linechart.scss";
 import { useEffect, useState } from "react";
-// import { callPostDashboard } from "../../../services/api";
 import { Card } from "antd";
 import axios from "../../../utils/axios-customize";
 import { statistic } from "antd/es/theme/internal";

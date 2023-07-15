@@ -10,10 +10,21 @@
   grid-template-rows: 1fr 1fr 1fr;
   gap: 16px;
 }
+.history_period span {
+  font-family: "Petrona", serif;
+  font-size: 14px;
+}
 
 .history_place {
   display: grid;
   gap: 16px;
+}
+.history_place span {
+  font-family: "Petrona", serif;
+  font-size: 14px;
+}
+.history_place p {
+  // background: rgba(#e8e8e8, 0.54);
 }
 
 .header {

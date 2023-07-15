@@ -3,6 +3,7 @@ import { DeleteTwoTone, EditTwoTone } from "@ant-design/icons";
 import { useState } from "react";
 import { useEffect } from "react";
 import ManageEventModal from "./ManageEventModal";
+import ReactHTMLParser from "html-react-parser";
 
 const ManageEvent = () => {
   const [current, setCurrent] = useState(1);
@@ -15,29 +16,30 @@ const ManageEvent = () => {
   const [listArticles, setListArticles] = useState([]);
   const [articleId, setArticleId] = useState();
 
-  useEffect(() => {
-    const loadArticles = async () => {
-      const user = JSON.parse(sessionStorage.getItem("user"));
-      const token = sessionStorage.getItem("jwtToken");
-      const id = { id: user.id };
-      const response = await fetch(
-        "http://localhost:8084/editor/articles-editor",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify(id),
-        }
-      );
-      if (!response.ok) {
-        throw new Error("Có lỗi xảy ra, vui lòng thử lại.");
+  const loadArticles = async () => {
+    const user = JSON.parse(sessionStorage.getItem("user"));
+    const token = sessionStorage.getItem("jwtToken");
+    const id = { id: user.id };
+    const response = await fetch(
+      "http://localhost:8084/editor/articles-editor",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(id),
       }
-      const data = await response.json();
-      setListArticles(data);
-      console.log(data);
-    };
+    );
+    if (!response.ok) {
+      throw new Error("Có lỗi xảy ra, vui lòng thử lại.");
+    }
+    const data = await response.json();
+    console.log("log content", data);
+    setListArticles(data);
+    console.log(data);
+  };
+  useEffect(() => {
     loadArticles();
 
     // fetchUser();
@@ -219,7 +221,9 @@ const ManageEvent = () => {
     key: article.id,
     eventID: article.id,
     title: article.title,
+    content: article.content,
     HashTag: article.hashtagEntity.name,
+    image: article.image,
   }));
   // const data = [
   //   {
@@ -285,6 +289,7 @@ const ManageEvent = () => {
         dataUpdate={dataUpdate}
         openModalUpdate={openModalUpdate}
         setOpenModalUpdate={setOpenModalUpdate}
+        loadArticles={loadArticles}
       />
     </>
   );

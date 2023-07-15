@@ -6,12 +6,14 @@ import styles from "./style.module.scss";
 import { Link } from "react-router-dom";
 import { BsArrowRight } from "react-icons/bs";
 import TimelineComponent from "../../components/DongSuKien";
+import ReactHTMLParser from "html-react-parser";
 
 const ArticleList = () => {
   const { document } = getPostList();
   const [current, setCurrent] = useState(1);
   const [pageSize, setPageSize] = useState(9);
   const [totalItems, setTotalItems] = useState(0);
+  // const [content, setContent] = useState("");
 
   useEffect(() => {
     setTotalItems(document.length);
@@ -88,7 +90,9 @@ const ArticleList = () => {
         />
         <div className={styles.info}>
           <span className={styles.title}>{post.title}</span>
-          <span className={styles.content}>{post.content}</span>
+          <span className={styles.content}>
+            {ReactHTMLParser(post.content)}
+          </span>
           <Link
             className={styles.link}
             onClick={() => handleRedirectEvent(post)}
