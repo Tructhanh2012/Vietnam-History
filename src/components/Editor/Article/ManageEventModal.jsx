@@ -26,36 +26,13 @@ const ManageEventModal = (props) => {
   const [form] = Form.useForm();
 
   const onFinish = async (formData) => {
-    // const { userId, username, email, role } = values;
-    // setIsSubmit(true);
-    // const res = await axios.put("/editor/edit-article", {
-    //   userId,
-    //   username,
-    //   email,
-    //   role,
-    // });
-    // console.log("check updateUser: ", res);
-    // if (res.ok) {
-    //   message.success("Cập nhật bài viết thành công");
-    //   setOpenModalUpdate(false);
-    //   loadArticles();
-    // } else {
-    //   // Handle the error condition
-    //   notification.error({
-    //     message: "Đã có lỗi xảy ra",
-    //     description: response.data.message,
-    //   });
-    // }
-
     const user = JSON.parse(sessionStorage.getItem("user"));
     const token = sessionStorage.getItem("jwtToken");
     setIsSubmit(true);
 
     let article = {
-      // articleId: dataUpdate.key,
       articleId: formData.articleId,
       hashtagId: selectHashtag,
-      // hashtagId: formData.HashTag.id,
       title: formData.title,
       image: formData.image,
       content: formData.content,
@@ -120,75 +97,6 @@ const ManageEventModal = (props) => {
     setTitle(value);
   };
 
-  const handleSubmit = async () => {
-    // const { articleId, hashtagId, title, image, content } = values;
-    // setIsSubmit(true);
-    // const res = await axios;
-    // console.log("check updateUser: ", res.responeMessage.responeMessage);
-
-    // if (res && res.responeMessage.responeMessage === "UPDATE USER OKE !") {
-    //   message.success("Cập nhật user thành công");
-    //   setOpenModalUpdate(false);
-    //   fetchUser();
-    // } else {
-    //   notification.error({
-    //     message: "Đã có lỗi xảy ra",
-    //     description: res.message,
-    //   });
-    // }
-    // setIsSubmit(false);
-
-    const user = JSON.parse(sessionStorage.getItem("user"));
-    const token = sessionStorage.getItem("jwtToken");
-    setIsSubmit(true);
-
-    let article = {
-      articleId: dataUpdate.key,
-      hashtagId: selectHashtag,
-      title: title,
-      image: linkImage,
-      content: content,
-    };
-
-    try {
-      // Call the API to update the article
-      const response = await fetch(
-        "http://localhost:8084/editor/edit-article",
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify(article),
-        }
-      );
-
-      console.log("response", response);
-      // Handle the response
-      if (response.ok) {
-        message.success("Cập nhật bài viết thành công");
-        setOpenModalUpdate(false);
-        window.location.reload();
-      } else {
-        // Handle the error condition
-        notification.error({
-          message: "Đã có lỗi xảy ra",
-          description: response.data.message,
-        });
-      }
-    } catch (error) {
-      // Handle any network or API errors
-      console.error("Error updating article:", error);
-      notification.error({
-        message: "Đã có lỗi xảy ra",
-        description: "Đã xảy ra lỗi khi cập nhật bài viết.",
-      });
-    } finally {
-      setIsSubmit(false);
-    }
-  };
-
   const [hashtag, setHashtag] = useState([]);
   const [selectHashtag, setSelectHashtag] = useState(null);
   const getHashtags = async () => {
@@ -222,8 +130,8 @@ const ManageEventModal = (props) => {
           setOpenModalUpdate(false);
           setDataUpdate(null);
         }}
-        onText={"Cập nhật"}
-        cancelTe={"Hủy"}
+        okText={"Cập nhật"}
+        cancelText={"Hủy"}
         confirmLoading={isSubmit}
       >
         <Divider />
