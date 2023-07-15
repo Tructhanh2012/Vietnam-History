@@ -8,16 +8,10 @@ const Review = () => {
 
   const fetchAPI = async () => {
     const api = await getAPI();
-    // console.log(api);
     setData(api);
   };
 
-  //   const getData = async () => {
-  //     const data = await axios.get("https://jsonplaceholder.typicode.com/todos");
-  //     console.log(data);
-  //   };
   useEffect(() => {
-    // getData();
     fetchAPI();
   }, []);
   return (

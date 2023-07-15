@@ -1,4 +1,4 @@
-import { Anchor, Breadcrumb, Button, Col } from "antd";
+import { Anchor, Breadcrumb, Button, Col, Modal } from "antd";
 // import "./article.scss";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -7,6 +7,19 @@ import { useState } from "react";
 import ReactHTMLParser from "html-react-parser";
 
 const ArticleDetails = () => {
+  const [modalVisible, setModalVisible] = useState(false);
+
+  const showModal = () => {
+    setModalVisible(true);
+  };
+
+  const handleModalOk = () => {
+    navigate("/login");
+  };
+
+  const handleModalCancel = () => {
+    setModalVisible(false);
+  };
   const navigate = useNavigate();
   const BreadcrumbArticle = () => {
     return (
@@ -87,7 +100,17 @@ const ArticleDetails = () => {
   ];
 
   const handleOnClick = () => {
-    navigate(`/quizdt?hashtagId=${hashtagId}`);
+    const user = JSON.parse(sessionStorage.getItem("user"));
+    const token = sessionStorage.getItem("jwtToken");
+    try {
+      if (user.role === "MEMBER") {
+        navigate(`/quizdt?hashtagId=${hashtagId}`);
+      } else if (user.role === "ADMIN") {
+        navigate("/login");
+      }
+    } catch (error) {
+      showModal();
+    }
   };
 
   const renderArticleDetails = () => {
@@ -126,6 +149,29 @@ const ArticleDetails = () => {
           </div>
         </div>
       </div>
+      <Modal
+        title="Thông báo"
+        visible={modalVisible}
+        onOk={handleModalOk}
+        onCancel={handleModalCancel}
+        footer={[
+          <Button
+            key="cancel"
+            onClick={handleModalCancel}
+          >
+            Cancel
+          </Button>,
+          <Button
+            key="login"
+            type="primary"
+            onClick={handleModalOk}
+          >
+            Đăng nhập
+          </Button>,
+        ]}
+      >
+        <p>Bạn phải đăng nhập trước khi làm quiz</p>
+      </Modal>
 
       {/* <Divider style={{ margin: 10 }} />
                 <div

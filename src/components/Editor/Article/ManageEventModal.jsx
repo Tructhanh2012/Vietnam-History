@@ -26,13 +26,14 @@ const ManageEventModal = (props) => {
   const [form] = Form.useForm();
 
   const onFinish = async (values) => {
-    const { userId, username, email, role } = values;
+    const { articleId, selectHashtag, title, content, image } = values;
     setIsSubmit(true);
     const res = await axios.put("/editor/edit-article", {
-      userId,
-      username,
-      email,
-      role,
+      articleId,
+      selectHashtag,
+      title,
+      content,
+      image,
     });
     console.log("check updateUser: ", res);
     if (res.ok) {
@@ -43,21 +44,10 @@ const ManageEventModal = (props) => {
       // Handle the error condition
       notification.error({
         message: "Đã có lỗi xảy ra",
-        description: response.data.message,
+        description: "Vui lòng thử lại sau",
       });
     }
-
-    // if (res && res.responeMessage.responeMessage === "UPDATE USER OKE !") {
-    //   message.success("Cập nhật user thành công");
-    //   setOpenModalUpdate(false);
-    //   //await props.fetchUser;
-    // } else {
-    //   notification.error({
-    //     message: "Đã có lỗi xảy ra",
-    //     description: res.message,
-    //   });
-    // }
-    // setIsSubmit(false);
+    setIsSubmit(false);
   };
 
   useEffect(() => {
@@ -70,22 +60,6 @@ const ManageEventModal = (props) => {
   const [fileList, setFileList] = useState([]);
   const [linkImage, setLinkImage] = useState("");
 
-  const handleChange = (info) => {
-    let fileList = [...info.fileList];
-
-    // Limit the number of uploaded images
-    fileList = fileList.slice(-5);
-
-    // Update fileList state
-    setFileList(fileList);
-
-    // Display uploading status
-  };
-
-  const handleTitleChange = (e) => {
-    setTitle(e.target.value);
-  };
-
   // const handleContentChange = (e) => {
   //   setContent(e.target.value);
   // };
@@ -93,79 +67,11 @@ const ManageEventModal = (props) => {
     setContent(value);
   };
 
-  const handleSubmit = async () => {
-    const { articleId, hashtagId, title, image, content } = values;
-    setIsSubmit(true);
-    const res = await axios;
-    console.log("check updateUser: ", res.responeMessage.responeMessage);
-
-    if (res && res.responeMessage.responeMessage === "UPDATE USER OKE !") {
-      message.success("Cập nhật user thành công");
-      setOpenModalUpdate(false);
-      fetchUser();
-    } else {
-      notification.error({
-        message: "Đã có lỗi xảy ra",
-        description: res.message,
-      });
-    }
-    setIsSubmit(false);
-
-    // const user = JSON.parse(sessionStorage.getItem("user"));
-    // const token = sessionStorage.getItem("jwtToken");
-    // setIsSubmit(true);
-
-    // let article = {
-    //   articleId: dataUpdate.key,
-    //   hashtagId: selectHashtag,
-    //   title: title,
-    //   image: linkImage,
-    //   content: content,
-    // };
-
-    // try {
-    //   // Call the API to update the article
-    //   const response = await fetch(
-    //     "http://localhost:8084/editor/edit-article",
-    //     {
-    //       method: "PUT",
-    //       headers: {
-    //         "Content-Type": "application/json",
-    //         Authorization: `Bearer ${token}`,
-    //       },
-    //       body: JSON.stringify(article),
-    //     }
-    //   );
-
-    //   // Handle the response
-    //   if (response.ok) {
-    //     message.success("Cập nhật bài viết thành công");
-    //     setOpenModalUpdate(false);
-    //     window.location.reload();
-    //   } else {
-    //     // Handle the error condition
-    //     notification.error({
-    //       message: "Đã có lỗi xảy ra",
-    //       description: response.data.message,
-    //     });
-    //   }
-    // } catch (error) {
-    //   // Handle any network or API errors
-    //   console.error("Error updating article:", error);
-    //   notification.error({
-    //     message: "Đã có lỗi xảy ra",
-    //     description: "Đã xảy ra lỗi khi cập nhật bài viết.",
-    //   });
-    // } finally {
-    //   setIsSubmit(false);
-    // }
-  };
-
   const [hashtag, setHashtag] = useState([]);
   const [selectHashtag, setSelectHashtag] = useState(null);
   const getHashtags = async () => {
     const res = await callGetHashtag();
-    console.log(res.data);
+    // console.log(res.data);
     const hashtagOptions = res.data.map((item) => ({
       label: item.name,
       value: item.id,
@@ -200,34 +106,18 @@ const ManageEventModal = (props) => {
       >
         <Divider />
         <Form
-<<<<<<< HEAD
-          name="login"
-          autoComplete="off"
-        >
-          <div className="title">
-            <Form.Item
-              name="title"
-              rules={[
-                {
-                  required: true,
-                  message: "Hãy nhập tiêu đề bài viết!",
-                  whitespace: false,
-                },
-              ]}
-            >
-              <Input
-                placeholder="Tiêu đề bài viết"
-                value={title}
-                onChange={handleTitleChange}
-              />
-            </Form.Item>
-          </div>
-=======
           name="update-article"
           form={form}
           onFinish={onFinish}
           autoComplete="off"
         >
+          <Form.Item
+            name="articleId"
+            hidden
+          >
+            <Input disabled />
+          </Form.Item>
+
           <Form.Item
             name="title"
             rules={[
@@ -240,12 +130,11 @@ const ManageEventModal = (props) => {
           >
             <Input />
           </Form.Item>
->>>>>>> b66e0db0aa537c885bc382034e252f637d5df1e0
 
           <Form.Item name="content">
             <Ckeditor
               className="text-area"
-              value={content}
+              // value={content}
               onChange={handleContentChange}
             />
             {/* <TextArea
@@ -261,7 +150,7 @@ const ManageEventModal = (props) => {
             <Select
               size="middle"
               placeholder="Thời đại"
-              initialValues={hashtag[0]}
+              // initialValues={hashtag[0]}
               onChange={handleSelectionChange}
               style={{ width: "100%" }}
               options={hashtag}

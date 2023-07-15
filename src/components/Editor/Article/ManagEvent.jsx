@@ -35,7 +35,7 @@ const ManageEvent = () => {
       throw new Error("Có lỗi xảy ra, vui lòng thử lại.");
     }
     const data = await response.json();
-    console.log("log content", data);
+
     setListArticles(data);
     console.log(data);
   };
@@ -219,7 +219,7 @@ const ManageEvent = () => {
   ];
   const data = listArticles.map((article) => ({
     key: article.id,
-    eventID: article.id,
+    articleId: article.id,
     title: article.title,
     content: article.content,
     HashTag: article.hashtagEntity.name,
@@ -265,9 +265,15 @@ const ManageEvent = () => {
 
   return (
     <>
-      <Row gutter={[20, 20]} style={{ marginTop: 40 }}>
+      <Row
+        gutter={[20, 20]}
+        style={{ marginTop: 40 }}
+      >
         <Col span={24}>{/* <InputSearch /> */}</Col>
-        <Col span={22} offset={1}>
+        <Col
+          span={22}
+          offset={1}
+        >
           <Table
             className="def"
             loading={isLoading}

@@ -50,7 +50,6 @@ const EditorTable = () => {
       },
       body: JSON.stringify({ id: id }),
     });
-    // console.log(response);
     if (!response.ok) {
       throw new Error("Có lỗi xảy ra, vui lòng thử lại.");
     } else {
@@ -91,7 +90,10 @@ const EditorTable = () => {
         let color =
           role === "ADMIN" ? "gold" : role === "MEMBER" ? "geekblue" : "green";
         return (
-          <Tag color={color} key={role}>
+          <Tag
+            color={color}
+            key={role}
+          >
             {role.toUpperCase()}
           </Tag>
         );
@@ -170,7 +172,10 @@ const EditorTable = () => {
     <>
       <Row gutter={[20, 20]}>
         <Col span={24}>{/* <InputSearch /> */}</Col>
-        <Col span={22} offset={1}>
+        <Col
+          span={22}
+          offset={1}
+        >
           <Table
             className="def"
             loading={isLoading}
