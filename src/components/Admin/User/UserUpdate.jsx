@@ -1,32 +1,32 @@
-import { Divider, Form, Input, Modal, message } from "antd";
+import { Divider, Form, Input, Modal, message, notification } from "antd";
+import axios from "axios";
 import { useEffect, useState } from "react";
-import { callUpdateUser } from "../../../services/api";
 
 const UserUpdate = (props) => {
-  const {
-    openModalUpdate,
-    setOpenModalUpdate,
-    fetchUser,
-    dataUpdate,
-    setDataUpdate,
-  } = props;
+  const { openModalUpdate, setOpenModalUpdate, dataUpdate, setDataUpdate } =
+    props;
   const [isSubmit, setIsSubmit] = useState(false);
   const [form] = Form.useForm();
   // console.log("check props: ", props);
   const onFinish = async (values) => {
-    const { userId, username, email, role } = values;
+    const { id, name } = values;
     setIsSubmit(true);
-    const res = await callUpdateUser(userId, username, email, role);
-    console.log("check updateUser: ", res.responeMessage.responeMessage);
+    const res = await axios.put(
+      "http://localhost:8084/general/update-profile",
+      {
+        id,
+        name,
+      }
+    );
+    console.log("check updateUser: ", res);
 
-    if (res && res.responeMessage.responeMessage === "UPDATE USER OKE !") {
-      message.success("Cập nhật user thành công");
+    if (res && res.status === 200) {
+      message.success("Cập nhật editor thành công.");
       setOpenModalUpdate(false);
-      fetchUser();
     } else {
       notification.error({
-        message: "Đã có lỗi xảy ra",
-        description: res.message,
+        message: "Đã có lỗi xảy ra!",
+        description: "Vui lòng thử lại sau",
       });
     }
     setIsSubmit(false);
@@ -34,7 +34,6 @@ const UserUpdate = (props) => {
 
   useEffect(() => {
     form.setFieldsValue(dataUpdate);
-    // setFieldValue;
   }, [dataUpdate]);
 
   return (
@@ -46,8 +45,8 @@ const UserUpdate = (props) => {
         setOpenModalUpdate(false);
         setDataUpdate(null);
       }}
-      onText={"Cập nhật"}
-      cancelTe={"Hủy"}
+      okText={"Cập nhật"}
+      cancelText={"Hủy"}
       confirmLoading={isSubmit}
     >
       <Divider />
@@ -61,8 +60,8 @@ const UserUpdate = (props) => {
         <Form.Item
           hidden
           labelCol={{ span: 24 }}
-          label="Id"
-          name="userId"
+          label="id"
+          name="id"
           rules={[
             {
               required: true,
@@ -75,25 +74,20 @@ const UserUpdate = (props) => {
 
         <Form.Item
           labelCol={{ span: 24 }}
-          label="Tên đăng nhập"
+          label="Tên:"
           name="name"
           rules={[{ required: true, message: "Vui lòng nhập tên đăng nhập" }]}
         >
           <Input />
         </Form.Item>
 
-        <Form.Item
-          labelCol={{ span: 24 }}
-          label="Role"
-          name="role"
-          rules={[{ required: true, message: "Vui lòng nhập tên email!" }]}
-        >
-          <Input />
+        <Form.Item labelCol={{ span: 24 }} label="Role:" name="role">
+          <Input disabled />
         </Form.Item>
 
         <Form.Item
           labelCol={{ span: 24 }}
-          label="Email"
+          label="Email:"
           name="email"
           rules={[{ required: true, message: "Vui lòng nhập tên email!" }]}
         >
