@@ -219,7 +219,7 @@ const ManageEvent = () => {
   ];
   const data = listArticles.map((article) => ({
     key: article.id,
-    eventID: article.id,
+    articleId: article.id,
     title: article.title,
     content: article.content,
     HashTag: article.hashtagEntity.name,

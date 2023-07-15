@@ -17,7 +17,7 @@ const UserUpdate = (props) => {
     const { userId, username, email, role } = values;
     setIsSubmit(true);
     const res = await callUpdateUser(userId, username, email, role);
-    console.log("check updateUser: ", res.responeMessage.responeMessage);
+    // console.log("check updateUser: ", res.responeMessage.responeMessage);
 
     if (res && res.responeMessage.responeMessage === "UPDATE USER OKE !") {
       message.success("Cập nhật user thành công");

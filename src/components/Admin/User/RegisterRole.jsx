@@ -22,7 +22,7 @@ const RegisterRole = (props) => {
   const onFinish = async (formdata) => {
     const user = JSON.parse(sessionStorage.getItem("user"));
     const token = sessionStorage.getItem("jwtToken");
-
+    setIsSubmit(true);
     const data = {
       name: formdata.name,
       email: formdata.email,
@@ -43,6 +43,7 @@ const RegisterRole = (props) => {
       message.success("Tạo tài khoản thành công");
       form.resetFields();
     }
+    setIsSubmit(false);
   };
 
   // const onFinish = async (values) => {
