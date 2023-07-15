@@ -82,8 +82,8 @@ const ManageEvent = () => {
   const columns = [
     {
       title: "ID",
-      dataIndex: "eventID",
-      key: "eventID",
+      dataIndex: "articleId",
+      key: "articleId",
     },
     {
       title: "Tiêu đề bài viết",
