@@ -12,11 +12,6 @@ import InputSearch from "./InputSearch";
 import { DeleteTwoTone, EditTwoTone } from "@ant-design/icons";
 import { useState } from "react";
 import UserUpdate from "./UserUpdate";
-import {
-  callDeleteUser,
-  callGetEditorList,
-  callGetListUser,
-} from "../../../services/api";
 import { useEffect } from "react";
 import axios from "../../../utils/axios-customize";
 
