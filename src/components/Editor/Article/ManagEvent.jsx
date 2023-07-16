@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import ManageEventModal from "./ManageEventModal";
 import EventViewDetail from "./EventViewDetail";
+import { RxEyeClosed } from "react-icons/rx";
 
 const ManageEvent = () => {
   const [current, setCurrent] = useState(1);
@@ -93,19 +94,19 @@ const ManageEvent = () => {
       title: "ID",
       dataIndex: "articleId",
       key: "articleId",
-      render: (text, record, index) => {
-        return (
-          <a
-            href="#"
-            onClick={() => {
-              setDataViewDetail(record);
-              setOpenViewDetail(true);
-            }}
-          >
-            {record.articleId}
-          </a>
-        );
-      },
+      // render: (text, record, index) => {
+      //   return (
+      //     <a
+      //       href="#"
+      //       onClick={() => {
+      //         setDataViewDetail(record);
+      //         setOpenViewDetail(true);
+      //       }}
+      //     >
+      //       {record.articleId}
+      //     </a>
+      //   );
+      // },
     },
     {
       title: "Tiêu đề bài viết",
@@ -236,7 +237,21 @@ const ManageEvent = () => {
       dataIndex: "editorInfor",
       key: "editor",
       render: (editorInfor) => editorInfor.email,
-      // responsive: ["none"],
+      responsive: ["none"],
+    },
+    {
+      title: "Preview",
+      render: (text, record, index) => {
+        return (
+          <RxEyeClosed
+            style={{ cursor: "pointer", color: "#1159ab" }}
+            onClick={() => {
+              setDataViewDetail(record);
+              setOpenViewDetail(true);
+            }}
+          />
+        );
+      },
     },
 
     {
