@@ -1,4 +1,6 @@
 import { TeamOutlined, UserOutlined } from "@ant-design/icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMap } from "@fortawesome/free-solid-svg-icons";
 import React from "react";
 import "./layout.scss";
 import { Link, Outlet, useNavigate } from "react-router-dom";
@@ -73,6 +75,18 @@ const LayoutAdmin = (props) => {
       label: <Link to="/admin/create-role">Tạo Account</Link>,
       key: "addrole",
       icon: <UserAddOutlined style={{ fontSize: "1.5em" }} />,
+      // icon: <UserAddOutlined  />,
+    },
+    {
+      label: <Link to="/admin/map-articles">Map</Link>,
+      key: "crud-map-articles",
+      // icon: <UserAddOutlined style={{ fontSize: "1.5em" }} />,
+      icon: (
+        <FontAwesomeIcon
+          icon={faMap}
+          style={{ fontSize: "1.5em" }}
+        />
+      ),
     },
     {
       label: <span>Điều hướng</span>,

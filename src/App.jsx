@@ -40,6 +40,7 @@ import EditorTable from "./components/Admin/User/EditorTable";
 import { elements } from "chart.js";
 // import QuizDetail from "./pages/quizList/QuizzDetail";
 import ArticleList from "./pages/article/ArticleList";
+import MapArticles from "./components/Admin/User/MapArticles";
 
 const Layout = () => {
   return (
@@ -141,6 +142,10 @@ export default function App() {
         {
           path: "create-role",
           element: <RegisterRole />,
+        },
+        {
+          path: "map-articles",
+          element: <MapArticles />,
         },
       ],
     },

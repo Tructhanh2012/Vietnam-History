@@ -29,38 +29,52 @@ const ManageEventModal = (props) => {
     const user = JSON.parse(sessionStorage.getItem("user"));
     const token = sessionStorage.getItem("jwtToken");
     setIsSubmit(true);
-    const res = await axios.put("/editor/edit-article", {
-      userId,
-      username,
-      email,
-      role,
-    });
-    console.log("check updateUser: ", res);
-    if (res.ok) {
-      message.success("Cập nhật bài viết thành công");
-      setOpenModalUpdate(false);
-      loadArticles();
-    } else {
-      // Handle the error condition
+
+    let article = {
+      articleId: formData.articleId,
+      hashtagId: selectHashtag,
+      title: formData.title,
+      image: formData.image,
+      content: formData.content,
+    };
+
+    try {
+      // Call the API to update the article
+      const response = await fetch(
+        "http://localhost:8084/editor/edit-article",
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify(article),
+        }
+      );
+
+      console.log("response", response);
+      // Handle the response
+      if (response.ok) {
+        message.success("Cập nhật bài viết thành công");
+        setOpenModalUpdate(false);
+        window.location.reload();
+      } else {
+        // Handle the error condition
+        notification.error({
+          message: "Đã có lỗi xảy ra",
+          description: "Vui lòng thử lại sau!",
+        });
+      }
+    } catch (error) {
+      // Handle any network or API errors
+      console.error("Error updating article:", error);
       notification.error({
         message: "Đã có lỗi xảy ra",
-        description: response.data.message,
+        description: "Đã xảy ra lỗi khi cập nhật bài viết.",
       });
     } finally {
       setIsSubmit(false);
     }
-
-    // if (res && res.responeMessage.responeMessage === "UPDATE USER OKE !") {
-    //   message.success("Cập nhật user thành công");
-    //   setOpenModalUpdate(false);
-    //   //await props.fetchUser;
-    // } else {
-    //   notification.error({
-    //     message: "Đã có lỗi xảy ra",
-    //     description: res.message,
-    //   });
-    // }
-    // setIsSubmit(false);
   };
 
   useEffect(() => {
@@ -79,80 +93,15 @@ const ManageEventModal = (props) => {
   const handleContentChange = (value) => {
     setContent(value);
   };
-
-  const handleSubmit = async () => {
-    const { articleId, hashtagId, title, image, content } = values;
-    setIsSubmit(true);
-    const res = await axios;
-    console.log("check updateUser: ", res.responeMessage.responeMessage);
-
-    if (res && res.responeMessage.responeMessage === "UPDATE USER OKE !") {
-      message.success("Cập nhật user thành công");
-      setOpenModalUpdate(false);
-      fetchUser();
-    } else {
-      notification.error({
-        message: "Đã có lỗi xảy ra",
-        description: res.message,
-      });
-    }
-    setIsSubmit(false);
-
-    // const user = JSON.parse(sessionStorage.getItem("user"));
-    // const token = sessionStorage.getItem("jwtToken");
-    // setIsSubmit(true);
-
-    // let article = {
-    //   articleId: dataUpdate.key,
-    //   hashtagId: selectHashtag,
-    //   title: title,
-    //   image: linkImage,
-    //   content: content,
-    // };
-
-    // try {
-    //   // Call the API to update the article
-    //   const response = await fetch(
-    //     "http://localhost:8084/editor/edit-article",
-    //     {
-    //       method: "PUT",
-    //       headers: {
-    //         "Content-Type": "application/json",
-    //         Authorization: `Bearer ${token}`,
-    //       },
-    //       body: JSON.stringify(article),
-    //     }
-    //   );
-
-    //   // Handle the response
-    //   if (response.ok) {
-    //     message.success("Cập nhật bài viết thành công");
-    //     setOpenModalUpdate(false);
-    //     window.location.reload();
-    //   } else {
-    //     // Handle the error condition
-    //     notification.error({
-    //       message: "Đã có lỗi xảy ra",
-    //       description: response.data.message,
-    //     });
-    //   }
-    // } catch (error) {
-    //   // Handle any network or API errors
-    //   console.error("Error updating article:", error);
-    //   notification.error({
-    //     message: "Đã có lỗi xảy ra",
-    //     description: "Đã xảy ra lỗi khi cập nhật bài viết.",
-    //   });
-    // } finally {
-    //   setIsSubmit(false);
-    // }
+  const handleTitleChange = (value) => {
+    setTitle(value);
   };
 
   const [hashtag, setHashtag] = useState([]);
   const [selectHashtag, setSelectHashtag] = useState(null);
   const getHashtags = async () => {
     const res = await callGetHashtag();
-    // console.log(res.data);
+    console.log(res.data);
     const hashtagOptions = res.data.map((item) => ({
       label: item.name,
       value: item.id,
@@ -192,7 +141,10 @@ const ManageEventModal = (props) => {
           onFinish={onFinish}
           autoComplete="off"
         >
-          <Form.Item name="articleId" hidden>
+          <Form.Item
+            name="articleId"
+            hidden
+          >
             <Input />
           </Form.Item>
 
@@ -203,7 +155,7 @@ const ManageEventModal = (props) => {
           <Form.Item name="content">
             <Ckeditor
               className="text-area"
-              // value={content}
+              value={content}
               onChange={handleContentChange}
             />
             {/* <TextArea
