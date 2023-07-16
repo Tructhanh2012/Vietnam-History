@@ -19,7 +19,7 @@ const EventViewDetail = (props) => {
   return (
     <>
       <Modal
-        title="Xem bài viết"
+        title="Preview bài viết"
         width={"70vw"}
         open={openViewDetail}
         onCancel={onClose}
@@ -45,8 +45,8 @@ const EventViewDetail = (props) => {
           <Descriptions.Item label="Tiêu đề">
             {dataViewDetail?.title}
           </Descriptions.Item>
-          <Descriptions.Item label="Tiêu đề">
-            {ReactHTMLParser(dataViewDetail?.content)}
+          <Descriptions.Item label="Nội dung">
+            {ReactHTMLParser(dataViewDetail?.content ?? "")}
             {/* {dataViewDetail?.content} */}
           </Descriptions.Item>
         </Descriptions>

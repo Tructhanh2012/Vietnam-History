@@ -122,6 +122,7 @@ const ManageEventModal = (props) => {
   return (
     <>
       <Modal
+        width={"60vw"}
         title="Cập nhật bài viết"
         open={openModalUpdate}
         // onOk={handleSubmit}
@@ -148,11 +149,11 @@ const ManageEventModal = (props) => {
             <Input />
           </Form.Item>
 
-          <Form.Item name="title">
+          <Form.Item label="Tiêu đề" name="title">
             <Input />
           </Form.Item>
 
-          <Form.Item name="content">
+          <Form.Item label="Nội dung" name="content">
             <Ckeditor
               className="text-area"
               value={content}
@@ -167,7 +168,7 @@ const ManageEventModal = (props) => {
             /> */}
           </Form.Item>
 
-          <Form.Item name="HashTag">
+          <Form.Item label="Triều đại" name="HashTag">
             <Select
               size="middle"
               placeholder="Thời đại"
@@ -178,7 +179,7 @@ const ManageEventModal = (props) => {
             />
           </Form.Item>
 
-          <Form.Item name="image">
+          <Form.Item label="Thumnail" name="image">
             <input
               placeholder="link ảnh"
               onChange={(event) => {
