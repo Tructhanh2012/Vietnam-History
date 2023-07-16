@@ -3,16 +3,7 @@ import Ckeditor from "../../../components/Ckeditor/content-editor/ckeditor";
 import "./editorCompose.scss";
 
 import React, { useEffect, useState } from "react";
-import {
-  Upload,
-  message,
-  Input,
-  Button,
-  Col,
-  Form,
-  Select,
-  notification,
-} from "antd";
+import { message, Input, Button, Col, Form, Select, notification } from "antd";
 import axios from "axios";
 import { callGetHashtag } from "../../../services/api";
 import { error, event, post } from "jquery";

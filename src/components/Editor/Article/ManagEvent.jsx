@@ -3,7 +3,7 @@ import { DeleteTwoTone, EditTwoTone } from "@ant-design/icons";
 import { useState } from "react";
 import { useEffect } from "react";
 import ManageEventModal from "./ManageEventModal";
-import ReactHTMLParser from "html-react-parser";
+import EventViewDetail from "./EventViewDetail";
 
 const ManageEvent = () => {
   const [current, setCurrent] = useState(1);
@@ -15,6 +15,11 @@ const ManageEvent = () => {
   const [dataUpdate, setDataUpdate] = useState(null);
   const [listArticles, setListArticles] = useState([]);
   const [articleId, setArticleId] = useState();
+
+  const [dataViewDetail, setDataViewDetail] = useState();
+  const [openViewDetail, setOpenViewDetail] = useState(false);
+
+  const [editorInfor, setEditorInfor] = useState([]);
 
   const loadArticles = async () => {
     const user = JSON.parse(sessionStorage.getItem("user"));
@@ -35,7 +40,11 @@ const ManageEvent = () => {
       throw new Error("Có lỗi xảy ra, vui lòng thử lại.");
     }
     const data = await response.json();
-
+    console.log("log content", data);
+    const infor = data.map((item) => item.editor);
+    const firstInfor = infor[0];
+    setEditorInfor(firstInfor);
+    console.log("edt infor: ", firstInfor);
     setListArticles(data);
     console.log(data);
   };
@@ -84,6 +93,19 @@ const ManageEvent = () => {
       title: "ID",
       dataIndex: "articleId",
       key: "articleId",
+      render: (text, record, index) => {
+        return (
+          <a
+            href="#"
+            onClick={() => {
+              setDataViewDetail(record);
+              setOpenViewDetail(true);
+            }}
+          >
+            {record.articleId}
+          </a>
+        );
+      },
     },
     {
       title: "Tiêu đề bài viết",
@@ -195,7 +217,6 @@ const ManageEvent = () => {
             <span
               style={{
                 cursor: "pointer",
-                // , margin: "0 20px"
               }}
             >
               <DeleteTwoTone twoToneColor="#ff4d4f" />
@@ -204,6 +225,20 @@ const ManageEvent = () => {
         );
       },
     },
+    {
+      title: "tháng",
+      dataIndex: "month",
+      key: "month",
+      responsive: ["none"],
+    },
+    {
+      title: "editor infor",
+      dataIndex: "editorInfor",
+      key: "editor",
+      render: (editorInfor) => editorInfor.email,
+      // responsive: ["none"],
+    },
+
     {
       title: "Cập nhật",
       render: (text, record, index) => {
@@ -224,33 +259,9 @@ const ManageEvent = () => {
     content: article.content,
     HashTag: article.hashtagEntity.name,
     image: article.image,
+    month: article.month,
+    editorInfor: article.editor,
   }));
-  // const data = [
-  //   {
-  //     key: "1",
-  //     eventID: "1",
-  //     date: "2020/07/02",
-  //     title: "New York No. 1 Lake Park",
-  //   },
-  //   {
-  //     key: "4",
-  //     eventID: "1",
-  //     date: "2020/07/02",
-  //     title: "New York No. 1 Lake Park",
-  //   },
-  //   {
-  //     key: "2",
-  //     eventID: "1",
-  //     date: "2020/07/02",
-  //     title: "New York No. 1 Lake Park",
-  //   },
-  //   {
-  //     key: "13",
-  //     eventID: "1",
-  //     date: "2020/07/02",
-  //     title: "New York No. 1 Lake Park",
-  //   },
-  // ];
 
   const onChange = (pagination, filters, sorter, extra) => {
     // console.log("check2 : ", pagination);
@@ -296,6 +307,13 @@ const ManageEvent = () => {
         openModalUpdate={openModalUpdate}
         setOpenModalUpdate={setOpenModalUpdate}
         loadArticles={loadArticles}
+      />
+
+      <EventViewDetail
+        openViewDetail={openViewDetail}
+        setOpenViewDetail={setOpenViewDetail}
+        dataViewDetail={dataViewDetail}
+        setDataViewDetail={setDataViewDetail}
       />
     </>
   );

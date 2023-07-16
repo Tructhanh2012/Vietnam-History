@@ -153,8 +153,8 @@ const MapArticles = () => {
       key: "province",
       filters: [
         {
-          text: "Hồng Bàng & Văn Lang",
-          value: "Hồng Bàng & Văn Lang",
+          text: "Cao Bằng",
+          value: "Cao Bằng",
         },
         {
           text: "Âu Lạc & Nam Việt",

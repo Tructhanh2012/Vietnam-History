@@ -14,6 +14,18 @@ body {
   overflow-x: hidden;
 }
 
+.ant-layout-sider-children {
+  background-color: whitesmoke;
+}
+
+.ant-layout-sider-trigger {
+  background: #041629 !important;
+  background-color: #041629;
+  > span > svg {
+    color: #ffff !important;
+  }
+}
+
 img {
   max-width: 100%;
 }
