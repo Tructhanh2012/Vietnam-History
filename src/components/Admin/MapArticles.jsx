@@ -1,51 +1,55 @@
-import { Col, Popconfirm, Row, Table, Pagination, Tag, message } from "antd";
-import { DeleteTwoTone, EditTwoTone } from "@ant-design/icons";
-import { useState } from "react";
-import { useEffect } from "react";
-import ManageEventModal from "./ManageEventModal";
-import EventViewDetail from "./EventViewDetail";
-import { RxEyeClosed } from "react-icons/rx";
+import React from "react";
+import getPostList from "../Home/getPostList";
+import { useState, useEffect } from "react";
+import { Row, Col, Table, Checkbox, Button } from "antd";
 
-const ManageEvent = () => {
+const MapArticles = () => {
+  const { postList, document } = getPostList();
   const [current, setCurrent] = useState(1);
   const [pageSize, setPageSize] = useState(2);
   const [total, setTotal] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
 
-  const [openModalUpdate, setOpenModalUpdate] = useState(false);
-  const [dataUpdate, setDataUpdate] = useState(null);
   const [listArticles, setListArticles] = useState([]);
-  const [articleId, setArticleId] = useState();
 
-  const [dataViewDetail, setDataViewDetail] = useState();
-  const [openViewDetail, setOpenViewDetail] = useState(false);
-
-  const [editorInfor, setEditorInfor] = useState([]);
+  const [selectedMap, setSelectedMap] = useState([]);
+  const [selectedArticleIds, setSelectedArticleIds] = useState([]);
+  const [selectedProvinceIds, setSelectedProvinceIds] = useState("");
+  window.addEventListener("beforeunload", () => {
+    sessionStorage.setItem(
+      "selectedArticleIds",
+      JSON.stringify(selectedArticleIds)
+    );
+    sessionStorage.setItem("selectedProvinceIds", selectedProvinceIds);
+  });
 
   const loadArticles = async () => {
+    const savedSelectedArticleIds = JSON.parse(
+      sessionStorage.getItem("selectedArticleIds")
+    );
+    // const savedSelectedProvinceIds = sessionStorage.getItem(
+    //   "selectedProvinceIds"
+    // );
+
+    setSelectedArticleIds(savedSelectedArticleIds || []);
+    // setSelectedProvinceIds(savedSelectedProvinceIds || "");
     const user = JSON.parse(sessionStorage.getItem("user"));
     const token = sessionStorage.getItem("jwtToken");
     const id = { id: user.id };
     const response = await fetch(
-      "http://localhost:8084/editor/articles-editor",
+      "http://localhost:8084/general/list-articles",
       {
-        method: "POST",
+        method: "GET",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify(id),
       }
     );
     if (!response.ok) {
       throw new Error("Có lỗi xảy ra, vui lòng thử lại.");
     }
     const data = await response.json();
-    console.log("log content", data);
-    const infor = data.map((item) => item.editor);
-    const firstInfor = infor[0];
-    setEditorInfor(firstInfor);
-    console.log("edt infor: ", firstInfor);
+
     setListArticles(data);
     console.log(data);
   };
@@ -54,59 +58,11 @@ const ManageEvent = () => {
 
     // fetchUser();
   }, []);
-
-  const handleDeleteArticle = async (id) => {
-    // const article = JSON.parse(sessionStorage.getItem("article"));
-    const token = sessionStorage.getItem("jwtToken");
-    // const id = { id: article.id };
-    // console.log(id);
-    const response = await fetch(
-      "http://localhost:8084/editor/delete-article",
-      {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        // body: JSON.stringify(id),
-        body: JSON.stringify({ id: id }),
-      }
-    );
-    if (response.ok) {
-      message.success("Xóa bài viết thành công");
-      setListArticles((prevList) =>
-        prevList.filter((article) => article.id !== id)
-      );
-      // Xử lý kết quả thành công
-      console.log("Xóa dữ liệu thành công");
-    } else {
-      // Xử lý lỗi
-      console.error("Lỗi khi xóa dữ liệu");
-    }
-  };
-  const handleEditArticle = (record) => {
-    setOpenModalUpdate(true);
-    setDataUpdate(record);
-  };
-
   const columns = [
     {
       title: "ID",
       dataIndex: "articleId",
       key: "articleId",
-      // render: (text, record, index) => {
-      //   return (
-      //     <a
-      //       href="#"
-      //       onClick={() => {
-      //         setDataViewDetail(record);
-      //         setOpenViewDetail(true);
-      //       }}
-      //     >
-      //       {record.articleId}
-      //     </a>
-      //   );
-      // },
     },
     {
       title: "Tiêu đề bài viết",
@@ -467,81 +423,26 @@ const ManageEvent = () => {
       sortDirections: ["descend"],
     },
     {
-      title: "Xóa",
-      render: (text, record, index) => {
-        return (
-          <Popconfirm
-            placement="leftTop"
-            title={"Xác nhận xóa bài viết"}
-            description={"Bạn có chắc chắn muốn xóa bài viết này?"}
-            onConfirm={() => handleDeleteArticle(record.key)}
-            okText="Xác nhận"
-            cancelText="Hủy"
-          >
-            <span
-              style={{
-                cursor: "pointer",
-              }}
-            >
-              <DeleteTwoTone twoToneColor="#ff4d4f" />
-            </span>
-          </Popconfirm>
-        );
-      },
-    },
-    {
-      title: "tháng",
-      dataIndex: "month",
-      key: "month",
-      responsive: ["none"],
-    },
-    {
-      title: "editor infor",
-      dataIndex: "editorInfor",
-      key: "editor",
-      render: (editorInfor) => editorInfor.email,
-      responsive: ["none"],
-    },
-    {
-      title: "Preview",
-      render: (text, record, index) => {
-        return (
-          <RxEyeClosed
-            style={{ cursor: "pointer", color: "#1159ab" }}
-            onClick={() => {
-              setDataViewDetail(record);
-              setOpenViewDetail(true);
-            }}
-          />
-        );
-      },
-    },
-
-    {
-      title: "Cập nhật",
-      render: (text, record, index) => {
-        return (
-          <EditTwoTone
-            twoToneColor="#f57800"
-            style={{ cursor: "pointer" }}
-            onClick={() => handleEditArticle(record)}
-          />
-        );
-      },
+      title: "Map",
+      dataIndex: "province",
+      key: "province",
+      render: (text, record) => (
+        <Checkbox
+          checked={selectedArticleIds.includes(record.key)}
+          onChange={() => handleCheckboxChange(record)}
+        />
+      ),
     },
   ];
   const data = listArticles.map((article) => ({
+    provinceId: article.province.id,
     key: article.id,
     articleId: article.id,
     title: article.title,
     content: article.content,
     HashTag: article.hashtagEntity.name,
     Province: article.province.name,
-    image: article.image,
-    month: article.month,
-    editorInfor: article.editor,
   }));
-
   const onChange = (pagination, filters, sorter, extra) => {
     // console.log("check2 : ", pagination);
     if (pagination && pagination.current !== current) {
@@ -552,9 +453,56 @@ const ManageEvent = () => {
       setCurrent(1);
     }
   };
+  const handleCheckboxChange = (e) => {
+    console.log(e);
+    if (selectedProvinceIds === "" || e.provinceId === selectedProvinceIds) {
+      setSelectedProvinceIds(e.provinceId);
+      if (!selectedArticleIds.includes(e.articleId)) {
+        setSelectedArticleIds([...selectedArticleIds, e.articleId]);
+      } else {
+        setSelectedArticleIds(
+          selectedArticleIds.filter((id) => id !== e.articleId)
+        );
+      }
+    } else {
+      alert("Khác tỉnh");
+    }
+  };
+
+  const handleSave = async () => {
+    console.log("selected article:" + selectedArticleIds);
+    console.log("selected province:" + selectedProvinceIds);
+    try {
+      const token = sessionStorage.getItem("jwtToken");
+      const data = {
+        provinceId: selectedProvinceIds,
+        articleId: selectedArticleIds,
+      };
+      console.log(data);
+      const response = await fetch(
+        "http://localhost:8084/admin/update-geographic-articles",
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify(data),
+        }
+      );
+      if (!response.ok) {
+        throw new Error("Có lỗi xảy ra, vui lòng thử lại.");
+      }
+      // Xử lý thành công
+      console.log("Các bài viết đã được lưu thành công!");
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <>
+      {/* <div className="{styles.history_period}">{data}</div> */}
       <Row
         gutter={[20, 20]}
         style={{ marginTop: 40 }}
@@ -576,26 +524,19 @@ const ManageEvent = () => {
               total: total,
               position: ["bottomCenter"],
             }}
+            footer={() => (
+              <Button
+                type="primary"
+                onClick={handleSave}
+                // disabled={selectedArticleIds.length === 0}
+              >
+                Save
+              </Button>
+            )}
           ></Table>
         </Col>
       </Row>
-
-      <ManageEventModal
-        setDataUpdate={setDataUpdate}
-        dataUpdate={dataUpdate}
-        openModalUpdate={openModalUpdate}
-        setOpenModalUpdate={setOpenModalUpdate}
-        loadArticles={loadArticles}
-      />
-
-      <EventViewDetail
-        openViewDetail={openViewDetail}
-        setOpenViewDetail={setOpenViewDetail}
-        dataViewDetail={dataViewDetail}
-        setDataViewDetail={setDataViewDetail}
-      />
     </>
   );
 };
-
-export default ManageEvent;
+export default MapArticles;

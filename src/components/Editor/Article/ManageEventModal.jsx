@@ -10,7 +10,7 @@ import {
 import TextArea from "antd/es/input/TextArea";
 import { useEffect, useState } from "react";
 import { LoadingOutlined, PlusOutlined } from "@ant-design/icons";
-import { callGetHashtag } from "../../../services/api";
+import { callGetHashtag, callGetProvice } from "../../../services/api";
 import axios from "../../../utils/axios-customize";
 import Ckeditor from "../../Ckeditor/content-editor/ckeditor";
 
@@ -33,6 +33,7 @@ const ManageEventModal = (props) => {
     let article = {
       articleId: formData.articleId,
       hashtagId: selectHashtag,
+      provinceId: selectProvince,
       title: formData.title,
       image: formData.image,
       content: formData.content,
@@ -118,6 +119,27 @@ const ManageEventModal = (props) => {
 
     // Set giá trị đã chọn vào content
   };
+  const [province, setProvince] = useState([]);
+  const [selectProvince, setSelectProvince] = useState(null);
+  const getProvinces = async () => {
+    const res = await callGetProvice();
+    console.log(res.data);
+    const provinceOptions = res.data.map((item) => ({
+      label: item.name,
+      value: item.id,
+    }));
+    // setHashtag(res.data.map(item =>({ label: item.name, key: item.id })));
+    setProvince(provinceOptions);
+  };
+  useEffect(() => {
+    getProvinces();
+  }, []);
+  const handleSelectionProvinceChange = (value) => {
+    console.log(`Selected: ${value}`);
+    setSelectProvince(value);
+
+    // Set giá trị đã chọn vào content
+  };
 
   return (
     <>
@@ -149,11 +171,17 @@ const ManageEventModal = (props) => {
             <Input />
           </Form.Item>
 
-          <Form.Item label="Tiêu đề" name="title">
+          <Form.Item
+            label="Tiêu đề"
+            name="title"
+          >
             <Input />
           </Form.Item>
 
-          <Form.Item label="Nội dung" name="content">
+          <Form.Item
+            label="Nội dung"
+            name="content"
+          >
             <Ckeditor
               className="text-area"
               value={content}
@@ -168,7 +196,10 @@ const ManageEventModal = (props) => {
             /> */}
           </Form.Item>
 
-          <Form.Item label="Triều đại" name="HashTag">
+          <Form.Item
+            label="Triều đại"
+            name="HashTag"
+          >
             <Select
               size="middle"
               placeholder="Thời đại"
@@ -178,8 +209,24 @@ const ManageEventModal = (props) => {
               options={hashtag}
             />
           </Form.Item>
+          <Form.Item
+            label="Tỉnh thành"
+            name="Province"
+          >
+            <Select
+              size="middle"
+              placeholder="Tỉnh thành"
+              initialvalues={province[0]}
+              onChange={handleSelectionProvinceChange}
+              style={{ width: "100%" }}
+              options={province}
+            />
+          </Form.Item>
 
-          <Form.Item label="Thumnail" name="image">
+          <Form.Item
+            label="Thumnail"
+            name="image"
+          >
             <input
               placeholder="link ảnh"
               onChange={(event) => {

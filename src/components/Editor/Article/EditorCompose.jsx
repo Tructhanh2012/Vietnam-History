@@ -5,7 +5,7 @@ import "./editorCompose.scss";
 import React, { useEffect, useState } from "react";
 import { message, Input, Button, Col, Form, Select, notification } from "antd";
 import axios from "axios";
-import { callGetHashtag } from "../../../services/api";
+import { callGetHashtag, callGetProvice } from "../../../services/api";
 import { error, event, post } from "jquery";
 import { useNavigate } from "react-router-dom";
 
@@ -51,6 +51,12 @@ const EditorPage = () => {
 
     // Set giá trị đã chọn vào content
   };
+  const [selectProvince, setSelectProvince] = useState(null);
+  const handleSelectionProvinceChange = (value) => {
+    setSelectProvince(value);
+
+    // Set giá trị đã chọn vào content
+  };
 
   const [day, setDay] = useState(new Date().getDate());
   const [month, setMonth] = useState(new Date().getMonth() + 1);
@@ -62,6 +68,7 @@ const EditorPage = () => {
     let article = {
       editorId: user.id,
       hashtagId: selectHashtag,
+      provinceId: selectProvince,
       title: title,
       content: content,
       image: linkImage,
@@ -111,10 +118,28 @@ const EditorPage = () => {
     getHashtags();
   }, []);
 
+  const [province, setProvince] = useState([]);
+  const getProvinces = async () => {
+    const res = await callGetProvice();
+    const provinceOptions = res.data.map((item) => ({
+      label: item.name,
+      value: item.id,
+    }));
+    // setHashtag(res.data.map(item =>({ label: item.name, key: item.id })));
+    setProvince(provinceOptions);
+  };
+
+  useEffect(() => {
+    getProvinces();
+  }, []);
+
   return (
     <div className="editor">
       <div className="editor-wrapper">
-        <Form name="login" autoComplete="off">
+        <Form
+          name="login"
+          autoComplete="off"
+        >
           <div className="title">
             <Form.Item
               name="title"
@@ -153,11 +178,21 @@ const EditorPage = () => {
             <Form.Item name="hashtag">
               <Select
                 size="middle"
-                placeholder="Hashtag"
+                placeholder="Triều đại"
                 initialvalues={hashtag[0]}
                 onChange={handleSelectionChange}
                 style={{ width: "100%" }}
                 options={hashtag}
+              />
+            </Form.Item>
+            <Form.Item name="province">
+              <Select
+                size="middle"
+                placeholder="Tỉnh thành"
+                initialvalues={province[0]}
+                onChange={handleSelectionProvinceChange}
+                style={{ width: "100%" }}
+                options={province}
               />
             </Form.Item>
 

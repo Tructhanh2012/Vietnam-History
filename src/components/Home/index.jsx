@@ -124,7 +124,7 @@ function HomePage() {
           <Col
             md={{ span: 20, offset: 2 }}
             xs={24}
-            // lg={{ span: 18, offset: 3 }}
+            lg={{ span: 16, offset: 4 }}
           >
             <BlogCard />
           </Col>
