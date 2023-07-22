@@ -41,6 +41,7 @@ import { elements } from "chart.js";
 // import QuizDetail from "./pages/quizList/QuizzDetail";
 import ArticleList from "./pages/article/ArticleList";
 import MapArticles from "./components/Admin/MapArticles";
+import MapArticleDtails from "./components/Admin/MapArticleDetails";
 
 const Layout = () => {
   return (

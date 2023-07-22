@@ -61,14 +61,6 @@ const ArticleList = () => {
 
     return str;
   };
-  const handleOnchangePage = (page, pageSize) => {
-    setCurrent(page);
-    setPageSize(pageSize);
-  };
-  const paginatedPostList = document.slice(
-    (current - 1) * pageSize,
-    current * pageSize
-  );
 
   const navigate = useNavigate();
   const handleRedirectEvent = (event) => {
@@ -77,6 +69,14 @@ const ArticleList = () => {
     const eventId = event.id;
     navigate(`/singleEvent/${slug}?eventId=${eventId}`);
   };
+  const handleOnchangePage = (page, pageSize) => {
+    setCurrent(page);
+    setPageSize(pageSize);
+  };
+  const paginatedPostList = document.slice(
+    (current - 1) * pageSize,
+    current * pageSize
+  );
 
   const renderPostItem = (post) => {
     return (
