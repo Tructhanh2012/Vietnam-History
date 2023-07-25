@@ -139,8 +139,8 @@ const EditorChart = () => {
     <>
       <Card
         style={{
-          width: 800,
-          height: 400,
+          width: 1000,
+          height: 500,
           justifyContent: "center",
           boxShadow: "2px 0.8rem 20px 5px rgba(0, 0, 0, .08)",
         }}
@@ -153,8 +153,8 @@ const EditorChart = () => {
             <h5>THỐNG KÊ CÁC BÀI VIẾT</h5>
           </div>
           <AreaChart
-            width={750}
-            height={300}
+            width={910}
+            height={400}
             data={responseData}
             margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
           >

@@ -114,7 +114,7 @@ const ManageEvent = () => {
       key: "title",
     },
     {
-      title: "HashTag",
+      title: "Triều đại",
       dataIndex: "HashTag",
       key: "HashTag",
       filters: [
@@ -541,6 +541,7 @@ const ManageEvent = () => {
     month: article.month,
     editorInfor: article.editor,
   }));
+  console.log("log test:", listArticles);
 
   const onChange = (pagination, filters, sorter, extra) => {
     // console.log("check2 : ", pagination);
@@ -555,15 +556,9 @@ const ManageEvent = () => {
 
   return (
     <>
-      <Row
-        gutter={[20, 20]}
-        style={{ marginTop: 40 }}
-      >
+      <Row gutter={[20, 20]} style={{ marginTop: 40 }}>
         <Col span={24}>{/* <InputSearch /> */}</Col>
-        <Col
-          span={22}
-          offset={1}
-        >
+        <Col span={22} offset={1}>
           <Table
             className="def"
             loading={isLoading}
