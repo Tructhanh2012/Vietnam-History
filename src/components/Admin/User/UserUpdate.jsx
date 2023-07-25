@@ -38,7 +38,7 @@ const UserUpdate = (props) => {
 
   return (
     <Modal
-      title="Cập nhật người dùng"
+      title="Cập nhật editor"
       open={openModalUpdate}
       onOk={form.submit}
       onCancel={() => {
@@ -81,7 +81,11 @@ const UserUpdate = (props) => {
           <Input />
         </Form.Item>
 
-        <Form.Item labelCol={{ span: 24 }} label="Role:" name="role">
+        <Form.Item
+          labelCol={{ span: 24 }}
+          label="Role:"
+          name="role"
+        >
           <Input disabled />
         </Form.Item>
 

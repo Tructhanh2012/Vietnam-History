@@ -64,8 +64,14 @@ const RegisterRole = (props) => {
     <div className="register-role-page">
       <div className="register-role-box">
         <div className="register-role-form">
-          <Row gutter={[0, 50]} style={{ marginTop: 100 }}>
-            <Col span={15} offset={5}>
+          <Row
+            gutter={[0, 50]}
+            style={{ marginTop: 100 }}
+          >
+            <Col
+              span={15}
+              offset={5}
+            >
               <Form
                 // {...formItemLayout}
                 name="registerRole"
@@ -79,7 +85,7 @@ const RegisterRole = (props) => {
                   <Form.Item
                     labelCol={{ span: 5 }}
                     name="name"
-                    label="Tên đăng nhập:"
+                    label="Tên :"
                     rules={[
                       {
                         required: true,
@@ -156,7 +162,10 @@ const RegisterRole = (props) => {
                   <Form.Item>
                     <Row className="create">
                       <Col span={8}></Col>
-                      <Col span={8} align="middle">
+                      <Col
+                        span={8}
+                        align="middle"
+                      >
                         <Button
                           // className={styles["btn-create"]}
                           type="primary"

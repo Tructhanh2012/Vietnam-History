@@ -100,7 +100,7 @@ const CreateQuizPage = () => {
     <div className="quiz-form">
       <div className="createquiz-wrapper">
         <Col align="middle">
-          <h2>Tạo Quiz</h2>
+          <h2>Tạo Câu Hỏi</h2>
           <Form
             name="createquiz"
             form={form}
@@ -109,7 +109,10 @@ const CreateQuizPage = () => {
             width="100%"
           >
             <div>
-              <Space direction="vertical" className="question-wrapper">
+              <Space
+                direction="vertical"
+                className="question-wrapper"
+              >
                 <Form.Item
                   labelCol={{ span: 24 }}
                   width="100%"
@@ -159,7 +162,7 @@ const CreateQuizPage = () => {
                 <Form.Item name="hashtagId">
                   <Select
                     showSearch
-                    placeholder="Hashtag"
+                    placeholder="Triều đại"
                     // optionFilterProp="children"
                     onChange={onChange}
                     filterOption={(input, option) =>
@@ -172,7 +175,11 @@ const CreateQuizPage = () => {
                 </Form.Item>
 
                 <Form.Item>
-                  <Button type="primary" htmlType="submit" loading={isSubmit}>
+                  <Button
+                    type="primary"
+                    htmlType="submit"
+                    loading={isSubmit}
+                  >
                     Hoàn thành
                   </Button>
                 </Form.Item>

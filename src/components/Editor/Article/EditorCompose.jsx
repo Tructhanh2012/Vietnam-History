@@ -162,6 +162,7 @@ const EditorPage = () => {
           <div className="editor-content">
             <Form.Item name="textArea">
               <Ckeditor
+                placeholder="Nội dung"
                 className="text-area"
                 value={content}
                 onChange={handleContentChange}
@@ -198,7 +199,7 @@ const EditorPage = () => {
 
             <Form.Item name="upload-img">
               <input
-                placeholder="link ảnh"
+                placeholder="Thumbnail"
                 onChange={(event) => {
                   setLinkImage(event.target.value);
                 }}
