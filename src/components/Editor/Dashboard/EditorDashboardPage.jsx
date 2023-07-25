@@ -126,7 +126,14 @@ const EditorDashboardPage = () => {
           </Header>
         </div>
 
-        <div className="dashboard_chart" style={{ padding: "45px 90px" }}>
+        <div
+          className="dashboard_chart"
+          style={{
+            paddingTop: "90px",
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
           <EditorChart />
         </div>
       </div>
