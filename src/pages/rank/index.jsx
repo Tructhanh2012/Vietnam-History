@@ -86,52 +86,53 @@ const RankingPage = () => {
       <div className="breadcrumb">
         <BreadcrumbRank />
       </div>
-
-      <Row gutter={40}>
-        <Col
-          span={15}
-          offset={1}
-        >
-          <div className="ranking_table">
-            <div
-              className="table-title"
-              style={{ marginBottom: "20px" }}
-            >
-              <h2>Bảng xếp hạng các thành viên</h2>
-            </div>
-            {/* <Input placeholder="Nhập tên bạn muốn tìm...." /> */}
-            <RankingTable />
-          </div>
-          <Row></Row>
-        </Col>
-
-        <Col
-          span={6}
-          offset={1}
-        >
-          <div className="form">
-            <div className="form_container">
-              <img
-                src={cup}
-                style={{ width: "120px", marginBottom: 10 }}
-              />
-              <div className="text">
-                <h6>ĐẤU TRƯỜNG KIẾN THỨC</h6>
-                <p>
-                  Bảng xếp hạng thi đấu dựa trên tổng số điểm danh hiệu mỗi đấu
-                  thủ đạt được trong tuần, trong tháng thông qua thi đấu.
-                </p>
-              </div>
+      <div style={{ marginBottom: "100px" }}>
+        <Row gutter={40}>
+          <Col
+            span={15}
+            offset={1}
+          >
+            <div className="ranking_table">
               <div
-                className="button"
-                style={{ marginBottom: 8 }}
+                className="table-title"
+                style={{ marginBottom: "20px" }}
               >
-                <Button>Thi đấu ngay</Button>
+                <h2>Bảng xếp hạng các thành viên</h2>
+              </div>
+              {/* <Input placeholder="Nhập tên bạn muốn tìm...." /> */}
+              <RankingTable />
+            </div>
+            <Row></Row>
+          </Col>
+
+          <Col
+            span={6}
+            offset={1}
+          >
+            <div className="form">
+              <div className="form_container">
+                <img
+                  src={cup}
+                  style={{ width: "120px", marginBottom: 10 }}
+                />
+                <div className="text">
+                  <h6>ĐẤU TRƯỜNG KIẾN THỨC</h6>
+                  <p>
+                    Bảng xếp hạng thi đấu dựa trên tổng số điểm danh hiệu mỗi
+                    đấu thủ đạt được trong tuần, trong tháng thông qua thi đấu.
+                  </p>
+                </div>
+                <div
+                  className="button"
+                  style={{ marginBottom: 8 }}
+                >
+                  <Button>Thi đấu ngay</Button>
+                </div>
               </div>
             </div>
-          </div>
-        </Col>
-      </Row>
+          </Col>
+        </Row>
+      </div>
     </>
   );
 };

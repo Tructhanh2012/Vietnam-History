@@ -15,6 +15,7 @@ import styles from "./style.module.scss";
 import { useState } from "react";
 import ReactHTMLParser from "html-react-parser";
 import CommentArticle from "../../components/Comment";
+import { Colors } from "chart.js";
 
 const ArticleDetails = () => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -233,13 +234,38 @@ const ArticleDetails = () => {
           <div
             key={index}
             className={styles.commentIndex}
+            style={{
+              borderRadius: 5,
+              padding: 10,
+              display: "flex",
+              justifyContent: "space-between",
+              marginBottom: "15px",
+            }}
           >
             <span className={styles.text}>
-              <div>{comment.name}:</div>
+              <div
+                style={{
+                  color: "#BA161C",
+                  fontSize: "20px",
+                  fontWeight: 600,
+                }}
+              >
+                {comment.name}:
+              </div>
               <div>{comment.content}</div>
             </span>
             {comment.userId === user.id && (
-              <button onClick={() => handleDeleteComment(comment.commentId)}>
+              <button
+                style={{
+                  borderRadius: 5,
+                  height: "30px",
+                  padding: 5,
+                  backgroundColor: "#BA161C",
+                  color: "white",
+                  border: "none",
+                }}
+                onClick={() => handleDeleteComment(comment.commentId)}
+              >
                 Delete
               </button>
             )}
@@ -265,14 +291,47 @@ const ArticleDetails = () => {
       </div>
       <div className={styles.comment}>
         <h3>Bình luận</h3>
-        <div>
-          <input
-            type="text"
-            placeholder="Write your comment..."
-            value={inputComment}
-            onChange={handleCommentChange}
-          />
-          <button onClick={handleSubmitClick}>Gửi bình luận</button>
+        <div
+          style={{
+            padding: 10,
+            display: "flex",
+            justifyContent: "space-between",
+          }}
+        >
+          <div
+            style={{
+              marginRight: "6px",
+            }}
+          >
+            <textarea
+              style={{
+                borderRadius: 5,
+                width: "1200px",
+                height: "80px",
+                padding: 3,
+              }}
+              type="text"
+              placeholder="Viết bình luận"
+              value={inputComment}
+              onChange={handleCommentChange}
+            />
+          </div>
+          <div>
+            <button
+              style={{
+                borderRadius: 5,
+                height: "40px",
+                width: "150px",
+                padding: 5,
+                backgroundColor: "#BA161C",
+                color: "white",
+                border: "none",
+              }}
+              onClick={handleSubmitClick}
+            >
+              Gửi bình luận
+            </button>
+          </div>
         </div>
 
         {renderComments()}
