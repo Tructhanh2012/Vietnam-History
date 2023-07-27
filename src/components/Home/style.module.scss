@@ -9,6 +9,7 @@
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
   gap: 16px;
+  cursor: pointer;
 }
 .history_period span {
   font-family: "Petrona", serif;
@@ -18,6 +19,7 @@
 .history_place {
   display: grid;
   gap: 16px;
+  cursor: pointer;
 }
 .history_place span {
   font-family: "Petrona", serif;

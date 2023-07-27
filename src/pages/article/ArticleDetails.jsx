@@ -1,8 +1,7 @@
 import {
-  Anchor,
+  Popover,
   Breadcrumb,
   Button,
-  Col,
   Modal,
   Form,
   notification,
@@ -14,8 +13,123 @@ import axios from "axios";
 import styles from "./style.module.scss";
 import { useState } from "react";
 import ReactHTMLParser from "html-react-parser";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEllipsis } from "@fortawesome/free-solid-svg-icons";
 import CommentArticle from "../../components/Comment";
 import { Colors } from "chart.js";
+
+const renderComments = (comments) => {
+  const user = JSON.parse(sessionStorage.getItem("user"));
+
+  // Function to delete a comment
+  const handleDeleteComment = async (commentId) => {
+    const token = sessionStorage.getItem("jwtToken");
+
+    try {
+      // Call the API to delete the comment with the given commentId
+      const response = await fetch(
+        "http://localhost:8084/member/delete-comment",
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            userId: user.id,
+            commentId: commentId,
+          }),
+        }
+      );
+      console.log(commentId);
+      if (!response.ok) {
+        // Handle error if the comment couldn't be deleted
+        notification.error({
+          message: "Error",
+          description: "Unable to delete the comment.",
+        });
+      } else {
+        // Comment deleted successfully, update the comment list
+        setComments((prevComments) =>
+          prevComments.filter((c) => c.commentId !== commentId)
+        );
+
+        notification.success({
+          message: "Success",
+          description: "Comment deleted successfully.",
+        });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const buttonDelete = (commentId) => (
+    <button
+      style={{
+        borderRadius: 5,
+        height: "30px",
+        padding: 5,
+        backgroundColor: "#BA161C",
+        color: "white",
+        border: "none",
+      }}
+      onClick={() => handleDeleteComment(commentId)}
+    >
+      Delete
+    </button>
+  );
+
+  return (
+    <>
+      {comments.map((comment, index) => (
+        <div
+          key={index}
+          className={styles.commentIndex}
+          style={{
+            borderRadius: 5,
+            padding: 10,
+            display: "flex",
+            justifyContent: "space-between",
+            marginBottom: "15px",
+          }}
+        >
+          <span className={styles.text}>
+            <div
+              style={{
+                color: "#BA161C",
+                fontSize: "20px",
+                fontWeight: 600,
+              }}
+            >
+              {comment.name}:
+            </div>
+            <div>{comment.content}</div>
+          </span>
+          {user && user.role === "MEMBER" && comment.userId === user.id && (
+            // Show Popover only for members if comment.userId matches the user.id
+            <Popover
+              placement="bottom"
+              content={() => buttonDelete(comment.commentId)}
+              trigger="click"
+            >
+              <FontAwesomeIcon
+                style={{ cursor: "pointer" }}
+                icon={faEllipsis}
+              />
+            </Popover>
+          )}
+          {(!user || (user && user.role !== "MEMBER")) && (
+            // Show the comment content without the ellipsis icon for guests or non-members
+            <span style={{ cursor: "not-allowed" }}>
+              {/* Optionally, you can display a message like "Login to perform actions" */}
+            </span>
+          )}
+        </div>
+      ))}
+    </>
+  );
+};
 
 const ArticleDetails = () => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -80,6 +194,8 @@ const ArticleDetails = () => {
         navigate(`/quizdt?hashtagId=${hashtagId}`);
       } else if (user.role === "ADMIN") {
         navigate("/login");
+      } else if (user.role === null) {
+        navigate(`/login?modalVisible=true`);
       }
     } catch (error) {
       showModal();
@@ -150,130 +266,51 @@ const ArticleDetails = () => {
     const user = JSON.parse(sessionStorage.getItem("user"));
     const token = sessionStorage.getItem("jwtToken");
 
+    if (!user) {
+      // If user is null, show the modal
+      showModal();
+      return;
+    }
+
     let commentData = {
       userId: user.id,
       articleId: eventId,
       content: inputComment,
     };
-    console.log(commentData);
 
-    const response = await fetch(
-      "http://localhost:8084/member/create-comment",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify(commentData),
+    try {
+      const response = await fetch(
+        "http://localhost:8084/member/create-comment",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify(commentData),
+        }
+      );
+
+      if (!response.ok) {
+        notification.error({
+          message: "Đã có lỗi xảy ra",
+          description: "Vui lòng thử lại sau!",
+        });
+      } else {
+        const data = await response.json();
+        console.log("data ne:", data);
+        message.success("Viết bình luận thành công");
+        window.location.reload(); // Reload the page after successful comment creation
       }
-    );
-    console.log("response: ", response);
-    if (!response.ok) {
+    } catch (error) {
+      console.log(error);
       notification.error({
         message: "Đã có lỗi xảy ra",
         description: "Vui lòng thử lại sau!",
       });
-    } else {
-      const data = await response.json();
-      console.log("data ne:", data);
-      message.success("Viết bình luận thành công");
-      form;
     }
   };
 
-  //xóa comment và render comments
-  const renderComments = () => {
-    // console.log(user.id);
-    const user = JSON.parse(sessionStorage.getItem("user"));
-    // console.log(comments);
-    const handleDeleteComment = async (commentId) => {
-      const token = sessionStorage.getItem("jwtToken");
-
-      try {
-        // Call the API to delete the comment with the given commentId
-        const response = await fetch(
-          "http://localhost:8084/member/delete-comment",
-          {
-            method: "DELETE",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${token}`,
-            },
-            body: JSON.stringify({
-              userId: user.id,
-              commentId: commentId,
-            }),
-          }
-        );
-
-        if (!response.ok) {
-          // Handle error if the comment couldn't be deleted
-          notification.error({
-            message: "Error",
-            description: "Unable to delete the comment.",
-          });
-        } else {
-          // Comment deleted successfully, update the comment list
-          setComments((prevComments) =>
-            prevComments.filter((comment) => comment.commentId !== commentId)
-          );
-
-          notification.success({
-            message: "Success",
-            description: "Comment deleted successfully.",
-          });
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    return (
-      <>
-        {comments.map((comment, index) => (
-          <div
-            key={index}
-            className={styles.commentIndex}
-            style={{
-              borderRadius: 5,
-              padding: 10,
-              display: "flex",
-              justifyContent: "space-between",
-              marginBottom: "15px",
-            }}
-          >
-            <span className={styles.text}>
-              <div
-                style={{
-                  color: "#BA161C",
-                  fontSize: "20px",
-                  fontWeight: 600,
-                }}
-              >
-                {comment.name}:
-              </div>
-              <div>{comment.content}</div>
-            </span>
-            {comment.userId === user.id && (
-              <button
-                style={{
-                  borderRadius: 5,
-                  height: "30px",
-                  padding: 5,
-                  backgroundColor: "#BA161C",
-                  color: "white",
-                  border: "none",
-                }}
-                onClick={() => handleDeleteComment(comment.commentId)}
-              >
-                Delete
-              </button>
-            )}
-          </div>
-        ))}
-      </>
-    );
-  };
   return (
     <>
       <div className={styles.single_article}>
@@ -334,7 +371,7 @@ const ArticleDetails = () => {
           </div>
         </div>
 
-        {renderComments()}
+        {renderComments(comments)}
         {/* <span
           className={styles.text}
           id="commentNameElement"
@@ -367,74 +404,6 @@ const ArticleDetails = () => {
       >
         <p>Bạn phải đăng nhập trước khi làm quiz</p>
       </Modal>
-
-      {/* <Divider style={{ margin: 10 }} />
-                <div
-                  className="comment"
-                  style={{
-                    display: "flex",
-                    alignItems: "space",
-                    justifyContent: "space-around",
-                  }}
-                >
-                  <Avatar size={60} icon={<UserOutlined />} />
-                  <input
-                    //   placeholder="Hãy viết bình luận của bạn..."
-                    style={{ width: "80%", height: "80px" }}
-                  /> */}
-      {/* </div> */}
-      {/* </div>
-            </div>
-          </Col>
-
-          <Col
-            md={4}
-            xs={0}
-            offset={1}
-          >
-            <Space
-              direction={"vertical"}
-              size={500}
-            >
-              <Row gutter={[0, 30]}></Row>
-              <Row>
-                <Divider
-                  orientation="left"
-                  style={{ margin: "10px 0" }}
-                >
-                  <h6>Tham khảo</h6>
-                </Divider>
-                <div className="homepage-ending-doc-content">
-                  <div className="doc">
-                    <p> &gt; Chiến dịch mùa xuân 1975</p>
-                  </div>
-                  <div className="doc">
-                    <p>&gt; Chiến dịch mùa xuân 1975</p>
-                  </div>
-                  <div className="doc">
-                    <p>&gt; Chiến dịch mùa xuân 1975</p>
-                  </div>
-                  <div className="doc">
-                    <p>&gt; Chiến dịch mùa xuân 1975</p>
-                  </div>
-                  <div className="doc">
-                    <p>&gt; Chiến dịch mùa xuân 1975</p>
-                  </div>
-                  <div className="doc">
-                    <p>&gt; Chiến dịch mùa xuân 1975</p>
-                  </div>
-                  <div className="doc">
-                    <p>&gt; Chiến dịch mùa xuân 1975</p>
-                  </div>
-                  <div className="doc">
-                    <p>&gt; Chiến dịch mùa xuân 1975</p>
-                  </div>
-                </div>
-              </Row>
-            </Space>
-          </Col>
-        </Row>
-      </div> */}
     </>
   );
 };
