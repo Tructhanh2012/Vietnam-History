@@ -37,7 +37,14 @@ const LoginPage = () => {
       } else if (userRole === "EDITOR") {
         navigate("/editor");
       } else if (userRole === "MEMBER") {
-        navigate("/");
+        const previousPage = sessionStorage.getItem("previousPage");
+        // navigate("/login");
+        if (previousPage) {
+          navigate(previousPage); // Navigate người dùng trở lại trang trước
+        } else {
+          navigate("/"); // Hoặc có thể navigate về trang chủ nếu không có trang trước đó
+        }
+        // navigate("/");
       }
 
       message.success("Đăng nhập tài khoản thành công");
@@ -54,10 +61,7 @@ const LoginPage = () => {
   };
   return (
     <div className="login-page">
-      <Col
-        span={4}
-        style={{ display: "flex", alignItems: "center" }}
-      ></Col>
+      <Col span={4} style={{ display: "flex", alignItems: "center" }}></Col>
       <div className="login-box">
         <div className="login-form">
           <Form
@@ -117,10 +121,7 @@ const LoginPage = () => {
                 <Row>
                   <Col span={4}></Col>
 
-                  <Col
-                    span={16}
-                    align="middle"
-                  >
+                  <Col span={16} align="middle">
                     <div
                       className="button"
                       // display
@@ -138,10 +139,7 @@ const LoginPage = () => {
                   <Col span={4}></Col>
                 </Row>
                 <Divider>Hoặc</Divider>
-                <p
-                  className="text"
-                  align="middle"
-                >
+                <p className="text" align="middle">
                   Chưa có tài khoản?
                   <span>
                     <Link to="/register"> Đăng ký</Link>

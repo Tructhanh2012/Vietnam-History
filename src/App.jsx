@@ -8,9 +8,9 @@ import Footer from "./components/Footer";
 import RegisterPage from "./pages/register";
 import Home from "./components/Home";
 import NotFound from "./components/NotFound";
-import AdminPage from "./pages/admin";
+import AdminPage from "./components/Admin/index";
 import LayoutAdmin from "./components/Admin";
-import ProfilePage from "./pages/profile";
+// import ProfilePage from "./pages/profile";
 import UserTable from "./components/Admin/User/UserTable";
 import RegisterRole from "./components/Admin/User/RegisterRole";
 import RankingPage from "./pages/rank";
@@ -115,10 +115,10 @@ export default function App() {
         // },
       ],
     },
-    {
-      path: "/profile",
-      element: <ProfilePage />,
-    },
+    // {
+    //   path: "/profile",
+    //   element: <ProfilePage />,
+    // },
     {
       path: "/blog",
       element: <BlogPage />,
