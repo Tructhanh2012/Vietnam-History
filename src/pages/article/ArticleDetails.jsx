@@ -20,7 +20,7 @@ import { Colors } from "chart.js";
 
 const renderComments = (comments) => {
   const user = JSON.parse(sessionStorage.getItem("user"));
-  // console.log("user ne", user);
+  console.log("user ne", user);
 
   // Function to delete a comment
   const handleDeleteComment = async (commentId) => {
@@ -141,7 +141,6 @@ const savePreviousPage = () => {
 
 const ArticleDetails = () => {
   const [modalVisible, setModalVisible] = useState(false);
-  const [modalCommentVisible, setModalCommentVisible] = useState(false);
 
   const showModal = () => {
     const user = JSON.parse(sessionStorage.getItem("user"));
@@ -151,9 +150,6 @@ const ArticleDetails = () => {
       navigate(`/quizdt?hashtagId=${hashtagId}`);
     }
   };
-  const showCommentModal = () => {
-    setModalCommentVisible(true);
-  };
 
   const handleModalOk = () => {
     const previousPage = sessionStorage.getItem("previousPage");
@@ -161,9 +157,8 @@ const ArticleDetails = () => {
     if (previousPage) {
       navigate(previousPage); // Navigate người dùng trở lại trang trước
     } else {
-      navigate("/login"); // Hoặc có thể navigate về trang chủ nếu không có trang trước đó
+      navigate("/"); // Hoặc có thể navigate về trang chủ nếu không có trang trước đó
     }
-    // navigate("/login");
   };
 
   const handleModalCancel = () => {
@@ -186,7 +181,7 @@ const ArticleDetails = () => {
           {
             key: "timeline",
             title: "Tư liệu",
-            href: "/timeline",
+            href: "/document",
           },
         ]}
       />
@@ -275,8 +270,13 @@ const ArticleDetails = () => {
         <span className={styles.title}>
           <h2 id="titleElement"></h2>
         </span>
-
+        {/* <img
+          className={styles.image}
+          id="imageElement"
+        /> */}
         <span className={styles.text}>{ReactHTMLParser(content)}</span>
+
+        {/* <span className={styles.text} id="contentElement"></span> */}
       </div>
     );
   };
@@ -293,14 +293,6 @@ const ArticleDetails = () => {
     if (!user) {
       // If user is null, show the modal
       showModal();
-      return;
-    }
-    if (!inputComment) {
-      // If inputComment is empty, show an error notification
-      notification.error({
-        message: "Error",
-        description: "Bình luận không được để trống.",
-      });
       return;
     }
 
@@ -352,11 +344,15 @@ const ArticleDetails = () => {
               <BreadcrumbArticle />
               {renderArticleDetails()}
               <div className={styles.btn}>
+                <h3 style={{ marginRight: "20px" }}>
+                  Kiểm tra kiến thức bằng cách làm quiz
+                </h3>
+
                 <Button
                   // onClick={handleOnClick}
                   onClick={showModal}
                 >
-                  Quizz thôi!!
+                  Quiz
                 </Button>
               </div>
             </div>
@@ -380,7 +376,7 @@ const ArticleDetails = () => {
             <textarea
               style={{
                 borderRadius: 5,
-                width: "1200px",
+                width: "1250px",
                 height: "80px",
                 padding: 3,
               }}
@@ -394,8 +390,9 @@ const ArticleDetails = () => {
             <button
               style={{
                 borderRadius: 5,
-                height: "40px",
-                width: "150px",
+                marginTop: "45px",
+                height: "35px",
+                width: "50px",
                 padding: 5,
                 backgroundColor: "#BA161C",
                 color: "white",
@@ -403,7 +400,7 @@ const ArticleDetails = () => {
               }}
               onClick={handleSubmitClick}
             >
-              Gửi bình luận
+              Gửi
             </button>
           </div>
         </div>
@@ -413,7 +410,7 @@ const ArticleDetails = () => {
       <Modal
         title="Thông báo"
         visible={modalVisible}
-        onOk={handleModalOk}
+        // onOk={handleModalOk}
         onCancel={handleModalCancel}
         footer={[
           <Button
@@ -425,14 +422,14 @@ const ArticleDetails = () => {
           <Button
             // key="logn"
             type="primary"
-            onClick={handleModalOk}
-            // onClick={handleOnClick}
+            // onClick={handleModalOk}
+            onClick={handleOnClick}
           >
             Đăng nhập
           </Button>,
         ]}
       >
-        <p>Bạn phải đăng nhập trước khi làm quiz</p>
+        <p>Bạn phải đăng nhập trước khi sử dụng chức năng này</p>
       </Modal>
     </>
   );
