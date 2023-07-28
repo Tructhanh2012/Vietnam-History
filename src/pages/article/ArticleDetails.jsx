@@ -209,13 +209,14 @@ const ArticleDetails = () => {
     const user = JSON.parse(sessionStorage.getItem("user"));
     const token = sessionStorage.getItem("jwtToken");
     try {
-      if (user && user.role === "MEMBER") {
-        // savePreviousPage();
+      if (user.role === "MEMBER") {
+        //   savePreviousPage();
         navigate(`/quizdt?hashtagId=${hashtagId}`);
-      } else if (user.role === "ADMIN") {
-        alert("bạn không có quyền");
-      } else if (user.role == null) {
-        // navigate(`/login?modalVisible=true`);
+      }
+      // } else if (user.role === "ADMIN") {
+      //   navigate("/login");
+      // } else
+      else if (user == null) {
         savePreviousPage();
         navigate("/login");
       }
@@ -402,14 +403,6 @@ const ArticleDetails = () => {
         </div>
 
         {renderComments(comments)}
-        {/* <span
-          className={styles.text}
-          id="commentNameElement"
-        ></span>
-        <span
-          className={styles.text}
-          id="commentContentElement"
-        ></span> */}
       </div>
       <Modal
         title="Thông báo"
