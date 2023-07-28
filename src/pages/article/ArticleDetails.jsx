@@ -20,7 +20,7 @@ import { Colors } from "chart.js";
 
 const renderComments = (comments) => {
   const user = JSON.parse(sessionStorage.getItem("user"));
-  console.log("user ne", user);
+  // console.log("user ne", user);
 
   // Function to delete a comment
   const handleDeleteComment = async (commentId) => {
@@ -141,9 +141,13 @@ const savePreviousPage = () => {
 
 const ArticleDetails = () => {
   const [modalVisible, setModalVisible] = useState(false);
+  const [modalCommentVisible, setModalCommentVisible] = useState(false);
 
   const showModal = () => {
     setModalVisible(true);
+  };
+  const showCommentModal = () => {
+    setModalCommentVisible(true);
   };
 
   const handleModalOk = () => {
@@ -152,8 +156,9 @@ const ArticleDetails = () => {
     if (previousPage) {
       navigate(previousPage); // Navigate người dùng trở lại trang trước
     } else {
-      navigate("/"); // Hoặc có thể navigate về trang chủ nếu không có trang trước đó
+      navigate("/login"); // Hoặc có thể navigate về trang chủ nếu không có trang trước đó
     }
+    // navigate("/login");
   };
 
   const handleModalCancel = () => {
@@ -204,13 +209,12 @@ const ArticleDetails = () => {
     const user = JSON.parse(sessionStorage.getItem("user"));
     const token = sessionStorage.getItem("jwtToken");
     try {
-      // if (user && user.role === "MEMBER") {
-      //   savePreviousPage();
-      //   navigate(`/quizdt?hashtagId=${hashtagId}`);
-      // } else if (user.role === "ADMIN") {
-      //   navigate("/login");
-      // } else
-      if (user == null) {
+      if (user && user.role === "MEMBER") {
+        // savePreviousPage();
+        navigate(`/quizdt?hashtagId=${hashtagId}`);
+      } else if (user.role === "ADMIN") {
+        alert("bạn không có quyền");
+      } else if (user.role == null) {
         // navigate(`/login?modalVisible=true`);
         savePreviousPage();
         navigate("/login");
@@ -342,8 +346,8 @@ const ArticleDetails = () => {
               {renderArticleDetails()}
               <div className={styles.btn}>
                 <Button
-                  // onClick={handleOnClick}
-                  onClick={showModal}
+                  onClick={handleOnClick}
+                  // onClick={showModal}
                 >
                   Quizz thôi!!
                 </Button>
@@ -410,17 +414,20 @@ const ArticleDetails = () => {
       <Modal
         title="Thông báo"
         visible={modalVisible}
-        // onOk={handleModalOk}
+        onOk={handleModalOk}
         onCancel={handleModalCancel}
         footer={[
-          <Button key="cancel" onClick={handleModalCancel}>
+          <Button
+            key="cancel"
+            onClick={handleModalCancel}
+          >
             Cancel
           </Button>,
           <Button
             // key="logn"
             type="primary"
-            // onClick={handleModalOk}
-            onClick={handleOnClick}
+            onClick={handleModalOk}
+            // onClick={handleOnClick}
           >
             Đăng nhập
           </Button>,
