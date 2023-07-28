@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import getPostList from "../../components/Home/getPostList";
 import { useNavigate } from "react-router-dom";
-import { Col, Divider, Row, Pagination } from "antd";
+import { Col, Divider, Row, Pagination, Input, Button } from "antd";
 import styles from "./style.module.scss";
 import { Link } from "react-router-dom";
 import { BsArrowRight } from "react-icons/bs";
@@ -13,11 +13,31 @@ const ArticleList = () => {
   const [current, setCurrent] = useState(1);
   const [pageSize, setPageSize] = useState(9);
   const [totalItems, setTotalItems] = useState(0);
+  const [searchKeyword, setSearchKeyword] = useState(""); // State for storing the search keyword
+  const [searchResults, setSearchResults] = useState([]); // State for storing the search results
+
   // const [content, setContent] = useState("");
 
   useEffect(() => {
     setTotalItems(document.length);
   }, [document]);
+
+  const handleSearch = () => {
+    // Perform the API call here with the searchKeyword as a query parameter
+    fetch(`http://localhost:8084/general/search-article`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setSearchResults(data); // Update the search results state with the API response
+      })
+      .catch((error) => {
+        console.error("Error while fetching search results:", error);
+      });
+  };
 
   const nonAccentVietnamese = (str) => {
     str = str.replace(/A|Á|À|Ã|Ạ|Â|Ấ|Ầ|Ẫ|Ậ|Ă|Ắ|Ằ|Ẵ|Ặ/g, "A");
@@ -107,6 +127,14 @@ const ArticleList = () => {
     <div className={styles.place_articleList}>
       <div className={`${styles.place_container} container-custom`}>
         <div className={styles.left_block}>
+          <div>
+            <Input
+              placeholder="Nhập từ khóa tìm kiếm..."
+              value={searchKeyword}
+              onChange={(e) => setSearchKeyword(e.target.value)}
+            />
+            <Button onClick={handleSearch}>Tìm kiếm</Button>
+          </div>
           <span className={styles.header}>Danh mục các bài viết</span>
           <div className={styles.history_place}>
             {paginatedPostList.map(renderPostItem)}
@@ -122,11 +150,6 @@ const ArticleList = () => {
           </div>
         </div>
         <div className={styles.right_block}>
-          {/* <div className={styles.banner}>
-            <div className="banner-content">
-              <span className={styles.header}>Bài viết theo địa danh</span>
-            </div>
-          </div> */}
           <TimelineComponent />
         </div>
       </div>

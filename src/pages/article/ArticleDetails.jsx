@@ -246,13 +246,8 @@ const ArticleDetails = () => {
         <span className={styles.title}>
           <h2 id="titleElement"></h2>
         </span>
-        {/* <img
-          className={styles.image}
-          id="imageElement"
-        /> */}
-        <span className={styles.text}>{ReactHTMLParser(content)}</span>
 
-        {/* <span className={styles.text} id="contentElement"></span> */}
+        <span className={styles.text}>{ReactHTMLParser(content)}</span>
       </div>
     );
   };
@@ -269,6 +264,14 @@ const ArticleDetails = () => {
     if (!user) {
       // If user is null, show the modal
       showModal();
+      return;
+    }
+    if (!inputComment) {
+      // If inputComment is empty, show an error notification
+      notification.error({
+        message: "Error",
+        description: "Bình luận không được để trống.",
+      });
       return;
     }
 
