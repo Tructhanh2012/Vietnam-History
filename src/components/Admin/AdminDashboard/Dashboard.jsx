@@ -4,10 +4,10 @@ import { FaRegUserCircle } from "react-icons/fa";
 import { MdAutoGraph } from "react-icons/md";
 import { MdOutlineArticle } from "react-icons/md";
 import Chart from "./Chart";
-import { callGetStatistic } from "../../services/api";
+// import { callGetStatistic } from "../../services/api";
 import CountUp from "react-countup";
 import Chartt from "./Chartt";
-import axios from "../../utils/axios-customize";
+import axios from "../../../utils/axios-customize";
 
 const DashboardCard = ({ title, value, icon }) => {
   return (
@@ -114,7 +114,7 @@ const Dashboard = () => {
           </Row>
         </div>
 
-        <div className="dashboard_chart" style={{ padding: "45px 90px" }}>
+        <div className="dashboard_chart" style={{ padding: "45px 116px" }}>
           {/* <Chartt /> */}
           <Chart />
         </div>

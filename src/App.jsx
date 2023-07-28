@@ -8,7 +8,7 @@ import Footer from "./components/Footer";
 import RegisterPage from "./pages/register";
 import Home from "./components/Home";
 import NotFound from "./components/NotFound";
-import AdminPage from "./components/Admin/index";
+import AdminPage from "./components/Admin/AdminDashboard/index";
 import LayoutAdmin from "./components/Admin";
 // import ProfilePage from "./pages/profile";
 import UserTable from "./components/Admin/User/UserTable";
