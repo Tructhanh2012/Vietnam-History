@@ -204,13 +204,14 @@ const ArticleDetails = () => {
     const user = JSON.parse(sessionStorage.getItem("user"));
     const token = sessionStorage.getItem("jwtToken");
     try {
-      // if (user && user.role === "MEMBER") {
-      //   savePreviousPage();
-      //   navigate(`/quizdt?hashtagId=${hashtagId}`);
+      if (user.role === "MEMBER") {
+        //   savePreviousPage();
+        navigate(`/quizdt?hashtagId=${hashtagId}`);
+      }
       // } else if (user.role === "ADMIN") {
       //   navigate("/login");
       // } else
-      if (user == null) {
+      else if (user == null) {
         // navigate(`/login?modalVisible=true`);
         savePreviousPage();
         navigate("/login");
@@ -339,8 +340,8 @@ const ArticleDetails = () => {
               {renderArticleDetails()}
               <div className={styles.btn}>
                 <Button
-                  // onClick={handleOnClick}
-                  onClick={showModal}
+                  onClick={handleOnClick}
+                  // onClick={showModal}
                 >
                   Quizz thôi!!
                 </Button>
