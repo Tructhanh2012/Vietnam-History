@@ -1,5 +1,6 @@
 import { Card } from "antd";
-import axios from "../../utils/axios-customize";
+// import axios from "../axios-customize";
+import axios from "../../../utils/axios-customize";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -70,8 +71,8 @@ const DashboardChart = () => {
   return (
     <Card
       style={{
-        width: 790,
-        height: 400,
+        width: 900,
+        height: 450,
         justifyContent: "center",
         boxShadow: "2px 0.8rem 20px 5px rgba(0, 0, 0, .08)",
       }}
