@@ -20,6 +20,7 @@ import { Colors } from "chart.js";
 
 const renderComments = (comments) => {
   const user = JSON.parse(sessionStorage.getItem("user"));
+  console.log("user ne", user);
 
   // Function to delete a comment
   const handleDeleteComment = async (commentId) => {
@@ -131,6 +132,13 @@ const renderComments = (comments) => {
   );
 };
 
+const savePreviousPage = () => {
+  const previousPage = window.location.pathname + window.location.search;
+  console.log("pathname ne:", window.location.pathname);
+  console.log("search ne:", window.location.search);
+  sessionStorage.setItem("previousPage", previousPage);
+};
+
 const ArticleDetails = () => {
   const [modalVisible, setModalVisible] = useState(false);
 
@@ -139,7 +147,13 @@ const ArticleDetails = () => {
   };
 
   const handleModalOk = () => {
-    navigate("/login");
+    const previousPage = sessionStorage.getItem("previousPage");
+    // navigate("/login");
+    if (previousPage) {
+      navigate(previousPage); // Navigate người dùng trở lại trang trước
+    } else {
+      navigate("/"); // Hoặc có thể navigate về trang chủ nếu không có trang trước đó
+    }
   };
 
   const handleModalCancel = () => {
@@ -190,12 +204,16 @@ const ArticleDetails = () => {
     const user = JSON.parse(sessionStorage.getItem("user"));
     const token = sessionStorage.getItem("jwtToken");
     try {
-      if (user.role === "MEMBER") {
-        navigate(`/quizdt?hashtagId=${hashtagId}`);
-      } else if (user.role === "ADMIN") {
+      // if (user && user.role === "MEMBER") {
+      //   savePreviousPage();
+      //   navigate(`/quizdt?hashtagId=${hashtagId}`);
+      // } else if (user.role === "ADMIN") {
+      //   navigate("/login");
+      // } else
+      if (user == null) {
+        // navigate(`/login?modalVisible=true`);
+        savePreviousPage();
         navigate("/login");
-      } else if (user.role === null) {
-        navigate(`/login?modalVisible=true`);
       }
     } catch (error) {
       showModal();
@@ -320,7 +338,12 @@ const ArticleDetails = () => {
               <BreadcrumbArticle />
               {renderArticleDetails()}
               <div className={styles.btn}>
-                <Button onClick={handleOnClick}>Quizz thôi!!</Button>
+                <Button
+                  // onClick={handleOnClick}
+                  onClick={showModal}
+                >
+                  Quizz thôi!!
+                </Button>
               </div>
             </div>
           </div>
@@ -384,19 +407,17 @@ const ArticleDetails = () => {
       <Modal
         title="Thông báo"
         visible={modalVisible}
-        onOk={handleModalOk}
+        // onOk={handleModalOk}
         onCancel={handleModalCancel}
         footer={[
-          <Button
-            key="cancel"
-            onClick={handleModalCancel}
-          >
+          <Button key="cancel" onClick={handleModalCancel}>
             Cancel
           </Button>,
           <Button
-            key="login"
+            // key="logn"
             type="primary"
-            onClick={handleModalOk}
+            // onClick={handleModalOk}
+            onClick={handleOnClick}
           >
             Đăng nhập
           </Button>,
