@@ -143,7 +143,12 @@ const ArticleDetails = () => {
   const [modalVisible, setModalVisible] = useState(false);
 
   const showModal = () => {
-    setModalVisible(true);
+    const user = JSON.parse(sessionStorage.getItem("user"));
+    if (user == null) {
+      setModalVisible(true);
+    } else {
+      navigate(`/quizdt?hashtagId=${hashtagId}`);
+    }
   };
 
   const handleModalOk = () => {
@@ -204,14 +209,14 @@ const ArticleDetails = () => {
     const user = JSON.parse(sessionStorage.getItem("user"));
     const token = sessionStorage.getItem("jwtToken");
     try {
-      if (user.role === "MEMBER") {
-        //   savePreviousPage();
-        navigate(`/quizdt?hashtagId=${hashtagId}`);
-      }
+      // if (user.role === "MEMBER") {
+      //   //   savePreviousPage();
+      //   navigate(`/quizdt?hashtagId=${hashtagId}`);
+      // }
       // } else if (user.role === "ADMIN") {
       //   navigate("/login");
       // } else
-      else if (user == null) {
+      if (user == null) {
         // navigate(`/login?modalVisible=true`);
         savePreviousPage();
         navigate("/login");
@@ -340,8 +345,8 @@ const ArticleDetails = () => {
               {renderArticleDetails()}
               <div className={styles.btn}>
                 <Button
-                  onClick={handleOnClick}
-                  // onClick={showModal}
+                  // onClick={handleOnClick}
+                  onClick={showModal}
                 >
                   Quizz thôi!!
                 </Button>
