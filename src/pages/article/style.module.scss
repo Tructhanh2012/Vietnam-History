@@ -129,6 +129,8 @@
   margin-top: 20px;
 }
 .right_block {
+  padding-left: 80px;
+  padding-top: 64px;
 }
 img {
   align-items: center;
@@ -144,4 +146,10 @@ img {
 .commentName {
 }
 .commentContent {
+}
+
+.searchbar {
+  display: flex;
+  gap: 24px;
+  padding-bottom: 30px;
 }
