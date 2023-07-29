@@ -38,11 +38,11 @@ const ArticleList = () => {
       .then((response) => response.json())
       .then((data) => {
         setSearchResults(data); // Update the search results state with the API response
+        console.log(searchResults);
       })
       .catch((error) => {
         console.error("Error while fetching search results:", error);
       });
-    console.log(searchResults);
   };
 
   const nonAccentVietnamese = (str) => {
