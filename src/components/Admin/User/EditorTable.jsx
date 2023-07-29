@@ -90,31 +90,11 @@ const EditorTable = () => {
         let color =
           role === "ADMIN" ? "gold" : role === "MEMBER" ? "geekblue" : "green";
         return (
-          <Tag
-            color={color}
-            key={role}
-          >
+          <Tag color={color} key={role}>
             {role.toUpperCase()}
           </Tag>
         );
       },
-      // filters: [
-      //   {
-      //     text: "Admin",
-      //     value: "ADMIN",
-      //   },
-      //   {
-      //     text: "Member",
-      //     value: "MEMBER",
-      //   },
-      //   {
-      //     text: "Editor",
-      //     value: "EDITOR",
-      //   },
-      // ],
-      // onFilter: (value, record) => record.role.indexOf(value) === 0,
-      // sorter: (a, b) => a.role.length - b.role.length,
-      // sortDirections: ["descend"],
     },
     {
       title: "Xóa",
@@ -172,10 +152,7 @@ const EditorTable = () => {
     <>
       <Row gutter={[20, 20]}>
         <Col span={24}>{/* <InputSearch /> */}</Col>
-        <Col
-          span={22}
-          offset={1}
-        >
+        <Col span={22} offset={1}>
           <Table
             className="def"
             loading={isLoading}
