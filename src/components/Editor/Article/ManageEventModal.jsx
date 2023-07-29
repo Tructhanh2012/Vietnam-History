@@ -65,6 +65,7 @@ const ManageEventModal = (props) => {
           message: "Đã có lỗi xảy ra",
           description: "Vui lòng thử lại sau!",
         });
+        console.log(article);
       }
     } catch (error) {
       // Handle any network or API errors

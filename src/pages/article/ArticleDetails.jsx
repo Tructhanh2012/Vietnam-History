@@ -9,6 +9,7 @@ import {
 } from "antd";
 // import "./article.scss";
 import { useLocation, useNavigate } from "react-router-dom";
+import React from "react";
 import axios from "axios";
 import styles from "./style.module.scss";
 import { useState } from "react";
@@ -227,6 +228,7 @@ const ArticleDetails = () => {
   };
 
   const [hashtagId, setHastagId] = useState();
+  const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
 
   const [comments, setComments] = useState([]);
@@ -236,6 +238,7 @@ const ArticleDetails = () => {
       // console.log(JSON.stringify(response.data));
       const { title, content, hashtag, commentList } = response.data;
       const hashtagID = hashtag.id;
+      setTitle(title);
       setHastagId(hashtagID);
       setContent(content);
       // const listCommentName = commentList.map((e) => e.userName);
@@ -268,15 +271,19 @@ const ArticleDetails = () => {
     return (
       <div className={styles.article_detail}>
         <span className={styles.title}>
-          <h2 id="titleElement"></h2>
+          <h2 id="titleElement">{title}</h2>
         </span>
-        {/* <img
-          className={styles.image}
-          id="imageElement"
-        /> */}
-        <span className={styles.text}>{ReactHTMLParser(content)}</span>
 
-        {/* <span className={styles.text} id="contentElement"></span> */}
+        <span
+          className={styles.text}
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            flexWrap: "wrap",
+          }}
+        >
+          {ReactHTMLParser(content)}
+        </span>
       </div>
     );
   };

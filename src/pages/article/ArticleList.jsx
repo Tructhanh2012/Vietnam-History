@@ -23,12 +23,17 @@ const ArticleList = () => {
   }, [document]);
 
   const handleSearch = () => {
+    let keyword = {
+      keyword: searchKeyword,
+    };
+
     // Perform the API call here with the searchKeyword as a query parameter
     fetch(`http://localhost:8084/general/search-article`, {
-      method: "GET",
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
+      body: JSON.stringify(keyword),
     })
       .then((response) => response.json())
       .then((data) => {
@@ -37,6 +42,7 @@ const ArticleList = () => {
       .catch((error) => {
         console.error("Error while fetching search results:", error);
       });
+    console.log(searchResults);
   };
 
   const nonAccentVietnamese = (str) => {
@@ -137,7 +143,10 @@ const ArticleList = () => {
           </div>
           <span className={styles.header}>Danh mục các bài viết</span>
           <div className={styles.history_place}>
-            {paginatedPostList.map(renderPostItem)}
+            {/* {paginatedPostList.map(renderPostItem)} */}
+            {searchResults.length > 0
+              ? searchResults.map(renderPostItem)
+              : paginatedPostList.map(renderPostItem)}
             <Row style={{ display: "flex", justifyContent: "center" }}>
               <Pagination
                 current={current}
