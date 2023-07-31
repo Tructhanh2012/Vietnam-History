@@ -3,7 +3,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { dataHistoryTimeline } from "../timeline/data";
-import { callTimeline } from "../../services/api";
+import { callPostEventId, callTimeline } from "../../services/api";
 import TimelineComponent from "../../components/DongSuKien";
 import { dataTextHistoryTimeline } from "./dataText";
 import "./timeline.scss";
@@ -20,10 +20,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 function SampleNextArrow({ onClick }) {
   return (
-    <div
-      className="arrow arrow-right "
-      onClick={onClick}
-    >
+    <div className="arrow arrow-right " onClick={onClick}>
       <MdOutlineArrowForwardIos />
     </div>
   );
@@ -68,7 +65,7 @@ const TimelinePage = () => {
   const [data, setData] = useState([]);
   const [eventName, setEventName] = useState();
   const [currentPage, setCurrentPage] = useState(1);
-  const [articleId, setArticleId] = useState();
+  // const [articleId, setArticleId] = useState();
   const pageSize = 6;
   const totalItems = 105;
 
@@ -83,7 +80,7 @@ const TimelinePage = () => {
     const res = await callTimeline();
     console.log(res.data);
     setGeography(res.data);
-    console.log("g", geography);
+    // console.log("g", geography);
   };
 
   useEffect(() => {
@@ -98,7 +95,39 @@ const TimelinePage = () => {
     setModalVisible(true);
   };
 
+  const [openModal, setOpenModal] = useState(false);
+  const [articleId, setArticleId] = useState();
+  const [articleName, setArticleName] = useState();
+  const handleOnClick = async (event) => {
+    // setSelectedTimeline(timeline);
+    const id = event.id;
+    setArticleId(id); //
+
+    // console.log("hgjar id: ", articleId);
+    setOpenModal(true);
+  };
+  const getArticleFromEvent = async (articleId) => {
+    try {
+      console.log("ar id: ", articleId);
+      const res = await callPostEventId(articleId);
+      const name = res.data.listAricles;
+      setArticleName(name);
+      console.log("data article ne", articleName);
+    } catch (error) {
+      console.error("Error while fetching article data:", error);
+    }
+  };
+
+  // useEffect(() => {
+  //   if (articleId) {
+  //     getArticleFromEvent(articleId);
+  //   }
+  // }, [articleId]);
+
   useEffect(() => {
+    if (articleId) {
+      getArticleFromEvent(articleId);
+    }
     // console.log("timelineid", timelineId);
     if (timelineId) {
       const getTimelineEvent = async () => {
@@ -115,10 +144,11 @@ const TimelinePage = () => {
 
       getTimelineEvent();
     }
-  }, [timelineId]);
+  }, [timelineId, articleId]);
 
   const closeModal = () => {
     setModalVisible(false);
+    setOpenModal(false);
   };
   const settings = {
     dots: true,
@@ -190,7 +220,7 @@ const TimelinePage = () => {
   const getEvent = async () => {
     const res = await callGetEvents();
     setEvents(res.data);
-    console.log("evnet list ", events);
+    // console.log("evnet list ", events);
   };
 
   useEffect(() => {
@@ -206,10 +236,7 @@ const TimelinePage = () => {
             {geography.map((item) => (
               <div className="card">
                 <div className="card-top">
-                  <h6
-                    key={item.id}
-                    onClick={() => handleTitleClick(item)}
-                  >
+                  <h6 key={item.id} onClick={() => handleTitleClick(item)}>
                     {item.generationName}
                   </h6>
                 </div>
@@ -238,10 +265,7 @@ const TimelinePage = () => {
             onCancel={closeModal}
             footer={null}
           >
-            <Timeline
-              style={{ marginTop: 25 }}
-              key={timelineId}
-            >
+            <Timeline style={{ marginTop: 25 }} key={timelineId}>
               {eventName &&
                 eventName.map((item) => (
                   <Timeline.Item
@@ -268,7 +292,12 @@ const TimelinePage = () => {
             {events &&
               events.map((event) => (
                 <div key={event.id}>
-                  <h2>{event.eventName}</h2>
+                  <h2
+                    style={{ cursor: "pointer" }}
+                    onClick={() => handleOnClick(event)}
+                  >
+                    {event.eventName}
+                  </h2>
                   <h6>
                     {event.startYear}-{event.endYear}
                   </h6>
@@ -311,6 +340,33 @@ const TimelinePage = () => {
             <TimelineComponent />
           </Col> */}
         </Row>
+
+        <Modal
+          // title={selectedTimeline?.title}
+          title="Các bài viết liên quan đến sự kiện:"
+          open={openModal}
+          onCancel={closeModal}
+          footer={null}
+        >
+          <Timeline style={{ marginTop: 25 }} key={articleId}>
+            {/* {eventName &&
+              eventName.map((item) => ( */}
+            {articleName &&
+              articleName.map((item) => (
+                <Timeline.Item
+                  // key={item.id}
+                  onClick={() => handleRedirectEvent(item)}
+                >
+                  <Link
+                    to="#"
+                    style={{ textDecoration: "none", color: "inherit" }}
+                  >
+                    {item.title}
+                  </Link>
+                </Timeline.Item>
+              ))}
+          </Timeline>
+        </Modal>
       </div>
     </>
   );

@@ -203,3 +203,7 @@ export const callGetEvents = () => {
 export const callGetCharacterList = () => {
   return axios.get("http://localhost:8084/general/list-figures");
 };
+
+export const callPostEventId = (id) => {
+  return axios.post("http://localhost:8084/general/event", { id });
+};

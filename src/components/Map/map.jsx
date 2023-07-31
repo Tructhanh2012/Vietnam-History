@@ -42,7 +42,7 @@ const CustomMap = () => {
     const res = await callGetMap();
     console.log(res.data);
     setGeography(res.data);
-    console.log("g", geography);
+    // console.log("g", geography);
   };
 
   useEffect(() => {
@@ -123,11 +123,7 @@ const CustomMap = () => {
             onMouseLeave={handleMouseLeave}
           />
           {isHovered === 52 && (
-            <text
-              className="hover-text"
-              x="28%"
-              y="78%"
-            >
+            <text className="hover-text" x="28%" y="78%">
               An Giang
             </text>
           )}
@@ -143,11 +139,7 @@ const CustomMap = () => {
             onMouseLeave={handleMouseLeave}
           />
           {isHovered === 62 && (
-            <text
-              className="hover-text"
-              x="48%"
-              y="77%"
-            >
+            <text className="hover-text" x="48%" y="77%">
               Bà Rịa - Vũng Tàu
             </text>
           )}
@@ -163,11 +155,7 @@ const CustomMap = () => {
             onMouseLeave={handleMouseLeave}
           />
           {isHovered === 30 && (
-            <text
-              className="hover-text"
-              x="37%"
-              y="12%"
-            >
+            <text className="hover-text" x="37%" y="12%">
               Bắc Giang
             </text>
           )}
@@ -183,11 +171,7 @@ const CustomMap = () => {
             onMouseLeave={handleMouseLeave}
           />
           {isHovered === "h15" && (
-            <text
-              className="hover-text"
-              x="32%"
-              y="6%"
-            >
+            <text className="hover-text" x="32%" y="6%">
               Bắc Kạn
             </text>
           )}
@@ -204,11 +188,7 @@ const CustomMap = () => {
             onMouseLeave={handleMouseLeave}
           />
           {isHovered === 54 && (
-            <text
-              className="hover-text"
-              x="30%"
-              y="85%"
-            >
+            <text className="hover-text" x="30%" y="85%">
               Bạc Liêu
             </text>
           )}
@@ -224,11 +204,7 @@ const CustomMap = () => {
             onMouseLeave={handleMouseLeave}
           />
           {isHovered === "33" && (
-            <text
-              className="hover-text"
-              x="35%"
-              y="13%"
-            >
+            <text className="hover-text" x="35%" y="13%">
               Bắc Ninh
             </text>
           )}
@@ -315,11 +291,7 @@ const CustomMap = () => {
             onMouseLeave={handleMouseLeave}
           />
           {isHovered === "h11" && (
-            <text
-              className="hover-text"
-              x="39%"
-              y="70%"
-            >
+            <text className="hover-text" x="39%" y="70%">
               Bình Phước
             </text>
           )}
@@ -335,11 +307,7 @@ const CustomMap = () => {
             onMouseLeave={handleMouseLeave}
           />
           {isHovered === 44 && (
-            <text
-              className="hover-text"
-              x="47%"
-              y="74%"
-            >
+            <text className="hover-text" x="47%" y="74%">
               Bình Thuận
             </text>
           )}
@@ -355,11 +323,7 @@ const CustomMap = () => {
             onMouseLeave={handleMouseLeave}
           />
           {isHovered === "h14" && (
-            <text
-              className="hover-text"
-              x="27%"
-              y="86%"
-            >
+            <text className="hover-text" x="27%" y="86%">
               Cà Mau
             </text>
           )}
@@ -375,11 +339,7 @@ const CustomMap = () => {
             onMouseLeave={handleMouseLeave}
           />
           {isHovered === "61" && (
-            <text
-              className="hover-text"
-              x="30%"
-              y="80%"
-            >
+            <text className="hover-text" x="30%" y="80%">
               Cần Thơ
             </text>
           )}
@@ -395,11 +355,7 @@ const CustomMap = () => {
             onMouseLeave={handleMouseLeave}
           />
           {isHovered === "h1" && (
-            <text
-              className="hover-text"
-              x="35%"
-              y="3%"
-            >
+            <text className="hover-text" x="35%" y="3%">
               Cao Bằng
             </text>
           )}
@@ -415,11 +371,7 @@ const CustomMap = () => {
             onMouseLeave={handleMouseLeave}
           />
           {isHovered === "h8" && (
-            <text
-              className="hover-text"
-              x="45%"
-              y="44%"
-            >
+            <text className="hover-text" x="45%" y="44%">
               Đà Nẵng
             </text>
           )}
@@ -435,11 +387,7 @@ const CustomMap = () => {
             onMouseLeave={handleMouseLeave}
           />
           {isHovered === "h18" && (
-            <text
-              className="hover-text"
-              x="45%"
-              y="63%"
-            >
+            <text className="hover-text" x="45%" y="63%">
               Đắk Lắk
             </text>
           )}
@@ -455,18 +403,11 @@ const CustomMap = () => {
             onMouseLeave={handleMouseLeave}
           />
           {isHovered === "h19" && (
-            <text
-              className="hover-text"
-              x="43%"
-              y="67%"
-            >
+            <text className="hover-text" x="43%" y="67%">
               Đắk Nông
             </text>
           )}
-          <mask
-            id="path-18-inside-1_101_2"
-            fill="white"
-          >
+          <mask id="path-18-inside-1_101_2" fill="white">
             <path d="M111.3 70.6L110.4 73.4L112.5 76L114.2 80.9L116.1 84.8L113.5 86.6L114.2 87.5L112.4 90.7L112.2 92.2L109.5 93.3L108.7 97.3L106.3 97.1L103.6 97.8L106 100.8L105.3 102.3L108 103.2L108.2 110.4L106.5 111.2L107.8 115.2L105.7 115.6L102.5 113.9L100.8 115.4L101.8 121.1L101.3 123.2L97.9 123.8L95.5999 122.8L93.0999 123.7L89.1999 115.9L86.3 115.3L84.5999 110.9L83 110.2L83.3 107.3L81.0999 106L79 106.4L78.5 105.4L80.5999 103.8L82.5999 103.6V99.7L84.1999 96.7L81.5 97.6L83.5 93.7L87.1999 89.7L86.5999 86.3L87 82.9L85.3 82.6L81.6999 83.8L80.6999 82.9L80.5 77.2H79L79.1999 82.3L75.5 85.9L72.0999 86.2L70.8 82.3L71.4 79.3L70.5999 76.2L69.1999 75.5L68.8 73L64.3 70.7L63.2 69.5L64.6999 68L60.7 64.6L60.5 63.4L58.2 62.8L54.5999 58.8L53.0999 59L52.9 57.5L51.4 57.4L51 55.2L48.2999 54.1L49.0999 52.5L47.7 51.5L46.7 49.3L47.4 47.8L51.2 47.9L52.4 48.6L51.7 46.5L55.2 42L56.5 44.8L58.2 45.9L58.4 48.9L61 51.1L65.8 57.1L67.1999 56.3L69.3 57.5L69.4 59.4L72.0999 60.8L73.0999 58.9L71.4 56.6L74.6999 57.4L75.8 58.9L75.3 62.5L76.9 64.8L80.6999 66L84.0999 64.6L86.9 67.8L87.5999 66.6L89.4 66.8L91.8 65.7L92.4 64.1L94.5999 65.8L95.6999 65.2L100.9 67.2L101.1 63.9L103.5 61.5L105.8 61.4L108.3 66.4L109.9 67.7L109.2 68.6L111.3 70.6Z" />
           </mask>
           <path
@@ -482,11 +423,7 @@ const CustomMap = () => {
             onMouseLeave={handleMouseLeave}
           />
           {isHovered === "56" && (
-            <text
-              className="hover-text"
-              x="17%"
-              y="10%"
-            >
+            <text className="hover-text" x="17%" y="10%">
               Điện Biên
             </text>
           )}
@@ -502,11 +439,7 @@ const CustomMap = () => {
             onMouseLeave={handleMouseLeave}
           />
           {isHovered === "h20" && (
-            <text
-              className="hover-text"
-              x="41%"
-              y="75%"
-            >
+            <text className="hover-text" x="41%" y="75%">
               Đồng Nai
             </text>
           )}
@@ -522,11 +455,7 @@ const CustomMap = () => {
             onMouseLeave={handleMouseLeave}
           />
           {isHovered === "51" && (
-            <text
-              className="hover-text"
-              x="32%"
-              y="78%"
-            >
+            <text className="hover-text" x="32%" y="78%">
               Đồng Tháp
             </text>
           )}
@@ -542,11 +471,7 @@ const CustomMap = () => {
             onMouseLeave={handleMouseLeave}
           />
           {isHovered === "h9" && (
-            <text
-              className="hover-text"
-              x="45%"
-              y="58%"
-            >
+            <text className="hover-text" x="45%" y="58%">
               Gia Lai
             </text>
           )}
@@ -562,11 +487,7 @@ const CustomMap = () => {
             onMouseLeave={handleMouseLeave}
           />
           {isHovered === "h21" && (
-            <text
-              className="hover-text"
-              x="26%"
-              y="4%"
-            >
+            <text className="hover-text" x="26%" y="4%">
               Hà Giang
             </text>
           )}
@@ -582,11 +503,7 @@ const CustomMap = () => {
             onMouseLeave={handleMouseLeave}
           />
           {isHovered === "37" && (
-            <text
-              className="hover-text"
-              x="33%"
-              y="17%"
-            >
+            <text className="hover-text" x="33%" y="17%">
               Hà Nam
             </text>
           )}
@@ -602,11 +519,7 @@ const CustomMap = () => {
             onMouseLeave={handleMouseLeave}
           />
           {isHovered === "h2" && (
-            <text
-              className="hover-text"
-              x="30%"
-              y="14%"
-            >
+            <text className="hover-text" x="30%" y="14%">
               Hà Nội
             </text>
           )}
@@ -623,11 +536,7 @@ const CustomMap = () => {
             onMouseLeave={handleMouseLeave}
           />
           {isHovered === "h22" && (
-            <text
-              className="hover-text"
-              x="32%"
-              y="31%"
-            >
+            <text className="hover-text" x="32%" y="31%">
               Hà Tĩnh
             </text>
           )}
@@ -643,11 +552,7 @@ const CustomMap = () => {
             onMouseLeave={handleMouseLeave}
           />
           {isHovered === "34" && (
-            <text
-              className="hover-text"
-              x="36%"
-              y="14%"
-            >
+            <text className="hover-text" x="36%" y="14%">
               Hải Dương
             </text>
           )}
@@ -663,11 +568,7 @@ const CustomMap = () => {
             onMouseLeave={handleMouseLeave}
           />
           {isHovered === "h3" && (
-            <text
-              className="hover-text"
-              x="38%"
-              y="15%"
-            >
+            <text className="hover-text" x="38%" y="15%">
               Hải Phòng
             </text>
           )}
@@ -683,11 +584,7 @@ const CustomMap = () => {
             onMouseLeave={handleMouseLeave}
           />
           {isHovered === "63" && (
-            <text
-              className="hover-text"
-              x="30%"
-              y="82%"
-            >
+            <text className="hover-text" x="30%" y="82%">
               Hậu Giang
             </text>
           )}
@@ -703,11 +600,7 @@ const CustomMap = () => {
             onMouseLeave={handleMouseLeave}
           />
           {isHovered === "59" && (
-            <text
-              className="hover-text"
-              x="29%"
-              y="16%"
-            >
+            <text className="hover-text" x="29%" y="16%">
               Hòa Bình
             </text>
           )}
@@ -723,18 +616,11 @@ const CustomMap = () => {
             onMouseLeave={handleMouseLeave}
           />
           {isHovered === "35" && (
-            <text
-              className="hover-text"
-              x="34%"
-              y="15%"
-            >
+            <text className="hover-text" x="34%" y="15%">
               Hưng Yên
             </text>
           )}
-          <mask
-            id="path-31-inside-2_101_2"
-            fill="white"
-          >
+          <mask id="path-31-inside-2_101_2" fill="white">
             <path d="M495.3 773.2L495.6 770.2L496.7 770.8L495.3 773.2ZM503 766.6L500.8 768.2L500.9 767.1L503 766.6ZM620 761.6L616.4 763.5L613.3 766.7L609.9 767.6L609.8 766.2L612.3 766.8L616.3 763.3L618.9 761.5L620 761.6ZM443.4 759.3L445 757.1L445.5 758.4L443.4 759.3ZM635 751.6L632.7 753.1L630.6 753L633.5 750.9L635 751.6ZM608.8 749L611 751.9L607.6 749.6L608.8 749ZM452 746.9L451.2 749.6L450 748.5L450.1 746.5L452 746.9ZM647.5 741.7L649.3 741.8L651 743.3L650.8 745L649.1 743.5H643.5L642.4 744.9L636.9 745.2L639.3 744L646.5 741.5L647.5 741.7ZM581.7 739.2L580.3 741.7L576.4 745.7L578.9 741L581.5 738.3L581.7 739.2ZM578.1 743.4L580.5 741.2L581 739.4L579.2 741L578.1 743.4ZM669.9 731.4L670.5 732.2L673.8 732.7L673.4 733.3L669.8 733.1L668.5 731.6L669.9 731.4ZM621.8 714.4L622.5 717L621 717.8L620.5 713.9L621.8 714.4ZM621.1 717.3L622.1 716.8L620.8 714.9L621.1 717.3ZM609.9 709.8L614.2 710.4L615.6 713.1L612.8 712.9L607.8 710.2L609.9 709.8ZM613 712.6L615.2 712.8L612.7 710.4L609.3 710L609.5 711L613 712.6ZM544.8 709.4L549.2 710.3L544.1 711.1L543.4 709.3L544.8 709.4ZM722.8 706L722.1 707.7L720.7 708L721.4 706.1L722.8 706ZM598.5 703.4L595.3 704.7L595.8 703.8L598.5 703.4ZM681.7 681.9L682.4 684.5L680.8 684.9L680.4 683.6L681.7 681.9ZM567.6 669L562.4 672.8L559.2 674.3L561.9 670.2L563.7 668.6L561.2 672.2L563.2 672L567.2 668.6L567.6 669ZM733.8 666.2L735.7 666.1L737.2 667.7L732.7 666.7L733.8 666.2ZM702.9 663.5L702.2 666.6L700.8 669.8L701.1 666.7L700.7 664.7L701.9 663.1L702.9 663.5ZM701.2 667.9L702.6 664.2L701 664.8L701.2 667.9ZM686.5 657.1L688.1 658.4L686.5 659.8L684.7 659.6L684.1 657.7L686.5 657.1ZM684.8 659.3L686.6 659.6L687.2 657.6L684.4 657.7L684.8 659.3ZM644.4 653.9L643.8 656.2L643.3 654.4L644.4 653.9ZM605.3 653.5L605.1 647.3L606.1 648L605.3 653.5ZM675.3 644.3L674.2 645.5L674 643.5L675.3 644.3ZM732 640L730.5 638.8L731.7 637.3L733 639L732 640ZM646.1 637.8L644.6 639.3L644 638L646.9 635.7L646.1 637.8ZM638.9 638.3L638.8 636.3L640.2 634.8L638.9 638.3ZM698.6 628.1L698.1 630.7L696.7 631.7L694.7 630.4L696.2 628.1H698.6ZM751.2 627.3L752.7 626.9V628.3L750.9 629.3L749.8 627.2L751.2 627.3ZM716.4 624.7H715.7L715.8 619.2L717.9 623L716.4 624.7ZM739.6 616.7L737.6 615.7L737.9 614.1L740.2 616.2L739.6 616.7ZM701.9 615.8L703.2 620.3L701.6 618.8L700.9 616L699.3 616.1L700.3 622.6L701.2 622.7L699.7 625.2L698.7 618.3L698.8 616L700.2 613.9L701.9 615.8ZM656.7 612.1L655.1 612.2L657.3 610.4L656.7 612.1ZM617.2 609.7L617.1 609.9L615.2 610L616.7 608.6L617.2 609.7ZM723.8 586.8L724.9 583.1L725.7 583.5L723.8 586.8ZM644.5 582L642.9 582.4L642.4 586.5L642.1 583.3L642.8 581.6L644.5 582ZM717.2 583.9L716.9 583.1L718.9 581.2L717.2 583.9ZM726.4 581.9L725.7 581.6L727.5 578.5L726.4 581.9ZM721.1 580.7L720.6 580.2L724.2 577L724.7 577.6L721.1 580.7ZM727.5 574.7L726.8 573.9L729 572.6L727.5 574.7ZM731.1 573.7L729.8 571.4L731.3 569.1L731.6 572.2L731.1 573.7ZM387.3 546.4H389.1L389.9 548L387.5 548.7L385.5 547.2L387.3 546.4ZM390.5 527.1L392.3 527.3L393.6 530.5L392.9 530.8L388.7 527.9L390.5 527.1ZM383.2 566.5L380.5 566.8L378.3 566.3L375.8 561.9L373.3 561.5L369.8 559.7L368.8 559.9L366.6 558.2L367 556.7L364.3 555.2L364.8 554.5L363.6 551.4L363.9 549.8L361 549.6L359.6 545.8L359.8 542.7L358.7 542.1L359.1 539.3L358.2 537L360.4 534L361.3 534.4L363.4 533L367.7 535.5L367.2 533.6L369 530.3L367.4 528.7L369 527.2L369.2 524.9L371.2 523.9L372.9 524.5L373.5 523.3L375.9 521.4L378 521.5L379.6 518.8L380.7 519.7L381.7 517.6L384.8 518.2L386.1 516.9L387.5 517.2L391.4 515.5L392.5 516.7L391 517.8L391.4 520L394.3 525.1H395.6L393.7 529.2L392.5 527.1L393.3 525L390.8 523.9L392 523.3L390.9 518.8L389.5 519L386.1 523.3L384.8 523.8L382.7 527.5L383.8 530.4L385 528.7L385.4 532.9L387.9 534.4V536.9L390.2 538L388.4 539L388.2 540.3L386.5 540L385.2 537.5L382.4 535.4L380.7 537.6L383.5 538.6L383.6 541.2L385.5 542.6L383.7 543.4L383.3 546L384.2 547.2L383.4 549.5L384.5 550L383.3 551.8L383.6 554.5L385.7 558.3L387.5 559.6L386.2 561.3L387.3 563.3L385.9 564.4L383.6 563.1L384.2 558.6L383.5 555.3L382.3 553.2L382.2 555.3L383.8 558.1L381.7 561.9L380.6 561.7L379.2 564.6L380.8 566.2L382.8 563.4L383.2 566.5Z" />
           </mask>
           <path
@@ -750,11 +636,7 @@ const CustomMap = () => {
             onMouseLeave={handleMouseLeave}
           />
           {isHovered === "h23" && (
-            <text
-              className="hover-text"
-              x="53%"
-              y="66%"
-            >
+            <text className="hover-text" x="53%" y="66%">
               Khánh Hòa
             </text>
           )}
@@ -770,11 +652,7 @@ const CustomMap = () => {
             onMouseLeave={handleMouseLeave}
           />
           {isHovered === "53" && (
-            <text
-              className="hover-text"
-              x="29%"
-              y="81%"
-            >
+            <text className="hover-text" x="29%" y="81%">
               Kiên Giang
             </text>
           )}
@@ -790,11 +668,7 @@ const CustomMap = () => {
             onMouseLeave={handleMouseLeave}
           />
           {isHovered === "h24" && (
-            <text
-              className="hover-text"
-              x="45%"
-              y="53%"
-            >
+            <text className="hover-text" x="45%" y="53%">
               Kon Tum
             </text>
           )}
@@ -810,11 +684,7 @@ const CustomMap = () => {
             onMouseLeave={handleMouseLeave}
           />
           {isHovered === "57" && (
-            <text
-              className="hover-text"
-              x="17%"
-              y="6%"
-            >
+            <text className="hover-text" x="17%" y="6%">
               Lai Châu
             </text>
           )}
@@ -830,11 +700,7 @@ const CustomMap = () => {
             onMouseLeave={handleMouseLeave}
           />
           {isHovered === "45" && (
-            <text
-              className="hover-text"
-              x="47%"
-              y="70%"
-            >
+            <text className="hover-text" x="47%" y="70%">
               Lâm Đồng
             </text>
           )}
@@ -850,11 +716,7 @@ const CustomMap = () => {
             onMouseLeave={handleMouseLeave}
           />
           {isHovered === "28" && (
-            <text
-              className="hover-text"
-              x="38%"
-              y="9%"
-            >
+            <text className="hover-text" x="38%" y="9%">
               Lạng Sơn
             </text>
           )}
@@ -870,11 +732,7 @@ const CustomMap = () => {
             onMouseLeave={handleMouseLeave}
           />
           {isHovered === "h25" && (
-            <text
-              className="hover-text"
-              x="21%"
-              y="6%"
-            >
+            <text className="hover-text" x="21%" y="6%">
               Lào Cai
             </text>
           )}
@@ -890,11 +748,7 @@ const CustomMap = () => {
             onMouseLeave={handleMouseLeave}
           />
           {isHovered === "47" && (
-            <text
-              className="hover-text"
-              x="34%"
-              y="76%"
-            >
+            <text className="hover-text" x="34%" y="76%">
               Long An
             </text>
           )}
@@ -910,18 +764,11 @@ const CustomMap = () => {
             onMouseLeave={handleMouseLeave}
           />
           {isHovered === "38" && (
-            <text
-              className="hover-text"
-              x="35%"
-              y="18%"
-            >
+            <text className="hover-text" x="35%" y="18%">
               Nam Định
             </text>
           )}
-          <mask
-            id="path-40-inside-3_101_2"
-            fill="white"
-          >
+          <mask id="path-40-inside-3_101_2" fill="white">
             <path d="M221.4 202.7L219.7 205.5L218.1 206.8L218.2 211.9L216 212.9L215 212.3L212.8 215.4L212.5 218L213.3 222L217.2 224.4V225.8L219.2 228.8L218.5 229.8L219.6 232.3L217.6 233.1L215.9 235.5V237.1L213.4 238.3L212.4 237.7L208.9 238.9L207.1 236.1L203.8 237.2L200.4 237.6L196.4 235.4L194 237.2L192 236.5L192.5 234.6L189.4 232.3V231L185.4 231.3L183.9 229.4L180.2 229.8L180 228.1L178.7 227.5L173.3 227.6L169.7 226L169.3 224.8L167.6 225L165.3 222.5L162.9 221.8L161.2 218.2L159 216.9L156.7 217.7L154.3 214.2L149.9 212.4L148.7 211.1L146.4 211.5L146.1 209.7L143.9 207.3L140.3 206.6L138.7 204.9L135.8 205.5L133.5 204.7L131.3 202.2L129.4 201.4L133 199.4L134.1 197.4L138.6 196.6L140.2 191.3L140.5 189.1L138.2 186.7L138.7 183.5L141.8 184.5L143.6 183.2L146.5 182.3L149.8 182.8L150.7 183.5L155.5 182.7L155.7 184L158.9 185.1L159.5 186.5L162.5 186.9L164.5 185.9L166.2 186.3L167 182.7L169.8 180L175.3 177.6L175.9 174.2L175.6 171.6L178 170L179 168.1L185.1 170.8L187.4 170.9L191.3 172.2L191.9 174.8L190.2 175L189.1 177.5L189.4 180.6L190.8 181.6L190.9 183.4L195.5 185.6L196.4 189.3L195.8 191L197 193.7L198.9 190.9L202.2 194.9L205.9 195.2L207.9 194.2L211.3 198.9L212.7 198.3L215.7 202.1L218.4 201.2L218.7 202.2L221.4 202.7Z" />
           </mask>
           <path
@@ -937,11 +784,7 @@ const CustomMap = () => {
             onMouseLeave={handleMouseLeave}
           />
           {isHovered === "h5" && (
-            <text
-              className="hover-text"
-              x="27%"
-              y="25%"
-            >
+            <text className="hover-text" x="27%" y="25%">
               Nghệ An
             </text>
           )}
@@ -957,11 +800,7 @@ const CustomMap = () => {
             onMouseLeave={handleMouseLeave}
           />
           {isHovered === "39" && (
-            <text
-              className="hover-text"
-              x="32%"
-              y="19%"
-            >
+            <text className="hover-text" x="32%" y="19%">
               Ninh Bình
             </text>
           )}
@@ -977,11 +816,7 @@ const CustomMap = () => {
             onMouseLeave={handleMouseLeave}
           />
           {isHovered === "h10" && (
-            <text
-              className="hover-text"
-              x="51%"
-              y="70%"
-            >
+            <text className="hover-text" x="51%" y="70%">
               Ninh Thuận
             </text>
           )}
@@ -997,11 +832,7 @@ const CustomMap = () => {
             onMouseLeave={handleMouseLeave}
           />
           {isHovered === "31" && (
-            <text
-              className="hover-text"
-              x="28%"
-              y="13%"
-            >
+            <text className="hover-text" x="28%" y="13%">
               Phú Thọ
             </text>
           )}
@@ -1017,11 +848,7 @@ const CustomMap = () => {
             onMouseLeave={handleMouseLeave}
           />
           {isHovered === "43" && (
-            <text
-              className="hover-text"
-              x="50%"
-              y="62%"
-            >
+            <text className="hover-text" x="50%" y="62%">
               Phú Yên
             </text>
           )}
@@ -1037,11 +864,7 @@ const CustomMap = () => {
             onMouseLeave={handleMouseLeave}
           />
           {isHovered === "h6" && (
-            <text
-              className="hover-text"
-              x="35%"
-              y="35%"
-            >
+            <text className="hover-text" x="35%" y="35%">
               Quảng Bình
             </text>
           )}
@@ -1057,11 +880,7 @@ const CustomMap = () => {
             onMouseLeave={handleMouseLeave}
           />
           {isHovered === "42" && (
-            <text
-              className="hover-text"
-              x="47%"
-              y="47%"
-            >
+            <text className="hover-text" x="47%" y="47%">
               Quảng Nam
             </text>
           )}
@@ -1077,18 +896,11 @@ const CustomMap = () => {
             onMouseLeave={handleMouseLeave}
           />
           {isHovered === "h26" && (
-            <text
-              className="hover-text"
-              x="51%"
-              y="51%"
-            >
+            <text className="hover-text" x="51%" y="51%">
               Quảng Ngãi
             </text>
           )}
-          <mask
-            id="path-48-inside-4_101_2"
-            fill="white"
-          >
+          <mask id="path-48-inside-4_101_2" fill="white">
             <path d="M295.2 127.4L296.6 127V128.7L295.2 127.4ZM294.9 124.1L297.3 124.7L295.2 125.4L294.9 124.1ZM304.9 121.5L302.1 125.3L301.9 124.8L305.2 120.3L304.9 121.5ZM314.4 117.9L315.7 120L313.4 118.4L314.4 117.9ZM304.5 118.2L304.7 118.9L302.8 122.6L297.7 123.4L301.2 121.1L301.7 119.3L304.1 116.6L304.5 118.2ZM319.6 116.6L317.7 119.4L316.9 119L318.5 116.4L319.6 116.6ZM306.2 113L305.6 114.5L303.6 114.8L304.8 112.8L306.2 113ZM307.1 116.3L306 119.6L305.5 118.6L306.4 115.3L308.6 112.4L307.1 116.3ZM299.2 106.3L297 107.8L297.4 106.3H299.2ZM300.7 105.2L303.8 107.9L304 109.2L307.6 107.8L304.4 111.5L303 111.3L302.5 112.7L296.7 116.5L297.6 112.9L299.7 111.2L298.6 110.7L300.4 108.6L300.7 105.2ZM317.2 101.5L314.1 103.7L312.1 103.6L317.4 100.9L317.2 101.5ZM326.4 99L323.9 100.8L320.3 100.9L319.6 99.9L326.4 99ZM272.1 126.9L271 127.5L270.4 126L267.7 126.8L269 128L267.1 127.9L266.7 125.9L265.3 125.2L266.7 124.5L267.5 122.6L267.4 119.7L261.8 117.6H259.9L258.2 115.8L255.4 116.3L252.5 115.4L251.8 112.8L253.9 112.2L254.7 107.5L256.6 109.1L259.8 110.2L261.2 109.8L268.5 111.2L270.3 109.3L271.8 109.9L274.4 109.5L275.4 110.2L277.5 107.4L277.2 104.6L279.6 103.7L280 102.6L283.2 100.1L286.6 100.6L288.9 99.5L290.5 100.5L291.1 98.9L289.8 95.9L289.5 92.8L288.2 91.8L291.9 90.6L292.5 89.3L295.8 89L296.8 89.1L298.4 87L300.7 85.8L302.2 87.2L301.5 89L304.3 89.5L305.2 88.3L310.8 88.5L317.1 86.1L319.3 86.2L321.5 89.6L322.6 89.5L323.9 91.9H326.3L327.2 94.8L324.9 97.1L325.7 94.7L319.2 92.7L318.8 93.7L315.6 92.7L314.1 93.8L316.5 94.1L314.2 98.8L310.7 98.1L310.4 99.7H309L307.3 104L303.6 101.8L302.8 103.8L299.9 102.6V104.7L296.4 102.9L295.7 104.6L296.1 107.4L295.5 111L297.1 112L296 115.4L296.2 117.4L294.4 118.9L292.5 118.6L288.8 119.3L287.4 121.1L284.2 121.7L281.5 120.6L280.1 121.2L274.9 120.6L275 122.9L270.9 123.4L272.1 126.9Z" />
           </mask>
           <path
@@ -1104,11 +916,7 @@ const CustomMap = () => {
             onMouseLeave={handleMouseLeave}
           />
           {isHovered === "29" && (
-            <text
-              className="hover-text"
-              x="42%"
-              y="12%"
-            >
+            <text className="hover-text" x="42%" y="12%">
               Quảng Ninh
             </text>
           )}
@@ -1124,11 +932,7 @@ const CustomMap = () => {
             onMouseLeave={handleMouseLeave}
           />
           {isHovered === "41" && (
-            <text
-              className="hover-text"
-              x="40%"
-              y="40%"
-            >
+            <text className="hover-text" x="40%" y="40%">
               Quảng Trị
             </text>
           )}
@@ -1144,18 +948,11 @@ const CustomMap = () => {
             onMouseLeave={handleMouseLeave}
           />
           {isHovered === "55" && (
-            <text
-              className="hover-text"
-              x="33%"
-              y="83%"
-            >
+            <text className="hover-text" x="33%" y="83%">
               Sóc Trăng
             </text>
           )}
-          <mask
-            id="path-51-inside-5_101_2"
-            fill="white"
-          >
+          <mask id="path-51-inside-5_101_2" fill="white">
             <path d="M131.6 84L132.3 85.5H136.9L139.7 86.9L143 86.2L144.5 86.6L145.7 85.4L151.5 86.4L149.1 88.9L148.5 91.4L149.3 92.7L148.8 95.4L151.1 98.4L151.8 97.9L155.3 100L155.4 100.8L158 101.2L160.6 98.2L163.4 97.7L166.1 99.7L168 99.9L168.2 98.8L170.3 98.5L171 101.2L172.4 102.5L174.1 102.1L175.5 103.3L175.4 105.6L176.5 108.3L176 111.2L178.9 113.1L176 114.8L176.7 117.2L180.2 122L181.9 123.2L183.3 126.3L183 127.8L184.2 128.5L182.6 130.8L182.9 132.3L177.4 130.1L175.6 130.7L175.7 135.8L173.9 136.5L173.6 139.1L170.6 139.6L169.8 138.2L167.9 138.5L165.7 135.7L162.3 132.6L160.1 133.4L159 132.7L158.4 130.1L156.6 128.5L155.3 128.7L150.9 125.5L151.3 124.9L148.6 122.2L147.6 123.6L146.8 122L144.3 120.7L141.5 121.1L140.3 119.7L137.7 121.1L136.7 123.4L133.9 122.9L132.6 123.8L130.4 123.2L128.2 125.4L126.2 125.2L124.6 128.2L125.4 131L122.6 131.7L122.7 135L120.2 135.3L119.4 133.4L116.1 131.2L111.8 130.7L109.7 127.1L108.6 128.5L105.8 129.2L98.3999 126.3L97.8999 123.8L101.3 123.2L101.8 121.1L100.8 115.4L102.5 113.9L105.7 115.6L107.8 115.2L106.5 111.2L108.2 110.4L108 103.2L105.3 102.3L106 100.8L103.6 97.8L106.3 97.1L108.7 97.3L109.5 93.3L112.2 92.2L112.4 90.7L114.2 87.5L113.5 86.6L116.1 84.8L114.2 80.9L112.5 76L110.4 73.4L111.3 70.6L112.6 68L116.3 68.5L118.7 69.5L120.2 73.1L122.1 75.1L120.8 77.8L123.8 78.6L125.9 82L127.3 81.9L127.6 83.7L129.6 84.6L131.6 84Z" />
           </mask>
           <path
@@ -1171,11 +968,7 @@ const CustomMap = () => {
             onMouseLeave={handleMouseLeave}
           />
           {isHovered === "h4" && (
-            <text
-              className="hover-text"
-              x="21%"
-              y="13%"
-            >
+            <text className="hover-text" x="21%" y="13%">
               Sơn La
             </text>
           )}
@@ -1191,11 +984,7 @@ const CustomMap = () => {
             onMouseLeave={handleMouseLeave}
           />
           {isHovered === "46" && (
-            <text
-              className="hover-text"
-              x="35%"
-              y="72%"
-            >
+            <text className="hover-text" x="35%" y="72%">
               Tây Ninh
             </text>
           )}
@@ -1211,11 +1000,7 @@ const CustomMap = () => {
             onMouseLeave={handleMouseLeave}
           />
           {isHovered === "36" && (
-            <text
-              className="hover-text"
-              x="36%"
-              y="17%"
-            >
+            <text className="hover-text" x="36%" y="17%">
               Thái Bình
             </text>
           )}
@@ -1231,11 +1016,7 @@ const CustomMap = () => {
             onMouseLeave={handleMouseLeave}
           />
           {isHovered === "60" && (
-            <text
-              className="hover-text"
-              x="35%"
-              y="10%"
-            >
+            <text className="hover-text" x="35%" y="10%">
               Thái Nguyên
             </text>
           )}
@@ -1251,11 +1032,7 @@ const CustomMap = () => {
             onMouseLeave={handleMouseLeave}
           />
           {isHovered === "40" && (
-            <text
-              className="hover-text"
-              x="30%"
-              y="20%"
-            >
+            <text className="hover-text" x="30%" y="20%">
               Thanh Hóa
             </text>
           )}
@@ -1271,11 +1048,7 @@ const CustomMap = () => {
             onMouseLeave={handleMouseLeave}
           />
           {isHovered === "h7" && (
-            <text
-              className="hover-text"
-              x="40%"
-              y="42%"
-            >
+            <text className="hover-text" x="40%" y="42%">
               Thừa Thiên Huế
             </text>
           )}
@@ -1291,11 +1064,7 @@ const CustomMap = () => {
             onMouseLeave={handleMouseLeave}
           />
           {isHovered === "48" && (
-            <text
-              className="hover-text"
-              x="35%"
-              y="78%"
-            >
+            <text className="hover-text" x="35%" y="78%">
               Tiền Giang
             </text>
           )}
@@ -1311,11 +1080,7 @@ const CustomMap = () => {
             onMouseLeave={handleMouseLeave}
           />
           {isHovered === 12 && (
-            <text
-              className="hover-text"
-              x="37%"
-              y="77%"
-            >
+            <text className="hover-text" x="37%" y="77%">
               Tp HCM
             </text>
           )}
@@ -1331,11 +1096,7 @@ const CustomMap = () => {
             onMouseLeave={handleMouseLeave}
           />
           {isHovered === "49" && (
-            <text
-              className="hover-text"
-              x="35%"
-              y="82%"
-            >
+            <text className="hover-text" x="35%" y="82%">
               Trà Vinh
             </text>
           )}
@@ -1351,11 +1112,7 @@ const CustomMap = () => {
             onMouseLeave={handleMouseLeave}
           />
           {isHovered === "27" && (
-            <text
-              className="hover-text"
-              x="30%"
-              y="7%"
-            >
+            <text className="hover-text" x="30%" y="7%">
               Tuyên Quang
             </text>
           )}
@@ -1371,11 +1128,7 @@ const CustomMap = () => {
             onMouseLeave={handleMouseLeave}
           />
           {isHovered === "50" && (
-            <text
-              className="hover-text"
-              x="35%"
-              y="80%"
-            >
+            <text className="hover-text" x="35%" y="80%">
               Vĩnh Long
             </text>
           )}
@@ -1391,11 +1144,7 @@ const CustomMap = () => {
             onMouseLeave={handleMouseLeave}
           />
           {isHovered === "32" && (
-            <text
-              className="hover-text"
-              x="31%"
-              y="12%"
-            >
+            <text className="hover-text" x="31%" y="12%">
               Vĩnh Phúc
             </text>
           )}
@@ -1411,25 +1160,15 @@ const CustomMap = () => {
             onMouseLeave={handleMouseLeave}
           />
           {isHovered === "58" && (
-            <text
-              className="hover-text"
-              x="24%"
-              y="9%"
-            >
+            <text className="hover-text" x="24%" y="9%">
               Yên Bái
             </text>
           )}
         </svg>
-        <div
-          className="banner-text1"
-          style={{ fontSize: "49.5px" }}
-        >
+        <div className="banner-text1" style={{ fontSize: "49.5px" }}>
           Khám phá quá khứ
         </div>
-        <div
-          className="banner-text2"
-          style={{ fontSize: "49.5px" }}
-        >
+        <div className="banner-text2" style={{ fontSize: "49.5px" }}>
           để hiểu về tương lai
         </div>
 
@@ -1452,10 +1191,7 @@ const CustomMap = () => {
               <p style={{ fontSize: "15px" }}>{province.description}</p>
               <h5>Link tham khảo thêm:</h5>
               <div>
-                <Timeline
-                  style={{ marginTop: 25 }}
-                  key={province.id}
-                >
+                <Timeline style={{ marginTop: 25 }} key={province.id}>
                   {province.articleInfoResponses.map((item) => (
                     <Timeline.Item
                       key={item.id}
