@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import { BsArrowRight } from "react-icons/bs";
 import TimelineComponent from "../../components/DongSuKien";
 import ReactHTMLParser from "html-react-parser";
+import axios, { Axios } from "axios";
 
 const ArticleList = () => {
   const { document } = getPostList();
@@ -22,27 +23,41 @@ const ArticleList = () => {
     setTotalItems(document.length);
   }, [document]);
 
-  const handleSearch = () => {
+  const handleSearch = async () => {
     let keyword = {
       keyword: searchKeyword,
     };
 
     // Perform the API call here with the searchKeyword as a query parameter
-    fetch(`http://localhost:8084/general/search-article`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(keyword),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        setSearchResults(data); // Update the search results state with the API response
-        console.log(searchResults);
-      })
-      .catch((error) => {
-        console.error("Error while fetching search results:", error);
-      });
+    //   fetch(`http://localhost:8084/general/search-article`, {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify(keyword),
+    //   })
+    //     .then((response) => response.json())
+    //     .then((data) => {
+    //       setSearchResults(data); // Update the search results state with the API response
+    //     })
+    //     .catch((error) => {
+    //       console.error("Error while fetching search results:", error);
+    //     });
+    //   console.log(searchResults);
+    // };
+    const response = await fetch(
+      "http://localhost:8084/general/search-article",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(keyword),
+      }
+    );
+    const data = await response.json();
+    setSearchResults(data);
+    console.log("response: ", searchResults.length());
   };
 
   const nonAccentVietnamese = (str) => {
@@ -133,7 +148,7 @@ const ArticleList = () => {
     <div className={styles.place_articleList}>
       <div className={`${styles.place_container} container-custom`}>
         <div className={styles.left_block}>
-          <div>
+          <div className={styles.searchbar}>
             <Input
               placeholder="Nhập từ khóa tìm kiếm..."
               value={searchKeyword}
@@ -147,15 +162,17 @@ const ArticleList = () => {
             {searchResults.length > 0
               ? searchResults.map(renderPostItem)
               : paginatedPostList.map(renderPostItem)}
-            <Row style={{ display: "flex", justifyContent: "center" }}>
-              <Pagination
-                current={current}
-                total={totalItems}
-                pageSize={pageSize}
-                responsive
-                onChange={handleOnchangePage}
-              />
-            </Row>
+            {!(searchResults && searchResults.length > 0) && (
+              <Row style={{ display: "flex", justifyContent: "center" }}>
+                <Pagination
+                  current={current}
+                  total={totalItems}
+                  pageSize={pageSize}
+                  responsive
+                  onChange={handleOnchangePage}
+                />
+              </Row>
+            )}
           </div>
         </div>
         <div className={styles.right_block}>

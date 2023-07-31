@@ -3,6 +3,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { dataHistoryTimeline } from "../timeline/data";
+import { callTimeline } from "../../services/api";
 import TimelineComponent from "../../components/DongSuKien";
 import { dataTextHistoryTimeline } from "./dataText";
 import "./timeline.scss";
@@ -75,6 +76,19 @@ const TimelinePage = () => {
     setCurrentPage(page);
     window.scrollTo(0, 0);
   };
+
+  const [geography, setGeography] = useState([]);
+
+  const fetchTimelineData = async () => {
+    const res = await callTimeline();
+    console.log(res.data);
+    setGeography(res.data);
+    console.log("g", geography);
+  };
+
+  useEffect(() => {
+    fetchTimelineData();
+  }, []);
 
   const handleTitleClick = (timeline) => {
     // setSelectedTimeline(timeline);
@@ -177,20 +191,24 @@ const TimelinePage = () => {
       <div className="Timeline">
         <div className="Timeline-card">
           <Slider {...settings}>
-            {dataHistoryTimeline.map((item) => (
+            {geography.map((item) => (
               <div className="card">
                 <div className="card-top">
                   <h6
                     key={item.id}
                     onClick={() => handleTitleClick(item)}
                   >
-                    {item.title}
+                    {item.generationName}
                   </h6>
                 </div>
                 <div className="card-bottom">
+                  <div>
+                    ({item.startYear} - {item.endYear})
+                  </div>
+                  <div></div>
                   <p>
                     {/* {item.content} */}
-                    {item.content.split("\n").map((line, index) => (
+                    {item.description.split("\n").map((line, index) => (
                       <React.Fragment key={index}>
                         {line}
                         <br />

@@ -126,7 +126,7 @@ const RankingPage = () => {
                   className="button"
                   style={{ marginBottom: 8 }}
                 >
-                  <Button>Thi đấu ngay</Button>
+                  {/* <Button>Thi đấu ngay</Button> */}
                 </div>
               </div>
             </div>

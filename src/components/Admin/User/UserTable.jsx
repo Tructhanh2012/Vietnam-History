@@ -12,7 +12,7 @@ import InputSearch from "./InputSearch";
 import { DeleteTwoTone, EditTwoTone } from "@ant-design/icons";
 import { useState } from "react";
 import UserUpdate from "./UserUpdate";
-
+import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import axios from "../../../utils/axios-customize";
 
@@ -27,6 +27,7 @@ const UserTable = () => {
   const [dataUpdate, setDataUpdate] = useState(null);
 
   const [userCount, setUserCount] = useState(0);
+  const location = useLocation();
 
   const fetchUser = async () => {
     // const token = sessionStorage.getItem("jwtToken");
@@ -55,6 +56,7 @@ const UserTable = () => {
     if (!response.ok) {
       throw new Error("Có lỗi xảy ra, vui lòng thử lại.");
     } else {
+      window.location.reload();
       message.success("Xóa người dùng thành công.");
       const data = await response.json();
       console.log("data", data);
@@ -97,23 +99,6 @@ const UserTable = () => {
           </Tag>
         );
       },
-      // filters: [
-      //   {
-      //     text: "Admin",
-      //     value: "ADMIN",
-      //   },
-      //   {
-      //     text: "Member",
-      //     value: "MEMBER",
-      //   },
-      //   {
-      //     text: "Editor",
-      //     value: "EDITOR",
-      //   },
-      // ],
-      // onFilter: (value, record) => record.role.indexOf(value) === 0,
-      // sorter: (a, b) => a.role.length - b.role.length,
-      // sortDirections: ["descend"],
     },
     {
       title: "Xóa",

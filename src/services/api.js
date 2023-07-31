@@ -64,9 +64,9 @@ export const callMap = () => {
 };
 
 //========== Timeline ====================
-// export const callTimelineEvent = () => {
-//   return axios.get("/timeline/1");
-// };
+export const callTimeline = () => {
+  return axios.get("http://localhost:8084/general/list-generation");
+};
 
 //=====Profile
 export const callUpdateAvatar = (fileImg) => {

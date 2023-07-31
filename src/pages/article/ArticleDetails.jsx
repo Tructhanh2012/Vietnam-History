@@ -12,7 +12,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import React from "react";
 import axios from "axios";
 import styles from "./style.module.scss";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ReactHTMLParser from "html-react-parser";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsis } from "@fortawesome/free-solid-svg-icons";
@@ -152,16 +152,6 @@ const ArticleDetails = () => {
     }
   };
 
-  const handleModalOk = () => {
-    const previousPage = sessionStorage.getItem("previousPage");
-    // navigate("/login");
-    if (previousPage) {
-      navigate(previousPage); // Navigate người dùng trở lại trang trước
-    } else {
-      navigate("/"); // Hoặc có thể navigate về trang chủ nếu không có trang trước đó
-    }
-  };
-
   const handleModalCancel = () => {
     setModalVisible(false);
   };
@@ -209,6 +199,7 @@ const ArticleDetails = () => {
   const handleOnClick = () => {
     const user = JSON.parse(sessionStorage.getItem("user"));
     const token = sessionStorage.getItem("jwtToken");
+
     try {
       // if (user.role === "MEMBER") {
       //   //   savePreviousPage();
@@ -289,10 +280,20 @@ const ArticleDetails = () => {
   };
   // create comment
   const [inputComment, setInputComment] = useState("");
-  const form = Form.useForm();
+
+  useEffect(() => {
+    const savedInputComment = sessionStorage.getItem("inputComment");
+    if (savedInputComment) {
+      setInputComment(savedInputComment);
+    }
+  }, []);
+
   const handleCommentChange = (e) => {
     setInputComment(e.target.value);
+    sessionStorage.setItem("inputComment", e.target.value);
+    console.log(inputComment);
   };
+
   const handleSubmitClick = async () => {
     const user = JSON.parse(sessionStorage.getItem("user"));
     const token = sessionStorage.getItem("jwtToken");
@@ -331,7 +332,8 @@ const ArticleDetails = () => {
         const data = await response.json();
         console.log("data ne:", data);
         message.success("Viết bình luận thành công");
-        window.location.reload(); // Reload the page after successful comment creation
+        setInputComment("");
+        sessionStorage.removeItem("inputComment");
       }
     } catch (error) {
       console.log(error);

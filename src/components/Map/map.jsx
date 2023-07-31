@@ -40,6 +40,7 @@ const CustomMap = () => {
 
   const fetchMapData = async () => {
     const res = await callGetMap();
+    console.log(res.data);
     setGeography(res.data);
     console.log("g", geography);
   };

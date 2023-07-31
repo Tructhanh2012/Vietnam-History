@@ -41,6 +41,8 @@ const RegisterRole = (props) => {
       throw new Error("response not okay");
     } else {
       message.success("Tạo tài khoản thành công");
+      // Delay the reset action by a few milliseconds
+
       form.resetFields();
     }
     setIsSubmit(false);
@@ -64,16 +66,11 @@ const RegisterRole = (props) => {
     <div className="register-role-page">
       <div className="register-role-box">
         <div className="register-role-form">
-          <Row
-            gutter={[0, 50]}
-            style={{ marginTop: 100 }}
-          >
-            <Col
-              span={15}
-              offset={5}
-            >
+          <Row gutter={[0, 50]} style={{ marginTop: 100 }}>
+            <Col span={15} offset={5}>
               <Form
                 // {...formItemLayout}
+                form={form}
                 name="registerRole"
                 onFinish={onFinish}
                 style={{
@@ -162,10 +159,7 @@ const RegisterRole = (props) => {
                   <Form.Item>
                     <Row className="create">
                       <Col span={8}></Col>
-                      <Col
-                        span={8}
-                        align="middle"
-                      >
+                      <Col span={8} align="middle">
                         <Button
                           // className={styles["btn-create"]}
                           type="primary"
