@@ -436,15 +436,15 @@ const MapArticles = () => {
       ),
     },
   ];
-
+  console.log("data", data);
   const data = listArticles.map((article) => ({
-    provinceId: article.province.id,
+    //  provinceId: article.province.id,
     key: article.id,
     articleId: article.id,
     title: article.title,
     content: article.content,
     HashTag: article.hashtagEntity.name,
-    Province: article.province.name,
+    // Province: article.province.name,
   }));
   const onChange = (pagination, filters, sorter, extra) => {
     // console.log("check2 : ", pagination);
@@ -506,15 +506,9 @@ const MapArticles = () => {
   return (
     <>
       {/* <div className="{styles.history_period}">{data}</div> */}
-      <Row
-        gutter={[20, 20]}
-        style={{ marginTop: 40 }}
-      >
+      <Row gutter={[20, 20]} style={{ marginTop: 40 }}>
         <Col span={24}>{/* <InputSearch /> */}</Col>
-        <Col
-          span={22}
-          offset={1}
-        >
+        <Col span={22} offset={1}>
           <Table
             className="def"
             loading={isLoading}

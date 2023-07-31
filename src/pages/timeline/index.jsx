@@ -11,11 +11,11 @@ import {
   MdOutlineArrowBackIos,
   MdOutlineArrowForwardIos,
 } from "react-icons/md";
-import { Pagination } from "antd";
+import { Pagination, Tag } from "antd";
 
 import { Breadcrumb, Col, Divider, Modal, Row, Timeline } from "antd";
 import { BsFillBookmarkFill } from "react-icons/bs";
-import { callTimelineEvent } from "../../services/api";
+import { callGetEvents, callTimelineEvent } from "../../services/api";
 import { Link, useNavigate } from "react-router-dom";
 
 function SampleNextArrow({ onClick }) {
@@ -184,6 +184,18 @@ const TimelinePage = () => {
     const eventId = event.id;
     navigate(`/singleEvent/${slug}?eventId=${eventId}`);
   };
+
+  const [events, setEvents] = useState([]);
+
+  const getEvent = async () => {
+    const res = await callGetEvents();
+    setEvents(res.data);
+    console.log("evnet list ", events);
+  };
+
+  useEffect(() => {
+    getEvent();
+  }, []);
   return (
     <>
       <BreadcrumbRank />
@@ -252,8 +264,19 @@ const TimelinePage = () => {
       <div className="timeline-content-textbelow">
         <Row>
           <Col span={14}>
-            <h1>Dòng Lịch Sử</h1>
-            <div>
+            <h1>Các sự kiện lịch sử:</h1>
+            {events &&
+              events.map((event) => (
+                <div key={event.id}>
+                  <h2>{event.eventName}</h2>
+                  <h6>
+                    {event.startYear}-{event.endYear}
+                  </h6>
+                  <Tag color="cyan">{event.generation.generationName}</Tag>
+                  <p>{event.content}</p>
+                </div>
+              ))}
+            {/* <div>
               {dataTextHistoryTimeline
                 .slice((currentPage - 1) * pageSize, currentPage * pageSize)
                 .map((item) => (
@@ -280,13 +303,13 @@ const TimelinePage = () => {
               current={currentPage}
               pageSize={pageSize}
               onChange={handlePageChange}
-            />
+                        /> */}
           </Col>
-          <Col span={2}></Col>
+          {/* <Col span={2}></Col>
 
           <Col span={5}>
             <TimelineComponent />
-          </Col>
+          </Col> */}
         </Row>
       </div>
     </>
