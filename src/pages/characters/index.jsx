@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Anchor, Breadcrumb, Col, Divider, Row, Table } from "antd";
+import { Anchor, Breadcrumb, Col, Divider, Row, Table, Tag } from "antd";
 import { dataHistoryCharacters } from "./data";
 import { useRef, useState } from "react";
 import { Pagination } from "antd";
@@ -9,6 +9,7 @@ import TimelineComponent from "../../components/DongSuKien";
 import { useLocation } from "react-router-dom";
 import "./character.scss";
 import { callGetCharacterList } from "../../services/api";
+import ReactHTMLParser from "html-react-parser";
 
 const BreadcrumbRank = () => {
   return (
@@ -122,9 +123,12 @@ const CharactersPage = () => {
     },
   ];
 
+  const [characters, setCharacters] = useState([]);
+
   const getFigure = async () => {
     const res = await callGetCharacterList();
-    console.log(res.data);
+    setCharacters(res.data);
+    console.log("characters", characters);
   };
 
   useEffect(() => {
@@ -141,7 +145,7 @@ const CharactersPage = () => {
               <h1>Anh Hùng Dân Tộc Tiêu Biểu</h1>
             </div>
             <div className="col-md-12 ">
-              {dataHistoryCharacters
+              {/* {dataHistoryCharacters
                 .slice((currentPage - 1) * pageSize, currentPage * pageSize)
                 .map((item) => (
                   <div
@@ -172,8 +176,50 @@ const CharactersPage = () => {
                       </p>
                     </div>
                   </div>
+                ))} */}
+              {characters &&
+                characters.map((figure) => (
+                  <div
+                    className="col-md-12 row pt-1  border rounded p-3"
+                    key={figure.id}
+                    // id={item.id}
+                  >
+                    <div className="col-md-12 mb-2">
+                      <h3 className="link-title">{figure.name}</h3>
+                      <h6>
+                        {figure.birthYear}-{figure.passedYear}
+                      </h6>
+                      <Tag color="cyan">{figure.generation.generationName}</Tag>
+                    </div>
+                    <div className="col-md-12 container justify-content-center">
+                      <img
+                        // src={figure.image}
+                        src="https://nguoikesu.com/images/wiki/nguyen-trai/8e46323ae50c813733372891f0fbe926.jpg"
+                        alt=""
+                        style={{
+                          width: "100%",
+                        }}
+                      />
+                    </div>
+                    <div className="mt-3">
+                      <p className="timeline-content-textbelow-detail">
+                        {/* {item.content.split("\n").map((line, index) => (
+                      <React.Fragment key={index}>
+                        {line}
+                        <br />
+                      </React.Fragment>
+                    ))} */}{" "}
+                        {/* {figure.description} */}
+                        //nghiên cứu chỗ này không xuống dòng nè
+                        {figure.description.split("\n").map((line, index) => (
+                          <React.Fragment key={index}>{line}</React.Fragment>
+                        ))}
+                      </p>
+                    </div>
+                  </div>
                 ))}
             </div>
+
             <Pagination
               style={{ marginBottom: "34px" }}
               className="pagination-characters"
