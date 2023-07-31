@@ -199,3 +199,7 @@ export const callGetMap = () => {
 export const callGetEvents = () => {
   return axios.get("http://localhost:8084/general/list-event");
 };
+
+export const callGetCharacterList = () => {
+  return axios.get("http://localhost:8084/general/list-figures");
+};

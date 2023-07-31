@@ -8,6 +8,7 @@ import { Pagination } from "antd";
 import TimelineComponent from "../../components/DongSuKien";
 import { useLocation } from "react-router-dom";
 import "./character.scss";
+import { callGetCharacterList } from "../../services/api";
 
 const BreadcrumbRank = () => {
   return (
@@ -29,6 +30,7 @@ const BreadcrumbRank = () => {
     />
   );
 };
+
 const CharactersPage = () => {
   const location = useLocation();
   const page = location.state?.page || 1;
@@ -119,6 +121,15 @@ const CharactersPage = () => {
       title: "Hồ Chí Minh",
     },
   ];
+
+  const getFigure = async () => {
+    const res = await callGetCharacterList();
+    console.log(res.data);
+  };
+
+  useEffect(() => {
+    getFigure();
+  }, []);
 
   return (
     <>
