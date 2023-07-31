@@ -48,12 +48,6 @@ const CharactersPage = () => {
   }, [page]);
   const [currentPage, setCurrentPage] = useState(1);
 
-  const handlePageChange = (page) => {
-    setCurrentPage(page);
-
-    window.scrollTo(0, 0);
-  };
-
   const items = [
     {
       key: "4",
@@ -123,8 +117,6 @@ const CharactersPage = () => {
   ];
 
   const [characters, setCharacters] = useState([]);
-  const totalItems = 8;
-  const pageSize = 6;
 
   const getFigure = async () => {
     const res = await callGetCharacterList();
@@ -135,7 +127,18 @@ const CharactersPage = () => {
     getFigure();
   }, []);
   console.log("characters", characters);
+  const totalItems = characters.length;
+  const [pageSize, setPageSize] = useState(6);
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
 
+    window.scrollTo(0, 0);
+  };
+
+  const slicedCharacters = characters.slice(
+    (currentPage - 1) * pageSize,
+    currentPage * pageSize
+  );
   return (
     <>
       <BreadcrumbRank />
@@ -179,7 +182,7 @@ const CharactersPage = () => {
                   </div>
                 ))} */}
               {characters &&
-                characters.map((figure) => (
+                slicedCharacters.map((figure) => (
                   <div
                     className="col-md-12 row pt-1  border rounded p-3"
                     key={figure.id}

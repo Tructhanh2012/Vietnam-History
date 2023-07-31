@@ -78,7 +78,7 @@ const TimelinePage = () => {
   };
 
   const [geography, setGeography] = useState([]);
-
+  //timeline
   const fetchTimelineData = async () => {
     const res = await callTimeline();
     console.log(res.data);
@@ -187,10 +187,11 @@ const TimelinePage = () => {
 
   const [events, setEvents] = useState([]);
 
+  //call API events
   const getEvent = async () => {
     const res = await callGetEvents();
     setEvents(res.data);
-    console.log("evnet list ", events);
+    console.log("event list ", events);
   };
 
   useEffect(() => {
