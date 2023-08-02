@@ -10,7 +10,11 @@ import {
 import TextArea from "antd/es/input/TextArea";
 import { useEffect, useState } from "react";
 import { LoadingOutlined, PlusOutlined } from "@ant-design/icons";
-import { callGetHashtag, callGetProvice } from "../../../services/api";
+import {
+  callGetGeneration,
+  callGetProvice,
+  callGetEvent,
+} from "../../../services/api";
 import axios from "../../../utils/axios-customize";
 import Ckeditor from "../../Ckeditor/content-editor/ckeditor";
 
@@ -24,6 +28,8 @@ const ManageEventModal = (props) => {
   } = props;
   const [isSubmit, setIsSubmit] = useState(false);
   const [form] = Form.useForm();
+  const [day, setDay] = useState(new Date().getDate());
+  const [month, setMonth] = useState(new Date().getMonth() + 1);
 
   const onFinish = async (formData) => {
     const user = JSON.parse(sessionStorage.getItem("user"));
@@ -32,11 +38,14 @@ const ManageEventModal = (props) => {
 
     let article = {
       articleId: formData.articleId,
-      hashtagId: selectHashtag,
+      generationId: selectGeneration,
       provinceId: selectProvince,
+      eventId: selectEvent,
       title: formData.title,
       image: formData.image,
       content: formData.content,
+      date: Number(day),
+      month: Number(month),
     };
 
     try {
@@ -58,7 +67,7 @@ const ManageEventModal = (props) => {
       if (response.ok) {
         message.success("Cập nhật bài viết thành công");
         setOpenModalUpdate(false);
-        window.location.reload();
+        // window.location.reload();
       } else {
         // Handle the error condition
         notification.error({
@@ -99,24 +108,24 @@ const ManageEventModal = (props) => {
     setTitle(value);
   };
 
-  const [hashtag, setHashtag] = useState([]);
-  const [selectHashtag, setSelectHashtag] = useState(null);
-  const getHashtags = async () => {
-    const res = await callGetHashtag();
+  const [generation, setGeneration] = useState([]);
+  const [selectGeneration, setSelectGeneration] = useState(null);
+  const getGenerations = async () => {
+    const res = await callGetGeneration();
     console.log(res.data);
-    const hashtagOptions = res.data.map((item) => ({
-      label: item.name,
+    const generationOptions = res.data.map((item) => ({
+      label: item.generationName,
       value: item.id,
     }));
-    // setHashtag(res.data.map(item =>({ label: item.name, key: item.id })));
-    setHashtag(hashtagOptions);
+    // setGeneration(res.data.map(item =>({ label: item.name, key: item.id })));
+    setGeneration(generationOptions);
   };
   useEffect(() => {
-    getHashtags();
+    getGenerations();
   }, []);
   const handleSelectionChange = (value) => {
     console.log(`Selected: ${value}`);
-    setSelectHashtag(value);
+    setSelectGeneration(value);
 
     // Set giá trị đã chọn vào content
   };
@@ -129,7 +138,7 @@ const ManageEventModal = (props) => {
       label: item.name,
       value: item.id,
     }));
-    // setHashtag(res.data.map(item =>({ label: item.name, key: item.id })));
+    // setGeneration(res.data.map(item =>({ label: item.name, key: item.id })));
     setProvince(provinceOptions);
   };
   useEffect(() => {
@@ -138,6 +147,27 @@ const ManageEventModal = (props) => {
   const handleSelectionProvinceChange = (value) => {
     console.log(`Selected: ${value}`);
     setSelectProvince(value);
+
+    // Set giá trị đã chọn vào content
+  };
+  const [event, setEvent] = useState([]);
+  const [selectEvent, setSelectEvent] = useState(null);
+  const getEvents = async () => {
+    const res = await callGetEvent();
+    console.log(res.data);
+    const EventOptions = res.data.map((item) => ({
+      label: item.name,
+      value: item.id,
+    }));
+    // setGeneration(res.data.map(item =>({ label: item.name, key: item.id })));
+    setEvent(EventOptions);
+  };
+  useEffect(() => {
+    getEvents();
+  }, []);
+  const handleSelectionEventChange = (value) => {
+    console.log(`Selected: ${value}`);
+    setSelectEvent(value);
 
     // Set giá trị đã chọn vào content
   };
@@ -204,10 +234,10 @@ const ManageEventModal = (props) => {
             <Select
               size="middle"
               placeholder="Thời đại"
-              initialvalues={hashtag[0]}
+              initialvalues={generation[0]}
               onChange={handleSelectionChange}
               style={{ width: "100%" }}
-              options={hashtag}
+              options={generation}
             />
           </Form.Item>
           <Form.Item
@@ -221,6 +251,19 @@ const ManageEventModal = (props) => {
               onChange={handleSelectionProvinceChange}
               style={{ width: "100%" }}
               options={province}
+            />
+          </Form.Item>
+          <Form.Item
+            label="Sự kiện"
+            name="Event"
+          >
+            <Select
+              size="middle"
+              placeholder="Sự kiện"
+              initialvalues={event[0]}
+              onChange={handleSelectionEventChange}
+              style={{ width: "100%" }}
+              options={event}
             />
           </Form.Item>
 

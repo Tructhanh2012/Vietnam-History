@@ -115,92 +115,93 @@ const ManageEvent = () => {
     },
     {
       title: "Triều đại",
-      dataIndex: "HashTag",
-      key: "HashTag",
+      dataIndex: "Generation",
+      key: "Generation",
       filters: [
         {
-          text: "Hồng Bàng & Văn Lang",
-          value: "Hồng Bàng & Văn Lang",
+          text: "HỒNG BÀNG VÀ VĂN LANG",
+          value: "HỒNG BÀNG VÀ VĂN LANG",
         },
         {
-          text: "Âu Lạc & Nam Việt",
-          value: "Âu Lạc & Nam Việt",
+          text: "ÂU LẠC & NAM VIỆT",
+          value: "ÂU LẠC & NAM VIỆT",
         },
         {
-          text: "Bắc thuộc",
-          value: "Bắc thuộc",
+          text: "BẮC THUỘC",
+          value: "BẮC THUỘC",
         },
         {
-          text: "Nhà Lý & nhà Triệu",
-          value: "Nhà Lý & nhà Triệu",
+          text: "TRƯNG NỮ VƯƠNG",
+          value: "TRƯNG NỮ VƯƠNG",
         },
         {
-          text: "Nhà Ngô",
-          value: "Nhà Ngô",
+          text: "NHÀ LÝ & NHÀ TRIỆU",
+          value: "NHÀ LÝ & NHÀ TRIỆU",
         },
         {
-          text: "Nhà Đinh",
-          value: "Nhà Đinh",
+          text: "NHÀ NGÔ",
+          value: "NHÀ NGÔ",
         },
         {
-          text: "Nhà Tiền Lê",
-          value: "Nhà Tiền Lê",
+          text: "NHÀ ĐINH",
+          value: "NHÀ ĐINH",
         },
         {
-          text: "Nhà Lý",
-          value: "Nhà Lý",
+          text: "NHÀ TIỀN LÊ",
+          value: "NHÀ TIỀN LÊ",
         },
         {
-          text: "Nhà Trần",
-          value: "Nhà Trần",
+          text: "NHÀ LÝ",
+          value: "NHÀ LÝ",
         },
         {
-          text: "Nhà Hồ",
-          value: "Nhà Hồ",
+          text: "NHÀ TRẦN",
+          value: "NHÀ TRẦN",
         },
         {
-          text: "Nhà Hậu Trần",
-          value: "Nhà Hậu Trần",
+          text: "NHÀ HỒ",
+          value: "NHÀ HỒ",
         },
         {
-          text: "Nhà Hậu Lê",
-          value: "Nhà Hậu Lê",
+          text: "NHÀ HẬU TRẦN",
+          value: "NHÀ HẬU TRẦN",
         },
         {
-          text: "Nam Bắc Triều",
-          value: "Nam Bắc Triều",
+          text: "NHÀ HẬU LÊ",
+          value: "NHÀ HẬU LÊ",
         },
         {
-          text: "Trịnh Nguyễn Phân Tranh",
-          value: "Trịnh Nguyễn Phân Tranh",
+          text: "NAM BẮC TRIỀU",
+          value: "NAM BẮC TRIỀU",
         },
         {
-          text: "Nhà Tây Sơn",
-          value: "Nhà Tây Sơn",
+          text: "TRỊNH NGUYỄN PHÂN TRANH",
+          value: "TRỊNH NGUYỄN PHÂN TRANH",
         },
         {
-          text: "Nhà Nguyễn",
-          value: "Nhà Nguyễn",
+          text: "NHÀ TÂY SƠN",
+          value: "NHÀ TÂY SƠN",
         },
         {
-          text: "Pháp Thuộc",
-          value: "Pháp Thuộc",
+          text: "NHÀ NGUYỄN",
+          value: "NHÀ NGUYỄN",
         },
         {
-          text: "Trưng Nữ Vương",
-          value: "Trưng Nữ Vương",
+          text: "PHÁP THUỘC",
+          value: "PHÁP THUỘC",
+        },
+
+        {
+          text: "VIỆT NAM DÂN CHỦ CỘNG HOÀ",
+          value: "VIỆT NAM DÂN CHỦ CỘNG HOÀ",
         },
         {
-          text: "Việt Nam Dân Chủ Cộng Hoà",
-          value: "Việt Nam Dân Chủ Cộng Hoà",
-        },
-        {
-          text: "Cộng hoà xã hội chủ nghĩa Việt Nam",
-          value: "Cộng hoà xã hội chủ nghĩa Việt Nam",
+          text: "CỘNG HOÀ XÃ HỘI CHỦ NGHĨA VIỆT NAM",
+          value: "CỘNG HOÀ XÃ HỘI CHỦ NGHĨA VIỆT NAM",
         },
       ],
-      onFilter: (value, record) => record.HashTag.indexOf(value) === 0,
-      sorter: (a, b) => a.HashTag.length - b.HashTag.length,
+      onFilter: (value, record) => record.Generation.indexOf(value) === 0,
+      sorter: (a, b) => a.Generation.length - b.Generation.length,
       sortDirections: ["descend"],
     },
     {
@@ -535,7 +536,7 @@ const ManageEvent = () => {
     articleId: article.id,
     title: article.title,
     content: article.content,
-    HashTag: article.hashtagEntity.name,
+    Generation: article.generation.generationName,
     Province: article.province.name,
     image: article.image,
     month: article.month,
@@ -556,9 +557,15 @@ const ManageEvent = () => {
 
   return (
     <>
-      <Row gutter={[20, 20]} style={{ marginTop: 40 }}>
+      <Row
+        gutter={[20, 20]}
+        style={{ marginTop: 40 }}
+      >
         <Col span={24}>{/* <InputSearch /> */}</Col>
-        <Col span={22} offset={1}>
+        <Col
+          span={22}
+          offset={1}
+        >
           <Table
             className="def"
             loading={isLoading}

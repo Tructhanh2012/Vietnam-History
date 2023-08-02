@@ -142,8 +142,14 @@ export const callPostLogin = (email, password) => {
 export const callGetHashtag = () => {
   return axios.get("http://localhost:8084/general/hashtags");
 };
+export const callGetGeneration = () => {
+  return axios.get("http://localhost:8084/general/list-generation");
+};
 export const callGetProvice = () => {
   return axios.get("http://localhost:8084/general/provinces");
+};
+export const callGetEvent = () => {
+  return axios.get("http://localhost:8084/general/list-event");
 };
 
 export const callPostQuiz = () => {

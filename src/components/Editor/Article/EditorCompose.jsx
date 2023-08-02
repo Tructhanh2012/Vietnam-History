@@ -5,7 +5,12 @@ import "./editorCompose.scss";
 import React, { useEffect, useState } from "react";
 import { message, Input, Button, Col, Form, Select, notification } from "antd";
 import axios from "axios";
-import { callGetHashtag, callGetProvice } from "../../../services/api";
+import {
+  callGetHashtag,
+  callGetGeneration,
+  callGetProvice,
+  callGetEvent,
+} from "../../../services/api";
 import { error, event, post } from "jquery";
 import { useNavigate } from "react-router-dom";
 
@@ -45,15 +50,22 @@ const EditorPage = () => {
     setData(editor.getData());
   };
 
-  const [selectHashtag, setSelectHashtag] = useState(null);
-  const handleSelectionChange = (value) => {
-    setSelectHashtag(value);
+  const [selectGeneration, setSelectGeneration] = useState(null);
+  const handleSelectionGenerationChange = (value) => {
+    setSelectGeneration(value);
 
     // Set giá trị đã chọn vào content
   };
+
   const [selectProvince, setSelectProvince] = useState(null);
   const handleSelectionProvinceChange = (value) => {
     setSelectProvince(value);
+
+    // Set giá trị đã chọn vào content
+  };
+  const [selectEvent, setSelectEvent] = useState(null);
+  const handleSelectionEventChange = (value) => {
+    setSelectEvent(value);
 
     // Set giá trị đã chọn vào content
   };
@@ -67,15 +79,16 @@ const EditorPage = () => {
 
     let article = {
       editorId: user.id,
-      hashtagId: selectHashtag,
+      generationId: selectGeneration,
       provinceId: selectProvince,
+      eventId: selectEvent,
       title: title,
       content: content,
       image: linkImage,
       date: Number(day),
       month: Number(month),
     };
-    // console.log(article);
+    console.log(article);
 
     const response = await fetch(
       "http://localhost:8084/editor/create-article",
@@ -103,19 +116,19 @@ const EditorPage = () => {
     // navigate("/editor/manageEvent");
   };
 
-  const [hashtag, setHashtag] = useState([]);
-  const getHashtags = async () => {
-    const res = await callGetHashtag();
-    const hashtagOptions = res.data.map((item) => ({
-      label: item.name,
+  const [generation, setGeneration] = useState([]);
+  const getGenerations = async () => {
+    const res = await callGetGeneration();
+    const generationOptions = res.data.map((item) => ({
+      label: item.generationName,
       value: item.id,
     }));
     // setHashtag(res.data.map(item =>({ label: item.name, key: item.id })));
-    setHashtag(hashtagOptions);
+    setGeneration(generationOptions);
   };
 
   useEffect(() => {
-    getHashtags();
+    getGenerations();
   }, []);
 
   const [province, setProvince] = useState([]);
@@ -131,6 +144,20 @@ const EditorPage = () => {
 
   useEffect(() => {
     getProvinces();
+  }, []);
+  const [event, setEvent] = useState([]);
+  const getEvents = async () => {
+    const res = await callGetEvent();
+    const eventOptions = res.data.map((item) => ({
+      label: item.eventName,
+      value: item.id,
+    }));
+    // setHashtag(res.data.map(item =>({ label: item.name, key: item.id })));
+    setEvent(eventOptions);
+  };
+
+  useEffect(() => {
+    getEvents();
   }, []);
 
   return (
@@ -176,14 +203,15 @@ const EditorPage = () => {
               /> */}
             </Form.Item>
             <div>{data}</div>
-            <Form.Item name="hashtag">
+
+            <Form.Item name="generation">
               <Select
                 size="middle"
                 placeholder="Triều đại"
-                initialvalues={hashtag[0]}
-                onChange={handleSelectionChange}
+                initialvalues={generation[0]}
+                onChange={handleSelectionGenerationChange}
                 style={{ width: "100%" }}
-                options={hashtag}
+                options={generation}
               />
             </Form.Item>
             <Form.Item name="province">
@@ -194,6 +222,17 @@ const EditorPage = () => {
                 onChange={handleSelectionProvinceChange}
                 style={{ width: "100%" }}
                 options={province}
+              />
+            </Form.Item>
+
+            <Form.Item name="event">
+              <Select
+                size="middle"
+                placeholder="Sự kiện"
+                initialvalues={event[0]}
+                onChange={handleSelectionEventChange}
+                style={{ width: "100%" }}
+                options={event}
               />
             </Form.Item>
 
