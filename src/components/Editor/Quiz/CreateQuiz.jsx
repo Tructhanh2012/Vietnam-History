@@ -12,7 +12,7 @@ import {
   message,
   notification,
 } from "antd";
-import { callGetHashtag } from "../../../services/api";
+import { callGetGeneration } from "../../../services/api";
 import "./createquiz.scss";
 
 const { Title } = Typography;
@@ -32,10 +32,10 @@ const CreateQuizPage = () => {
       secondChoice,
       thirdChoice,
       answer,
-      hashtagId,
+      generationId,
     } = values;
-    const selectedHashtag = hashtags.find(
-      (item) => item.id === Number(hashtagId)
+    const selectedGeneration = generations.find(
+      (item) => item.id === Number(generationId)
     );
     const data = [
       {
@@ -44,12 +44,12 @@ const CreateQuizPage = () => {
         secondChoice,
         thirdChoice,
         answer,
-        hashtagId: selectedHashtag ? selectedHashtag.id : null,
+        generationId: selectedGeneration ? selectedGeneration.id : null,
       },
     ];
-
+    console.log(data);
     try {
-      const res = await fetch("http://localhost:8084/editor/create-questions", {
+      const res = await fetch("http://localhost:8084/editor/create-question", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -75,25 +75,25 @@ const CreateQuizPage = () => {
   };
 
   //=============================================
-  const [hashtags, setHashtags] = useState([]);
-  const [hashtagId, setHashtagId] = useState();
+  const [generations, setGenerations] = useState([]);
+  const [generationId, setGenerationId] = useState();
 
-  const getHashtags = async () => {
-    const res = await callGetHashtag();
-    setHashtags(res.data);
-    // console.log("hashtags", hashtags);
+  const getGenerations = async () => {
+    const res = await callGetGeneration();
+    setGenerations(res.data);
+    // console.log("generations", generations);
   };
   useEffect(() => {
-    getHashtags();
+    getGenerations();
   }, []);
 
   const onChange = (value) => {
     console.log("value: ", value);
-    setHashtagId(value);
+    setGenerationId(value);
   };
-  const options = hashtags.map((item) => ({
+  const options = generations.map((item) => ({
     value: String(item.id),
-    label: item.name,
+    label: item.generationName,
   }));
 
   return (
@@ -159,7 +159,7 @@ const CreateQuizPage = () => {
                   <Input />
                 </Form.Item>
 
-                <Form.Item name="hashtagId">
+                <Form.Item name="generationId">
                   <Select
                     showSearch
                     placeholder="Triều đại"

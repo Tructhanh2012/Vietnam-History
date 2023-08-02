@@ -139,9 +139,6 @@ export const callPostLogin = (email, password) => {
   });
 };
 
-export const callGetHashtag = () => {
-  return axios.get("http://localhost:8084/general/hashtags");
-};
 export const callGetGeneration = () => {
   return axios.get("http://localhost:8084/general/list-generation");
 };
@@ -159,7 +156,7 @@ export const callPostQuiz = () => {
     secondChoice,
     thirdChoice,
     answer,
-    hashtagId,
+    generationId,
   });
 };
 

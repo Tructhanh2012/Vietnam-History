@@ -19,7 +19,7 @@ const CommentArticle = () => {
 
     let article = {
       memberId: user.id,
-      hashtagId: selectHashtag,
+      generationId: selectGeneraion,
       provinceId: selectProvince,
       title: title,
       content: content,

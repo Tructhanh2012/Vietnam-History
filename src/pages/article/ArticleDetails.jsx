@@ -148,7 +148,7 @@ const ArticleDetails = () => {
     if (user == null) {
       setModalVisible(true);
     } else {
-      navigate(`/quizdt?hashtagId=${hashtagId}`);
+      navigate(`/quizdt?generationId=${generationId}`);
     }
   };
 
@@ -203,7 +203,7 @@ const ArticleDetails = () => {
     try {
       // if (user.role === "MEMBER") {
       //   //   savePreviousPage();
-      //   navigate(`/quizdt?hashtagId=${hashtagId}`);
+      //   navigate(`/quizdt?generationId=${generationId}`);
       // }
       // } else if (user.role === "ADMIN") {
       //   navigate("/login");
@@ -218,7 +218,7 @@ const ArticleDetails = () => {
     }
   };
 
-  const [hashtagId, setHastagId] = useState();
+  const [generationId, setGenerationId] = useState();
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
 
@@ -227,10 +227,10 @@ const ArticleDetails = () => {
     .request(config)
     .then((response) => {
       // console.log(JSON.stringify(response.data));
-      const { title, content, hashtag, commentList } = response.data;
-      const hashtagID = hashtag.id;
+      const { title, content, generation, commentList } = response.data;
+      const generationID = generation.id;
       setTitle(title);
-      setHastagId(hashtagID);
+      setGenerationId(generationID);
       setContent(content);
       // const listCommentName = commentList.map((e) => e.userName);
       // const listCommentContent = commentList.map((e) => e.content);
@@ -251,8 +251,6 @@ const ArticleDetails = () => {
       document.getElementById("titleElement").textContent = title;
       // document.getElementById("imageElement").src = image;
       // document.getElementById("commentNameElement").textContent = commentName;
-      // document.getElementById("commentContentElement").textContent =
-      //   commentContent;
     })
     .catch((error) => {
       console.log(error);

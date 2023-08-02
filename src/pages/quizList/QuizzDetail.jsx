@@ -90,8 +90,8 @@ const QuizDetail = () => {
 
   let location = useLocation();
   let params = new URLSearchParams(location.search);
-  const hashtagId = params.get("hashtagId");
-  // console.log("id quiz:", hashtagId);
+  const generationId = params.get("generationId");
+  // console.log("id quiz:", generationId);
 
   const [question, setQuestion] = useState([]);
   const getQuiz = async () => {
@@ -99,7 +99,7 @@ const QuizDetail = () => {
 
     console.log("log token:", token);
 
-    const value = { id: hashtagId };
+    const value = { id: generationId };
 
     try {
       const res = await fetch("http://localhost:8084/member/create-quiz", {
@@ -153,7 +153,10 @@ const QuizDetail = () => {
           <div className="col-md-9 ">
             {question &&
               question.map((question, index) => (
-                <div className="row mt-4" key={question.id}>
+                <div
+                  className="row mt-4"
+                  key={question.id}
+                >
                   <div className="col-md-3 carddd ps-5">
                     <div className="card-body p-2 border border-dark rounded">
                       <h5 className="card-title">Câu: {index + 1} </h5>
@@ -246,7 +249,10 @@ const QuizDetail = () => {
               onOk={handleOk}
               onCancel={handleCancel}
               footer={[
-                <Button key="back" onClick={handleCancel}>
+                <Button
+                  key="back"
+                  onClick={handleCancel}
+                >
                   Ok
                 </Button>,
                 // <Button

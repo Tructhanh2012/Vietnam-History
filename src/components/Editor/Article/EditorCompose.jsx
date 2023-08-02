@@ -6,7 +6,6 @@ import React, { useEffect, useState } from "react";
 import { message, Input, Button, Col, Form, Select, notification } from "antd";
 import axios from "axios";
 import {
-  callGetHashtag,
   callGetGeneration,
   callGetProvice,
   callGetEvent,
