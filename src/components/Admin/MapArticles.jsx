@@ -24,6 +24,16 @@ const MapArticles = () => {
     sessionStorage.setItem("selectedProvinceIds", selectedProvinceIds);
   });
 
+  const data = listArticles.map((article) => ({
+    //  provinceId: article.province.id,
+    key: article.id,
+    articleId: article.id,
+    title: article.title,
+    content: article.content,
+    Generation: article.generation.generationName,
+    Province: article.province.name,
+  }));
+
   const loadArticles = async () => {
     const savedSelectedArticleIds = JSON.parse(
       sessionStorage.getItem("selectedArticleIds")
@@ -72,9 +82,9 @@ const MapArticles = () => {
       key: "title",
     },
     {
-      title: "HashTag",
-      dataIndex: "HashTag",
-      key: "HashTag",
+      title: "Generation",
+      dataIndex: "Generation",
+      key: "Generation",
       filters: [
         {
           text: "Hồng Bàng & Văn Lang",
@@ -157,8 +167,8 @@ const MapArticles = () => {
           value: "Cộng hoà xã hội chủ nghĩa Việt Nam",
         },
       ],
-      onFilter: (value, record) => record.HashTag.indexOf(value) === 0,
-      sorter: (a, b) => a.HashTag.length - b.HashTag.length,
+      onFilter: (value, record) => record.Generation.indexOf(value) === 0,
+      sorter: (a, b) => a.Generation.length - b.Generation.length,
       sortDirections: ["descend"],
     },
     {
@@ -437,15 +447,7 @@ const MapArticles = () => {
     },
   ];
   console.log("data", data);
-  const data = listArticles.map((article) => ({
-    //  provinceId: article.province.id,
-    key: article.id,
-    articleId: article.id,
-    title: article.title,
-    content: article.content,
-    HashTag: article.hashtagEntity.name,
-    // Province: article.province.name,
-  }));
+
   const onChange = (pagination, filters, sorter, extra) => {
     // console.log("check2 : ", pagination);
     if (pagination && pagination.current !== current) {
@@ -506,9 +508,15 @@ const MapArticles = () => {
   return (
     <>
       {/* <div className="{styles.history_period}">{data}</div> */}
-      <Row gutter={[20, 20]} style={{ marginTop: 40 }}>
+      <Row
+        gutter={[20, 20]}
+        style={{ marginTop: 40 }}
+      >
         <Col span={24}>{/* <InputSearch /> */}</Col>
-        <Col span={22} offset={1}>
+        <Col
+          span={22}
+          offset={1}
+        >
           <Table
             className="def"
             loading={isLoading}

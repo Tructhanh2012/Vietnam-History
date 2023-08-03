@@ -36,11 +36,12 @@ const DashboardChart = () => {
   useEffect(() => {
     axios.get("/admin/question-quantity").then((res) => {
       const labels = res.map((cart) => {
-        return `${cart.hashtag}`;
+        return `${cart.name}`;
       });
       const data = res.map((cart) => {
-        return cart.numberOfArticle;
+        return cart.number;
       });
+      console.log(labels);
 
       const dataSource = {
         labels,
@@ -77,7 +78,10 @@ const DashboardChart = () => {
         boxShadow: "2px 0.8rem 20px 5px rgba(0, 0, 0, .08)",
       }}
     >
-      <Bar options={options} data={reveneuData} />
+      <Bar
+        options={options}
+        data={reveneuData}
+      />
     </Card>
   );
 };

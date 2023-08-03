@@ -150,7 +150,7 @@ export const callGetEvent = () => {
 };
 
 export const callPostQuiz = () => {
-  return axios.post("http://localhost:8084/editor/create-questions", {
+  return axios.post("http://localhost:8084/editor/create-question", {
     question,
     firstChoice,
     secondChoice,
@@ -205,6 +205,9 @@ export const callGetEvents = () => {
 
 export const callGetCharacterList = () => {
   return axios.get("http://localhost:8084/general/list-figures");
+};
+export const callGetKingCharacterList = () => {
+  return axios.get("http://localhost:8084/general/king-figures");
 };
 
 export const callPostEventId = (id) => {
