@@ -161,7 +161,7 @@ export const callPostQuiz = () => {
 };
 
 export const callTimelineEvent = (id) => {
-  return axios.post("http://localhost:8084/general/articles-hashtag", { id });
+  return axios.post("http://localhost:8084/general/articles-by-generation", { id });
 };
 
 export const callGetRanking = () => {

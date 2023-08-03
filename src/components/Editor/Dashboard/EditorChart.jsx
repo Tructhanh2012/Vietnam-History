@@ -97,7 +97,7 @@ const EditorChart = () => {
 
       if (Array.isArray(data)) {
         const transformedData = data.map((item) => ({
-          name: item.generationName,
+          name: item.generation,
           noOfArticles: item.numberOfArticle,
         }));
         setResponseData(transformedData);
