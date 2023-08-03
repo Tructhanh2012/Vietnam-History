@@ -2,7 +2,6 @@ import React from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import $ from "jquery";
 import "./navbar.scss";
-import "./header.scss";
 import { FaBars } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import { TiTimesOutline } from "react-icons/ti";

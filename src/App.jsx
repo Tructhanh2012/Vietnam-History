@@ -89,8 +89,6 @@ export default function App() {
         { path: "kingCharacter", element: <KingCharacters /> },
         { path: "singleEvent/:slug", element: <ArticleDetails /> },
         { path: "quizdt/:id", element: <QuizzDetail /> },
-        // { path: "article/:slug", element: <ArticlePage /> },
-        // { path: "singleEvent/:slug", element: <ArticleDetails /> },
         { path: "article", element: <ArticleDetails /> },
         { path: "documents", element: <ArticleList /> },
         {

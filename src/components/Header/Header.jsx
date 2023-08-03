@@ -1,15 +1,8 @@
 import React, { useState } from "react";
 import imageLogo from "../../assets/logo (1).png";
 import headerBackground from "../../assets/header.png";
-import "./header.scss";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
-import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
-import { useDispatch, useSelector } from "react-redux";
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import { Avatar, Button, Dropdown, Input, Space, notification } from "antd";
-import { DownOutlined } from "@ant-design/icons";
-import { doLogoutAction } from "../../redux/account/accountSlice";
+import { Avatar, Button, Dropdown } from "antd";
 import { BsTrophy } from "react-icons/bs";
 import styles from "./style.module.scss";
 
@@ -126,10 +119,28 @@ const HeaderPage = () => {
     },
     {
       label: "Nhân vật",
-      link: "/character",
+      // link: "/character",
       handleClick: "characters",
+      subMenu: [
+        {
+          label: "Vua",
+          link: "/kingCharacter",
+          handleClick: "characters-list",
+        },
+        {
+          label: "Nhân vật lịch sử",
+          link: "/character",
+          handleClick: "characters-add",
+        },
+      ],
     },
   ];
+
+  const [showSubMenu, setShowSubMenu] = useState(false);
+
+  const toggleSubMenu = () => {
+    setShowSubMenu(!showSubMenu);
+  };
 
   const renderHeaderBot = () => {
     return (
@@ -143,9 +154,31 @@ const HeaderPage = () => {
                   className={styles.menu_item}
                   data-active={activeItem === item.handleClick}
                 >
-                  <NavLink to={item.link} exact>
+                  <NavLink
+                    t
+                    to={item.link}
+                    exact
+                    onClick={item.subMenu ? toggleSubMenu : null}
+                  >
                     {item.label}
                   </NavLink>
+                  {item.subMenu && showSubMenu && (
+                    <ul className={styles.sub_menu}>
+                      {item.subMenu.map((subItem) => {
+                        return (
+                          <li
+                            key={`sub-menu-item-${subItem.label}`}
+                            className={styles.sub_menu_item}
+                            data-active={activeItem === subItem.handleClick}
+                          >
+                            <NavLink to={subItem.link} exact>
+                              {subItem.label}
+                            </NavLink>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  )}
                 </li>
               );
             })}

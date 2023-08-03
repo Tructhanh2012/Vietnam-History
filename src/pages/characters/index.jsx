@@ -2,10 +2,8 @@ import React from "react";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Anchor, Breadcrumb, Col, Divider, Row, Table, Tag } from "antd";
-import { dataHistoryCharacters } from "./data";
 import { useRef, useState } from "react";
 import { Pagination } from "antd";
-import TimelineComponent from "../../components/DongSuKien";
 import { useLocation } from "react-router-dom";
 import "./character.scss";
 import { callGetCharacterList } from "../../services/api";
@@ -35,13 +33,7 @@ const BreadcrumbRank = () => {
 const CharactersPage = () => {
   const location = useLocation();
   const page = location.state?.page || 1;
-  const fetchData = (page) => {
-    // Add your logic here to fetch character data based on the specified page
-    // For example:
-    // axios.get(`/api/characters?page=${page}`).then((response) => {
-    //   // Handle the fetched data
-    // });
-  };
+  const fetchData = (page) => {};
   useEffect(() => {
     // Handle the logic for fetching data and rendering the characters based on the `page` parameter
     fetchData(page);
@@ -149,38 +141,6 @@ const CharactersPage = () => {
               <h1>Anh Hùng Dân Tộc Tiêu Biểu</h1>
             </div>
             <div className="col-md-12 ">
-              {/* {dataHistoryCharacters
-                .slice((currentPage - 1) * pageSize, currentPage * pageSize)
-                .map((item) => (
-                  <div
-                    className="col-md-12 row pt-1  border rounded p-3"
-                    key={item.id}
-                    id={item.id}
-                  >
-                    <div className="col-md-12 mb-2">
-                      <h3 className="link-title">{item.title}</h3>
-                    </div>
-                    <div className="col-md-12 container justify-content-center">
-                      <img
-                        src={item.image}
-                        alt=""
-                        style={{
-                          width: "100%",
-                        }}
-                      />
-                    </div>
-                    <div className="mt-3">
-                      <p className="timeline-content-textbelow-detail">
-                        {item.content.split("\n").map((line, index) => (
-                          <React.Fragment key={index}>
-                            {line}
-                            <br />
-                          </React.Fragment>
-                        ))}
-                      </p>
-                    </div>
-                  </div>
-                ))} */}
               {characters &&
                 slicedCharacters.map((figure) => (
                   <div

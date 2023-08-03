@@ -72,3 +72,24 @@
     }
   }
 }
+
+.sub_menu {
+  position: absolute;
+  top: 99%;
+  left: 414px;
+  display: none;
+  background-color: #be0b2b;
+  padding: 8px 16px;
+  z-index: 1;
+  border-radius: 0 0 10px 10px;
+  > li {
+    margin-bottom: 6px;
+    :hover {
+      color: yellow;
+    }
+  }
+}
+
+.menu_item:hover .sub_menu {
+  display: block; /* Show the submenu when hovering over the main menu item */
+}
