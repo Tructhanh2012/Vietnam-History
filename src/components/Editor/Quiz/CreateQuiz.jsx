@@ -5,8 +5,6 @@ import {
   Button,
   Space,
   Typography,
-  Radio,
-  Row,
   Col,
   Select,
   message,
@@ -38,21 +36,12 @@ const CreateQuizPage = () => {
       (item) => item.id === Number(generationId)
     );
 
-    const data = {
-      question,
-      firstChoice,
-      secondChoice,
-      thirdChoice,
-      answer,
-      generationId: selectedGeneration ? selectedGeneration.id : null,
-    };
-
     const res = await axios.post(
       "http://localhost:8084/editor/create-question",
       { question, firstChoice, secondChoice, thirdChoice, answer, generationId }
     );
     console.log("log res", res);
-    if (res.ok) {
+    if (!res.ok) {
       message.success("Tạo câu hỏi thành công.");
     } else {
       notification.error({
@@ -60,31 +49,6 @@ const CreateQuizPage = () => {
         description: "Vui lòng tạo câu hỏi lại!",
       });
     }
-    // console.log(data);
-    // try {
-    //   const res = await fetch("http://localhost:8084/editor/create-question", {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //       Authorization: `Bearer ${token}`,
-    //     },
-    //     body: JSON.stringify(data),
-    //   });
-
-    //   if (res.ok) {
-    //     console.log("API call successful");
-    //     message.success("Tạo câu hỏi thành công");
-    //     form.resetFields();
-    //   } else {
-    //     console.error("API call failed");
-    //     notification.error({
-    //       message: "Đã có lỗi xảy ra",
-    //       description: "Vui lòng tạo câu hỏi lại!",
-    //     });
-    //   }
-    // } catch (error) {
-    //   console.error(error);
-    // }
   };
 
   //=============================================
