@@ -20,7 +20,10 @@ import { Link, useNavigate } from "react-router-dom";
 
 function SampleNextArrow({ onClick }) {
   return (
-    <div className="arrow arrow-right " onClick={onClick}>
+    <div
+      className="arrow arrow-right "
+      onClick={onClick}
+    >
       <MdOutlineArrowForwardIos />
     </div>
   );
@@ -237,7 +240,10 @@ const TimelinePage = () => {
             {geography.map((item) => (
               <div className="card">
                 <div className="card-top">
-                  <h6 key={item.id} onClick={() => handleTitleClick(item)}>
+                  <h6
+                    key={item.id}
+                    onClick={() => handleTitleClick(item)}
+                  >
                     {item.generationName}
                   </h6>
                 </div>
@@ -266,7 +272,10 @@ const TimelinePage = () => {
             onCancel={closeModal}
             footer={null}
           >
-            <Timeline style={{ marginTop: 25 }} key={timelineId}>
+            <Timeline
+              style={{ marginTop: 25 }}
+              key={timelineId}
+            >
               {eventName &&
                 eventName.map((item) => (
                   <Timeline.Item
@@ -303,7 +312,16 @@ const TimelinePage = () => {
                     {event.startYear}-{event.endYear}
                   </h6>
                   <Tag color="cyan">{event.generation.generationName}</Tag>
-                  <p>{event.content}</p>
+                  <p>
+                    {/* {item.content} */}
+                    {event.content.split("\n").map((line, index) => (
+                      <React.Fragment key={index}>
+                        {line}
+                        <br />
+                      </React.Fragment>
+                    ))}
+                  </p>
+                  {/* <p>{event.content}</p> */}
                 </div>
               ))}
             {/* <div>
@@ -335,11 +353,11 @@ const TimelinePage = () => {
               onChange={handlePageChange}
                         /> */}
           </Col>
-          {/* <Col span={2}></Col>
+          <Col span={2}></Col>
 
           <Col span={5}>
             <TimelineComponent />
-          </Col> */}
+          </Col>
         </Row>
 
         <Modal
@@ -349,7 +367,10 @@ const TimelinePage = () => {
           onCancel={closeModal}
           footer={null}
         >
-          <Timeline style={{ marginTop: 25 }} key={articleId}>
+          <Timeline
+            style={{ marginTop: 25 }}
+            key={articleId}
+          >
             {/* {eventName &&
               eventName.map((item) => ( */}
             {articleName &&
