@@ -5,8 +5,6 @@ import {
   Button,
   Space,
   Typography,
-  Radio,
-  Row,
   Col,
   Select,
   message,
@@ -14,18 +12,18 @@ import {
 } from "antd";
 import { callGetGeneration } from "../../../services/api";
 import "./createquiz.scss";
+import axios from "../../../utils/axios-customize";
 
 const { Title } = Typography;
 
 const CreateQuizPage = () => {
   const [form] = Form.useForm();
   const [isSubmit, setIsSubmit] = useState(false);
+  const [generations, setGenerations] = useState([]);
+  const [generationId, setGenerationId] = useState();
 
   const onFinish = async (values) => {
     const token = sessionStorage.getItem("jwtToken");
-
-    console.log("log token:", token);
-
     const {
       question,
       firstChoice,
@@ -37,46 +35,23 @@ const CreateQuizPage = () => {
     const selectedGeneration = generations.find(
       (item) => item.id === Number(generationId)
     );
-    const data = [
-      {
-        question,
-        firstChoice,
-        secondChoice,
-        thirdChoice,
-        answer,
-        generationId: selectedGeneration ? selectedGeneration.id : null,
-      },
-    ];
-    console.log(data);
-    try {
-      const res = await fetch("http://localhost:8084/editor/create-question", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify(data),
-      });
 
-      if (res.ok) {
-        console.log("API call successful");
-        message.success("Tạo câu hỏi thành công");
-        form.resetFields();
-      } else {
-        console.error("API call failed");
-        notification.error({
-          message: "Đã có lỗi xảy ra",
-          description: "Vui lòng tạo câu hỏi lại!",
-        });
-      }
-    } catch (error) {
-      console.error(error);
+    const res = await axios.post(
+      "http://localhost:8084/editor/create-question",
+      { question, firstChoice, secondChoice, thirdChoice, answer, generationId }
+    );
+    console.log("log res", res);
+    if (!res.ok) {
+      message.success("Tạo câu hỏi thành công.");
+    } else {
+      notification.error({
+        message: "Đã có lỗi xảy ra",
+        description: "Vui lòng tạo câu hỏi lại!",
+      });
     }
   };
 
   //=============================================
-  const [generations, setGenerations] = useState([]);
-  const [generationId, setGenerationId] = useState();
 
   const getGenerations = async () => {
     const res = await callGetGeneration();
@@ -88,8 +63,8 @@ const CreateQuizPage = () => {
   }, []);
 
   const onChange = (value) => {
-    console.log("value: ", value);
     setGenerationId(value);
+    console.log("value: ", generationId);
   };
   const options = generations.map((item) => ({
     value: String(item.id),
@@ -109,10 +84,7 @@ const CreateQuizPage = () => {
             width="100%"
           >
             <div>
-              <Space
-                direction="vertical"
-                className="question-wrapper"
-              >
+              <Space direction="vertical" className="question-wrapper">
                 <Form.Item
                   labelCol={{ span: 24 }}
                   width="100%"
@@ -175,11 +147,7 @@ const CreateQuizPage = () => {
                 </Form.Item>
 
                 <Form.Item>
-                  <Button
-                    type="primary"
-                    htmlType="submit"
-                    loading={isSubmit}
-                  >
+                  <Button type="primary" htmlType="submit" loading={isSubmit}>
                     Hoàn thành
                   </Button>
                 </Form.Item>
