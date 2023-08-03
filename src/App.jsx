@@ -41,6 +41,7 @@ import { elements } from "chart.js";
 // import QuizDetail from "./pages/quizList/QuizzDetail";
 import ArticleList from "./pages/article/ArticleList";
 import MapArticles from "./components/Admin/MapArticles";
+import KingCharacters from "./pages/characters/kingCharacters";
 import MapArticleDtails from "./components/Admin/MapArticleDetails";
 
 const Layout = () => {
@@ -85,6 +86,7 @@ export default function App() {
         { path: "rank", element: <RankingPage /> },
         { path: "timeline", element: <TimelinePage /> },
         { path: "character", element: <CharactersPage /> },
+        { path: "kingCharacter", element: <KingCharacters /> },
         { path: "singleEvent/:slug", element: <ArticleDetails /> },
         { path: "quizdt/:id", element: <QuizzDetail /> },
         // { path: "article/:slug", element: <ArticlePage /> },

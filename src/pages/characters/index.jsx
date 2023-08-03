@@ -25,7 +25,7 @@ const BreadcrumbRank = () => {
         {
           key: "characters",
           title: "Nhân Vật Lịch Sử",
-          href: "/characters",
+          href: "/character",
         },
       ]}
     />

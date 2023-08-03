@@ -165,11 +165,11 @@ const CreateQuizPage = () => {
                     placeholder="Triều đại"
                     // optionFilterProp="children"
                     onChange={onChange}
-                    filterOption={(input, option) =>
-                      (option?.label ?? "")
-                        .toLowerCase()
-                        .includes(input.toLowerCase())
-                    }
+                    // filterOption={(input, option) =>
+                    //   (option?.label ?? "")
+                    //     .toLowerCase()
+                    //     .includes(input.toLowerCase())
+                    // }
                     options={options}
                   />
                 </Form.Item>
