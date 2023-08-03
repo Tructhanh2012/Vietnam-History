@@ -31,67 +31,6 @@ const ManageEventModal = (props) => {
   const [day, setDay] = useState(new Date().getDate());
   const [month, setMonth] = useState(new Date().getMonth() + 1);
 
-  const onFinish = async (formData) => {
-    const user = JSON.parse(sessionStorage.getItem("user"));
-    const token = sessionStorage.getItem("jwtToken");
-    setIsSubmit(true);
-
-    let article = {
-      articleId: formData.articleId,
-      generationId: selectGeneration,
-      provinceId: selectProvince,
-      eventId: selectEvent,
-      title: formData.title,
-      image: formData.image,
-      content: formData.content,
-      date: Number(day),
-      month: Number(month),
-    };
-
-    try {
-      // Call the API to update the article
-      const response = await fetch(
-        "http://localhost:8084/editor/edit-article",
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify(article),
-        }
-      );
-
-      console.log("response", response);
-      // Handle the response
-      if (response.ok) {
-        message.success("Cập nhật bài viết thành công");
-        setOpenModalUpdate(false);
-        // window.location.reload();
-      } else {
-        // Handle the error condition
-        notification.error({
-          message: "Đã có lỗi xảy ra",
-          description: "Vui lòng thử lại sau!",
-        });
-        console.log(article);
-      }
-    } catch (error) {
-      // Handle any network or API errors
-      console.error("Error updating article:", error);
-      notification.error({
-        message: "Đã có lỗi xảy ra",
-        description: "Đã xảy ra lỗi khi cập nhật bài viết.",
-      });
-    } finally {
-      setIsSubmit(false);
-    }
-  };
-
-  useEffect(() => {
-    form.setFieldsValue(dataUpdate);
-  }, [dataUpdate]);
-
   //modal content===================================
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
@@ -156,7 +95,7 @@ const ManageEventModal = (props) => {
     const res = await callGetEvent();
     console.log(res.data);
     const EventOptions = res.data.map((item) => ({
-      label: item.name,
+      label: item.eventName,
       value: item.id,
     }));
     // setGeneration(res.data.map(item =>({ label: item.name, key: item.id })));
@@ -171,6 +110,66 @@ const ManageEventModal = (props) => {
 
     // Set giá trị đã chọn vào content
   };
+  const onFinish = async (formData) => {
+    const user = JSON.parse(sessionStorage.getItem("user"));
+    const token = sessionStorage.getItem("jwtToken");
+    setIsSubmit(true);
+
+    let article = {
+      id: formData.articleId,
+      generationId: selectGeneration,
+      provinceId: selectProvince,
+      eventId: selectEvent,
+      title: formData.title,
+      image: formData.image,
+      content: content,
+      date: Number(day),
+      month: Number(month),
+    };
+    console.log("Updated Article Data:", article);
+    try {
+      // Call the API to update the article
+      const response = await fetch(
+        "http://localhost:8084/editor/edit-article",
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify(article),
+        }
+      );
+
+      console.log("response", response);
+      // Handle the response
+      if (response.ok) {
+        message.success("Cập nhật bài viết thành công");
+        setOpenModalUpdate(false);
+        // window.location.reload();
+      } else {
+        // Handle the error condition
+        notification.error({
+          message: "Đã có lỗi xảy ra",
+          description: "Vui lòng thử lại sau!",
+        });
+        console.log(article);
+      }
+    } catch (error) {
+      // Handle any network or API errors
+      console.error("Error updating article:", error);
+      notification.error({
+        message: "Đã có lỗi xảy ra",
+        description: "Đã xảy ra lỗi khi cập nhật bài viết.",
+      });
+    } finally {
+      setIsSubmit(false);
+    }
+  };
+
+  useEffect(() => {
+    form.setFieldsValue(dataUpdate);
+  }, [dataUpdate]);
 
   return (
     <>
