@@ -69,8 +69,6 @@ const TimelinePage = () => {
   const [eventName, setEventName] = useState();
   const [currentPage, setCurrentPage] = useState(1);
   // const [articleId, setArticleId] = useState();
-  const pageSize = 6;
-  const totalItems = 105;
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
@@ -230,6 +228,8 @@ const TimelinePage = () => {
   useEffect(() => {
     getEvent();
   }, []);
+  const pageSize = 1;
+  const totalItems = events.length;
   return (
     <>
       <BreadcrumbRank />
@@ -300,30 +300,32 @@ const TimelinePage = () => {
           <Col span={14}>
             <h1>Các sự kiện lịch sử:</h1>
             {events &&
-              events.map((event) => (
-                <div key={event.id}>
-                  <h2
-                    style={{ cursor: "pointer" }}
-                    onClick={() => handleOnClick(event)}
-                  >
-                    {event.eventName}
-                  </h2>
-                  <h6>
-                    {event.startYear}-{event.endYear}
-                  </h6>
-                  <Tag color="cyan">{event.generation.generationName}</Tag>
-                  <p>
-                    {/* {item.content} */}
-                    {event.content.split("\n").map((line, index) => (
-                      <React.Fragment key={index}>
-                        {line}
-                        <br />
-                      </React.Fragment>
-                    ))}
-                  </p>
-                  {/* <p>{event.content}</p> */}
-                </div>
-              ))}
+              events
+                .slice((currentPage - 1) * pageSize, currentPage * pageSize)
+                .map((event) => (
+                  <div key={event.id}>
+                    <h2
+                      style={{ cursor: "pointer" }}
+                      onClick={() => handleOnClick(event)}
+                    >
+                      {event.eventName}
+                    </h2>
+                    <h6>
+                      {event.startYear}-{event.endYear}
+                    </h6>
+                    <Tag color="cyan">{event.generation.generationName}</Tag>
+                    <p>
+                      {/* {item.content} */}
+                      {event.content.split("\n").map((line, index) => (
+                        <React.Fragment key={index}>
+                          {line}
+                          <br />
+                        </React.Fragment>
+                      ))}
+                    </p>
+                    {/* <p>{event.content}</p> */}
+                  </div>
+                ))}
             {/* <div>
               {dataTextHistoryTimeline
                 .slice((currentPage - 1) * pageSize, currentPage * pageSize)
@@ -345,13 +347,14 @@ const TimelinePage = () => {
                   </div>
                 ))}
             </div>
+           */}
             <Pagination
               className="pagination-timeline"
               total={totalItems}
               current={currentPage}
               pageSize={pageSize}
               onChange={handlePageChange}
-                        /> */}
+            />
           </Col>
           <Col span={2}></Col>
 

@@ -40,79 +40,20 @@ const CharactersPage = () => {
   }, [page]);
   const [currentPage, setCurrentPage] = useState(1);
 
-  const items = [
-    {
-      key: "4",
-      href: "#4",
-      title: "Hùng Vương",
-    },
-    {
-      key: "2",
-      href: "#2",
-      title: "Hai Bà Trưng",
-    },
-    {
-      key: "7",
-      href: "#7",
-      title: "Lý Nam Đế",
-    },
-    {
-      key: "1",
-      href: "#1",
-      title: "Đinh Tiên Hoàng",
-    },
-    {
-      key: "5",
-      href: "#5",
-      title: "Lê Đại Hành",
-    },
-    {
-      key: "6",
-      href: "#6",
-      title: "Lê Thái Tổ",
-    },
-    {
-      key: "8",
-      href: "#8",
-      title: "Lý Thái Tổ",
-    },
-    {
-      key: "9",
-      href: "#9",
-      title: "Lý Thường Kiệt",
-    },
-    {
-      key: "13",
-      href: "#13",
-      title: "Trần Hưng Đạo",
-    },
-    {
-      key: "14",
-      href: "#14",
-      title: "Trần Nhân Tông",
-    },
-    {
-      key: "11",
-      href: "#11",
-      title: "Nguyễn Huệ",
-    },
-    {
-      key: "12",
-      href: "#12",
-      title: "Nguyễn Trãi",
-    },
-    {
-      key: "3",
-      href: "#3",
-      title: "Hồ Chí Minh",
-    },
-  ];
+  const [items, setItems] = useState([]);
 
   const [characters, setCharacters] = useState([]);
 
   const getFigure = async () => {
     const res = await callGetCharacterList();
     setCharacters(res.data);
+    const itemsArray = res.data.map((figure) => ({
+      key: figure.id.toString(), // Convert the key to a string since it's expected to be a string in Ant Design Anchor
+      href: `#${figure.id}`,
+      title: figure.name,
+    }));
+
+    setItems(itemsArray);
   };
 
   useEffect(() => {
@@ -146,7 +87,7 @@ const CharactersPage = () => {
                   <div
                     className="col-md-12 row pt-1  border rounded p-3"
                     key={figure.id}
-                    // id={item.id}
+                    id={figure.id}
                   >
                     <div className="col-md-12 mb-2">
                       <h3 className="link-title">{figure.name}</h3>
@@ -195,12 +136,12 @@ const CharactersPage = () => {
           </Col>
           <Col span={2}></Col>
 
-          {/* <Col span={6}>
+          <Col span={6}>
             <Anchor
               items={items}
               style={{ padding: "10px", marginLeft: "26px" }}
             />
-          </Col> */}
+          </Col>
         </Row>
       </div>
     </>

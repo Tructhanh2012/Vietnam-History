@@ -25,7 +25,7 @@ const MapArticles = () => {
   });
 
   const data = listArticles.map((article) => ({
-    //  provinceId: article.province.id,
+    provinceId: article.province.id,
     key: article.id,
     articleId: article.id,
     title: article.title,
@@ -500,6 +500,7 @@ const MapArticles = () => {
       }
       // Xử lý thành công
       console.log("Các bài viết đã được lưu thành công!");
+      window.location.reload();
     } catch (error) {
       console.error(error);
     }

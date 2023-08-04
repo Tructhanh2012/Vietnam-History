@@ -5,6 +5,8 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import { Avatar, Button, Dropdown } from "antd";
 import { BsTrophy } from "react-icons/bs";
 import styles from "./style.module.scss";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 
 const HeaderPage = () => {
   const navigate = useNavigate();
@@ -81,14 +83,23 @@ const HeaderPage = () => {
         style={{ background: `url(${headerBackground})` }}
       >
         <div className={`${styles.container} container-custom`}>
-          <img className={styles.image} src={imageLogo} />
+          <img
+            className={styles.image}
+            src={imageLogo}
+          />
           <>
             {!user ? (
-              <Button className="btn-login" onClick={() => navigate("/login")}>
+              <Button
+                className="btn-login"
+                onClick={() => navigate("/login")}
+              >
                 Đăng nhập
               </Button>
             ) : (
-              <Dropdown menu={{ items }} trigger={["click"]}>
+              <Dropdown
+                menu={{ items }}
+                trigger={["click"]}
+              >
                 <div className={styles.authorize}>
                   <Avatar src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQd-ySpkhKCTWBYov62UHbrAtaeeQIZVDmL3g&usqp=CAU" />
                   Xin chào {user?.name}
@@ -123,7 +134,7 @@ const HeaderPage = () => {
       handleClick: "characters",
       subMenu: [
         {
-          label: "Vua",
+          label: "Các vị vua",
           link: "/kingCharacter",
           handleClick: "characters-list",
         },
@@ -161,6 +172,12 @@ const HeaderPage = () => {
                     onClick={item.subMenu ? toggleSubMenu : null}
                   >
                     {item.label}
+                    {item.subMenu && (
+                      <FontAwesomeIcon
+                        icon={faAngleDown} // Add the arrow icon here
+                        className={styles.arrow_icon}
+                      />
+                    )}
                   </NavLink>
                   {item.subMenu && showSubMenu && (
                     <ul className={styles.sub_menu}>
@@ -171,7 +188,10 @@ const HeaderPage = () => {
                             className={styles.sub_menu_item}
                             data-active={activeItem === subItem.handleClick}
                           >
-                            <NavLink to={subItem.link} exact>
+                            <NavLink
+                              to={subItem.link}
+                              exact
+                            >
                               {subItem.label}
                             </NavLink>
                           </li>
@@ -183,7 +203,10 @@ const HeaderPage = () => {
               );
             })}
           </ul>
-          <NavLink to="/rank" className={styles.ranking}>
+          <NavLink
+            to="/rank"
+            className={styles.ranking}
+          >
             <BsTrophy />
             BẢNG XẾP HẠNG
           </NavLink>

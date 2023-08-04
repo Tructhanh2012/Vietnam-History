@@ -146,7 +146,7 @@ const ManageEventModal = (props) => {
       if (response.ok) {
         message.success("Cập nhật bài viết thành công");
         setOpenModalUpdate(false);
-        // window.location.reload();
+        window.location.reload();
       } else {
         // Handle the error condition
         notification.error({

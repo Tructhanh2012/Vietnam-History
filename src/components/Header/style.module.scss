@@ -76,7 +76,7 @@
 .sub_menu {
   position: absolute;
   top: 99%;
-  left: 414px;
+  left: 400px;
   display: none;
   background-color: #be0b2b;
   padding: 8px 16px;
@@ -92,4 +92,10 @@
 
 .menu_item:hover .sub_menu {
   display: block; /* Show the submenu when hovering over the main menu item */
+}
+.arrow_icon {
+  // margin-top: 7px;
+  // width: 50%;
+  height: 11px;
+  margin-left: 3px;
 }

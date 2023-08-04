@@ -28,10 +28,18 @@ const BreadcrumbRank = () => {
 const KingCharacters = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [characters, setCharacters] = useState([]);
+  const [items, setItems] = useState([]);
 
   const getFigure = async () => {
     const res = await callGetKingCharacterList();
     setCharacters(res.data);
+    const itemsArray = res.data.map((figure) => ({
+      key: figure.id.toString(), // Convert the key to a string since it's expected to be a string in Ant Design Anchor
+      href: `#${figure.id}`,
+      title: figure.name,
+    }));
+
+    setItems(itemsArray);
   };
 
   useEffect(() => {
@@ -63,7 +71,7 @@ const KingCharacters = () => {
                   <div
                     className="col-md-12 row pt-1  border rounded p-3"
                     key={figure.id}
-                    // id={item.id}
+                    id={figure.id}
                   >
                     <div className="col-md-12 mb-2">
                       <h3 className="link-title">{figure.name}</h3>
@@ -111,12 +119,12 @@ const KingCharacters = () => {
           </Col>
           <Col span={2}></Col>
 
-          {/* <Col span={6}>
+          <Col span={6}>
             <Anchor
               items={items}
               style={{ padding: "10px", marginLeft: "26px" }}
             />
-          </Col> */}
+          </Col>
         </Row>
       </div>
     </>
