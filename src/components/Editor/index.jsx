@@ -46,22 +46,22 @@ const EditorLayout = (props) => {
         },
       ],
     },
-    {
-      label: <span>Sự kiện</span>,
-      icon: <GrArticle size="1.5em" />,
-      children: [
-        {
-          label: <Link to="/editor/manageEvent">Quản lí bài viết</Link>,
-          key: "manageEvent",
-          icon: <TfiWrite />,
-        },
-        {
-          label: <Link to="/editor/compose-article">Thêm sự kiện</Link>,
-          key: "compose-article",
-          icon: <TiDocumentAdd size="1.4em" />,
-        },
-      ],
-    },
+    // {
+    //   label: <span>Sự kiện</span>,
+    //   icon: <GrArticle size="1.5em" />,
+    //   children: [
+    //     {
+    //       label: <Link to="/editor/manageEvent">Quản lí bài viết</Link>,
+    //       key: "manageEvent",
+    //       icon: <TfiWrite />,
+    //     },
+    //     {
+    //       label: <Link to="/editor/compose-article">Thêm sự kiện</Link>,
+    //       key: "compose-article",
+    //       icon: <TiDocumentAdd size="1.4em" />,
+    //     },
+    //   ],
+    // },
     {
       label: <span>Quiz</span>,
       icon: <MdOutlineQuiz size="1.5em" />,
